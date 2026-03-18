@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor.Experimental;
 using UnityEngine;
 
-// List 번호 == ID로 맞출 것
 [CreateAssetMenu(menuName = "GameData / EnemyRegistry", fileName = "EnemyRegistrySO")]
 public class EnemyRegistry : ScriptableObject
 {
@@ -12,15 +11,26 @@ public class EnemyRegistry : ScriptableObject
 
     public IReadOnlyList<EnemyData_SO> Enemys => enemys;
 
-    public bool GetEnemyByID(int _ID, out EnemyData_SO enemy)
+    private Dictionary<int, EnemyData_SO> dataDic = new Dictionary<int, EnemyData_SO>();
+
+    public void ReMake()
     {
-        enemy = null;
+        dataDic.Clear();
 
-        if (_ID >= enemys.Count || enemys[_ID] == null)
-            return false;
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            dataDic.Add(enemys[i].EmemyID, enemys[i]);
+        }
+    }
 
-        enemy = enemys[_ID];
+    public EnemyData_SO GetEnemyByID(int _ID)
+    {
+        if (dataDic.TryGetValue(_ID, out EnemyData_SO data))
+        {
+            return data;
+        }
 
-        return true;
+        Debug.Log("EnemyRegistry - Error");
+        return null;
     }
 }

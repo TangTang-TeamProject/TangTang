@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 
-// List 번호 == ID로 맞출 것
 [CreateAssetMenu(menuName = "GameData / ArtifactRegistry", fileName = "ArtifactRegistrySO")]
 public class ArtifactRegistry : ScriptableObject
 {
@@ -12,15 +12,26 @@ public class ArtifactRegistry : ScriptableObject
 
     public IReadOnlyList<ArtifactData_SO> Artifacts => artifacts;
 
-    public bool GetArtifactByID(int _ID, out ArtifactData_SO artifact)
+    private Dictionary<int, ArtifactData_SO> dataDic = new Dictionary<int, ArtifactData_SO>();
+
+    public void ReMake()
     {
-        artifact = null;
+        dataDic.Clear();
 
-        if (_ID >= artifacts.Count || artifacts[_ID] == null)
-            return false;
+        for (int i = 0; i < artifacts.Count; i++)
+        {
+            dataDic.Add(artifacts[i].ArtifactID, artifacts[i]);
+        }
+    }
 
-        artifact = artifacts[_ID];
+    public ArtifactData_SO GetArtifactByID(int _ID)
+    {
+        if (dataDic.TryGetValue(_ID, out ArtifactData_SO data))
+        {
+            return data;
+        }
 
-        return true;
+        Debug.Log("ArtifactRegistry - Error");
+        return null;
     }
 }
