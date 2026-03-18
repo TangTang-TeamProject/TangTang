@@ -11,7 +11,7 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField]
     private float atk = 0f;
     [SerializeField]
-    private float def = 0f;
+    private float hp = 0f;
     [SerializeField]
     private float speed = 0f;
     [SerializeField]
@@ -31,7 +31,7 @@ public class EnemyData_SO : ScriptableObject
 
     public int EmemyID => enemyID;
     public float ATK => atk;
-    public float DEF => def;
+    public float HP => hp;
     public float Speed => speed;
     public float ATKCycle => atkCycle;
     public float BulletSpeed => bulletSpeed;
