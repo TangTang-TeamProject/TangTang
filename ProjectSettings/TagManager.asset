@@ -15,9 +15,9 @@ TagManager:
   - Player
   - Item
   - Enemy
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - PlayerBullet
+  - DefenceBullet
   - 
   - 
   - 
