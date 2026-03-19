@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class BaseEnemyFactory : MonoBehaviour
 {
-
-    public abstract BaseEnemy CreateEnemy();
+    public abstract BaseEnemy CreateEnemy(Vector2 position);
     
 }
