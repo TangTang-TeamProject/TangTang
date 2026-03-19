@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters;
 using UnityEditor;
+using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CSV_SO_Converter", menuName = "Converter")]
@@ -67,15 +68,28 @@ public class CSV_SO_Converter : EditorWindow
             if (fieldInfo == null)
             {
                 Debug.Log("CSV - SO / È£È¯ ¾ÈµÊ");
+                return;
             }
-
-            fieldDic.Add(headers[j], fieldInfo);
+            else
+            {
+                fieldDic.Add(headers[j], fieldInfo);
+            }
         }
 
 
         for (int i = 1; i < lines.Length; i++)
         {
+            if (string.IsNullOrWhiteSpace(lines[i]))
+                continue;
+
             string[] datas = lines[i].Split(',');
+
+            if (datas.Length != headers.Length)
+            {
+                Debug.Log($"{i} ¹øÂ° ÁÙ ÆÄÀÏ ±úÁü");
+                continue;
+            }
+
 
             ScriptableObject NEW_SO = ScriptableObject.CreateInstance(soType);
 
@@ -85,9 +99,19 @@ public class CSV_SO_Converter : EditorWindow
                 fieldDic[headers[j]].SetValue(NEW_SO, data);
             }
 
+
             string file = $"{soFilePath}/{datas[0]}.asset";
 
-            AssetDatabase.CreateAsset(NEW_SO, file);
+            ScriptableObject isExist = AssetDatabase.LoadAssetAtPath<ScriptableObject>(file);
+
+            if (isExist == null)
+            {
+                AssetDatabase.CreateAsset(NEW_SO, file);
+            }
+            else
+            {
+                EditorUtility.CopySerialized(NEW_SO, isExist);
+            }
         }
 
         AssetDatabase.SaveAssets();
@@ -98,11 +122,13 @@ public class CSV_SO_Converter : EditorWindow
     {
         if (type == typeof(int))
         {
-            return int.Parse(_data);
+            int.TryParse(_data, out int baked);
+            return baked;
         }
         if (type == typeof(float))
         {
-            return float.Parse(_data);
+            float.TryParse(_data, out float baked);
+            return baked;
         }
         if (type == typeof(string))
         {
