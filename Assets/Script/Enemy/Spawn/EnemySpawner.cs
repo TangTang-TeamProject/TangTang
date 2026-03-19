@@ -5,17 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
-{
-    [SerializeField] private GameObject _player;
+{   
     [SerializeField] private GameObject _enemy;
 
-    [SerializeField] private int _spawnCount = 100;
-    [SerializeField] private int _spawnAtOnce = 10;
-    [SerializeField] private float _spawnRadius = 8.0f;
+    [SerializeField] private int _spawnCount = 500;
+    [SerializeField] private int _spawnAtOnce = 20;
+    [SerializeField] private float _spawnRadius = 8.5f;
     [SerializeField] private float _spawnTime = 10f;
     
-    private EnemyFactory _factory;
-    private EnemyPool _pool = new EnemyPool();
+    [SerializeField] private BaseEnemyFactory _factory;
+  
 
     private List<GameObject> _aliveList = new List<GameObject>();
 
@@ -36,18 +35,14 @@ public class EnemySpawner : MonoBehaviour
             enabled = false;
             return;
         }
-
-        for (int i = 0; i < 100; i++)
+        
+        if (_factory == null)
         {
-            GameObject go = Instantiate(_enemy, gameObject.transform);
-            Enemy enemy = go.GetComponent<Enemy>();            
-            _pool.Add(enemy);            
-
-            go.SetActive(false);
-            
-        }
-
-        _factory = new EnemyFactory(_pool);
+            Debug.Log("EnemySpawner -> _factory ¿¬°á ¾ÈµÊ");
+            enabled = false;
+            return;
+        }    
+        
     }
 
 
@@ -68,24 +63,22 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < _spawnAtOnce; i++)
             {
-                Enemy enemy = _factory.CreateEnemy();
-
-                enemy.gameObject.SetActive(true);
-                
-                Vector2 _spawnPos = Random.insideUnitCircle;
-                enemy.transform.position = _spawnPos.normalized * _spawnRadius;
-                enemy.SetTarget(_player);
-                
-                _aliveList.Add(_enemy);
+                SpawnEnemy();
             }
 
             yield return new WaitForSeconds(_spawnTime);
         }        
     }
 
-    public void Return(Enemy enemy)
+    private void SpawnEnemy()
     {
-        _aliveList.Remove(enemy.gameObject);
-        _factory.ReturnToPool(enemy);
+        Vector2 _randSpawnPos = Random.insideUnitCircle;
+        _randSpawnPos = _randSpawnPos.normalized * _spawnRadius;
+
+        BaseEnemy enemy = _factory.CreateEnemy(_randSpawnPos);
+
+        _aliveList.Add(_enemy);
+
     }
+  
 }
