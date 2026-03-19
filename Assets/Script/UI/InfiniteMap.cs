@@ -16,8 +16,15 @@ public class InfiniteMap : MonoBehaviour
     private float maxY = 10f;
     [SerializeField]
     private float minY = -10f;
-    [SerializeField]
-    private float buffer = 0.1f;
+
+    private float xDist;
+    private float yDist;
+
+    private void Awake()
+    {
+        xDist = maxX - minX;
+        yDist = maxY - minY;
+    }
 
     void Update()
     {
@@ -26,26 +33,26 @@ public class InfiniteMap : MonoBehaviour
 
     void CheckPos()
     {
-        Vector3 calcPos = godObject.position;
+        Vector3 calcPos = Vector3.zero;
 
         if (player.position.x > maxX)
         {
-            calcPos.x = minX + buffer;
+            calcPos.x = -xDist;
         }
         else if (player.position.x < minX)
         {
-            calcPos.x = maxX - buffer;
+            calcPos.x = xDist;
         }
 
         if (player.position.y > maxY)
         {
-            calcPos.y = minY + buffer;
+            calcPos.y = -yDist;
         }
         else if (player.position.y < minY)
         {
-            calcPos.y = maxY - buffer;
+            calcPos.y = yDist;
         }
 
-        godObject.position = calcPos;
+        godObject.position += calcPos;
     }
 }
