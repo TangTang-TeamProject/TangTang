@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private PlayerData_SO _playerData;
 
+    private float _moveSpeed;
     private float _moveX;
     private float _moveY;
     private float _angle;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         _mainCam = Camera.main;
         _target = transform.position;
+        _moveSpeed = _playerData.Speed;
     }
 
     void Update()
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
 
         PlayerMove();
+        PlayerLook();
+        // 나중에 공격 방향 정하는 오브젝트에서 사용
         //_mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         //_angle = Mathf.Atan2(_mouse.y - _target.y, _mouse.x - _target.x) * Mathf.Rad2Deg;
         //this.transform.rotation = Quaternion.AngleAxis(_angle - 90, Vector3.forward);
@@ -34,13 +38,22 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        Vector3 dir = new Vector3(_moveX, _moveY, 0);
+        Vector2 dir = new Vector2(_moveX, _moveY);
 
         if (dir.sqrMagnitude > 1f)
         {
             dir.Normalize();
         }
 
-        transform.position += dir * _moveSpeed * Time.deltaTime;
+        _target += dir * _moveSpeed * Time.deltaTime;
+    }
+
+    void PlayerLook()
+    {
+        _mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+        if(_mouse.x < _target.x)
+        {
+            //transform.rotation 
+        }
     }
 }

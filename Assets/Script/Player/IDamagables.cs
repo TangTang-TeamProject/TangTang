@@ -1,5 +1,5 @@
 public interface IDamagables
 {
-    public void Hit();
+    public void Hit(float damage);
     public void Die();
 }
