@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Camera _mainCam;
     private Vector2 _target;
     private Vector2 _mouse;
+    private Vector2 _baseScale;
 
 
     void Start()
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         _mainCam = Camera.main;
         _target = transform.position;
         _moveSpeed = _playerData.Speed;
+        _baseScale = transform.localScale;
     }
 
     void Update()
@@ -38,22 +40,28 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        Vector2 dir = new Vector2(_moveX, _moveY);
+        Vector3 dir = new Vector3(_moveX, _moveY, 0);
 
         if (dir.sqrMagnitude > 1f)
         {
             dir.Normalize();
         }
 
-        _target += dir * _moveSpeed * Time.deltaTime;
+        transform.position += dir * _moveSpeed * Time.deltaTime;
     }
 
     void PlayerLook()
     {
         _mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
-        if(_mouse.x < _target.x)
+        Vector3 scale = _baseScale;
+        if(_mouse.x < transform.position.x)
         {
-            //transform.rotation 
+            scale.x = _baseScale.x;
         }
+        else
+        {
+            scale.x = -_baseScale.x;
+        }
+        transform.localScale = scale;
     }
 }
