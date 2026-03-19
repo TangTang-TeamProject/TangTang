@@ -6,7 +6,6 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CSV_SO_Converter", menuName = "Converter")]
 public class CSV_SO_Converter : EditorWindow
 {
     private TextAsset csvFile;
