@@ -19,6 +19,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
 
     protected float _radius;
     protected float _nextAtk;
+    protected LayerMask _playerLayer;
     
     public abstract void Chase();
      
@@ -34,6 +35,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
         _damage = _monsterData.DMG;
+        _playerLayer = LayerMask.GetMask("Player");
 
         _radius = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().radius : 0f;   
         
@@ -53,7 +55,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
             return;
         }
 
-        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius);
+        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius, _playerLayer);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].CompareTag(_target.tag))
