@@ -5,37 +5,57 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerData_SO _playerData;
+    [SerializeField] private GameObject _spawnDir;
 
     private float _moveSpeed;
     private float _moveX;
     private float _moveY;
     private float _angle;
     private Camera _mainCam;
-    private Vector2 _target;
     private Vector2 _mouse;
     private Vector2 _baseScale;
+    private Vector2 _target;
 
+    void Awake()
+    {
+        if (_spawnDir == null)
+        {
+            CPrint.Warn("플레이어 컨트롤러에 스폰방향 오브젝트 없음");
+            return;
+        }
+
+        if (_playerData == null)
+        {
+            CPrint.Warn("플레이어 컨트롤러에 플레이어데이터 SO 없음");
+            return;
+        }
+    }
 
     void Start()
     {
         _mainCam = Camera.main;
-        _target = transform.position;
         _moveSpeed = _playerData.Speed;
         _baseScale = transform.localScale;
+        _target = _spawnDir.transform.position;
     }
 
     void Update()
     {
+        if (_playerData == null)
+            return;
+
         _moveX = Input.GetAxisRaw("Horizontal");
         _moveY = Input.GetAxisRaw("Vertical");
 
 
+        _mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         PlayerMove();
         PlayerLook();
-        // 나중에 공격 방향 정하는 오브젝트에서 사용
-        //_mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
-        //_angle = Mathf.Atan2(_mouse.y - _target.y, _mouse.x - _target.x) * Mathf.Rad2Deg;
-        //this.transform.rotation = Quaternion.AngleAxis(_angle - 90, Vector3.forward);
+
+        if (_spawnDir == null)
+            return;
+
+        SpawnLook();
     }
 
     void PlayerMove()
@@ -52,7 +72,6 @@ public class PlayerController : MonoBehaviour
 
     void PlayerLook()
     {
-        _mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 scale = _baseScale;
         if(_mouse.x < transform.position.x)
         {
@@ -63,5 +82,14 @@ public class PlayerController : MonoBehaviour
             scale.x = -_baseScale.x;
         }
         transform.localScale = scale;
+        _spawnDir.transform.localScale = -scale;
+    }
+
+    void SpawnLook()
+    {
+        Vector3 direction = _mouse - _target;
+        direction.z = 0;
+        direction.Normalize();
+        _spawnDir.transform.up = -direction;
     }
 }
