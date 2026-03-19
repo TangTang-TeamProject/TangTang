@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters;
 using UnityEditor;
-using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CSV_SO_Converter", menuName = "Converter")]
@@ -43,6 +41,10 @@ public class CSV_SO_Converter : EditorWindow
             {
                 Debug.Log("csvFile == null");
             }
+            else if (soScript == null)
+            {
+                Debug.Log("soScript == null");
+            }
             else
             {
                 ConvertCSV();
@@ -63,7 +65,7 @@ public class CSV_SO_Converter : EditorWindow
 
         for (int j = 0; j < headerLen; j++)
         {
-            FieldInfo fieldInfo = soType.GetField(headers[j]);
+            FieldInfo fieldInfo = soType.GetField(headers[j], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (fieldInfo == null)
             {
@@ -122,12 +124,14 @@ public class CSV_SO_Converter : EditorWindow
     {
         if (type == typeof(int))
         {
-            int.TryParse(_data, out int baked);
+            if (!int.TryParse(_data, out int baked))
+                Debug.Log($"ÆÄ½Ì ½ÇÆÐ : {_data}");
             return baked;
         }
         if (type == typeof(float))
         {
-            float.TryParse(_data, out float baked);
+            if (!float.TryParse(_data, out float baked))
+                Debug.Log($"ÆÄ½Ì ½ÇÆÐ : {_data}");
             return baked;
         }
         if (type == typeof(string))
