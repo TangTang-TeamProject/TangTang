@@ -46,7 +46,7 @@ public class SceneChanger : MonoBehaviour
 
         if (sceneLib.Count < (int)Scenes.SceneCount)
         {
-            Debug.Log("씬 설정 오류 - 인스펙터 확인");
+            CPrint.Log("씬 설정 오류 - 인스펙터 확인");
         }
 
         for (int i = 0; i < sceneLib.Count; i++)
@@ -59,7 +59,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (coroutine != null)
         {
-            Debug.Log("이미 로딩중");
+            CPrint.Log("이미 로딩중");
             return;
         }
 

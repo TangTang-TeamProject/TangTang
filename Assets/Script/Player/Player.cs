@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDamagables
 
     public void Hit(float damage)
     {
-        Debug.Log("플레이어 맞았음");
+        CPrint.Log("플레이어 맞았음");
     }
 
     public void Die()
