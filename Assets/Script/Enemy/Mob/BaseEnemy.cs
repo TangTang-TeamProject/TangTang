@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamagables
@@ -58,10 +59,19 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius, _playerLayer);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].CompareTag(_target.tag))
+            if (hit[i].CompareTag(_target.tag)) // _target 과 tag 비교
             {
-                _target.GetComponent<IDamagables>().Hit(_damage);
-                _nextAtk = Time.time + _atkCycle;
+                if (hit[i].gameObject.TryGetComponent(out IDamagables damagables))
+                {
+                    damagables.Hit(_damage);
+                    _nextAtk = Time.time + _atkCycle;
+                    return;
+                }
+                else
+                {
+                    CPrint.Log($"{hit[i].gameObject} IDamagables 못 찾음");
+                    return;
+                }                    
             }
         }
     }
