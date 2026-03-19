@@ -34,7 +34,13 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        transform.Translate(Vector3.up * _moveY * _moveSpeed);
-        transform.Translate(Vector3.right * _moveX * _moveSpeed);
+        Vector3 dir = new Vector3(_moveX, _moveY, 0);
+
+        if (dir.sqrMagnitude > 1f)
+        {
+            dir.Normalize();
+        }
+
+        transform.position += dir * _moveSpeed * Time.deltaTime;
     }
 }
