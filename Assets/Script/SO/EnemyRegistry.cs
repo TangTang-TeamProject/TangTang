@@ -30,7 +30,7 @@ public class EnemyRegistry : ScriptableObject
             return data;
         }
 
-        Debug.Log("EnemyRegistry - Error");
+        CPrint.Log("EnemyRegistry - Error");
         return null;
     }
 }
