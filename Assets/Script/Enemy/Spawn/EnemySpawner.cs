@@ -5,9 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
-{   
-    [SerializeField] private GameObject _enemy;
-
+{      
     [SerializeField] private int _spawnCount = 500;
     [SerializeField] private int _spawnAtOnce = 20;
     [SerializeField] private float _spawnRadius = 8.5f;
@@ -16,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private BaseEnemyFactory _factory;
   
 
-    private List<GameObject> _aliveList = new List<GameObject>();
+    private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
 
     public static EnemySpawner Instance { get; private set; }
 
@@ -28,13 +26,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
         Instance = this;
-
-        if (_enemy == null)
-        {
-            Debug.Log("Enemy 리스트 없음");
-            enabled = false;
-            return;
-        }
+       
         
         if (_factory == null)
         {
@@ -44,8 +36,6 @@ public class EnemySpawner : MonoBehaviour
         }    
         
     }
-
-
     void Start()
     {
         StartCoroutine(Spawn());
@@ -57,8 +47,9 @@ public class EnemySpawner : MonoBehaviour
         while(true)
         {
             if (_aliveList.Count >= _spawnCount)
-            {
+            {                
                 yield return null;
+                continue;
             }
 
             for (int i = 0; i < _spawnAtOnce; i++)
@@ -77,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
 
         BaseEnemy enemy = _factory.CreateEnemy(_randSpawnPos);
 
-        _aliveList.Add(_enemy);
+        _aliveList.Add(enemy);
 
     }
   
