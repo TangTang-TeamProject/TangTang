@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Orc : BaseEnemy
-{
-    [SerializeField] private EnemyData_SO _orcData;
-
+{ 
     public override void Chase()
     {
         Vector2 dir = (_target.transform.position - transform.position).normalized;
         Vector2 nowPos = transform.position;
 
-        nowPos += dir * _orcData.Speed * Time.deltaTime;
+        nowPos += dir * _speed * Time.deltaTime;
 
         transform.position = nowPos;
     }
@@ -21,7 +19,7 @@ public class Orc : BaseEnemy
         
     }
 
-    public override void Damaged()
+    public override void Hit(float dmg)
     {
         
     }
