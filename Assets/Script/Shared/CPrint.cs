@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CPrint : MonoBehaviour
+public static class CPrint
 {
     public static bool Enable = true;
     public static bool EnableRichText = true;
