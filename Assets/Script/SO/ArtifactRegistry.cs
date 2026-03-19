@@ -31,7 +31,7 @@ public class ArtifactRegistry : ScriptableObject
             return data;
         }
 
-        Debug.Log("ArtifactRegistry - Error");
+        CPrint.Log("ArtifactRegistry - Error");
         return null;
     }
 }

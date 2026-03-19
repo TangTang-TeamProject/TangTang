@@ -6,7 +6,6 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CSV_SO_Converter", menuName = "Converter")]
 public class CSV_SO_Converter : EditorWindow
 {
     private TextAsset csvFile;
@@ -39,11 +38,11 @@ public class CSV_SO_Converter : EditorWindow
         {
             if (csvFile == null)
             {
-                Debug.Log("csvFile == null");
+                CPrint.Log("csvFile == null");
             }
             else if (soScript == null)
             {
-                Debug.Log("soScript == null");
+                CPrint.Log("soScript == null");
             }
             else
             {
@@ -69,7 +68,7 @@ public class CSV_SO_Converter : EditorWindow
 
             if (fieldInfo == null)
             {
-                Debug.Log("CSV - SO / 호환 안됨");
+                CPrint.Log("CSV - SO / 호환 안됨");
                 return;
             }
             else
@@ -88,7 +87,7 @@ public class CSV_SO_Converter : EditorWindow
 
             if (datas.Length != headers.Length)
             {
-                Debug.Log($"{i} 번째 줄 파일 깨짐");
+                CPrint.Log($"{i} 번째 줄 파일 깨짐");
                 continue;
             }
 
@@ -125,13 +124,13 @@ public class CSV_SO_Converter : EditorWindow
         if (type == typeof(int))
         {
             if (!int.TryParse(_data, out int baked))
-                Debug.Log($"파싱 실패 : {_data}");
+                CPrint.Log($"파싱 실패 : {_data}");
             return baked;
         }
         if (type == typeof(float))
         {
             if (!float.TryParse(_data, out float baked))
-                Debug.Log($"파싱 실패 : {_data}");
+                CPrint.Log($"파싱 실패 : {_data}");
             return baked;
         }
         if (type == typeof(string))
@@ -140,7 +139,7 @@ public class CSV_SO_Converter : EditorWindow
         }
 
 
-        Debug.Log("이상한 타입 자료형 발견");
+        CPrint.Log("이상한 타입 자료형 발견");
 
         return null;
     }
