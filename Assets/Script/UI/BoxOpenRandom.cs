@@ -8,7 +8,6 @@ public class BoxOpenRandom : MonoBehaviour, IDamagables
     private ItemRegistry item;
 
     private GameObject mother;
-    private int itemID;
 
     public void Hit(float damage)
     {
@@ -22,10 +21,9 @@ public class BoxOpenRandom : MonoBehaviour, IDamagables
         Destroy(this.gameObject);
     }
 
-    public void Setting()
-    { 
-        
-    
+    public void Setting(GameObject _mother)
+    {
+        mother = _mother;
     }
 
     void RandomDrop()
