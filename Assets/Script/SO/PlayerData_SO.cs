@@ -17,10 +17,13 @@ public class PlayerData_SO : ScriptableObject
     private float atk = 0f;
     [SerializeField]
     private float speed = 0f;
+    [SerializeField]
+    private GameObject prefab;
 
     public int MaxLevel => maxLevel;
     public IReadOnlyList<int> RequireEXP => requireEXP;
     public float HP => hp;
     public float ATK => atk;
     public float Speed => speed;
+    public GameObject Prefab => prefab;
 }

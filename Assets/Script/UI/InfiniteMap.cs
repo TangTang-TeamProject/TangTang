@@ -55,4 +55,9 @@ public class InfiniteMap : MonoBehaviour
 
         godObject.position += calcPos;
     }
+
+    void MakeBattleZone()
+    { 
+    
+    }
 }
