@@ -26,6 +26,9 @@ public class SceneChanger : MonoBehaviour
 
     [SerializeField]
     private List<SceneLib> sceneLib = new List<SceneLib>();
+    [SerializeField]
+    private CanvasGroup faded;
+
 
 
 
