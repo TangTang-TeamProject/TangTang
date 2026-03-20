@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: EnemyExample
   m_EditorClassIdentifier: 
   enemyID: 1
+  enemyName: 
   atk: 1
   hp: 1
-  speed: 5
+  speed: 3
   atkCycle: 1
   bulletSpeed: 1
   dmg: 1
+  prefab: {fileID: 0}

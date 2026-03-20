@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         
         if (_factory == null)
         {
-            Debug.Log("EnemySpawner -> _factory ¿¬°á ¾ÈµÊ");
+            CPrint.Log("EnemySpawner -> _factory ¿¬°á ¾ÈµÊ");
             enabled = false;
             return;
         }    
@@ -70,6 +70,5 @@ public class EnemySpawner : MonoBehaviour
 
         _aliveList.Add(enemy);
 
-    }
-  
+    }  
 }

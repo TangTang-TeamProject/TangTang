@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5337a6659503a994c8710d86714b6a26, type: 3}
   m_Name: ExpGem_small
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: 
+  itemID: 5
+  itemName: ExpGem_S
   exp: 1
   gold: 0
   dmg: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 1835535690699433974, guid: 44f12c42fadc25f4384a984cbff5efed, type: 3}

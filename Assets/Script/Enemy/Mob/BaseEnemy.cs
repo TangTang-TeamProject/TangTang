@@ -5,10 +5,12 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamagables
 {
-    [SerializeField] protected EnemyData_SO _monsterData;    
+    [SerializeField] protected EnemyData_SO _monsterData;
+    [SerializeField] protected List<GameObject> _expGemPrefab;
 
     protected EnemyPool _pool;
     protected GameObject _target;
+    protected bool _isGemExist = false;
 
     protected float _id;
     protected float _maxHp;
@@ -24,7 +26,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     
     public abstract void Chase();
      
-
     public void Init(EnemyPool pool)
     {
         _pool = pool;
@@ -42,7 +43,20 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         
         if (_radius == 0f)
         {
-            Debug.Log($"{this} -> CircleCollider2D 없음");            
+            CPrint.Log($"{this} -> CircleCollider2D 없음");            
+        }
+
+        if (_expGemPrefab != null)
+        {
+            if (_isGemExist)
+                return;
+
+            for (int i = 0; i < _expGemPrefab.Count; i++)
+            {
+                GameObject gem = Instantiate(_expGemPrefab[i], transform);
+                gem.SetActive(false);
+                _isGemExist = true;
+            }
         }
         
     }
@@ -89,8 +103,16 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     
     public virtual void Die()
     {
-        gameObject.SetActive(false);
+        GemDrops(); // 젬 드랍
+        gameObject.SetActive(false); // 몬스터 사망
         _pool.Return(this);
+    }
+
+    public virtual void GemDrops()
+    {
+        int randIdx = Random.Range(0, _expGemPrefab.Count);
+        _expGemPrefab[randIdx].SetActive(true);
+        _expGemPrefab[randIdx].transform.position = transform.position;
     }
 
     public virtual void SetTarget(GameObject target)
