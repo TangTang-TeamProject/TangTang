@@ -16,6 +16,8 @@ public class InfiniteMap : MonoBehaviour
     private float maxY = 10f;
     [SerializeField]
     private float minY = -10f;
+    [SerializeField]
+    private bool isInfinite = true;
 
     private float xDist;
     private float yDist;
@@ -28,10 +30,17 @@ public class InfiniteMap : MonoBehaviour
 
     void Update()
     {
-        CheckPos();
+        if (isInfinite)
+        {
+            MakeInfinite();
+        }
+        else
+        {
+            MakeBattleZone();
+        }
     }
 
-    void CheckPos()
+    void MakeInfinite()
     {
         Vector3 calcPos = Vector3.zero;
 
@@ -57,7 +66,27 @@ public class InfiniteMap : MonoBehaviour
     }
 
     void MakeBattleZone()
-    { 
-    
+    {
+        Vector3 calcPos = player.position;
+
+        if (player.position.x > maxX)
+        {
+            calcPos.x = maxX;
+        }
+        else if (player.position.x < minX)
+        {
+            calcPos.x = minX;
+        }
+
+        if (player.position.y > maxY)
+        {
+            calcPos.y = maxY;
+        }
+        else if (player.position.y < minY)
+        {
+            calcPos.y = minY;
+        }
+
+        player.position = calcPos;
     }
 }

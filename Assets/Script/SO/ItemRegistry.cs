@@ -30,7 +30,7 @@ public class ItemRegistry : ScriptableObject
             return data;
         }
 
-        CPrint.Log("EnemyRegistry - Error");
+        CPrint.Log("ItemRegistry - Error");
         return null;
     }
 }

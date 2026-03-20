@@ -25,14 +25,6 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField]
     private GameObject prefab;
 
-    /*
-    이후 팩토리와 조율
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private GameObject prefab;
-    */
-
     public int EmemyID => enemyID;
     public string EnemyName => enemyName;
     public float ATK => atk;
