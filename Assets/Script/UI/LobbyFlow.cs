@@ -11,6 +11,7 @@ public class LobbyFlow : MonoBehaviour
         Equip,
         Stage,
         Setting,
+        AFK,
         Quit
     }
 
@@ -20,6 +21,8 @@ public class LobbyFlow : MonoBehaviour
     private Button equipBTN;
     [SerializeField]
     private Button settingBTN;
+    [SerializeField]
+    private Button afkBTN;
     [SerializeField]
     private Button quitBTN;
     [SerializeField]
@@ -32,11 +35,14 @@ public class LobbyFlow : MonoBehaviour
     private GameObject settingPanel;
     [SerializeField]
     private GameObject equipPanel;
+    [SerializeField]
+    private GameObject afkPanel;
 
     LobbyState _state;
 
     private void Awake()
     {
+        afkBTN.onClick.AddListener(() => ChangeState(LobbyState.AFK));
         equipBTN.onClick.AddListener(() => ChangeState(LobbyState.Equip));
         settingBTN.onClick.AddListener(() => ChangeState(LobbyState.Setting));
         backBTN.onClick.AddListener(() => ChangeState(LobbyState.Main));
@@ -67,6 +73,9 @@ public class LobbyFlow : MonoBehaviour
             case LobbyState.Quit:
                 GameEnd();
                 break;
+            case LobbyState.AFK:
+                AFKStart();
+                break;
         }
     }
 
@@ -76,6 +85,7 @@ public class LobbyFlow : MonoBehaviour
         stagePanel.SetActive(false);
         settingPanel.SetActive(false);
         equipPanel.SetActive(false);
+        afkPanel.SetActive(false);
     }
 
     void BackToMain()
@@ -96,6 +106,11 @@ public class LobbyFlow : MonoBehaviour
     void GameStart()
     {
         stagePanel.SetActive(true);
+    }
+
+    void AFKStart()
+    {
+        afkPanel.SetActive(true);
     }
 
     void GameEnd()
