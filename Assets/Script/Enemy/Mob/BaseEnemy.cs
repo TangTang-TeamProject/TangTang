@@ -22,6 +22,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
 
     protected float _radius;
     protected float _nextAtk;
+    protected float _checkTime = 0f;
     protected LayerMask _playerLayer;
     
     public abstract void Chase();
@@ -64,12 +65,19 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     // 몬스터 공격 함수
     public virtual void Attack()
     {
+        if (Time.time < _checkTime)
+        {
+            return;
+        }
+
+        _checkTime = Time.time + 0.2f;
+
         // 공격 쿨타임(atkCycle) 검사
         if (Time.time < _nextAtk)
         {
             return;
         }
-
+        
         Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius, _playerLayer);
         for (int i = 0; i < hit.Length; i++)
         {
