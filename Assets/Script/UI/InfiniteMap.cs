@@ -67,7 +67,7 @@ public class InfiniteMap : MonoBehaviour
 
     void MakeBattleZone()
     {
-        Vector3 calcPos = Vector3.zero;
+        Vector3 calcPos = player.position;
 
         if (player.position.x > maxX)
         {
