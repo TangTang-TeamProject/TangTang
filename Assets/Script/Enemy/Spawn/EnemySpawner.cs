@@ -5,7 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
-{      
+{
+
     [SerializeField] private int _spawnCount = 500;
     [SerializeField] private int _spawnAtOnce = 20;
     [SerializeField] private float _spawnRadius = 8.5f;

@@ -11,7 +11,11 @@ public class ZombieFactory : BaseEnemyFactory
         BaseEnemy enemy = _pool.GetEnemy(transform);
         enemy.Init(_pool);
         enemy.SetTarget(_target);
-        enemy.transform.position = pos;
+
+        Vector2 spawnPos = _target.transform.position;
+        spawnPos += pos;
+
+        enemy.transform.position = spawnPos;
 
         return enemy;
     }
