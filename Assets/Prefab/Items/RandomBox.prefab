@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8855722741786460370}
   - component: {fileID: 7040274728152132730}
   - component: {fileID: 4234694915830776714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RandomBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 282f51c0c0d4a40929d5595fc58677c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
