@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeed;
     private float _moveX;
     private float _moveY;
-    private float _angle;
     private Camera _mainCam;
     private Vector2 _mouse;
     private Vector2 _baseScale;
@@ -36,13 +35,14 @@ public class PlayerController : MonoBehaviour
         _mainCam = Camera.main;
         _moveSpeed = _playerData.Speed;
         _baseScale = transform.localScale;
-        _target = _spawnDir.transform.position;
     }
 
     void Update()
     {
-        if (_playerData == null)
+        if (_playerData == null || _spawnDir == null)
+        {
             return;
+        }
 
         _moveX = Input.GetAxisRaw("Horizontal");
         _moveY = Input.GetAxisRaw("Vertical");
@@ -51,10 +51,6 @@ public class PlayerController : MonoBehaviour
         _mouse = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         PlayerMove();
         PlayerLook();
-
-        if (_spawnDir == null)
-            return;
-
         SpawnLook();
     }
 
@@ -87,9 +83,10 @@ public class PlayerController : MonoBehaviour
 
     void SpawnLook()
     {
+        _target = _spawnDir.transform.position;
         Vector3 direction = _mouse - _target;
         direction.z = 0;
         direction.Normalize();
-        _spawnDir.transform.up = -direction;
+        _spawnDir.transform.right = -direction;
     }
 }

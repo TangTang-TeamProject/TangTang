@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 0
   requireEXP: 000000000000000000000000
+  MaxArtifactCarry: 0
+  hp: 0
   atk: 0
-  def: 0
-  speed: 0
+  speed: 6
