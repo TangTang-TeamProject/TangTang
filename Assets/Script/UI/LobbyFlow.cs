@@ -9,7 +9,7 @@ public class LobbyFlow : MonoBehaviour
     {
         Main,
         Equip,
-        Start,
+        Stage,
         Setting,
         Quit
     }
@@ -40,13 +40,15 @@ public class LobbyFlow : MonoBehaviour
         equipBTN.onClick.AddListener(() => ChangeState(LobbyState.Equip));
         settingBTN.onClick.AddListener(() => ChangeState(LobbyState.Setting));
         backBTN.onClick.AddListener(() => ChangeState(LobbyState.Main));
-        startBTN.onClick.AddListener(() => ChangeState(LobbyState.Start));
+        startBTN.onClick.AddListener(() => ChangeState(LobbyState.Stage));
         quitBTN.onClick.AddListener(() => ChangeState(LobbyState.Quit));
     }
 
     void ChangeState(LobbyState nextState)
     {
         _state = nextState;
+
+        ClearAll();
 
         switch (_state)
         {
@@ -59,7 +61,7 @@ public class LobbyFlow : MonoBehaviour
             case LobbyState.Setting:
                 Setting();
                 break;
-            case LobbyState.Start:
+            case LobbyState.Stage:
                 GameStart();
                 break;
             case LobbyState.Quit:
@@ -68,29 +70,31 @@ public class LobbyFlow : MonoBehaviour
         }
     }
 
-    void BackToMain()
+    void ClearAll()
     {
-        MainPanel.SetActive(true);
+        MainPanel.SetActive(false);
         stagePanel.SetActive(false);
         settingPanel.SetActive(false);
         equipPanel.SetActive(false);
     }
 
+    void BackToMain()
+    {
+        MainPanel.SetActive(true);
+    }
+
     void Equip()
     {
-        MainPanel.SetActive(false);
         equipPanel.SetActive(true);
     }
 
     void Setting()
     {
-        MainPanel.SetActive(false);
         settingPanel.SetActive(true);
     }
 
     void GameStart()
     {
-        MainPanel.SetActive(false);
         stagePanel.SetActive(true);
     }
 
