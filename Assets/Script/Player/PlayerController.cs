@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerData_SO _playerData;
     [SerializeField] private GameObject _spawnDir;
+    [SerializeField] private Vector3 _spawnArrowPos = new Vector3(0, 0.5f, 0);
+    [SerializeField] private float _radius = 0.7f;
 
     private float _moveSpeed;
     private float _moveX;
@@ -11,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private Camera _mainCam;
     private Vector2 _mouse;
     private Vector2 _baseScale;
-    private Vector2 _target;
 
     void Awake()
     {
@@ -80,10 +81,11 @@ public class PlayerController : MonoBehaviour
 
     void SpawnLook()
     {
-        _target = _spawnDir.transform.position;
+        Vector2 _target = transform.position;
         Vector3 direction = _mouse - _target;
         direction.z = 0;
         direction.Normalize();
         _spawnDir.transform.right = direction;
+        _spawnDir.transform.position = transform.position + (direction * _radius) + _spawnArrowPos;
     }
 }
