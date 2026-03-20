@@ -76,18 +76,23 @@ public class SceneChanger : MonoBehaviour
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(_name);
 
-        // 씬 이동 이벤트
 
         op.allowSceneActivation = false;
 
-        while(op.progress < 0.9f)
+        // 씬 이동 이벤트
+
+
+
+        while (op.progress < 0.9f)
         {
             yield return null;
         }
 
-        op.allowSceneActivation = true;
+
 
         // 씬 이동 이벤트
+
+        op.allowSceneActivation = true;
 
         ClearCoroutine();
         yield break;
