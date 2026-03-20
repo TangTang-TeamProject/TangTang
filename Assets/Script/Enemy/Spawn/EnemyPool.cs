@@ -24,7 +24,7 @@ public class EnemyPool : MonoBehaviour
         }
 
         GameObject go = Instantiate(_enemyPrefab, parent);
-        return go.GetComponent<BaseEnemy>();
+        return go.GetComponentInChildren<BaseEnemy>();
     }
 
     public void Return(BaseEnemy enemy)

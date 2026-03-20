@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ZombieFactory : BaseEnemyFactory
 {
-    [SerializeField] private GameObject _target;
-    [SerializeField] private EnemyPool _pool;        
+          
 
     public override BaseEnemy CreateEnemy(Vector2 pos)
     {
