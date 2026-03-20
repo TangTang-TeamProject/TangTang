@@ -9,6 +9,8 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField]
     private int enemyID = 0;
     [SerializeField]
+    private string enemyName = "";
+    [SerializeField]
     private float atk = 0f;
     [SerializeField]
     private float hp = 0f;
@@ -20,6 +22,8 @@ public class EnemyData_SO : ScriptableObject
     private float bulletSpeed = 0f;
     [SerializeField]
     private float dmg = 0f;
+    [SerializeField]
+    private GameObject prefab;
 
     /*
     이후 팩토리와 조율
@@ -30,11 +34,12 @@ public class EnemyData_SO : ScriptableObject
     */
 
     public int EmemyID => enemyID;
+    public string EnemyName => enemyName;
     public float ATK => atk;
     public float HP => hp;
     public float Speed => speed;
     public float ATKCycle => atkCycle;
     public float BulletSpeed => bulletSpeed;
     public float DMG => dmg;
-
+    public GameObject Prefab => prefab;
 }
