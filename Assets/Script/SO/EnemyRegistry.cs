@@ -13,6 +13,15 @@ public class EnemyRegistry : ScriptableObject
 
     private Dictionary<int, EnemyData_SO> dataDic = new Dictionary<int, EnemyData_SO>();
 
+    void NullCheck()
+    {
+        if (dataDic != null && dataDic.Count != 0)
+        {
+            return;
+        }
+
+        ReMake();
+    }
     public void ReMake()
     {
         dataDic.Clear();
@@ -25,12 +34,14 @@ public class EnemyRegistry : ScriptableObject
 
     public EnemyData_SO GetEnemyByID(int _ID)
     {
+        NullCheck();
+
         if (dataDic.TryGetValue(_ID, out EnemyData_SO data))
         {
             return data;
         }
 
-        CPrint.Log("EnemyRegistry - Error");
+        CPrint.Log("EnemyRegistry - Cant Find");
         return null;
     }
 }
