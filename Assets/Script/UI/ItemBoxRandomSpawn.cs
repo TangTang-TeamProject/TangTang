@@ -7,7 +7,7 @@ public class ItemBoxRandomSpawn : MonoBehaviour
     [SerializeField]
     private float spawnRadius = 8.5f;
     [SerializeField]
-    private float spawnCycle;
+    private float spawnCycle = 10f;
     [SerializeField]
     private ItemRegistry item;
     [SerializeField]
@@ -15,7 +15,7 @@ public class ItemBoxRandomSpawn : MonoBehaviour
 
     private float currentTime = 0f;
 
-    private void Awake()
+    private void Start()
     {
         currentTime = Timer.Instance.GameTime + spawnCycle;
     }
@@ -26,7 +26,7 @@ public class ItemBoxRandomSpawn : MonoBehaviour
         {
             SpawnBox();
 
-            currentTime += spawnCycle;
+            currentTime = Timer.Instance.GameTime + spawnCycle;
         }
     }
 

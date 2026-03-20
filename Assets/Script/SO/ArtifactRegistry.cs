@@ -14,6 +14,16 @@ public class ArtifactRegistry : ScriptableObject
 
     private Dictionary<int, ArtifactData_SO> dataDic = new Dictionary<int, ArtifactData_SO>();
 
+    void NullCheck()
+    {
+        if (dataDic != null && dataDic.Count != 0)
+        {
+            return;
+        }
+
+        ReMake();
+    }
+
     public void ReMake()
     {
         dataDic.Clear();
@@ -26,12 +36,14 @@ public class ArtifactRegistry : ScriptableObject
 
     public ArtifactData_SO GetArtifactByID(int _ID)
     {
+        NullCheck();
+
         if (dataDic.TryGetValue(_ID, out ArtifactData_SO data))
         {
             return data;
         }
 
-        CPrint.Log("ArtifactRegistry - Error");
+        CPrint.Log("ArtifactRegistry - Cant Find");
         return null;
     }
 }

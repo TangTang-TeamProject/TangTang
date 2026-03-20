@@ -13,6 +13,16 @@ public class ItemRegistry : ScriptableObject
 
     private Dictionary<int, ItemData_SO> dataDic = new Dictionary<int, ItemData_SO>();
 
+    void NullCheck()
+    {
+        if (dataDic != null && dataDic.Count != 0)
+        {
+            return;
+        }
+
+        ReMake();
+    }
+
     public void ReMake()
     {
         dataDic.Clear();
@@ -25,12 +35,14 @@ public class ItemRegistry : ScriptableObject
 
     public ItemData_SO GetItemByID(int _ID)
     {
+        NullCheck();
+
         if (dataDic.TryGetValue(_ID, out ItemData_SO data))
         {
             return data;
         }
 
-        CPrint.Log("ItemRegistry - Error");
+        CPrint.Log("ItemRegistry - Cant Find");
         return null;
     }
 }
