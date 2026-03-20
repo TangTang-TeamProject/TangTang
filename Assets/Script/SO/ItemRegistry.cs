@@ -23,7 +23,7 @@ public class ItemRegistry : ScriptableObject
         }
     }
 
-    public ItemData_SO GetEnemyByID(int _ID)
+    public ItemData_SO GetItemByID(int _ID)
     {
         if (dataDic.TryGetValue(_ID, out ItemData_SO data))
         {
