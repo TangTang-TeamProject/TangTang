@@ -99,6 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: 999c08e943c542c40b3586d3ee668ac4, type: 2}
+  _expGemPrefab:
+  - {fileID: 1835535690699433974, guid: 44f12c42fadc25f4384a984cbff5efed, type: 3}
+  - {fileID: 3743321671426041571, guid: 7e4c32f8c5768a34089a0665b5fd96d2, type: 3}
+  - {fileID: 1772454461204316306, guid: 9bf861be9be71334b87cbc0b6a2a8811, type: 3}
 --- !u!58 &7672124848135196571
 CircleCollider2D:
   m_ObjectHideFlags: 0
