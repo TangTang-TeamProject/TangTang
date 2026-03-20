@@ -34,6 +34,8 @@ public class ItemBoxRandomSpawn : MonoBehaviour
     {
         GameObject obj = Instantiate(item.GetItemByID(spawnItemID).Prefab, transform);
 
+        obj.GetComponent<BoxOpenRandom>().Setting(this.gameObject);
+
         Vector2 pos = Random.insideUnitCircle;
 
         obj.transform.position = pos * spawnRadius;
