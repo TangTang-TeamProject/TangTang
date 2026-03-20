@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5337a6659503a994c8710d86714b6a26, type: 3}
   m_Name: Magnatic
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 4
   itemName: Magnatic
   exp: 0
   gold: 0
