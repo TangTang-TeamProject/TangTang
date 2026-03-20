@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class FireObstacles : MonoBehaviour
 {
     [SerializeField] private EnemyData_SO _fireData;
+    [SerializeField] private float _radius = 0.5f;
 
     private LayerMask _playerLayer;
     private string _playerTag = "Player";
@@ -13,7 +14,7 @@ public class FireObstacles : MonoBehaviour
     private float _damage;
     private float _atkCycle;
     private float _nextAtk = 0f;
-    private float _radius;
+    private Vector3 _basePos;
 
     void Awake()
     {
@@ -28,12 +29,8 @@ public class FireObstacles : MonoBehaviour
         _atkCycle = _fireData.ATKCycle;
         _playerLayer = LayerMask.GetMask("Player");
 
-        _radius = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().radius : 0f;
-
-        if (_radius == 0f)
-        {
-            CPrint.Log($"{this} -> CircleCollider2D ¾øÀ½");
-        }
+        _basePos = transform.position;
+        _basePos.y += 0.5f;
     }
 
     void Update()
@@ -48,7 +45,7 @@ public class FireObstacles : MonoBehaviour
             return;
         }
 
-        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius, _playerLayer);
+        Collider2D[] hit = Physics2D.OverlapCircleAll(_basePos, _radius, _playerLayer);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].CompareTag(_playerTag)) 
