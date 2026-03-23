@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour, IDamagables
 {
     [SerializeField] protected EnemyData_SO _monsterData;
-    [SerializeField] protected List<GameObject> _expGemPrefab;
+    
 
     protected EnemyPool _pool;
     protected GameObject _target;
@@ -25,7 +25,20 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     protected float _checkTime = 0f;
     protected LayerMask _playerLayer;
     
-    public abstract void Chase();
+    public virtual void Chase()
+    {
+        if (_target == null)
+        {
+            return;
+        }            
+
+        Vector2 dir = (_target.transform.position - transform.position).normalized;
+        Vector2 nowPos = transform.position;
+
+        nowPos += dir * _speed * Time.deltaTime;
+
+        transform.position = nowPos;
+    }
      
     public void Init(EnemyPool pool)
     {
@@ -45,20 +58,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         if (_radius == 0f)
         {
             CPrint.Log($"{this} -> CircleCollider2D 없음");            
-        }
-
-        if (_expGemPrefab != null)
-        {
-            if (_isGemExist)
-                return;
-
-            for (int i = 0; i < _expGemPrefab.Count; i++)
-            {
-                GameObject gem = Instantiate(_expGemPrefab[i], transform);
-                gem.SetActive(false);
-                _isGemExist = true;
-            }
-        }
+        }        
         
     }
 
@@ -70,7 +70,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
             return;
         }
 
-        _checkTime = Time.time + 0.2f;
+        _checkTime = Time.time + 0.2f; // 함수 진입 0.2초 주기로 설정
 
         // 공격 쿨타임(atkCycle) 검사
         if (Time.time < _nextAtk)
@@ -110,18 +110,11 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     }
     
     public virtual void Die()
-    {
-        GemDrops(); // 젬 드랍
+    {     
         gameObject.SetActive(false); // 몬스터 사망
         _pool.Return(this);
     }
-
-    public virtual void GemDrops()
-    {
-        int randIdx = Random.Range(0, _expGemPrefab.Count);
-        _expGemPrefab[randIdx].SetActive(true);
-        _expGemPrefab[randIdx].transform.position = transform.position;
-    }
+   
 
     public virtual void SetTarget(GameObject target)
     {
