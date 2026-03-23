@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerData_SO _playerData;
+    [SerializeField] private Player _player;
     [SerializeField] private GameObject _spawnDir;
     [SerializeField] private Vector3 _spawnArrowPos = new Vector3(0, 0.5f, 0);
     [SerializeField] private float _radius = 0.7f;
@@ -21,24 +21,28 @@ public class PlayerController : MonoBehaviour
             CPrint.Warn("플레이어 컨트롤러에 스폰방향 오브젝트 없음");
             return;
         }
-
-        if (_playerData == null)
+        if (_player == null)
         {
-            CPrint.Warn("플레이어 컨트롤러에 플레이어데이터 SO 없음");
-            return;
+            _player = GetComponent<Player>();
+            if (_player == null)
+            {
+                CPrint.Warn("Player가 없음");
+                return;
+            }
+            CPrint.Log("PlayerController에 Player참조 안되어있어서 받아옴");
         }
     }
 
     void Start()
     {
         _mainCam = Camera.main;
-        _moveSpeed = _playerData.Speed;
         _baseScale = transform.localScale;
+        MoveSpeedSet(_player.MoveSpeed);
     }
 
     void Update()
     {
-        if (_playerData == null || _spawnDir == null)
+        if (_spawnDir == null)
         {
             return;
         }
@@ -87,5 +91,10 @@ public class PlayerController : MonoBehaviour
         direction.Normalize();
         _spawnDir.transform.right = direction;
         _spawnDir.transform.position = transform.position + (direction * _radius) + _spawnArrowPos;
+    }
+
+    void MoveSpeedSet(float value)
+    {
+        _moveSpeed = value;
     }
 }
