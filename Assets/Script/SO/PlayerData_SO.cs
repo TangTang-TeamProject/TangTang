@@ -6,11 +6,9 @@ using UnityEngine;
 public class PlayerData_SO : ScriptableObject
 {
     [SerializeField]
+    private int playerID = 0;
+    [SerializeField]
     private int maxLevel = 0;
-    [SerializeField]
-    private List<int> requireEXP = new List<int>();
-    [SerializeField]
-    private int MaxArtifactCarry = 0;
     [SerializeField]
     private float hp = 0;
     [SerializeField]
@@ -20,8 +18,8 @@ public class PlayerData_SO : ScriptableObject
     [SerializeField]
     private GameObject prefab;
 
+    public int PlayerID => playerID;
     public int MaxLevel => maxLevel;
-    public IReadOnlyList<int> RequireEXP => requireEXP;
     public float HP => hp;
     public float ATK => atk;
     public float Speed => speed;
