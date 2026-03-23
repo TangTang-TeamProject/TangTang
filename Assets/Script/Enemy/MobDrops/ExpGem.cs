@@ -25,6 +25,8 @@ public class ExpGem : Items
 
     }
 
+    // 현재 경험치 반환
+    // 추후, id 반환으로 변경 예정
     public override float GetItem(GameObject target)
     {
         _target = target;
@@ -34,6 +36,7 @@ public class ExpGem : Items
         return _exp; // 경험치 반환
     }
 
+    // 흡수 되었을 시 -> pool 로 리턴.
     public override void SetActiveFalse()
     {       
         _pool.Return(this);
