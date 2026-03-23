@@ -13,6 +13,7 @@ public enum EquipType
     TypeCount,
 }
 
+[System.Serializable]
 public class SaveData
 {
     public int gold;
@@ -107,7 +108,7 @@ public static class SaveManager
         return saveData.equipID[(int)slot];
     }
 
-    public static void SetVolune(float value)
+    public static void SetVolume(float value)
     {
         saveData.volume = value;
         Save();
