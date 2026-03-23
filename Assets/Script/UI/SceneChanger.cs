@@ -49,7 +49,7 @@ public class SceneChanger : MonoBehaviour
 
         if (sceneLib.Count < (int)Scenes.SceneCount)
         {
-            CPrint.Log("씬 설정 오류 - 인스펙터 확인");
+            CPrint.Error("씬 설정 오류 - 인스펙터 확인");
         }
 
         for (int i = 0; i < sceneLib.Count; i++)

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+메인화면 0
+기타 화면 1
+알림창 2
+
+ */
+
 public class LobbyFlow : MonoBehaviour
 {
     enum LobbyState

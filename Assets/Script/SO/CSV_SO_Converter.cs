@@ -38,11 +38,11 @@ public class CSV_SO_Converter : EditorWindow
         {
             if (csvFile == null)
             {
-                CPrint.Log("csvFile == null");
+                CPrint.Error("csvFile == null");
             }
             else if (soScript == null)
             {
-                CPrint.Log("soScript == null");
+                CPrint.Error("soScript == null");
             }
             else
             {
@@ -68,7 +68,7 @@ public class CSV_SO_Converter : EditorWindow
 
             if (fieldInfo == null)
             {
-                CPrint.Log("CSV - SO / 호환 안됨");
+                CPrint.Error("CSV - SO / 호환 안됨");
                 return;
             }
             else
@@ -87,7 +87,7 @@ public class CSV_SO_Converter : EditorWindow
 
             if (datas.Length != headers.Length)
             {
-                CPrint.Log($"{i} 번째 줄 파일 깨짐");
+                CPrint.Error($"{i} 번째 줄 파일 깨짐");
                 continue;
             }
 
@@ -124,13 +124,13 @@ public class CSV_SO_Converter : EditorWindow
         if (type == typeof(int))
         {
             if (!int.TryParse(_data, out int baked))
-                CPrint.Log($"파싱 실패 : {_data}");
+                CPrint.Error($"파싱 실패 : {_data}");
             return baked;
         }
         if (type == typeof(float))
         {
             if (!float.TryParse(_data, out float baked))
-                CPrint.Log($"파싱 실패 : {_data}");
+                CPrint.Error($"파싱 실패 : {_data}");
             return baked;
         }
         if (type == typeof(string))
@@ -139,7 +139,7 @@ public class CSV_SO_Converter : EditorWindow
         }
 
 
-        CPrint.Log("이상한 타입 자료형 발견");
+        CPrint.Error("이상한 타입 자료형 발견");
 
         return null;
     }

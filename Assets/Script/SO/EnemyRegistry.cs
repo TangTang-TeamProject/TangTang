@@ -41,7 +41,7 @@ public class EnemyRegistry : ScriptableObject
             return data;
         }
 
-        CPrint.Log("EnemyRegistry - Cant Find");
+        CPrint.Error("EnemyRegistry - Cant Find");
         return null;
     }
 }

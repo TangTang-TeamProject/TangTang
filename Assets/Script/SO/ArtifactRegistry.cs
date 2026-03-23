@@ -43,7 +43,7 @@ public class ArtifactRegistry : ScriptableObject
             return data;
         }
 
-        CPrint.Log("ArtifactRegistry - Cant Find");
+        CPrint.Error("ArtifactRegistry - Cant Find");
         return null;
     }
 }
