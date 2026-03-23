@@ -97,4 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b9d47c994345744a009c7bd5a0560a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _expGem: {fileID: 11400000, guid: c15779370bf625a478e275fa1fffed24, type: 2}
+  _itemData: {fileID: 11400000, guid: c15779370bf625a478e275fa1fffed24, type: 2}
+  _itemMoveSpeed: 5
+  _pool: {fileID: 0}
+  _type: 0

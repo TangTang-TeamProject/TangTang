@@ -16,19 +16,11 @@ public class EnemySpawner : MonoBehaviour
   
 
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
-
-    public static EnemySpawner Instance { get; private set; }
+  
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Instance = null;
-            return;
-        }
-        Instance = this;
-       
-        
+                      
         if (_factory == null)
         {
             CPrint.Log("EnemySpawner -> _factory ¿¬°á ¾ÈµÊ");

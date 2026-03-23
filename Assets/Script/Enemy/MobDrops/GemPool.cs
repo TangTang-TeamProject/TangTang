@@ -5,9 +5,16 @@ using UnityEngine;
 public class GemPool : MonoBehaviour
 {
     [SerializeField] private GameObject _gemPrefab;
+    [SerializeField] private GemType _type;
 
     private Queue<ExpGem> _gemPool = new Queue<ExpGem>();
     
+    
+    public GemType GetPoolType()
+    {
+        return _type;
+    }
+
     public void Add(ExpGem gem)
     {
         _gemPool.Enqueue(gem);
