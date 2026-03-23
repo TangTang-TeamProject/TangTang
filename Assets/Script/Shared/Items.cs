@@ -26,12 +26,10 @@ public abstract class Items : MonoBehaviour
 
     // 플레이어가 흡수 시작할 때 호출   
     // ㄴ 현재 반환값 id 로 통일 안되었으므로 각 아이템 스크립트에서 override 해서 커스텀.
-    public virtual float GetItem(GameObject target)
+    public virtual void GetItem(GameObject target)
     {
         _isAbsorbed = true; // 흡수 시작
         _target = target; // 타겟 설정
-
-        return _itemData.ItemID;
     }
     
     // 흡수 시작되었을때 타겟 방향으로 이동.   
