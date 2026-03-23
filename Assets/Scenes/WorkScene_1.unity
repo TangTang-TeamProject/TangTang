@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 9222290537934783581, guid: 0903148ed3c889841aad63894c0e6a56, type: 3}
+  _enemyPrefab: {fileID: 4459202857756033555, guid: 059255892897fd54ea8f490ac3d699ad, type: 3}
 --- !u!4 &582943653
 Transform:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  _hitRadius: 1
+  _hitRadius: 0.6
 --- !u!1001 &1681713822
 PrefabInstance:
   m_ObjectHideFlags: 0
