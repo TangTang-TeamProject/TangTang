@@ -42,7 +42,7 @@ public class ItemRegistry : ScriptableObject
             return data;
         }
 
-        CPrint.Log("ItemRegistry - Cant Find");
+        CPrint.Error("ItemRegistry - Cant Find");
         return null;
     }
 }
