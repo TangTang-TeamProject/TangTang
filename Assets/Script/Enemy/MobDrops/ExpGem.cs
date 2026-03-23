@@ -9,10 +9,10 @@ public class ExpGem : Items
     [SerializeField] private GemType _type;
 
     private float _exp;
-    private float _id;
+    private int _id;
 
     public float Exp => _exp;
-    public float Id => _id;
+    public int Id => _id;
 
     public void Init(GemPool pool)
     {
