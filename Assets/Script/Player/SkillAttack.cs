@@ -9,7 +9,7 @@ public class SkillAttack : MonoBehaviour
     [SerializeField] private float _hitRadius;
 
     // 임시 데미지
-    private float _damage = 1f;
+    private float _damage = 0f;
     private readonly Collider2D[] _hits = new Collider2D[150];
     private HashSet<IDamagables> _hitRecord = new HashSet<IDamagables>(150);
     private HashSet<IDamagables> _thisFrameRecord = new HashSet<IDamagables>(150);
