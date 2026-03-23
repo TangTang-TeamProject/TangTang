@@ -1,8 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagables
 {
+    [Flags]
+    public enum EPlayerSkill
+    {
+        Arrow = 0 << 1,
+        Spear = 1 << 1
+    }
     public enum EPlayerState
     {
         Normal,
@@ -14,6 +21,8 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private string _targetLayerMask1 = "Enemy";
     [SerializeField] private string _targetLayerMask2 = "EnemyBullet";
     [SerializeField] private float _invincibleDuration = 0.5f;
+    [SerializeField] private PlayerRegistry _playerRegistry;
+    [SerializeField] private PlayerData_SO _data;
     // 나중에 SO로 하든 컨트롤할 값이 들어오면 변경
     [SerializeField] private float _hp = 20;
 
@@ -22,7 +31,31 @@ public class Player : MonoBehaviour, IDamagables
     private WaitForSeconds _invincibleTime;
     private Coroutine _checkCo;
     private Coroutine _invincibleCo;
+    private float _speed;
+    private float _attack;
+    private int _level;
+    private int _requireExp;
+    private int _currentExp;
 
+    public float MoveSpeed => _speed;
+    public CircleCollider2D PlayerCol => _playerCol;
+    public EPlayerState PlayerState => _playerState;
+
+    private void Reset()
+    {
+        PlayerController pc = GetComponent<PlayerController>();
+        PlayerItemLoot il = GetComponent<PlayerItemLoot>();
+
+        if (pc == null)
+        {
+            pc = gameObject.AddComponent<PlayerController>();
+        }
+
+        if (il == null)
+        {
+            il = gameObject.AddComponent<PlayerItemLoot>();
+        }
+    }
 
     private void OnValidate()
     {
@@ -41,10 +74,23 @@ public class Player : MonoBehaviour, IDamagables
         }
     }
 
+    private void OnEnable()
+    {
+        _data = _playerRegistry.GetEnemyByID(1);
+        if (_data == null)
+        {
+            CPrint.Error("플레이어 데이터 SO없음");
+            return;
+        }
+        _hp = _data.HP;
+        _speed = _data.Speed;
+        _attack = _data.ATK;
+    }
+
     void Start()
     {
         _checkCo = StartCoroutine(Co_CheckHit());
-        _invincibleTime = new WaitForSeconds(_invincibleDuration);
+        _invincibleTime = new WaitForSeconds(_invincibleDuration);        
     }
 
     private void OnDisable()
@@ -124,6 +170,27 @@ public class Player : MonoBehaviour, IDamagables
         {
             StopCoroutine(_invincibleCo);
             _invincibleCo = null;
+        }
+    }
+
+    void LevelUp()
+    {
+        _currentExp = 0;
+    }
+    /* 스킬 스크립트 리스트 활성화할거 -> 스킬 데이터, 사용여부 -> 스킬 사용스크립트 <- 플레이어 공격력
+    // 예상 : 구조체 받아서 해체 스킬 레벨 공격계수 범위 등등
+    public void SkillUpgrade()
+    {
+
+    }
+    */
+    // 젬이 플레이어에게 닿으면 젬에게서 경험치프로퍼티를 받는다
+    public void GainExp(int exp)
+    {
+        _currentExp += exp;
+        if (_currentExp >= _requireExp)
+        {
+            LevelUp();
         }
     }
 }

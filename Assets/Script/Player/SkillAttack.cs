@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillAttack : MonoBehaviour
+public class SkillAttack : MonoBehaviour, IAttackables
 {
     // 여기는 확인+전달 하는 스크립트
     [SerializeField] private LayerMask _enemyLayer;
@@ -17,6 +17,8 @@ public class SkillAttack : MonoBehaviour
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
     private Coroutine _checkCo;
 
+    public float Damage => _damage;
+    /*
     private void Start()
     {
         _enemyLayer = LayerMask.GetMask("Enemy");
@@ -63,7 +65,7 @@ public class SkillAttack : MonoBehaviour
         }
         _hitRecord.Clear();
     }
-
+    */
     /* 방법 바꿔서 사용안함
     private void Update()
     {
@@ -99,10 +101,11 @@ public class SkillAttack : MonoBehaviour
             }
         }
     }*/
-
+    /*
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _hitRadius);
     }
+    */
 }
