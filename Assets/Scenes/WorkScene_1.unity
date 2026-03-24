@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnCount: 100
-  _spawnAtOnce: 1
+  _spawnAtOnce: 10
   _spawnRadius: 10
   _spawnTime: 10
   _factory: {fileID: 951098782}
@@ -469,6 +469,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _hitRadius: 0.6
+--- !u!114 &1450928184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5380063195740465224, guid: f6bf01cf7f1f97d4193223b40bcaa35d, type: 3}
+  m_PrefabInstance: {fileID: 1681713822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450928176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1e6855de9228c44a4da07aba249f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498030090
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +585,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3943965391871465513, guid: f6bf01cf7f1f97d4193223b40bcaa35d, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1450928184}
+    - target: {fileID: 5380063195740465224, guid: f6bf01cf7f1f97d4193223b40bcaa35d, type: 3}
+      propertyPath: _playerRegistry
+      value: 
+      objectReference: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
     - target: {fileID: 6870937671018944008, guid: f6bf01cf7f1f97d4193223b40bcaa35d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

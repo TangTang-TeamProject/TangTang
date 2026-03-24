@@ -6,9 +6,13 @@ public class Zombie : BaseEnemy
 {          
 
     void Update()
+    {        
+        Attack();
+    }
+
+    void FixedUpdate()
     {
         Chase();
-        Attack();
     }
 
     public override void Attack()

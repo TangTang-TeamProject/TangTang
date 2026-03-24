@@ -35,5 +35,6 @@ public class ExpGem : Items
     public override void SetActiveFalse()
     {       
         _pool.Return(this);
+        base.SetActiveFalse();
     }
 }
