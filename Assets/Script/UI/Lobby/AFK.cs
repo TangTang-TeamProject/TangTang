@@ -12,27 +12,44 @@ public class AFK : MonoBehaviour
     [SerializeField]
     private Image gauge;
     [SerializeField]
-    private GameObject gaugeTextPos;
+    private RectTransform gaugeTextStart;
+    [SerializeField]
+    private RectTransform gaugeTextEnd;
+    [SerializeField]
+    private RectTransform gaugeTextPos;
     [SerializeField]
     private TextMeshProUGUI gaugeText;
+
+    private DateTime dateTime;
+    private DateTime endTime;
+    TimeSpan total;
 
     private void Awake()
     {
         rewardBTN.onClick.AddListener(() => GetReward());
     }
 
+    private void Start()
+    {
+        CalcTimes();
+    }
+
     private void Update()
     {
-        DateTime endTime = SaveManager.saveData.dateTime.AddMinutes(30);
+        AFKUIUpdate();
+    }
 
-        TimeSpan total = endTime - SaveManager.saveData.dateTime;
-        TimeSpan current = DateTime.UtcNow - SaveManager.saveData.dateTime;
+    void AFKUIUpdate()
+    {
+        TimeSpan current = DateTime.UtcNow - dateTime;
 
-        double percent = current.TotalSeconds / total.TotalSeconds;
+        float percent = (float)(current.TotalSeconds / total.TotalSeconds);
 
-        gaugeText.text = ((int)(percent * 100)).ToString();
+        gaugeText.text = $"{(int)(percent * 100)}%";
 
-        gauge.fillAmount = (float)percent;
+        gauge.fillAmount = percent;
+
+        gaugeTextPos.anchoredPosition = Vector3.Lerp(gaugeTextStart.anchoredPosition, gaugeTextEnd.anchoredPosition, percent);
     }
 
 
@@ -40,6 +57,17 @@ public class AFK : MonoBehaviour
     {
         // 보상 누적 코드
 
+        CPrint.Log("보상 수령");
+
         SaveManager.SetDate();
+
+        CalcTimes();
+    }
+
+    void CalcTimes()
+    {
+        dateTime = new DateTime(SaveManager.saveData.dateTime);
+        endTime = dateTime.AddMinutes(10);
+        total = endTime - dateTime;
     }
 }

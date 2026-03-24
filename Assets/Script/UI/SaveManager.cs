@@ -23,7 +23,7 @@ public class SaveData
 
     public float volume;
 
-    public DateTime dateTime;
+    public long dateTime;
 }
 
 public static class SaveManager
@@ -50,6 +50,7 @@ public static class SaveManager
         {
             saveData = MakeNew();
             Save();
+            return;
         }
 
         string fromJson = File.ReadAllText(dataPath);
@@ -81,14 +82,14 @@ public static class SaveManager
 
         newData.volume = 100;
 
-        newData.dateTime = DateTime.UtcNow;
+        newData.dateTime = DateTime.UtcNow.Ticks;
 
         return newData;
     }
 
     public static void SetDate()
     {
-        saveData.dateTime = DateTime.UtcNow;
+        saveData.dateTime = DateTime.UtcNow.Ticks;
         Save();
     }
 
