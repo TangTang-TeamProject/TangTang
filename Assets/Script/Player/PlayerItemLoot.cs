@@ -10,17 +10,22 @@ public class PlayerItemLoot : MonoBehaviour
 
 
     private readonly Collider2D[] _hits = new Collider2D[300];
-    private HashSet<Items> _hitRecord = new HashSet<Items>(300);
-    private HashSet<Items> _thisFrameRecord = new HashSet<Items>(300);
+    private HashSet<ExpGem> _hitRecord = new HashSet<ExpGem>(300);
+    private HashSet<ExpGem> _thisFrameRecord = new HashSet<ExpGem>(300);
 
-    private WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
+    private WaitForSeconds _nextCheck = new WaitForSeconds(0.1f);
     private Coroutine _rootCo;
     private Coroutine _absorbeCo;
+    private Vector2 _center;
+    private float _radius;
+    private float _absorbeMultiply;
 
     private void Start()
     {
         _targetLayer = LayerMask.GetMask(_targetLayerMask);
-        _rootCo = StartCoroutine(Co_CheckRoot());
+        _radius = _player.PlayerCol.bounds.extents.x;
+        _absorbeMultiply = 1.5f;
+        _rootCo = StartCoroutine(Co_CheckLoot());
         _absorbeCo = StartCoroutine(Co_CheckAbsorbe());
     }
 
@@ -39,7 +44,7 @@ public class PlayerItemLoot : MonoBehaviour
         }
     }
 
-    IEnumerator Co_CheckRoot()
+    IEnumerator Co_CheckLoot()
     {
         while (true)
         {
@@ -50,8 +55,8 @@ public class PlayerItemLoot : MonoBehaviour
                 break;
             }
 
-            Vector2 center = (Vector2)transform.position + _player.PlayerCol.offset;
-            int count = Physics2D.OverlapCircleNonAlloc(center, _player.PlayerCol.radius, _hits, _targetLayer);
+            _center = _player.PlayerCol.bounds.center;
+            int count = Physics2D.OverlapCircleNonAlloc(_center, _radius * 0.8f, _hits, _targetLayer);
 
             for (int i = 0; i < count; i++)
             {
@@ -61,6 +66,7 @@ public class PlayerItemLoot : MonoBehaviour
                 {
                     // 어차피 닿으면 사라짐 해쉬셋 필요없음
                     _player.GainExp((int)target.Exp);
+                    target.SetActiveFalse();
                 }
             }
             yield return _nextCheck;
@@ -78,21 +84,21 @@ public class PlayerItemLoot : MonoBehaviour
                 break;
             }
 
-            // 아이템이 추상클래스라 모노비헤이비어를 안씀
             _hitRecord.RemoveWhere(target => target == null || (target as MonoBehaviour) == null);
 
-            Vector2 center = (Vector2)transform.position + _player.PlayerCol.offset;
-            int count = Physics2D.OverlapCircleNonAlloc(center, _player.PlayerCol.radius + 0.05f, _hits, _targetLayer);
+            _center = _player.PlayerCol.bounds.center;
+            int count = Physics2D.OverlapCircleNonAlloc(_center, _radius * _absorbeMultiply, _hits, _targetLayer);
 
             for (int i = 0; i < count; i++)
             {
                 // 마지막으로 널 체크 한번 더
-                if (_hits[i] != null && _hits[i].TryGetComponent(out Items target))
+                if (_hits[i] != null && _hits[i].TryGetComponent(out ExpGem target))
                 {
                     _thisFrameRecord.Add(target);
 
                     if (_hitRecord.Add(target))
                     {
+                        CPrint.Log("대상 발견");
                         target.GetItem(_player.gameObject);
                     }
                 }
@@ -103,5 +109,19 @@ public class PlayerItemLoot : MonoBehaviour
 
             yield return _nextCheck;
         }
+    }
+
+    public void AbsorbeRangeUP(float percent)
+    {
+        _absorbeMultiply *= 1 + percent * 0.01f;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_center, _radius*1.5f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(_center, _radius*0.8f);
+
     }
 }
