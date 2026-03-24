@@ -43,7 +43,7 @@ public class AFK : MonoBehaviour
     {
         TimeSpan current = DateTime.UtcNow - dateTime;
 
-        float percent = (float)(current.TotalSeconds / total.TotalSeconds);
+        float percent = Mathf.Clamp01((float)(current.TotalSeconds / total.TotalSeconds));
 
         gaugeText.text = $"{(int)(percent * 100)}%";
 
@@ -51,7 +51,6 @@ public class AFK : MonoBehaviour
 
         gaugeTextPos.anchoredPosition = Vector3.Lerp(gaugeTextStart.anchoredPosition, gaugeTextEnd.anchoredPosition, percent);
     }
-
 
     void GetReward()
     {
@@ -66,7 +65,13 @@ public class AFK : MonoBehaviour
 
     void CalcTimes()
     {
+        if (dateTime == null)
+        {
+            CPrint.Error("SaveManager-dateTime == null");
+        }
+
         dateTime = new DateTime(SaveManager.saveData.dateTime);
+        // 수령 주기 이후에 추가 필요
         endTime = dateTime.AddMinutes(10);
         total = endTime - dateTime;
     }
