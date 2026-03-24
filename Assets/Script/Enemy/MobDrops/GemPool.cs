@@ -35,8 +35,7 @@ public class GemPool : MonoBehaviour
     }
 
     public void Return(ExpGem gem)
-    {
-        gem.gameObject.SetActive(false);
+    {       
         _gemPool.Enqueue(gem);
     }
 }
