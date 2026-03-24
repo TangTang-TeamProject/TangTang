@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ public class SaveData
 
     public float volume;
 
-    public string dateTime;
+    public long dateTime;
 }
 
 public static class SaveManager
@@ -49,6 +50,7 @@ public static class SaveManager
         {
             saveData = MakeNew();
             Save();
+            return;
         }
 
         string fromJson = File.ReadAllText(dataPath);
@@ -80,14 +82,14 @@ public static class SaveManager
 
         newData.volume = 100;
 
-        newData.dateTime = null;
+        newData.dateTime = DateTime.UtcNow.Ticks;
 
         return newData;
     }
 
-    public static void SetDate(string date)
+    public static void SetDate()
     {
-        saveData.dateTime = date;
+        saveData.dateTime = DateTime.UtcNow.Ticks;
         Save();
     }
 

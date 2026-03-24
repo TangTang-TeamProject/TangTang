@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,13 @@ public class InGameResources_SO : ScriptableObject
     private float gold;
     [SerializeField]
     private float energy;
+    [SerializeField]
+    private float rewardTime;
 
 
     public float Gold => gold;
 
     public float Energy => energy;
+
+    public float RewardTime => rewardTime;
 }
