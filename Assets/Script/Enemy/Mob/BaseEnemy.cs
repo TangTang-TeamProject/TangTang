@@ -12,13 +12,18 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
 
     protected EnemyPool _pool;
     protected GameObject _target;
-    //protected bool _isGemExist = false;
-    //
+    
     protected Vector2 _dir;
     protected float _radius;
     protected Vector2 _offset;
+
     protected LayerMask _playerLayer;
     protected LayerMask _enemyLayer;
+    protected LayerMask _playerBulletLayer;
+
+    private string _playerString = "Player";
+    private string _enemyString = "Enemy";
+    private string _playerBulletString = "PlayerBullet";
 
     protected float _id;
     protected float _maxHp;
@@ -28,14 +33,15 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     protected float _bulletSpeed;
     protected float _damage;
     
-    protected float _nextAtk;
-    protected float _checkTime = 0f;
+    protected float _nextDmg;
+    protected float _checkTime = 0.2f;
 
 
     private void Awake()
     {
-        _playerLayer = LayerMask.GetMask("Player");
-        _enemyLayer = LayerMask.GetMask("Enemy");
+        _playerLayer = LayerMask.GetMask(_playerString);
+        _enemyLayer = LayerMask.GetMask(_enemyString);
+        _playerBulletLayer = LayerMask.GetMask(_playerBulletString);        
         
         _offset = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().offset : (Vector2)transform.position;
         _radius = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().radius : 0f;
@@ -164,7 +170,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
 
     protected virtual Vector2 CheckBoundary()
     {
-        Vector2 dirToAdd = new Vector2(); // 겹치지 않는 방향으로의 벡터
+        Vector2 dirToAdd = new Vector2();
 
         Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius, _enemyLayer);
 
@@ -175,6 +181,23 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         }
 
         return dirToAdd;
+    }
+
+    protected virtual void GetDamaged()
+    {
+        if (Time.time < _nextDmg)
+        {
+            return;
+        }
+
+        _nextDmg = Time.time + _checkTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            
+        }
     }
 
     private void OnDrawGizmos()
