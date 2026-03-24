@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ public class SaveData
 
     public float volume;
 
-    public string dateTime;
+    public DateTime dateTime;
 }
 
 public static class SaveManager
@@ -80,14 +81,14 @@ public static class SaveManager
 
         newData.volume = 100;
 
-        newData.dateTime = null;
+        newData.dateTime = DateTime.UtcNow;
 
         return newData;
     }
 
-    public static void SetDate(string date)
+    public static void SetDate()
     {
-        saveData.dateTime = date;
+        saveData.dateTime = DateTime.UtcNow;
         Save();
     }
 

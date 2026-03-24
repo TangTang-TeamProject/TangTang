@@ -9,21 +9,21 @@ public class LobbyFlow : MonoBehaviour
     enum LobbyState
     {
         Main,
+        Character,
         Equip,
         Stage,
         Setting,
-        AFK,
         Quit
     }
 
     [SerializeField]
     private Button startBTN;
     [SerializeField]
+    private Button charBTN;
+    [SerializeField]
     private Button equipBTN;
     [SerializeField]
     private Button settingBTN;
-    [SerializeField]
-    private Button afkBTN;
     [SerializeField]
     private Button quitBTN;
     [SerializeField]
@@ -31,19 +31,19 @@ public class LobbyFlow : MonoBehaviour
     [SerializeField]
     private GameObject MainPanel;
     [SerializeField]
+    private GameObject charPanel;
+    [SerializeField]
     private GameObject stagePanel;
     [SerializeField]
     private GameObject settingPanel;
     [SerializeField]
     private GameObject equipPanel;
-    [SerializeField]
-    private GameObject afkPanel;
 
     LobbyState _state;
 
     private void Awake()
     {
-        afkBTN.onClick.AddListener(() => ChangeState(LobbyState.AFK));
+        charBTN.onClick.AddListener(() => ChangeState(LobbyState.Character));
         equipBTN.onClick.AddListener(() => ChangeState(LobbyState.Equip));
         settingBTN.onClick.AddListener(() => ChangeState(LobbyState.Setting));
         backBTN.onClick.AddListener(() => ChangeState(LobbyState.Main));
@@ -60,22 +60,22 @@ public class LobbyFlow : MonoBehaviour
         switch (_state)
         {
             case LobbyState.Main:
-                BackToMain();
+                Show(MainPanel);
+                break;
+            case LobbyState.Character:
+                Show(charPanel);
                 break;
             case LobbyState.Equip:
-                Equip();
+                Show(equipPanel);
                 break;
             case LobbyState.Setting:
-                Setting();
+                Show(settingPanel);
                 break;
             case LobbyState.Stage:
-                GameStart();
+                Show(stagePanel);
                 break;
             case LobbyState.Quit:
                 GameEnd();
-                break;
-            case LobbyState.AFK:
-                AFKStart();
                 break;
         }
     }
@@ -86,32 +86,12 @@ public class LobbyFlow : MonoBehaviour
         stagePanel.SetActive(false);
         settingPanel.SetActive(false);
         equipPanel.SetActive(false);
-        afkPanel.SetActive(false);
+        charPanel.SetActive(false);
     }
 
-    void BackToMain()
+    void Show(GameObject panel)
     {
-        MainPanel.SetActive(true);
-    }
-
-    void Equip()
-    {
-        equipPanel.SetActive(true);
-    }
-
-    void Setting()
-    {
-        settingPanel.SetActive(true);
-    }
-
-    void GameStart()
-    {
-        stagePanel.SetActive(true);
-    }
-
-    void AFKStart()
-    {
-        afkPanel.SetActive(true);
+        panel.SetActive(true);
     }
 
     void GameEnd()

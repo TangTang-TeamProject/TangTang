@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Equip : MonoBehaviour
 {
-    void Start()
+    private void OnEnable()
     {
-        
+        DataRefresh();
     }
 
-    void Update()
+    void DataRefresh()
     {
-        
+
+
     }
 }
