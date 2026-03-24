@@ -9,6 +9,10 @@ public class ExpGem : Items
     [SerializeField] private GemType _type;
 
     private float _exp;
+    private int _id;
+
+    public float Exp => _exp;
+    public int Id => _id;
 
     public void Init(GemPool pool)
     {
@@ -22,20 +26,15 @@ public class ExpGem : Items
         _pool = pool;
 
         _exp = _itemData.EXP;
+        _id = _itemData.ItemID;
 
     }
+    
 
-    public override float GetItem(GameObject target)
-    {
-        _target = target;
-
-        _isAbsorbed = true;
-
-        return _exp; // 경험치 반환
-    }
-
+    // 흡수 되었을 시 -> pool 로 리턴.
     public override void SetActiveFalse()
     {       
         _pool.Return(this);
+        base.SetActiveFalse();
     }
 }

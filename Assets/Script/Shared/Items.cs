@@ -9,17 +9,11 @@ public abstract class Items : MonoBehaviour
     [Header("아이템 흡수 속도")]
     [SerializeField] protected float _itemMoveSpeed = 5f;
 
-    protected GameObject _target;
-    protected string _tag;
-
-    private void Awake()
-    {
-        _tag = gameObject.tag;
-    }
+    protected GameObject _target;        
 
     void Update()
     {
-        if (!_isAbsorbed)
+        if (!_isAbsorbed) // 흡수 시작되었는지 검사
             return;
 
         MoveToTarget();
@@ -30,11 +24,14 @@ public abstract class Items : MonoBehaviour
     // true -> 플레이어에게 이동 / false -> 이동 X
     protected bool _isAbsorbed = false;
 
-    // 플레이어가 흡수 시작할 때 호출   
-    // ㄴ 현재 반환값 id 로 통일 안되었으므로 각 아이템 스크립트에서 직접 구현
-    public abstract float GetItem(GameObject target);
+    // 플레이어가 흡수 시작할 때 호출       
+    public virtual void GetItem(GameObject target)
+    {
+        _isAbsorbed = true; // 흡수 시작
+        _target = target; // 타겟 설정
+    }
     
-
+    // 흡수 시작되었을때 타겟 방향으로 이동.   
     public virtual void MoveToTarget()
     {
         if (_target == null)
@@ -44,14 +41,32 @@ public abstract class Items : MonoBehaviour
 
         Vector2 dir = _target.transform.position - transform.position;
         
-        dir.Normalize();
+        if (dir.magnitude > 0.001f)
+        {
+            dir.Normalize();
+        }
+        else
+        {
+            dir = Vector2.zero;
+        }
 
         Vector2 pos = transform.position;
-        pos += dir * _itemMoveSpeed * Time.deltaTime;                
+        pos += dir * _itemMoveSpeed * Time.deltaTime;
+        transform.position = pos;
     }
 
+    // 아이템 흡수 완료시 호출 (비활성화 함수)
+    // 각 아이템 스크립트에서 override 해서 커스텀.
     public virtual void SetActiveFalse()
     {
+        _target = null;
+        _isAbsorbed = false;
         gameObject.SetActive(false);
+    }
+
+    // 아이템 Tag 반환.
+    public virtual string GetItemTag()
+    {
+        return gameObject.tag;
     }
 }

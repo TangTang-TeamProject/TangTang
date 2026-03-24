@@ -788,13 +788,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 184299788554413243, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 915092819}
+    - targetCorrespondingSourceObject: {fileID: 184299788554413243, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 915092818}
     - targetCorrespondingSourceObject: {fileID: 184299788554413243, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 915092817}
     - targetCorrespondingSourceObject: {fileID: 184299788554413243, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 915092819}
+      addedObject: {fileID: 915092821}
   m_SourcePrefab: {fileID: 100100000, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
 --- !u!224 &631717871 stripped
 RectTransform:
@@ -1054,6 +1057,8 @@ MonoBehaviour:
   _targetLayerMask1: Enemy
   _targetLayerMask2: EnemyBullet
   _invincibleDuration: 0.5
+  _playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  _data: {fileID: 0}
   _hp: 20
 --- !u!114 &915092818
 MonoBehaviour:
@@ -1067,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a0e949c45421242bf2aa683e0742d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: 3923f46c826be5d4da6df1425a086317, type: 2}
+  _player: {fileID: 915092817}
   _spawnDir: {fileID: 1637073177}
   _spawnArrowPos: {x: 0, y: 0.5, z: 0}
   _radius: 0.7
@@ -1106,6 +1111,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.3}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &915092821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915092813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebe43e15175a0499e6faa76c5ee64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 915092817}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _targetLayerMask: Item
 --- !u!1 &953437852
 GameObject:
   m_ObjectHideFlags: 0
