@@ -156,4 +156,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: 999c08e943c542c40b3586d3ee668ac4, type: 2}
-  _projectilePool: {fileID: 0}
