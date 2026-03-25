@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    // 시간관리 매니저 -> 보스 소환 이벤트줘야함 SO에서 이벤트 타임 받아야함
     public static Timer Instance {  get; private set; }
     private bool _isTimerRun = true;
     private bool _isFirst = true;
     private float _timer;
     private float _realTime;
     private float _keepTime;
+    private float _tickTime;
 
     public float GameTime => _timer;
     public float RealTime => _realTime;
+    public float TickTime => _tickTime;
 
     private void Awake()
     {
@@ -35,6 +38,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         _realTime += Time.deltaTime;
+        if (_tickTime + 0.2f <= _realTime)
+        {
+            _tickTime = _realTime;
+        }
+        
         // 플레이 타이머 작동 여부
         if (!_isTimerRun)
         {

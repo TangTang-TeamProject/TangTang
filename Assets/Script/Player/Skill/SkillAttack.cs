@@ -2,8 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillAttack : MonoBehaviour, IAttackables
+public abstract class SkillAttack : MonoBehaviour, IAttackables
 {
+    protected SkillPool _pool;
+    
+    protected float _damage;
+    protected float _baseDamage;
+    protected float _keepTime = 5f;
+    protected float _speed;
+    protected float _remainTime;
+
+    public float Damage => _damage;
+
+    private void Update()
+    {
+        Move();
+        _remainTime -= Time.deltaTime;
+        if (_remainTime <= 0)
+        {
+            ReturnPool();
+        }
+    }
+
+    public void Init(float damage, float playerAttack, float speed, SkillPool pool)
+    {
+        _pool = pool;
+        _baseDamage = damage;
+        _damage = playerAttack * _baseDamage;
+        _speed = speed;
+        _remainTime = _keepTime;
+    }
+
+    protected virtual void Move() { }
+
+    // 플레이 도중 플레이어의 attack값이 바뀔경우 아티팩트에서 있을수도 있으니
+    public void DamageChange(float playerAttack)
+    {
+        _damage = playerAttack * _baseDamage;
+    }
+
+    protected void ReturnPool()
+    {
+        _remainTime = _keepTime;
+        _pool.Return();
+    }
+
+
+    /*
     [SerializeField] protected LayerMask _enemyLayer;
     [SerializeField] protected float _hitRadius;
 
@@ -13,18 +58,12 @@ public class SkillAttack : MonoBehaviour, IAttackables
     protected WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
     protected Coroutine _checkCo;
 
-    // 임시 데미지
-    protected float _damage = 1;
-
-
-    public float Damage => _damage;
-    
     private void OnEnable()
     {
         _enemyLayer = LayerMask.GetMask("Enemy");
         _checkCo = StartCoroutine(Co_CheckTarget());
     }
-
+    
     public virtual IEnumerator Co_CheckTarget()
     {
         while (true)
@@ -71,5 +110,5 @@ public class SkillAttack : MonoBehaviour, IAttackables
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _hitRadius);
     }
-    
+    */
 }
