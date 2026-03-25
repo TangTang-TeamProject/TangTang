@@ -61,12 +61,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn2()
     {
-        if (Time.time <  _nextSpawn)
+        if (Timer.Instance.GameTime <  _nextSpawn)
         {
             return;
         }
 
-        _nextSpawn = Time.time + _spawnTime; // 다음 스폰 시간 재설정
+        _nextSpawn = Timer.Instance.GameTime + _spawnTime; // 다음 스폰 시간 재설정
 
 
         if (_aliveList.Count >= _spawnCount)
