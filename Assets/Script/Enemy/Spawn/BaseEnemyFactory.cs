@@ -7,6 +7,8 @@ public abstract class BaseEnemyFactory : MonoBehaviour
     [SerializeField] protected GameObject _target;
     [SerializeField] protected EnemyPool _pool;
 
+    public EnemyPool Pool => _pool;
+
     public abstract BaseEnemy CreateEnemy(Vector2 position);
     
 }

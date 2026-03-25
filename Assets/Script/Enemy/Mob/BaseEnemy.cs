@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class BaseEnemy : MonoBehaviour, IDamagables
+public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
-    [SerializeField] protected EnemyData_SO _monsterData;
-    [Header("Gizmos 토글")]
-    [SerializeField] protected bool _gizmosOn = false;
+    [SerializeField] protected EnemyData_SO _monsterData;    
 
     protected EnemyPool _pool;
     protected GameObject _target;
@@ -30,14 +28,15 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     protected float _atk;
     protected float _speed;
     protected float _atkCycle;
-    protected float _bulletSpeed;
-    protected float _damage;
+    protected float _bulletSpeed;    
     
     protected float _nextDmg;
     protected float _checkTime = 0.2f;
 
+    public float Damage => _atk;
 
-    private void Awake()
+
+    protected virtual void Awake()
     {
         _playerLayer = LayerMask.GetMask(_playerString);
         _enemyLayer = LayerMask.GetMask(_enemyString);
@@ -50,19 +49,20 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         {
             CPrint.Log($"{this} -> CircleCollider2D 없음");
         }
+
+        
     }
 
     public void Init(EnemyPool pool)
     {
-        _pool = pool;
+        _pool = pool;        
 
         _id = _monsterData.EmemyID;
         _maxHp = _monsterData.HP;
         _atk = _monsterData.ATK;
         _speed = _monsterData.Speed;
         _atkCycle = _monsterData.ATKCycle;
-        _bulletSpeed = _monsterData.BulletSpeed;
-        _damage = _monsterData.DMG;                     
+        _bulletSpeed = _monsterData.BulletSpeed;                         
     }
 
     public virtual void Chase()
@@ -99,7 +99,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
 
         Vector2 preventCollision = CheckBoundary().normalized;
 
-        _dir += preventCollision; // 추적 방향에 collision 방지용 방향벡터 합산.
+        _dir += preventCollision; // 추적 방향에 몹간 collision 방지용 방향벡터 합산.
                
 
         Vector2 nowPos = transform.position;
@@ -112,41 +112,11 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
     // 몬스터 공격 함수
     public virtual void Attack()
     {
-        //if (Time.time < _checkTime)
-        //{
-        //    return;
-        //}
-
-        //_checkTime = Time.time + 0.2f; // 함수 진입 0.2초 주기로 설정
-
-        //// 공격 쿨타임(atkCycle) 검사
-        //if (Time.time < _nextAtk)
-        //{
-        //    return;
-        //}
         
-        //Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, _radius, _playerLayer);
-        //for (int i = 0; i < hit.Length; i++)
-        //{
-        //    if (hit[i].CompareTag(_target.tag)) // _target 과 tag 비교
-        //    {
-        //        if (hit[i].gameObject.TryGetComponent(out IDamagables damagables))
-        //        {
-        //            damagables.Hit(_damage);
-        //            _nextAtk = Time.time + _atkCycle;
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            CPrint.Log($"{hit[i].gameObject} IDamagables 못 찾음");
-        //            return;
-        //        }                    
-        //    }
-        //}
     }
 
     // 데미지 받는 함수
-    public virtual void Hit(float damage)
+    protected virtual void Hit(float damage)
     {
         _maxHp -= damage;
 
@@ -183,25 +153,29 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagables
         return dirToAdd;
     }
 
-    protected virtual void GetDamaged()
+    protected virtual void CheckDamaged()
     {
-        if (Time.time < _nextDmg)
+        if (Timer.Instance.GameTime < _nextDmg)
         {
             return;
         }
 
-        _nextDmg = Time.time + _checkTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
+        _nextDmg = Timer.Instance.GameTime + _checkTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
 
         Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
 
         for (int i = 0; i < hits.Length; i++)
         {
-            
+            if (hits[i].TryGetComponent(out IAttackables attackables))
+            {
+                Hit(attackables.Damage);
+            }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        
+    private void OnDrawGizmosSelected()
+    {        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere((Vector2)transform.position + _offset, _radius);
     }
 }
