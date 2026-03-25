@@ -82,6 +82,7 @@ public class AFK : MonoBehaviour
         SaveManager.SetDate();
 
         CalcTimes();
+        AFKUIUpdate();
         UpdateGold();
     }
 

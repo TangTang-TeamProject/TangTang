@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EventTimer : MonoBehaviour
+public class IngameUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI timeText;
@@ -21,12 +20,11 @@ public class EventTimer : MonoBehaviour
         pauseBTN.onClick.AddListener(PauseButtonClick);
     }
 
-
     private void Update()
     {
         int currentTime = (int)Timer.Instance.GameTime;
 
-        if (beforeTime >= currentTime)
+        if (beforeTime == currentTime)
             return;
 
         beforeTime = currentTime;
@@ -39,7 +37,7 @@ public class EventTimer : MonoBehaviour
 
         int sec = _time % 60;
 
-        timeText.text = $"{min} : {sec}";
+        timeText.text = $"{min:00} : {sec:00}";
     }
 
     void PauseButtonClick()
