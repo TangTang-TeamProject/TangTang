@@ -3,22 +3,66 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventTimer : MonoBehaviour
 {
-    public static event Action BossRound;
-
     [SerializeField]
     private TextMeshProUGUI timeText;
     [SerializeField]
-    private float eventCycle;
+    private Button pauseBTN;
+    [SerializeField]
+    private bool isPause;
+
+    private int beforeTime = 0;
+
+    private void Awake()
+    {
+        pauseBTN.onClick.AddListener(PauseButtonClick);
+    }
 
 
     private void Update()
     {
-        timeText.text = ((int)Timer.Instance.GameTime).ToString();
+        int currentTime = (int)Timer.Instance.GameTime;
+
+        if (beforeTime >= currentTime)
+            return;
+
+        beforeTime = currentTime;
+        MakeTimeText(currentTime);
     }
 
+    void MakeTimeText(int _time)
+    {
+        int min = _time / 60;
 
+        int sec = _time % 60;
 
+        timeText.text = $"{min} : {sec}";
+    }
+
+    void PauseButtonClick()
+    {
+        if (isPause)
+        {
+            isPause = false;
+            ResumeGame();
+        }
+        else
+        {
+            isPause = true;
+            PauseGame();
+        }
+    }
+
+    void ResumeGame()
+    {
+        Timer.Instance.IsTimeStop(false);
+    }
+
+    void PauseGame()
+    {
+        Timer.Instance.IsTimeStop(true);
+    }
 }
