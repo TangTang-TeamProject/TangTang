@@ -53,7 +53,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         
     }
 
-    public void Init(EnemyPool pool)
+    public virtual void Init(EnemyPool pool)
     {
         _pool = pool;        
 
@@ -137,7 +137,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     {
         _target = target;
     }
-
+   
     protected virtual Vector2 CheckBoundary()
     {
         Vector2 dirToAdd = new Vector2();
@@ -155,12 +155,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void CheckDamaged()
     {
-        if (Timer.Instance.GameTime < _nextDmg)
+        if (Timer.Instance.TickTime == _nextDmg)
         {
             return;
         }
 
-        _nextDmg = Timer.Instance.GameTime + _checkTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
+        _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
 
         Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
 
@@ -171,7 +171,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
                 Hit(attackables.Damage);
             }
         }
-    }
+    }    
 
     private void OnDrawGizmosSelected()
     {        

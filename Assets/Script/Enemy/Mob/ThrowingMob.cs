@@ -2,22 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowingMob : BaseEnemy
-{
-    [SerializeField] private GameObject _projectile;
-
+public class ThrowingMob : BaseEnemy, IAttackables
+{    
+    private ProjectileFactory _projectileFactory;
     private float _nextShoot = 0f;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (_projectile == null)
-        {
-            CPrint.Log($"{this} : Projectile 연결 안됨");
-            enabled = false;
-            return;
-        }
-    }
 
     void Update()
     {
@@ -29,6 +17,7 @@ public class ThrowingMob : BaseEnemy
     {
         Chase();
     }
+    
 
     public override void Attack()
     {
@@ -39,8 +28,9 @@ public class ThrowingMob : BaseEnemy
 
         _nextShoot = Timer.Instance.GameTime + _atkCycle;
 
-        
+        _projectileFactory.CreateProjectile(transform.position);
     }
+   
 
     public override void Chase()
     {
@@ -58,5 +48,10 @@ public class ThrowingMob : BaseEnemy
         base.Die();
 
         // 죽었을때 효과 추가 예정
+    }
+    
+    public void SetProjectileFactory(ProjectileFactory projectileFactory)
+    {
+        _projectileFactory = projectileFactory;
     }
 }
