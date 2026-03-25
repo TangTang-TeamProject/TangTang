@@ -8,11 +8,13 @@ public class Zombie : BaseEnemy
     void Update()
     {        
         Attack();
+        CheckDamaged();
     }
 
     void FixedUpdate()
     {
         Chase();
+        
     }
 
     public override void Attack()
@@ -25,7 +27,7 @@ public class Zombie : BaseEnemy
         base.Chase();
     }
 
-    public override void Hit(float dmg)
+    protected override void Hit(float dmg)
     {
         base.Hit(dmg);
        
