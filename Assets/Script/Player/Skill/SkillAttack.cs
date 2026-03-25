@@ -6,10 +6,10 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
 {
     protected SkillPool _pool;
     
-    protected float _damage;
+    protected float _damage = 1;
     protected float _baseDamage;
     protected float _keepTime = 5f;
-    protected float _speed;
+    protected float _speed = 2f;
     protected float _remainTime;
 
     public float Damage => _damage;
@@ -17,11 +17,13 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     private void Update()
     {
         Move();
+        /*
         _remainTime -= Time.deltaTime;
         if (_remainTime <= 0)
         {
             ReturnPool();
         }
+        */
     }
 
     public void Init(float damage, float playerAttack, float speed, SkillPool pool)
