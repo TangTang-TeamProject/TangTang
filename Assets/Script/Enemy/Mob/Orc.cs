@@ -6,12 +6,7 @@ public class Orc : BaseEnemy
 { 
     public override void Chase()
     {
-        Vector2 dir = (_target.transform.position - transform.position).normalized;
-        Vector2 nowPos = transform.position;
-
-        nowPos += dir * _speed * Time.deltaTime;
-
-        transform.position = nowPos;
+        base.Chase();
     }
 
     public override void Attack()
@@ -19,7 +14,7 @@ public class Orc : BaseEnemy
         
     }
 
-    public override void Hit(float dmg)
+    protected override void Hit(float dmg)
     {
         
     }

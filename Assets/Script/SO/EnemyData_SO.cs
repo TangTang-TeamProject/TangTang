@@ -21,8 +21,6 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField]
     private float bulletSpeed = 0f;
     [SerializeField]
-    private float dmg = 0f;
-    [SerializeField]
     private GameObject prefab;
 
     public int EmemyID => enemyID;
@@ -32,6 +30,5 @@ public class EnemyData_SO : ScriptableObject
     public float Speed => speed;
     public float ATKCycle => atkCycle;
     public float BulletSpeed => bulletSpeed;
-    public float DMG => dmg;
     public GameObject Prefab => prefab;
 }

@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,17 +7,16 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
+    
     [SerializeField] private int _spawnCount = 500;
     [SerializeField] private int _spawnAtOnce = 20;
     [SerializeField] private float _spawnRadius = 8.5f;
-    [SerializeField] private float _spawnTime = 10f;
-    
+    [SerializeField] private float _spawnTime = 10f;    
     [SerializeField] private BaseEnemyFactory _factory;
   
 
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
-  
+    private float _nextSpawn = 0f;
 
     void Awake()
     {
@@ -26,12 +26,17 @@ public class EnemySpawner : MonoBehaviour
             CPrint.Log("EnemySpawner -> _factory 연결 안됨");
             enabled = false;
             return;
-        }    
-        
+        }
+        _factory.Pool.OnEnemyDead += RemoveAliveList;
     }
     void Start()
     {
-        StartCoroutine(Spawn());
+        //StartCoroutine(Spawn());
+    }
+
+    private void Update()
+    {
+        Spawn2();
     }
 
 
@@ -54,9 +59,30 @@ public class EnemySpawner : MonoBehaviour
         }        
     }
 
+    private void Spawn2()
+    {
+        if (Time.time <  _nextSpawn)
+        {
+            return;
+        }
+
+        _nextSpawn = Time.time + _spawnTime; // 다음 스폰 시간 재설정
+
+
+        if (_aliveList.Count >= _spawnCount)
+        {
+            return;
+        }
+
+        for (int i = 0; i < _spawnAtOnce; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
     private void SpawnEnemy()
     {
-        Vector2 _randSpawnPos = Random.insideUnitCircle;
+        Vector2 _randSpawnPos = UnityEngine.Random.insideUnitCircle;
         _randSpawnPos = _randSpawnPos.normalized * _spawnRadius;
 
         BaseEnemy enemy = _factory.CreateEnemy(_randSpawnPos);
@@ -64,4 +90,9 @@ public class EnemySpawner : MonoBehaviour
         _aliveList.Add(enemy);
 
     }  
+
+    private void RemoveAliveList(BaseEnemy enemy)
+    {
+        _aliveList.Remove(enemy);        
+    }
 }
