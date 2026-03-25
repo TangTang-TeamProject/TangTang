@@ -19,10 +19,16 @@ public class AFK : MonoBehaviour
     private RectTransform gaugeTextPos;
     [SerializeField]
     private TextMeshProUGUI gaugeText;
+    [SerializeField]
+    private TextMeshProUGUI goldText;
+
 
     private DateTime dateTime;
     private DateTime endTime;
     TimeSpan total;
+
+    private float updateCycle = 1;
+    private float currentCycle = 0;
 
     private void Awake()
     {
@@ -32,10 +38,25 @@ public class AFK : MonoBehaviour
     private void Start()
     {
         CalcTimes();
+        UpdateGold();
     }
 
     private void Update()
     {
+        UpdateCycle();
+    }
+
+    void UpdateCycle()
+    {
+        currentCycle += Time.deltaTime;
+
+        if (currentCycle < updateCycle)
+        {
+            return;
+        }
+
+        currentCycle = 0;
+
         AFKUIUpdate();
     }
 
@@ -61,6 +82,7 @@ public class AFK : MonoBehaviour
         SaveManager.SetDate();
 
         CalcTimes();
+        UpdateGold();
     }
 
     void CalcTimes()
@@ -74,5 +96,10 @@ public class AFK : MonoBehaviour
         // 수령 주기 이후에 추가 필요
         endTime = dateTime.AddMinutes(10);
         total = endTime - dateTime;
+    }
+
+    void UpdateGold()
+    {
+        goldText.text = SaveManager.saveData.gold.ToString();
     }
 }
