@@ -11,9 +11,11 @@ public class BootStraper : MonoBehaviour
         SaveManager.Load();
 
         SetScreen();
+    }
 
+    private void Start()
+    {
         SetSound();
-
     }
 
     void SetScreen()
@@ -26,16 +28,8 @@ public class BootStraper : MonoBehaviour
 
     void SetSound()
     {
-        SoundManager soundManager = FindFirstObjectByType<SoundManager>();
-
-        if (soundManager == null)
-        {
-            CPrint.Error("SoundManager 못찾음");
-            return;
-        }
-
-
-
-        //  SoundManager 값 설정이 안됨 나중에 협력 필요
+        SoundManager.Instance.MasterVolumeChange(SaveManager.saveData.masterVolume);
+        SoundManager.Instance.BGMVolumeChange(SaveManager.saveData.bgmVolume);
+        SoundManager.Instance.SfxVolumeChange(SaveManager.saveData.sfxVolume);
     }
 }

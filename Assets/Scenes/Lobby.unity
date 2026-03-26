@@ -1567,7 +1567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c171c0e21fb1b47824daac4eeacefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 0}
   masterVolume: {fileID: 1531840845}
   bgmVolume: {fileID: 454124220}
   sfxVolume: {fileID: 722283453}
@@ -5364,9 +5363,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154244667}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1158608730
 GameObject:
@@ -8831,6 +8830,9 @@ MonoBehaviour:
   - scene: 1
     name: Stage_1
   faded: {fileID: 1154244669}
+  fadeText: {fileID: 1754840840}
+  bigSize: {x: 20, y: 20, z: 1}
+  fadeTime: 2
 --- !u!1 &1754840839
 GameObject:
   m_ObjectHideFlags: 0
@@ -8858,7 +8860,7 @@ RectTransform:
   m_GameObject: {fileID: 1754840839}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 809202508}
@@ -11318,7 +11320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5d458a1fb3a50489f187bbedb8a1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mixer: {fileID: 0}
+  _mixer: {fileID: 24100000, guid: b1a46f348faf75447b90007848a080de, type: 2}
   _bgmSource: {fileID: 0}
   _bgmClips: []
   _sfxSource: {fileID: 0}
