@@ -57,6 +57,11 @@ public class Settings : MonoBehaviour
         DataRefresh();
     }
 
+    private void OnDisable()
+    {
+        SaveManager.Save();
+    }
+
     void DataRefresh()
     {
         masterVolume.value = soundManager.MasterVolume;
@@ -89,17 +94,23 @@ public class Settings : MonoBehaviour
     }
 
     void MasterVolumeChanged(float _vol)
-    { 
-    
+    {
+        SaveManager.SetMasterVolume(_vol);
+
+        //soundManager
     }
 
     void BGMVolumeChanged(float _vol)
     {
+        SaveManager.SetBGMVolume(_vol);
 
+        //soundManager
     }
 
     void SFXVolumeChanged(float _vol)
     {
+        SaveManager.SetSFXVolume(_vol);
 
+        //soundManager
     }
 }

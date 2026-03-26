@@ -123,23 +123,27 @@ public static class SaveManager
         return saveData.equipID[(int)slot];
     }
 
-    public static void SetVolume(float _master, float _bgm, float _sfx)
+    public static void SetMasterVolume(float _master)
     {
         saveData.masterVolume = _master;
+    }
+
+    public static void SetBGMVolume(float _bgm)
+    {
         saveData.bgmVolume = _bgm;
+    }
+    public static void SetSFXVolume(float _sfx)
+    {
         saveData.sfxVolume = _sfx;
-        Save();
     }
 
     public static void SetRate(int _index)
     { 
         saveData.rateIndex = _index;
-        Save();
     }
 
     public static void SetFull(bool _full)
     {
         saveData.fullScreen = _full;
-        Save();
     }
 }
