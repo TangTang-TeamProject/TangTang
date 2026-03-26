@@ -47,11 +47,14 @@ TagManager:
   - name: GroundEffect
     uniqueID: 2223003763
     locked: 0
-  - name: 
+  - name: Item
     uniqueID: 2618107969
     locked: 0
-  - name: 
+  - name: MovingObject
     uniqueID: 1513744329
+    locked: 0
+  - name: Bullet
+    uniqueID: 3664028857
     locked: 0
   - name: UpperEffect
     uniqueID: 4060311063
