@@ -19,8 +19,8 @@ public class ThrowingMobFactory : BaseEnemyFactory
        
         enemy.SetProjectileFactory(projectileFactory);
         enemy.Init(_pool);       
-        enemy.SetTarget(_target);
-        
+        enemy.SetTarget(_target);        
+
         return enemy;
     }
 }
