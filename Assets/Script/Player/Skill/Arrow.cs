@@ -6,6 +6,6 @@ public class Arrow : SkillAttack
 {
     protected override void Move()
     {
-
+        transform.position += transform.up * _speed * Time.deltaTime;
     }
 }

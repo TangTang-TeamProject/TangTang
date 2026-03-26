@@ -40,6 +40,7 @@ public class Player : MonoBehaviour, IDamagables
     public float MoveSpeed => _speed;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
+    public event Action OnHit;
 
     private void Reset()
     {
@@ -136,8 +137,8 @@ public class Player : MonoBehaviour, IDamagables
             return;
         }
         CPrint.Log("플레이어 맞았음, 무적 시작");
-
         _hp -= damage;
+        OnHit?.Invoke();
 
         if (_hp <= 0)
         {

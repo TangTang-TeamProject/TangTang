@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -18,7 +18,8 @@ public class SoundManager : MonoBehaviour
         Spear,
         Trident,
     }
-
+    [SerializeField] private AudioMixer _mixer;
+    [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private AudioClip[] _bgmClips;
 
     [SerializeField] private AudioSource _sfxSource;
@@ -40,12 +41,20 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        if (_mixer == null)
+        {
+            CPrint.Error("SoundManager에 AudioMixer안넣었음");
+            enabled = false;
+            return;
+        }
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         BuildMaps();
     }
@@ -57,7 +66,58 @@ public class SoundManager : MonoBehaviour
             Instance = null;
         }
     }
-    
+
+    private void Start()
+    {
+        // 시작시 브금0번 재생 시험용 나중에 재구축예정
+        if (_bgmClips == null || _bgmSource == null)
+        {
+            return;
+        }
+        _bgmSource.loop = true;
+        _bgmSource.clip = _bgmClips[0];
+        _bgmSource.Play();
+    }
+
+    public void MasterVolumeChange(float value)
+    {
+        if (_mixer == null)
+        {
+            return;
+        }
+        ValueCheck(value);
+        _mixer.SetFloat("Master", Mathf.Log10(value) * 20);
+    }
+
+    public void BGMVolumeChange(float value)
+    {
+        if (_mixer == null)
+        {
+            return;
+        }
+        ValueCheck(value);
+        _mixer.SetFloat("BGM", Mathf.Log10(value) * 20);
+    }
+
+    public void SfxVolumeChange(float value)
+    {
+        if (_mixer == null)
+        {
+            return;
+        }
+        ValueCheck(value);
+        _mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+    }
+
+    float ValueCheck(float value)
+    {
+        if (value <= 0.001f)
+        {
+            value = 0.001f;
+        }
+        return value;
+    }
+
     private void BuildMaps()
     {
         _nameToId.Clear();
