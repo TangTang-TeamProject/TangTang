@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: BATANG SDF
+  m_Name: InvisableTMP
   m_EditorClassIdentifier: 
-  hashCode: 213161902
+  hashCode: -1743173432
   material: {fileID: 5183044236351756579}
-  materialHashCode: 1576309710
+  materialHashCode: -1071166488
   m_Version: 1.1.0
   m_SourceFontFileGUID: 64db5ab9711e42943997280f2a437acc
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 64db5ab9711e42943997280f2a437acc, type: 3}
@@ -2099,7 +2099,7 @@ Material:
     - _BevelWidth: 0
     - _BumpFace: 0
     - _BumpOutline: 0
-    - _ColorMask: 15
+    - _ColorMask: 0
     - _CullMode: 0
     - _Diffuse: 0.5
     - _FaceDilate: 0
@@ -2127,9 +2127,9 @@ Material:
     - _ShaderFlags: 0
     - _Sharpness: 0
     - _SpecularPower: 2
-    - _Stencil: 0
+    - _Stencil: 1
     - _StencilComp: 8
-    - _StencilOp: 0
+    - _StencilOp: 2
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _TextureHeight: 1024

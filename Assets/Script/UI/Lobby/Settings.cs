@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     [SerializeField]
-    private SoundManager soundManager;
-    [SerializeField]
     private Slider masterVolume;
     [SerializeField]
     private Slider bgmVolume;
@@ -24,15 +22,6 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
-        soundManager = FindFirstObjectByType<SoundManager>();
-
-        if (soundManager == null)
-        {
-            CPrint.Error("SoundManager ¸øÃ£À½");
-        }
-
-
-
         List<string> options = new List<string>();
 
         foreach (Vector2 rate in rs.dropDownMap)
@@ -57,11 +46,17 @@ public class Settings : MonoBehaviour
         DataRefresh();
     }
 
+    private void OnDisable()
+    {
+        SaveManager.Save();
+        Debug.Log(SaveManager.saveData.masterVolume);
+    }
+
     void DataRefresh()
     {
-        masterVolume.value = soundManager.MasterVolume;
-        bgmVolume.value = soundManager.BGMVolume;
-        sfxVolume.value = soundManager.SfxVolume;
+        masterVolume.value = SoundManager.Instance.MasterVolume;
+        bgmVolume.value = SoundManager.Instance.BGMVolume;
+        sfxVolume.value = SoundManager.Instance.SfxVolume;
 
         fullScreen.isOn = SaveManager.saveData.fullScreen;
         windowRate.value = SaveManager.saveData.rateIndex;
@@ -89,17 +84,23 @@ public class Settings : MonoBehaviour
     }
 
     void MasterVolumeChanged(float _vol)
-    { 
-    
+    {
+        SaveManager.SetMasterVolume(_vol);
+
+        SoundManager.Instance.MasterVolumeChange(_vol);
     }
 
     void BGMVolumeChanged(float _vol)
     {
+        SaveManager.SetBGMVolume(_vol);
 
+        SoundManager.Instance.BGMVolumeChange(_vol);
     }
 
     void SFXVolumeChanged(float _vol)
     {
+        SaveManager.SetSFXVolume(_vol);
 
+        SoundManager.Instance.SfxVolumeChange(_vol);
     }
 }

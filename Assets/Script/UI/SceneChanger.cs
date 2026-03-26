@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,8 +29,12 @@ public class SceneChanger : MonoBehaviour
     private List<SceneLib> sceneLib = new List<SceneLib>();
     [SerializeField]
     private CanvasGroup faded;
-
-
+    [SerializeField]
+    private RectTransform fadeText;
+    [SerializeField]
+    private Vector3 bigSize;
+    [SerializeField]
+    private float fadeTime;
 
 
     private Dictionary<Scenes, string> sceneDic = new Dictionary<Scenes, string>();
@@ -79,8 +84,26 @@ public class SceneChanger : MonoBehaviour
 
         op.allowSceneActivation = false;
 
-        // 씬 이동 이벤트
+        faded.alpha = 1;
+        faded.blocksRaycasts = true;
+        faded.interactable = true;
 
+        float currentTime = 0;
+        float t;
+
+        while (currentTime < fadeTime)
+        {
+            currentTime += Time.deltaTime;
+
+            t = currentTime / fadeTime;
+
+            t = MathF.Sin(t * MathF.PI * 0.5f);
+
+            fadeText.localScale = Vector3.Lerp(bigSize, Vector3.zero, t);
+            yield return null;
+        }
+
+        fadeText.localScale = Vector3.zero;
 
 
         while (op.progress < 0.9f)
@@ -91,6 +114,10 @@ public class SceneChanger : MonoBehaviour
 
 
         // 씬 이동 이벤트
+
+        faded.alpha = 0;
+        faded.blocksRaycasts = false;
+        faded.interactable = false;
 
         op.allowSceneActivation = true;
 
