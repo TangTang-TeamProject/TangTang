@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 4bd1fbf011ccee34fad76131661d6a9d, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3462,8 +3462,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 435560227}
   - {fileID: 1754840840}
+  - {fileID: 435560227}
   m_Father: {fileID: 1154244668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8888,10 +8888,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC6B0 \uB2F9 \uD0D5 \uD0D5 !"
+  m_text: "\uC6B0 \uB2F9 \n     \uD0D5 \uD0D5 !"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0ab650c0088c256428c972a080970367, type: 2}
-  m_sharedMaterial: {fileID: 5183044236351756579, guid: 0ab650c0088c256428c972a080970367, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 29735256a0d5387478c59e66e712ffff, type: 2}
+  m_sharedMaterial: {fileID: 5183044236351756579, guid: 29735256a0d5387478c59e66e712ffff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11318,6 +11318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5d458a1fb3a50489f187bbedb8a1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mixer: {fileID: 0}
+  _bgmSource: {fileID: 0}
   _bgmClips: []
   _sfxSource: {fileID: 0}
   _sfxClips: []
