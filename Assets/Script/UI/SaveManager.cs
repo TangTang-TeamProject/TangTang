@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum EquipType
 { 
@@ -21,9 +23,14 @@ public class SaveData
 
     public int[] equipID;
 
-    public float volume;
-
     public long dateTime;
+
+    public float masterVolume;
+    public float bgmVolume;
+    public float sfxVolume;
+
+    public int rateIndex;
+    public bool fullScreen;
 }
 
 public static class SaveManager
@@ -80,9 +87,15 @@ public static class SaveManager
             newData.equipID[i] = 0;
         }
 
-        newData.volume = 100;
+        newData.masterVolume = 1f;
+        newData.bgmVolume = 1f;
+        newData.sfxVolume = 1f;
 
         newData.dateTime = DateTime.UtcNow.Ticks;
+
+        newData.rateIndex = 0;
+
+        newData.fullScreen = false;
 
         return newData;
     }
@@ -110,9 +123,23 @@ public static class SaveManager
         return saveData.equipID[(int)slot];
     }
 
-    public static void SetVolume(float value)
+    public static void SetVolume(float _master, float _bgm, float _sfx)
     {
-        saveData.volume = value;
+        saveData.masterVolume = _master;
+        saveData.bgmVolume = _bgm;
+        saveData.sfxVolume = _sfx;
+        Save();
+    }
+
+    public static void SetRate(int _index)
+    { 
+        saveData.rateIndex = _index;
+        Save();
+    }
+
+    public static void SetFull(bool _full)
+    {
+        saveData.fullScreen = _full;
         Save();
     }
 }
