@@ -6,6 +6,6 @@ public class Spear : SkillAttack
 {
     protected override void Move()
     {
-        transform.position += Vector3.up * _speed * Time.deltaTime;
+        transform.position += transform.up * _speed * Time.deltaTime;
     }
 }
