@@ -6604,7 +6604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a0e949c45421242bf2aa683e0742d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: 3923f46c826be5d4da6df1425a086317, type: 2}
+  _player: {fileID: 0}
   _spawnDir: {fileID: 670869019873937541}
   _spawnArrowPos: {x: 0, y: 0.5, z: 0}
   _radius: 0.7
@@ -6620,6 +6620,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1e6855de9228c44a4da07aba249f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCol: {fileID: 3147225897246432139}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 1536
+  _targetLayerMask1: Enemy
+  _targetLayerMask2: EnemyBullet
+  _invincibleDuration: 0.5
+  _playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  _data: {fileID: 11400000, guid: b783cbd7bd982bb4dbd32748ca03df65, type: 2}
+  _hp: 20
 --- !u!58 &3147225897246432139
 CircleCollider2D:
   m_ObjectHideFlags: 0

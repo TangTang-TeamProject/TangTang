@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
-    [SerializeField] protected EnemyData_SO _monsterData;    
+    [SerializeField] protected EnemyData_SO _monsterData;
 
+    protected Animator _animator;
     protected EnemyPool _pool;
     protected GameObject _target;
     
@@ -31,13 +33,22 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _bulletSpeed;    
     
     protected float _nextDmg;
-    protected float _checkTime = 0.2f;
+    
 
     public float Damage => _atk;
 
 
     protected virtual void Awake()
     {
+        if (!TryGetComponent(out Animator animator))
+        {
+            CPrint.Warn($"{this} : Animator 연결 안됨");
+            enabled = false;
+            return;
+        }
+
+        _animator = animator;
+
         _playerLayer = LayerMask.GetMask(_playerString);
         _enemyLayer = LayerMask.GetMask(_enemyString);
         _playerBulletLayer = LayerMask.GetMask(_playerBulletString);        
@@ -90,14 +101,14 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         if (_dir.magnitude > 0.001f)
         {
-            _dir.Normalize();
+            _dir.Normalize();          
         }
         else
         {
             _dir = Vector2.zero;
         }
 
-        Vector2 preventCollision = CheckBoundary().normalized;
+        Vector2 preventCollision = CheckBoundary();
 
         _dir += preventCollision; // 추적 방향에 몹간 collision 방지용 방향벡터 합산.
                
@@ -139,18 +150,25 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
    
     protected virtual Vector2 CheckBoundary()
-    {
-        Vector2 dirToAdd = new Vector2();
+    {        
+        Vector2 sumDir = Vector2.zero;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius, _enemyLayer);
 
         for (int i = 0; i < hits.Length; i++)
-        {
+        {            
             Vector2 newDir = transform.position - hits[i].transform.position; // 대상과 자신이 겹치지 않는 쪽으로의 방향벡터            
-            dirToAdd += newDir; 
-        }
+            float distance = newDir.magnitude;
 
-        return dirToAdd;
+            if (distance < 0.001f)
+                continue;
+            
+            float force = 1f / (distance * distance); // 가까울수록 force 가 강해짐
+            sumDir += newDir.normalized * force;
+            
+        }       
+
+        return sumDir;
     }
 
     protected virtual void CheckDamaged()
