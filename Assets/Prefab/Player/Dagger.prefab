@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5556357284352452994}
-  - component: {fileID: 7630629797730303655}
   - component: {fileID: 7360485254343913576}
-  - component: {fileID: 2127560822024426714}
+  - component: {fileID: 3537110543913958611}
+  - component: {fileID: 2145875538132076893}
   m_Layer: 11
-  m_Name: Spear
+  m_Name: Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,23 +29,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7630629797730303655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7195917759573718521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a5e68b4d4a43041b3bd05fd32a5344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7360485254343913576
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -630938439
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 667027c43d7d57c4baac5ef2a590761b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30e47371660a44f038c174865e5af8d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &2127560822024426714
-CapsuleCollider2D:
+--- !u!61 &3537110543913958611
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,9 +115,31 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.34375}
-  m_Size: {x: 0.3, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0.015625, y: 0.140625}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.41666666, y: 0.19999999}
+    oldSize: {x: 0.1875, y: 0.46875}
+    newSize: {x: 0.3125, y: 1.03125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1875, y: 0.46875}
+  m_EdgeRadius: 0
+--- !u!114 &2145875538132076893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195917759573718521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a24758d4e735af428d99f386717d052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

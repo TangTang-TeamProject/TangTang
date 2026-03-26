@@ -24,7 +24,7 @@ public class PlayerItemLoot : MonoBehaviour
     {
         _targetLayer = LayerMask.GetMask(_targetLayerMask);
         _radius = _player.PlayerCol.bounds.extents.x;
-        _absorbeMultiply = 1.5f;
+        _absorbeMultiply = 3.0f;
         _rootCo = StartCoroutine(Co_CheckLoot());
         _absorbeCo = StartCoroutine(Co_CheckAbsorbe());
     }
@@ -119,7 +119,7 @@ public class PlayerItemLoot : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_center, _radius*1.5f);
+        Gizmos.DrawWireSphere(_center, _radius*_absorbeMultiply);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(_center, _radius*0.8f);
 

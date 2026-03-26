@@ -11,12 +11,18 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected float _keepTime = 5f;
     protected float _speed = 2f;
     protected float _remainTime;
+    protected float _spinZ;
+    protected bool _isSpin = false;
 
     public float Damage => _damage;
 
     private void Update()
     {
         Move();
+        if (_isSpin)
+        {
+            Rotate();
+        }
         /*
         _remainTime -= Time.deltaTime;
         if (_remainTime <= 0)
@@ -36,6 +42,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     }
 
     protected virtual void Move() { }
+    protected virtual void Rotate() { }
 
     // 플레이 도중 플레이어의 attack값이 바뀔경우 아티팩트에서 있을수도 있으니
     public void DamageChange(float playerAttack)
