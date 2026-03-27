@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
     private float _nextSpawn = 0f;
-
+    
     private bool _isBossRound = false;   
 
     void Awake()
@@ -38,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
         _factory.Pool.OnEnemyDead += RemoveAliveList;
         Timer.Instance.BossSpawn += SpawnBoss;
         Timer.Instance.BossSpawn += ClearAliveList;
+        Timer.Instance.BossDie += BossDie;
         //StartCoroutine(Spawn());
     }
 
@@ -114,11 +115,12 @@ public class EnemySpawner : MonoBehaviour
         _isBossRound = true;
         Vector2 spawnPos = new Vector2(3f, 3f);
 
-        BaseEnemy boss = _factory.CreateBoss(spawnPos);
+        BaseEnemy boss = _factory.CreateBoss(spawnPos, this);        
         if (boss == null)
         {
             CPrint.Warn("Boss ¾øÀ½");
             _isBossRound = false;
+            Timer.Instance.IsBossDie();
         }
     }
 
@@ -130,5 +132,6 @@ public class EnemySpawner : MonoBehaviour
     public void BossDie()
     {
         _isBossRound = false;
+        
     }
 }

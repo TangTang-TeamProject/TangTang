@@ -32,10 +32,9 @@ public class EnemyPool : MonoBehaviour
     }
 
     public void Return(BaseEnemy enemy)
-    {
-        enemy.gameObject.SetActive(false);
+    {        
         _enemyPool.Enqueue(enemy);  
         OnEnemyDead?.Invoke(enemy);
-    }
+    }   
     
 }
