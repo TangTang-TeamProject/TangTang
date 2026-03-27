@@ -315,8 +315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnCount: 500
-  _spawnAtOnce: 5
-  _spawnRadius: 10
+  _spawnAtOnce: 15
+  _minSpawnRadius: 8.5
+  _maxSpawnRadius: 13
   _spawnTime: 10
   _factory: {fileID: 1658098869}
 --- !u!4 &564169861
@@ -502,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 864805264}
   _pool: {fileID: 582943652}
+  _bossPrefab: []
 --- !u!4 &951098783
 Transform:
   m_ObjectHideFlags: 0
@@ -935,6 +937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 864805264}
   _pool: {fileID: 2098265714}
+  _bossPrefab: []
   projectileFactory: {fileID: 205211335}
   projectilePool: {fileID: 1320531158}
 --- !u!1 &1835821229
