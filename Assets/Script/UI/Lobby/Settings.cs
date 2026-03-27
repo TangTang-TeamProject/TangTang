@@ -49,7 +49,7 @@ public class Settings : MonoBehaviour
     private void OnDisable()
     {
         SaveManager.Save();
-        Debug.Log(SaveManager.saveData.masterVolume);
+        Debug.Log(SaveManager.data.masterVolume);
     }
 
     void DataRefresh()
@@ -58,8 +58,8 @@ public class Settings : MonoBehaviour
         bgmVolume.value = SoundManager.Instance.BGMVolume;
         sfxVolume.value = SoundManager.Instance.SfxVolume;
 
-        fullScreen.isOn = SaveManager.saveData.fullScreen;
-        windowRate.value = SaveManager.saveData.rateIndex;
+        fullScreen.isOn = SaveManager.data.fullScreen;
+        windowRate.value = SaveManager.data.rateIndex;
     }
 
     void RateChanged(int _index)
@@ -68,19 +68,19 @@ public class Settings : MonoBehaviour
 
 
         Screen.SetResolution(
-        rs.dropDownMap[SaveManager.saveData.rateIndex].x,
-        rs.dropDownMap[SaveManager.saveData.rateIndex].y,
-        SaveManager.saveData.fullScreen);
+        rs.dropDownMap[SaveManager.data.rateIndex].x,
+        rs.dropDownMap[SaveManager.data.rateIndex].y,
+        SaveManager.data.fullScreen);
     }
 
     void FullChanged(bool _full)
     {
-        SaveManager.SetFull(_full);
+        SaveManager.SetFullScreen(_full);
 
         Screen.SetResolution(
-        rs.dropDownMap[SaveManager.saveData.rateIndex].x,
-        rs.dropDownMap[SaveManager.saveData.rateIndex].y,
-        SaveManager.saveData.fullScreen);
+        rs.dropDownMap[SaveManager.data.rateIndex].x,
+        rs.dropDownMap[SaveManager.data.rateIndex].y,
+        SaveManager.data.fullScreen);
     }
 
     void MasterVolumeChanged(float _vol)

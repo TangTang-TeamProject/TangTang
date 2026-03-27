@@ -80,6 +80,7 @@ public class AFK : MonoBehaviour
         CPrint.Log("보상 수령");
 
         SaveManager.SetDate();
+        SaveManager.Save();
 
         CalcTimes();
         AFKUIUpdate();
@@ -93,7 +94,7 @@ public class AFK : MonoBehaviour
             CPrint.Error("SaveManager-dateTime == null");
         }
 
-        dateTime = new DateTime(SaveManager.saveData.dateTime);
+        dateTime = new DateTime(SaveManager.data.dateTime);
         // 수령 주기 이후에 추가 필요
         endTime = dateTime.AddMinutes(10);
         total = endTime - dateTime;
@@ -101,6 +102,6 @@ public class AFK : MonoBehaviour
 
     void UpdateGold()
     {
-        goldText.text = SaveManager.saveData.gold.ToString();
+        goldText.text = SaveManager.data.gold.ToString();
     }
 }

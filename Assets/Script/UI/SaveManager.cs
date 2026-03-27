@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum EquipType
 { 
@@ -37,15 +35,29 @@ public static class SaveManager
 {
     private static string dataPath = Application.persistentDataPath + "/save.json";
 
-    public static SaveData saveData { get; private set; }
+    static SaveData saveData;
+
+    public static SaveData data
+    {
+        get 
+        {
+            LazyLoad();
+            return saveData;
+        }
+    }
+
+    static void LazyLoad()
+    {
+        if (saveData == null)
+        {
+            Load();
+        }
+    }
+
 
     public static void Save()
     {
-        if(saveData == null)
-        {
-            CPrint.Error("세이브 데이터 없음");
-            return;
-        }
+        LazyLoad();
 
         string toJson = JsonUtility.ToJson(saveData);
         File.WriteAllText(dataPath, toJson);
@@ -103,19 +115,16 @@ public static class SaveManager
     public static void SetDate()
     {
         saveData.dateTime = DateTime.UtcNow.Ticks;
-        Save();
     }
 
     public static void CalcGold(int num)
     {
         saveData.gold += num;
-        Save();
     }
 
     public static void SetEquip(EquipType slot, int ID)
     {
         saveData.equipID[(int)slot] = ID;
-        Save();
     }
 
     public static int GetEquip(EquipType slot)
@@ -138,12 +147,12 @@ public static class SaveManager
     }
 
     public static void SetRate(int _index)
-    { 
+    {
         saveData.rateIndex = _index;
     }
 
-    public static void SetFull(bool _full)
+    public static void SetFullScreen(bool _fullScreen)
     {
-        saveData.fullScreen = _full;
+        saveData.fullScreen = _fullScreen;
     }
 }
