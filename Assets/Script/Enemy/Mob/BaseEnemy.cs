@@ -140,14 +140,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
     
     public virtual void Die()
-    {     
-        if (_mobType == MobType.Boss)
-        {
-            Timer.Instance.IsBossDie();
-            Destroy(gameObject);
-            return;
-        }
-
+    {             
         gameObject.SetActive(false); // ∏ÛΩ∫≈Õ ªÁ∏¡
         _pool.Return(this);        
     }

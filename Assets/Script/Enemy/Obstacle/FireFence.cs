@@ -16,6 +16,7 @@ public class FireFence : MonoBehaviour
     private void Start()
     {
         Timer.Instance.BossSpawn += ToggleFenceState;
+        Timer.Instance.BossDie += ToggleFenceState;
     }
 
     void Update()
