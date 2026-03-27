@@ -9854,7 +9854,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -2071963533
   m_SortingLayer: 1
-  m_SortingOrder: 6
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!61 &5788694244794862836
 BoxCollider2D:

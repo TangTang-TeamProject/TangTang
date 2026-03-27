@@ -10,7 +10,12 @@ public class FireFence : MonoBehaviour
 
     void Awake()
     {
-        _fireObstacles = GetComponentsInChildren<FireObstacles>();
+        _fireObstacles = GetComponentsInChildren<FireObstacles>();        
+    }
+
+    private void Start()
+    {
+        Timer.Instance.BossSpawn += ToggleFenceState;
     }
 
     void Update()
@@ -25,9 +30,9 @@ public class FireFence : MonoBehaviour
         }
     }
 
-    public void SetFireFenceState(bool isActive)
+    public void ToggleFenceState()
     {
-        _isActive = isActive;
+        _isActive = !_isActive;
     }
 
     private void ToggleObstacles(bool isActive)
