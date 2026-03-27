@@ -35,6 +35,8 @@ public class SceneChanger : MonoBehaviour
     private Vector3 bigSize;
     [SerializeField]
     private float fadeTime;
+    [SerializeField]
+    private GameObject fadeEndText;
 
 
     private Dictionary<Scenes, string> sceneDic = new Dictionary<Scenes, string>();
@@ -84,6 +86,10 @@ public class SceneChanger : MonoBehaviour
 
         op.allowSceneActivation = false;
 
+
+
+        fadeEndText.SetActive(false);
+
         faded.alpha = 1;
         faded.blocksRaycasts = true;
         faded.interactable = true;
@@ -105,21 +111,20 @@ public class SceneChanger : MonoBehaviour
 
         fadeText.localScale = Vector3.zero;
 
-
         while (op.progress < 0.9f)
         {
             yield return null;
         }
 
+        op.allowSceneActivation = true;
 
+        fadeEndText.SetActive(true);
 
-        // 씬 이동 이벤트
+        yield return new WaitForSeconds(1f);
 
         faded.alpha = 0;
         faded.blocksRaycasts = false;
         faded.interactable = false;
-
-        op.allowSceneActivation = true;
 
         ClearCoroutine();
         yield break;
