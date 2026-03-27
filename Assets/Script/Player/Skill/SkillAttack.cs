@@ -23,13 +23,13 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         {
             Rotate();
         }
-        /*
+        
         _remainTime -= Time.deltaTime;
         if (_remainTime <= 0)
         {
             ReturnPool();
         }
-        */
+        
     }
 
     public void Init(float damage, float playerAttack, float speed, SkillPool pool)
