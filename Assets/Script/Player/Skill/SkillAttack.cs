@@ -53,7 +53,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected void ReturnPool()
     {
         _remainTime = _keepTime;
-        _pool.Return();
+        _pool.ReturnPool(gameObject.tag, this);
     }
 
 
