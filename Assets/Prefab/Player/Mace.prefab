@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8284904972113470649}
   m_Layer: 11
   m_Name: Mace
-  m_TagString: Untagged
+  m_TagString: Mace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     private float _realTime;
     private float _keepTime;
     private float _tickTime;
-    private int[] _bossTime = {300, 600 ,900};
+    [SerializeField] private int[] _bossTime = {300, 600 ,900};
     private int _bossCount = 0;
 
     public float GameTime => _timer;
@@ -59,7 +59,7 @@ public class Timer : MonoBehaviour
             _bossCount++;
             BossSpawn?.Invoke();
             // 보스 출현시 시간 고정
-            _keepTime = _timer / 60;
+            _keepTime = _bossTime[_bossCount];
             _timer = _keepTime;
         }
     }

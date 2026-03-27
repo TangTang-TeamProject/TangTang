@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mace : SkillAttack
 {
     //발사 방향에따라 rightSpeed 음수 양수 변경
-    private float _rightSpeed = 0.6f;
+    private float _rightSpeed = 1.6f;
     private void OnEnable()
     {
         _speed = 8f;
