@@ -8,13 +8,13 @@ public class Zombie : BaseEnemy
     void Update()
     {        
         Attack();
-        CheckDamaged();
+        
     }
 
     void FixedUpdate()
     {
         Chase();
-        
+        CheckDamaged();
     }
 
     public override void Attack()
