@@ -16,6 +16,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected Vector2 _dir;
     protected float _radius;
     protected Vector2 _offset;
+    protected Collider2D[] _boundaryBuffer = new Collider2D[30];
+    protected Collider2D[] _dmgCheckBuffer = new Collider2D[30];
 
     protected LayerMask _playerLayer;
     protected LayerMask _enemyLayer;
@@ -98,20 +100,19 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
 
         transform.rotation = rot; // 추적 방향에 따른 방향 전환 적용
+        
+        Vector2 preventCollision = CheckBoundary();
+
+        _dir = Vector2.Lerp(_dir, _dir + preventCollision, Time.deltaTime * 5f); // 이동 방향 보간                       
 
         if (_dir.magnitude > 0.001f)
         {
-            _dir.Normalize();          
+            _dir.Normalize();
         }
         else
         {
             _dir = Vector2.zero;
         }
-
-        Vector2 preventCollision = CheckBoundary();
-
-        _dir += preventCollision; // 추적 방향에 몹간 collision 방지용 방향벡터 합산.
-               
 
         Vector2 nowPos = transform.position;
 
@@ -153,11 +154,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     {        
         Vector2 sumDir = Vector2.zero;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius, _enemyLayer);
+        //Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius, _enemyLayer);
 
-        for (int i = 0; i < hits.Length; i++)
+        int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, _radius, _boundaryBuffer, _enemyLayer);
+
+        for (int i = 0; i < count; i++)
         {            
-            Vector2 newDir = transform.position - hits[i].transform.position; // 대상과 자신이 겹치지 않는 쪽으로의 방향벡터            
+            Vector2 newDir = transform.position - _boundaryBuffer[i].transform.position; // 대상과 자신이 겹치지 않는 쪽으로의 방향벡터            
             float distance = newDir.magnitude;
 
             if (distance < 0.001f)
@@ -180,20 +183,20 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
+        //Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
 
-        for (int i = 0; i < hits.Length; i++)
+        int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, 
+            _radius, 
+            _dmgCheckBuffer, 
+            _playerBulletLayer);
+
+        for (int i = 0; i < count; i++)
         {
-            if (hits[i].TryGetComponent(out IAttackables attackables))
+            if (_dmgCheckBuffer[i].TryGetComponent(out IAttackables attackables))
             {
                 Hit(attackables.Damage);
             }
         }
     }    
-
-    private void OnDrawGizmosSelected()
-    {        
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere((Vector2)transform.position + _offset, _radius);
-    }
+  
 }

@@ -15,7 +15,7 @@ public class LayerSorting : MonoBehaviour
     
     private string _playerLayerString = "Player";
 
-    private float _yValue;
+    private int _yValue;
     private float _prevY;
 
     void Awake()
@@ -50,9 +50,9 @@ public class LayerSorting : MonoBehaviour
 
     private void LayerSort()
     {        
-        _yValue = transform.position.y; 
+        _yValue = -(int)(transform.position.y * 100); 
 
-        int sortOrder = Mathf.FloorToInt(_yValue) * -100; // y 좌표 반올림한 후 * -1000 -> order layer 값 
+        int sortOrder = _yValue; // y 좌표 반올림한 후 * -1000 -> order layer 값 
 
         if (_isPlayer)
         {
