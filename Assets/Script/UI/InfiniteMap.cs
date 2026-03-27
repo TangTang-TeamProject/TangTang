@@ -89,4 +89,14 @@ public class InfiniteMap : MonoBehaviour
 
         player.position = calcPos;
     }
+
+    public void MakeInfinate()
+    {
+        isInfinite = true;
+    }
+
+    public void MakeLock()
+    {
+        isInfinite = false;
+    }
 }
