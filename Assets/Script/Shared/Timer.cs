@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
     public float RealTime => _realTime;
     public float TickTime => _tickTime;
     public event Action BossSpawn;
+    public event Action BossDie;
 
     private void Awake()
     {
@@ -56,11 +57,11 @@ public class Timer : MonoBehaviour
         if (_timer >= _bossTime[_bossCount] && _bossCount < _bossTime.Length)
         {
             _isTimerRun = false;
-            _bossCount++;
             BossSpawn?.Invoke();
             // 보스 출현시 시간 고정
             _keepTime = _bossTime[_bossCount];
             _timer = _keepTime;
+            _bossCount++;
         }
     }
 
@@ -72,5 +73,6 @@ public class Timer : MonoBehaviour
     public void IsBossDie()
     {
         _isTimerRun = true;
+        BossDie?.Invoke();
     }
 }
