@@ -766,7 +766,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1539850078}
     m_Modifications:
     - target: {fileID: 5556357284352452994, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -786,11 +786,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556357284352452994, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5556357284352452994, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5556357284352452994, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
       propertyPath: m_LocalRotation.z
@@ -821,6 +821,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
+--- !u!4 &615189813 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5556357284352452994, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
+  m_PrefabInstance: {fileID: 615189812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &631717870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,8 +847,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5065263016672997772, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065263016672997772, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065263016672997772, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1513744329
       objectReference: {fileID: 0}
     - target: {fileID: 5534528437197067449, guid: 99319d1423b0f8148a66f6e402d0651e, type: 3}
       propertyPath: m_Layer
@@ -2258,6 +2271,7 @@ Transform:
   - {fileID: 431584816}
   - {fileID: 29861049}
   - {fileID: 531869809}
+  - {fileID: 615189813}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1556991060
@@ -2672,4 +2686,3 @@ SceneRoots:
   - {fileID: 749600613}
   - {fileID: 453232337}
   - {fileID: 988907543}
-  - {fileID: 615189812}
