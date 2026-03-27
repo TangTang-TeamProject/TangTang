@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: c15779370bf625a478e275fa1fffed24, type: 2}
-  _itemMoveSpeed: 5
+  _itemMoveSpeed: 7
   _pool: {fileID: 0}
   _type: 0
 --- !u!58 &-3676103333593948297

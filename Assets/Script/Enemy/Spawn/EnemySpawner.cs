@@ -9,14 +9,17 @@ public class EnemySpawner : MonoBehaviour
 {
     
     [SerializeField] private int _spawnCount = 500;
-    [SerializeField] private int _spawnAtOnce = 20;
-    [SerializeField] private float _spawnRadius = 8.5f;
-    [SerializeField] private float _spawnTime = 10f;    
+    [SerializeField] private int _spawnAtOnce = 30;
+    [SerializeField] private float _minSpawnRadius = 8.5f;
+    [SerializeField] private float _maxSpawnRadius = 13f;    
+    [SerializeField] private float _spawnTime = 5f;    
     [SerializeField] private BaseEnemyFactory _factory;
   
 
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
     private float _nextSpawn = 0f;
+
+    private bool _isBossRound = false;   
 
     void Awake()
     {
@@ -27,10 +30,14 @@ public class EnemySpawner : MonoBehaviour
             enabled = false;
             return;
         }
-        _factory.Pool.OnEnemyDead += RemoveAliveList;
+        
+        
     }
     void Start()
     {
+        _factory.Pool.OnEnemyDead += RemoveAliveList;
+        Timer.Instance.BossSpawn += SpawnBoss;
+        Timer.Instance.BossSpawn += ClearAliveList;
         //StartCoroutine(Spawn());
     }
 
@@ -61,6 +68,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn2()
     {
+        if (_isBossRound)
+        {
+            return;
+        }
+
         if (Timer.Instance.GameTime <  _nextSpawn)
         {
             return;
@@ -83,7 +95,8 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector2 _randSpawnPos = UnityEngine.Random.insideUnitCircle;
-        _randSpawnPos = _randSpawnPos.normalized * _spawnRadius;
+        float randSpawnRadius = UnityEngine.Random.Range(_minSpawnRadius, _maxSpawnRadius);
+        _randSpawnPos = _randSpawnPos.normalized * randSpawnRadius;
 
         BaseEnemy enemy = _factory.CreateEnemy(_randSpawnPos);
 
@@ -94,5 +107,28 @@ public class EnemySpawner : MonoBehaviour
     private void RemoveAliveList(BaseEnemy enemy)
     {
         _aliveList.Remove(enemy);        
+    }
+
+    public void SpawnBoss()
+    {
+        _isBossRound = true;
+        Vector2 spawnPos = new Vector2(3f, 3f);
+
+        BaseEnemy boss = _factory.CreateBoss(spawnPos);
+        if (boss == null)
+        {
+            CPrint.Warn("Boss ¾øÀ½");
+            _isBossRound = false;
+        }
+    }
+
+    public void ClearAliveList()
+    {
+        _aliveList.Clear();
+    }
+
+    public void BossDie()
+    {
+        _isBossRound = false;
     }
 }

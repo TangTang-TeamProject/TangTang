@@ -8,9 +8,10 @@ public class EnemyPool : MonoBehaviour
 
     [SerializeField] private GameObject _enemyPrefab;
 
-    private Queue<BaseEnemy> _enemyPool = new Queue<BaseEnemy>();    
+    private Queue<BaseEnemy> _enemyPool = new Queue<BaseEnemy>();
 
     public Action<BaseEnemy> OnEnemyDead;
+   
 
     public void Add(BaseEnemy enemy)
     {
@@ -33,7 +34,8 @@ public class EnemyPool : MonoBehaviour
     public void Return(BaseEnemy enemy)
     {
         enemy.gameObject.SetActive(false);
-        _enemyPool.Enqueue(enemy);
+        _enemyPool.Enqueue(enemy);  
         OnEnemyDead?.Invoke(enemy);
     }
+    
 }

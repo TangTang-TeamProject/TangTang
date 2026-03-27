@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,7 +8,7 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
-    [SerializeField] protected EnemyData_SO _monsterData;
+    [SerializeField] protected EnemyData_SO _monsterData;    
 
     protected Animator _animator;
     protected EnemyPool _pool;
@@ -32,11 +33,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _atk;
     protected float _speed;
     protected float _atkCycle;
-    protected float _bulletSpeed;    
+    protected float _bulletSpeed;
+    protected MobType _mobType;
     
     protected float _nextDmg;
     
-
     public float Damage => _atk;
 
 
@@ -62,8 +63,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         {
             CPrint.Log($"{this} -> CircleCollider2D 없음");
         }
-
         
+    }
+
+    protected void Start()
+    {
+        Timer.Instance.BossSpawn += RemoveWhenBoss;
     }
 
     public virtual void Init(EnemyPool pool)
@@ -75,7 +80,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _atk = _monsterData.ATK;
         _speed = _monsterData.Speed;
         _atkCycle = _monsterData.ATKCycle;
-        _bulletSpeed = _monsterData.BulletSpeed;                         
+        _bulletSpeed = _monsterData.BulletSpeed;
+        _mobType = _monsterData.MobType;
     }
 
     public virtual void Chase()
@@ -140,10 +146,23 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     
     public virtual void Die()
     {     
+        if (_mobType == MobType.Boss)
+        {
+            Timer.Instance.IsBossDie();
+            Destroy(gameObject);
+            return;
+        }
+
         gameObject.SetActive(false); // 몬스터 사망
-        _pool.Return(this);
+        _pool.Return(this);        
     }
-   
+
+    // 보스전 시작시 몬스터 정리
+    public void RemoveWhenBoss()
+    {
+        gameObject.SetActive(false);
+        _pool.Add(this);
+    }
 
     public virtual void SetTarget(GameObject target)
     {
@@ -199,4 +218,5 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
     }    
   
+    
 }
