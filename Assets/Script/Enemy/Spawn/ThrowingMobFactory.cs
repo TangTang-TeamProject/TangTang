@@ -18,7 +18,8 @@ public class ThrowingMobFactory : BaseEnemyFactory
         enemy.transform.position = spawnPos;
        
         enemy.SetProjectileFactory(projectileFactory);
-        enemy.Init(_pool);       
+        enemy.Init(_pool, _idx);
+        _idx++;
         enemy.SetTarget(_target);        
 
         return enemy;

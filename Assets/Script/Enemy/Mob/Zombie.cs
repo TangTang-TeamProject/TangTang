@@ -5,16 +5,17 @@ using UnityEngine;
 public class Zombie : BaseEnemy
 {          
 
-    void Update()
+    protected override void Update()
     {        
-        Attack();
-        
+        base.Update();
+
+        Chase();
+        CheckDamaged();
     }
 
     void FixedUpdate()
     {
-        Chase();
-        CheckDamaged();
+       
     }
 
     public override void Attack()
