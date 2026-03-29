@@ -3,13 +3,15 @@
 public class EliteMob : BaseEnemy
 {   
 
-    void Update()
-    {        
+    protected override void Update()
+    {
+        base.Update();
+        Chase();
         CheckDamaged();
     }
 
     private void FixedUpdate()
     {
-        Chase();
+        
     }
 }

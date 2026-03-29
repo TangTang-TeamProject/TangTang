@@ -12,11 +12,13 @@ public abstract class BaseEnemyFactory : MonoBehaviour
     public EnemyPool Pool => _pool;
 
     protected int _bossIdx = 0;
+    protected int _idx = 0;
 
     public virtual BaseEnemy CreateEnemy(Vector2 pos)
     {
         BaseEnemy enemy = _pool.GetEnemy(transform);
-        enemy.Init(_pool);
+        enemy.Init(_pool, _idx); // ÀÎµ¦½º ºÎ¿©
+        _idx++;
         enemy.SetTarget(_target);
 
         Vector2 spawnPos = _target.transform.position;

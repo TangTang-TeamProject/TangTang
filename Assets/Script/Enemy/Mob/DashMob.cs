@@ -17,8 +17,10 @@ public class DashMob : BaseEnemy
     
     private float _corTimeCnt = 0f;    
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         _corTimeCnt += Time.deltaTime;
 
         if (Timer.Instance.RealTime >= _checkTime && !_isDashing)

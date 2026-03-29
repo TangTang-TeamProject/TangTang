@@ -7,7 +7,7 @@ public class BossMob : BaseEnemy
     private EnemySpawner _spawner;
     public void Init(EnemyPool pool, EnemySpawner spawner)
     {
-        base.Init(pool);
+        base.Init(pool, 0);
 
         _spawner = spawner;
 
