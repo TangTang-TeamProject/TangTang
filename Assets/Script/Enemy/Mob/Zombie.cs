@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : BaseEnemy
 {          
 
     protected override void Update()
-    {        
-        base.Update();
-
+    {
+        if (!CanUpdate())
+        {
+            return;
+        }            
+        
         Chase();
         CheckDamaged();
     }

@@ -36,7 +36,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _nextDmg;
     
     public float Damage => _atk;
-
+    
 
     protected virtual void Awake()
     {
@@ -68,13 +68,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         Timer.Instance.BossSpawn += RemoveWhenBoss;
     }
 
-    protected virtual void Update()
+    protected virtual bool CanUpdate()
     {
-        // 프레임 카운트와 동일한 배수의 인덱스만 업데이트 진입
-        if (Time.frameCount % 3 != _idx % 3) 
-        {
-            return;
-        }
+        return Time.frameCount % 3 == _idx % 3;
+    }
+
+    protected virtual void Update()
+    {        
     }
 
     public virtual void Init(EnemyPool pool, int idx)
