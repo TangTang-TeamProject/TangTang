@@ -68,16 +68,22 @@ public class EquipRegistry : ScriptableObject
         return null;
     }
 
-    public EquipData_SO GetEquipByParts(EquipType _type)
+    public List<EquipData_SO> GetEquipByType(EquipType _type)
     {
         NullCheckType();
 
-        if (dataDicType.TryGetValue(_type, out EquipData_SO data))
+        List<EquipData_SO> data = new List<EquipData_SO>();
+
+        if (dataDicType.TryGetValue(_type, out EquipData_SO dataPart))
         {
-            return data;
+            data.Add(dataPart);
         }
 
-        CPrint.Error("EquipRegistry - Cant Find");
-        return null;
+        if (data.Count == 0)
+        {
+            CPrint.Error("EquipRegistry - Cant Find");
+        }
+
+        return data;
     }
 }

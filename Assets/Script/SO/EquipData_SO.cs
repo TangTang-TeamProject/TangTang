@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "GameData / EquipData", fileName = "EquipDataSO")]
 public class EquipData_SO : ScriptableObject
@@ -19,6 +20,8 @@ public class EquipData_SO : ScriptableObject
     private float speedChange = 0f;
     [SerializeField]
     private GameObject prefab;
+    [SerializeField]
+    private Sprite img;
 
     public int EquipID => equipID;
     public string EquipName => equipName;
@@ -27,4 +30,5 @@ public class EquipData_SO : ScriptableObject
     public float HPChange => hpChange;
     public float SpeedChange => speedChange;
     public GameObject Prefab => prefab;
+    public Sprite IMG => img;
 }
