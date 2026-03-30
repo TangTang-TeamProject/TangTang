@@ -435,7 +435,17 @@ MonoBehaviour:
   _spawnAtOnce: 10
   _minSpawnRadius: 8.5
   _maxSpawnRadius: 13
-  _spawnTime: 10
+  _spawnTimeInterval: 10
+  _waveTime:
+  - 240
+  - 540
+  - 840
+  _waveSpawnAtOnce: 100
+  _waveSpawnTimeInterval: 5
+  _waveDuration: 30
+  _eliteMobPrefab:
+  - {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+  _eliteSpawnTimeInterval: 60
   _factory: {fileID: 1222528657}
 --- !u!1 &451431161
 GameObject:
