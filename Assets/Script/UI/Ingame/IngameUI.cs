@@ -7,6 +7,14 @@ using UnityEngine.UI;
 public class IngameUI : MonoBehaviour
 {
     [SerializeField]
+    private Player player;
+    [SerializeField]
+    private PlayerCamera pCam;
+    [SerializeField]
+    private InfiniteMap map;
+    [SerializeField]
+    private GameObject hurtUI;
+    [SerializeField]
     private TextMeshProUGUI timeText;
     [SerializeField]
     private Button pauseBTN;
@@ -14,10 +22,27 @@ public class IngameUI : MonoBehaviour
     private bool isPause;
 
     private int beforeTime = 0;
+    private Coroutine hurtEffect;
+
+    private WaitForSeconds hurtTime = new WaitForSeconds(1f);
 
     private void Awake()
     {
         pauseBTN.onClick.AddListener(PauseButtonClick);
+    }
+
+    private void Start()
+    {
+        player.OnHit += HurtUI;
+        Timer.Instance.BossSpawn += BossAppear;
+        Timer.Instance.BossDie += BossDisappear;
+    }
+
+    private void OnDestroy()
+    {
+        player.OnHit -= HurtUI;
+        Timer.Instance.BossSpawn -= BossAppear;
+        Timer.Instance.BossDie -= BossDisappear;
     }
 
     private void Update()
@@ -62,5 +87,49 @@ public class IngameUI : MonoBehaviour
     void PauseGame()
     {
         Timer.Instance.IsTimeStop(true);
+    }
+
+    void HurtUI()
+    {
+        if (hurtEffect != null)
+        { 
+            StopCoroutine(hurtEffect);
+        }
+
+        hurtEffect = StartCoroutine(HurtCoroutine());
+    }
+
+    IEnumerator HurtCoroutine()
+    {
+        hurtUI.SetActive(true);
+
+        yield return hurtTime;
+
+        hurtUI.SetActive(false);
+
+        yield break;
+    }
+
+    void BossAppear()
+    {
+        StartCoroutine(BossAppearCoroutine());
+    }
+
+    IEnumerator BossAppearCoroutine()
+    {
+        PauseGame();
+
+        map.MakeLock();
+
+        yield return pCam.ZoomCoroutine();
+
+        ResumeGame();
+
+        yield break;
+    }
+
+    void BossDisappear()
+    {
+        map.MakeInfinate();
     }
 }
