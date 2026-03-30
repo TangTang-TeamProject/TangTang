@@ -382,11 +382,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edce7147209e6754d9ee79fe82883358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnCount: 1000
-  _spawnAtOnce: 50
+  _spawnCount: 1100
+  _spawnAtOnce: 1
   _minSpawnRadius: 8.5
   _maxSpawnRadius: 13
-  _spawnTime: 10
+  _spawnTimeInterval: 10
+  _waveTime:
+  - 5
+  - 540
+  - 840
+  _waveSpawnAtOnce: 100
+  _waveSpawnTimeInterval: 5
+  _waveDuration: 60
+  _eliteMobPrefab:
+  - {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+  _eliteSpawnTimeInterval: 5
   _factory: {fileID: 951098782}
 --- !u!4 &564169861
 Transform:

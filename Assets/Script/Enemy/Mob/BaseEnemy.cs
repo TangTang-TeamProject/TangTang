@@ -114,7 +114,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         transform.rotation = rot; // 추적 방향에 따른 방향 전환 적용
         
-        Vector2 preventCollision = CheckBoundary();
+        Vector2 preventCollision = CheckBoundary(); // 몹 간 겹침 방지 방향벡터
 
         _dir = Vector2.Lerp(_dir, _dir + preventCollision, Time.deltaTime * 5f); // 이동 방향 보간                       
 
