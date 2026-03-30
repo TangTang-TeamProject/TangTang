@@ -7,6 +7,7 @@ TagManager:
   - Spear
   - Trident
   - Mace
+  - Axe
   layers:
   - Default
   - TransparentFX

@@ -1785,7 +1785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 409592904514903907, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 409592904514903907, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1827,6 +1827,14 @@ PrefabInstance:
       propertyPath: _spawnDir
       value: 
       objectReference: {fileID: 633836986}
+    - target: {fileID: 6148184340753268270, guid: ffda31f3f0d855945854859912633227, type: 3}
+      propertyPath: _skillPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148184340753268270, guid: ffda31f3f0d855945854859912633227, type: 3}
+      propertyPath: _skillPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 1480235895901579696, guid: 92adfbc000d024b47986e0b2f51049b0, type: 3}
     - target: {fileID: 6182513920421937805, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: m_Name
       value: SkillSpawner
