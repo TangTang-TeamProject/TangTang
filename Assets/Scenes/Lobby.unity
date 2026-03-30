@@ -6013,6 +6013,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf1867abfcfcc44ab5d9632194ac50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  artifact: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
+  enemy: {fileID: 11400000, guid: 24bb90fa7a7d78947a617212a5307bdc, type: 2}
+  equip: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
+  item: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
+  player: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
 --- !u!1 &1247610616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8780,6 +8785,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f6df22829a166498c500a2b6c1aa02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 869242199}
+  head: {fileID: 1723759933}
+  body: {fileID: 1940507881}
+  legs: {fileID: 1525544323}
+  cape: {fileID: 1989921747}
+  equip: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
 --- !u!1 &1754166811
 GameObject:
   m_ObjectHideFlags: 0

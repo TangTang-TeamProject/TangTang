@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21f348c8260cdb04b9774161cd213058, type: 3}
-  m_Name: EquipDataSO
+  m_Name: EquipDataSO 3
   m_EditorClassIdentifier: 
-  equipID: 0
+  equipID: 3
   equipName: 
-  type: 0
+  type: 3
   atk: 0
   hpChange: 0
   speedChange: 0

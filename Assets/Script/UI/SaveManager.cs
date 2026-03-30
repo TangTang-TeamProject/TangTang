@@ -96,7 +96,7 @@ public static class SaveManager
 
         for (int i = 0; i < (int)EquipType.TypeCount; i++)
         {
-            newData.equipID[i] = 0;
+            newData.equipID[i] = i;
         }
 
         newData.masterVolume = 1f;

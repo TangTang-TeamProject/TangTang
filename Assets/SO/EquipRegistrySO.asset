@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: EquipRegistrySO
   m_EditorClassIdentifier: 
   equips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}

@@ -19,9 +19,9 @@ public class PlayerRegistry : ScriptableObject
             return;
         }
 
-        ReMake();
+        MakeDic();
     }
-    public void ReMake()
+    public void MakeDic()
     {
         dataDic.Clear();
 
