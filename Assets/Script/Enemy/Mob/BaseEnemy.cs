@@ -5,9 +5,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     [Header("EnemyData SO")]
     [SerializeField] protected EnemyData_SO _monsterData;    
 
+    // 생성 시 초기화 변수들
     protected Animator _animator;
     protected EnemyPool _pool;
     protected GameObject _target;
+    protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
     
     protected Vector2 _dir;
     protected float _radius;
@@ -66,9 +68,19 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         Timer.Instance.BossSpawn += RemoveWhenBoss;
     }
 
-    public virtual void Init(EnemyPool pool)
+    protected virtual void Update()
     {
-        _pool = pool;        
+        // 프레임 카운트와 동일한 배수의 인덱스만 업데이트 진입
+        if (Time.frameCount % 3 != _idx % 3) 
+        {
+            return;
+        }
+    }
+
+    public virtual void Init(EnemyPool pool, int idx)
+    {
+        _pool = pool;
+        _idx = idx; 
 
         _id = _monsterData.EmemyID;
         _maxHp = _monsterData.HP;
@@ -76,7 +88,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _speed = _monsterData.Speed;
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
-        _mobType = _monsterData.MobType;
+        _mobType = _monsterData.MobType;        
     }
 
     public virtual void Chase()
@@ -140,14 +152,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
     
     public virtual void Die()
-    {     
-        if (_mobType == MobType.Boss)
-        {
-            Timer.Instance.IsBossDie();
-            Destroy(gameObject);
-            return;
-        }
-
+    {             
         gameObject.SetActive(false); // 몬스터 사망
         _pool.Return(this);        
     }

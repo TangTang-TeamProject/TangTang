@@ -12,11 +12,13 @@ public abstract class BaseEnemyFactory : MonoBehaviour
     public EnemyPool Pool => _pool;
 
     protected int _bossIdx = 0;
+    protected int _idx = 0;
 
     public virtual BaseEnemy CreateEnemy(Vector2 pos)
     {
         BaseEnemy enemy = _pool.GetEnemy(transform);
-        enemy.Init(_pool);
+        enemy.Init(_pool, _idx); // 인덱스 부여
+        _idx++;
         enemy.SetTarget(_target);
 
         Vector2 spawnPos = _target.transform.position;
@@ -27,7 +29,7 @@ public abstract class BaseEnemyFactory : MonoBehaviour
         return enemy;
     }
     
-    public virtual BaseEnemy CreateBoss(Vector2 pos)
+    public virtual BaseEnemy CreateBoss(Vector2 pos, EnemySpawner spawner)
     {
         if (_bossPrefab.Count < 1)
         {
@@ -42,9 +44,9 @@ public abstract class BaseEnemyFactory : MonoBehaviour
             _bossIdx = _bossPrefab.Count - 1;
         }
 
-        BaseEnemy enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BaseEnemy>();
-        _bossIdx++;
-        enemy.Init(_pool);
+        BossMob enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BossMob>();
+        _bossIdx++; // 보스 리스트 인덱스 증가
+        enemy.Init(_pool, spawner);
         enemy.SetTarget(_target);
 
         Vector2 spawnPos = _target.transform.position;

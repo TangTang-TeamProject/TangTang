@@ -47,7 +47,7 @@ public class LayerSorting : MonoBehaviour
 
     private void LayerSort()
     {        
-        _yValue = -(int)(transform.position.y * 100); 
+        _yValue = -(int)(transform.position.y * 1000); 
 
         int sortOrder = _yValue; // y 좌표 반올림한 후 * -1000 -> order layer 값 
 

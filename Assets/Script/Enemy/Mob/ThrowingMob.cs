@@ -4,15 +4,18 @@ public class ThrowingMob : BaseEnemy, IAttackables
     private ProjectileFactory _projectileFactory;
     private float _nextShoot = 0f;
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         Attack();
+        Chase();
         CheckDamaged();
     }
 
     void FixedUpdate()
     {
-        Chase();
+        
     }
     
 
