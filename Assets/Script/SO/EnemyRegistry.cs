@@ -20,9 +20,9 @@ public class EnemyRegistry : ScriptableObject
             return;
         }
 
-        ReMake();
+        MakeDic();
     }
-    public void ReMake()
+    public void MakeDic()
     {
         dataDic.Clear();
 

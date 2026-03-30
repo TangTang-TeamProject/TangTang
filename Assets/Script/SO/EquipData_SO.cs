@@ -10,6 +10,8 @@ public class EquipData_SO : ScriptableObject
     [SerializeField]
     private string equipName = "";
     [SerializeField]
+    private EquipType type;
+    [SerializeField]
     private float atk = 0f;
     [SerializeField]
     private float hpChange = 0f;
@@ -20,6 +22,7 @@ public class EquipData_SO : ScriptableObject
 
     public int EquipID => equipID;
     public string EquipName => equipName;
+    public EquipType Type => type;
     public float ATK => atk;
     public float HPChange => hpChange;
     public float SpeedChange => speedChange;

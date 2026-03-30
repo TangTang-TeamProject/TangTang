@@ -10,34 +10,69 @@ public class EquipRegistry : ScriptableObject
 
     public IReadOnlyList<EquipData_SO> Equips => equips;
 
-    private Dictionary<int, EquipData_SO> dataDic = new Dictionary<int, EquipData_SO>();
+    private Dictionary<int, EquipData_SO> dataDicID = new Dictionary<int, EquipData_SO>();
 
-    void NullCheck()
+    private Dictionary<EquipType, EquipData_SO> dataDicType = new Dictionary<EquipType, EquipData_SO>();
+
+    void NullCheckID()
     {
-        if (dataDic != null && dataDic.Count != 0)
+        if (dataDicID != null && dataDicID.Count != 0)
         {
             return;
         }
 
-        ReMake();
+        MakeIDDic();
     }
 
-    public void ReMake()
+    void NullCheckType()
     {
-        dataDic.Clear();
+        if (dataDicType != null && dataDicType.Count != 0)
+        {
+            return;
+        }
+
+        MakeTypeDic();
+    }
+
+    public void MakeIDDic()
+    {
+        dataDicID.Clear();
 
         for (int i = 0; i < equips.Count; i++)
         {
-            dataDic.Add(equips[i].EquipID, equips[i]);
+            dataDicID.Add(equips[i].EquipID, equips[i]);
+        }
+    }
+
+    public void MakeTypeDic()
+    {
+        dataDicType.Clear();
+
+        for (int i = 0; i < equips.Count; i++)
+        {
+            dataDicType.Add(equips[i].Type, equips[i]);
         }
     }
 
 
-    public EquipData_SO GetEnemyByID(int _ID)
+    public EquipData_SO GetEquipByID(int _ID)
     {
-        NullCheck();
+        NullCheckID();
 
-        if (dataDic.TryGetValue(_ID, out EquipData_SO data))
+        if (dataDicID.TryGetValue(_ID, out EquipData_SO data))
+        {
+            return data;
+        }
+
+        CPrint.Error("EquipRegistry - Cant Find");
+        return null;
+    }
+
+    public EquipData_SO GetEquipByParts(EquipType _type)
+    {
+        NullCheckType();
+
+        if (dataDicType.TryGetValue(_type, out EquipData_SO data))
         {
             return data;
         }

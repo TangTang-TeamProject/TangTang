@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class BootStraper : MonoBehaviour
 {
-     readonly RateSetting rs = new RateSetting();
+    readonly RateSetting rs = new RateSetting();
+
+    [SerializeField]
+    private ArtifactRegistry artifact;
+    [SerializeField]
+    private EnemyRegistry enemy;
+    [SerializeField]
+    private EquipRegistry equip;
+    [SerializeField]
+    private ItemRegistry item;
+    [SerializeField]
+    private PlayerRegistry player;
+
+
 
     private void Awake()
     {
         SaveManager.Load();
+
+        SO_Set();
 
         SetScreen();
     }
@@ -31,5 +46,15 @@ public class BootStraper : MonoBehaviour
         SoundManager.Instance.MasterVolumeChange(SaveManager.data.masterVolume);
         SoundManager.Instance.BGMVolumeChange(SaveManager.data.bgmVolume);
         SoundManager.Instance.SfxVolumeChange(SaveManager.data.sfxVolume);
+    }
+
+    void SO_Set()
+    {
+        artifact.MakeDic();
+        enemy.MakeDic();
+        equip.MakeIDDic();
+        equip.MakeTypeDic();
+        item.MakeDic();
+        player.MakeDic();
     }
 }
