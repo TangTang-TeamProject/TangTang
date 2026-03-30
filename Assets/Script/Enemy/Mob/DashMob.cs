@@ -19,7 +19,10 @@ public class DashMob : BaseEnemy
 
     protected override void Update()
     {
-        base.Update();
+        if (!CanUpdate())
+        { 
+            return; 
+        }
 
         _corTimeCnt += Time.deltaTime;
 

@@ -6,7 +6,8 @@ public class ThrowingMob : BaseEnemy, IAttackables
 
     protected override void Update()
     {
-        base.Update();
+        if (!CanUpdate())
+            return;
 
         Attack();
         Chase();

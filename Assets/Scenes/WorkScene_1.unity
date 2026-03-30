@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edce7147209e6754d9ee79fe82883358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnCount: 500
+  _spawnCount: 1000
   _spawnAtOnce: 50
   _minSpawnRadius: 8.5
   _maxSpawnRadius: 13
