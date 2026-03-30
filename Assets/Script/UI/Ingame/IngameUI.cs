@@ -35,12 +35,14 @@ public class IngameUI : MonoBehaviour
     {
         player.OnHit += HurtUI;
         Timer.Instance.BossSpawn += BossAppear;
+        Timer.Instance.BossDie += BossDisappear;
     }
 
     private void OnDestroy()
     {
         player.OnHit -= HurtUI;
         Timer.Instance.BossSpawn -= BossAppear;
+        Timer.Instance.BossDie -= BossDisappear;
     }
 
     private void Update()
@@ -116,14 +118,11 @@ public class IngameUI : MonoBehaviour
     IEnumerator BossAppearCoroutine()
     {
         PauseGame();
+
         map.MakeLock();
 
-        //Ä«¸Þ¶ó ÁÜ ¾Æ¿ô
+        yield return pCam.ZoomCoroutine();
 
-        yield return hurtTime;
-
-        // Ä«¸Þ¶ó ÁÜ ÀÎ
-        
         ResumeGame();
 
         yield break;

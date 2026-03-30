@@ -53,7 +53,6 @@ public class BoxOpenRandom : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("무엇이 일어나고 있는것이지");
         RandomDrop();
 
         Destroy(this.gameObject);
