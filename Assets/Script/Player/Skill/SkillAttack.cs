@@ -8,7 +8,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     
     protected float _damage = 1;
     protected float _baseDamage;
-    protected float _keepTime = 5f;
+    protected float _keepTime;
     protected float _speed = 2f;
     protected float _remainTime;
     protected float _spinZ;
@@ -32,17 +32,19 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         
     }
 
-    public void Init(float damage, float playerAttack, float speed, SkillPool pool)
+    public void Init(float damage, float playerAttack, float speed, SkillPool pool, float time = 5.0f)
     {
         _pool = pool;
         _baseDamage = damage;
         _damage = playerAttack * _baseDamage;
         _speed = speed;
+        _keepTime = time;
         _remainTime = _keepTime;
     }
 
     protected virtual void Move() { }
     protected virtual void Rotate() { }
+    public virtual void SetOrbit(float dist) { }
 
     // 플레이 도중 플레이어의 attack값이 바뀔경우 아티팩트에서 있을수도 있으니
     public void DamageChange(float playerAttack)

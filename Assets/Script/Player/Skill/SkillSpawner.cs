@@ -40,36 +40,120 @@ public class SkillSpawner : MonoBehaviour
         GetSkill("Spear", 5);
         GetSkill("Trident", 5);
         GetSkill("Mace", 5);
+        GetSkill("Axe", 6);
 
-        _spearCo = StartCoroutine(Co_SpearFire());
+        _spearCo = StartCoroutine(Co_AxeFire());
+    }
+
+    // 임시로 만든 로직이므로 SO같은 데이터가 들어오면 수정될 것
+    #region 스킬 코루틴
+    IEnumerator Co_ArrowFire()
+    {
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            SkillAttack arrow = _pool.UseSkill("Arrow");
+
+            arrow.transform.position = transform.position;
+            arrow.transform.up = _spawnDir.right;
+            arrow.Init(1, 1, 4, _pool);
+            arrow.gameObject.SetActive(true);
+
+            yield return _spearRate;
+        }
+    }
+
+    IEnumerator Co_AxeFire()
+    {
+        int axeCount = 3;
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            for (int i = 0; i < axeCount; i++)
+            {
+                SkillAttack axe = _pool.UseSkill("Axe");
+
+                axe.SetOrbit((360.0f / axeCount) * i);
+                axe.Init(1, 1, 2, _pool, 2);
+                axe.gameObject.SetActive(true);
+            }
+
+            yield return _spearRate;
+        }
+    }
+
+    IEnumerator Co_DualBaldeFire()
+    {
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            SkillAttack dBlade = _pool.UseSkill("DualBlade");
+
+            dBlade.transform.position = transform.position;
+            dBlade.Init(1, 1, 4, _pool);
+            dBlade.gameObject.SetActive(true);
+
+            yield return _spearRate;
+        }
+    }
+
+    IEnumerator Co_MaceFire()
+    {
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            SkillAttack mace = _pool.UseSkill("Mace");
+
+            mace.transform.position = transform.position;
+            mace.Init(1, 1, 4, _pool);
+            mace.gameObject.SetActive(true);
+
+            yield return _spearRate;
+        }
     }
 
     IEnumerator Co_SpearFire()
     {
         while(_player.PlayerState != Player.EPlayerState.Dead)
         {
-            SkillAttack spear = _pool.UseSkill("Spear");
-            SkillAttack trident = _pool.UseSkill("Trident");
-            SkillAttack mace = _pool.UseSkill("Mace");
+            SkillAttack spear = _pool.UseSkill("Spear");            
 
-            spear.transform.position = _player.transform.position;
+            spear.transform.position = transform.position;
             spear.transform.rotation = Quaternion.Euler(0, 0, 90f);
             spear.Init(1, 1, 4, _pool);
             spear.gameObject.SetActive(true);
-
-            trident.transform.position = _player.transform.position;
-            trident.transform.rotation = _spawnDir.rotation;
-            trident.Init(1, 1, 4, _pool);
-            trident.gameObject.SetActive(true);
-
-            mace.transform.position = _player.transform.position;
-            mace.Init(1, 1, 4, _pool);
-            mace.gameObject.SetActive(true);
 
 
             yield return _spearRate;
         }
     }
+
+    IEnumerator Co_TridentFire()
+    {
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            SkillAttack trident = _pool.UseSkill("Trident");
+
+            trident.transform.position = transform.position;
+            trident.transform.up = _spawnDir.right;
+            trident.Init(1, 1, 4, _pool);
+            trident.gameObject.SetActive(true);
+
+            yield return _spearRate;
+        }
+    }
+
+    IEnumerator Co_WandFire()
+    {
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            SkillAttack wand = _pool.UseSkill("Wand");
+
+            wand.transform.position = transform.position;
+            wand.transform.up = _spawnDir.right;
+            wand.Init(1, 1, 4, _pool);
+            wand.gameObject.SetActive(true);
+
+            yield return _spearRate;
+        }
+    }
+    #endregion
 
     private void OnDisable()
     {
@@ -84,5 +168,35 @@ public class SkillSpawner : MonoBehaviour
     public void GetSkill(string tag, int num)
     {
         _pool.InitCreateSkill(tag, num);
+
+        //CoroutineActivate(tag);
+    }
+
+    void CoroutineActivate(string tag)
+    {
+        switch (tag)
+        {
+            case "Arrow":
+
+                break;
+            case "Axe":
+
+                break;
+            case "DualBlade":
+
+                break;
+            case "Mace":
+
+                break;
+            case "Spear":
+
+                break;
+            case "Trident":
+
+                break;
+            case "Wand":
+
+                break;
+        }
     }
 }
