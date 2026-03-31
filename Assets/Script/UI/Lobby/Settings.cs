@@ -49,14 +49,13 @@ public class Settings : MonoBehaviour
     private void OnDisable()
     {
         SaveManager.Save();
-        Debug.Log(SaveManager.data.masterVolume);
     }
 
     void DataRefresh()
     {
-        masterVolume.value = SoundManager.Instance.MasterVolume;
-        bgmVolume.value = SoundManager.Instance.BGMVolume;
-        sfxVolume.value = SoundManager.Instance.SfxVolume;
+        masterVolume.value = SaveManager.data.masterVolume;
+        bgmVolume.value = SaveManager.data.bgmVolume;
+        sfxVolume.value = SaveManager.data.sfxVolume;
 
         fullScreen.isOn = SaveManager.data.fullScreen;
         windowRate.value = SaveManager.data.rateIndex;
