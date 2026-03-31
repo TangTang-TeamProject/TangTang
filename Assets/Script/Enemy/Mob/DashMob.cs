@@ -19,11 +19,7 @@ public class DashMob : BaseEnemy
 
     protected override void Update()
     {
-        if (!CanUpdate())
-        { 
-            return; 
-        }
-
+        
         _corTimeCnt += Time.deltaTime;
 
         if (Timer.Instance.RealTime >= _checkTime && !_isDashing)
@@ -32,19 +28,25 @@ public class DashMob : BaseEnemy
             _checkTime = Timer.Instance.RealTime + _atkCycle;
         }
 
-        
+        if (!CanUpdate())
+        {
+            return;
+        }
+
+        Chase();
+        CheckDamaged();
+
     }
 
     private void FixedUpdate()
     {        
-        Chase();
-        CheckDamaged();
+        
     }
     public override void Attack()
     {        
         _dashDir = (_target.transform.position - transform.position);
 
-        if (_dashDir.sqrMagnitude > (_dashDist * _dashDist))
+        if (_dashDir.magnitude > _dashDist)
         {
             return;
         }

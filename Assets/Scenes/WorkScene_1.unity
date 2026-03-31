@@ -353,6 +353,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &272416855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272416856}
+  - component: {fileID: 272416857}
+  m_Layer: 0
+  m_Name: BossEliteFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &272416856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272416855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1306650797}
+  m_Father: {fileID: 564169861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272416857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272416855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d51d817865dc84487818ddf672a639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 864805264}
+  _pool: {fileID: 1306650798}
+  _bossPrefab:
+  - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}
 --- !u!1 &564169859
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +447,7 @@ MonoBehaviour:
   - {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
   _eliteSpawnTimeInterval: 5
   _factory: {fileID: 951098782}
+  _bossEliteFactory: {fileID: 272416857}
 --- !u!4 &564169861
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +463,7 @@ Transform:
   m_Children:
   - {fileID: 1658098868}
   - {fileID: 951098783}
+  - {fileID: 272416856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582943651
@@ -524,8 +575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 864805264}
   _pool: {fileID: 582943652}
-  _bossPrefab:
-  - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}
 --- !u!4 &951098783
 Transform:
   m_ObjectHideFlags: 0
@@ -709,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e94e165961b494599ec305b538d529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossTime: 2c0100005802000084030000
+  _bossTime: 0f0000005802000084030000
 --- !u!4 &1292865150
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +774,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1306650796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1306650797}
+  - component: {fileID: 1306650798}
+  m_Layer: 0
+  m_Name: ElitePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1306650797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306650796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 272416856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1306650798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306650796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
 --- !u!1 &1320531157
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +1054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 864805264}
   _pool: {fileID: 2098265714}
-  _bossPrefab:
-  - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}
   projectileFactory: {fileID: 205211335}
   projectilePool: {fileID: 1320531158}
 --- !u!1 &1835821229
