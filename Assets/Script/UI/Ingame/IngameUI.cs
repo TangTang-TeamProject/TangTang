@@ -1,11 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
+    enum PlayStats
+    { 
+        Playing,
+        Pausing,
+        Directing,
+    }
+
     [SerializeField]
     private Player player;
     [SerializeField]
@@ -19,8 +25,9 @@ public class IngameUI : MonoBehaviour
     [SerializeField]
     private Button pauseBTN;
     [SerializeField]
-    private bool isPause;
+    private GameObject pauseUI;
 
+    private PlayStats situation = PlayStats.Playing;
     private int beforeTime = 0;
     private Coroutine hurtEffect;
 
@@ -65,28 +72,30 @@ public class IngameUI : MonoBehaviour
         timeText.text = $"{min:00} : {sec:00}";
     }
 
+    void PauseGame(bool isPause)
+    {
+        Timer.Instance.IsTimeStop(isPause);
+    }
+
+    void ChangeStats(PlayStats _next)
+    {
+        situation = _next;
+    }
+
     void PauseButtonClick()
     {
-        if (isPause)
+        if (situation == PlayStats.Pausing)
         {
-            isPause = false;
-            ResumeGame();
+            ChangeStats(PlayStats.Playing);
+            pauseUI.SetActive(false);
+            PauseGame(false);
         }
-        else
+        else if(situation == PlayStats.Playing)
         {
-            isPause = true;
-            PauseGame();
+            ChangeStats(PlayStats.Pausing);
+            pauseUI.SetActive(true);
+            PauseGame(true);
         }
-    }
-
-    void ResumeGame()
-    {
-        Timer.Instance.IsTimeStop(false);
-    }
-
-    void PauseGame()
-    {
-        Timer.Instance.IsTimeStop(true);
     }
 
     void HurtUI()
@@ -117,14 +126,15 @@ public class IngameUI : MonoBehaviour
 
     IEnumerator BossAppearCoroutine()
     {
-        PauseGame();
+        ChangeStats(PlayStats.Directing);
+        PauseGame(true);
 
         map.MakeLock();
 
         yield return pCam.ZoomCoroutine();
 
-        ResumeGame();
-
+        PauseGame(false);
+        ChangeStats(PlayStats.Playing);
         yield break;
     }
 
