@@ -26,22 +26,22 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _waveSpawnTimeInterval = 3f;
     [SerializeField] private float _waveDuration = 30f;
 
-    [Header("엘리트 몹 스폰 설정")]
-    [SerializeField] private List<GameObject> _eliteMobPrefab;
+    [Header("엘리트 몹 스폰 설정")]    
     [SerializeField] private float _eliteSpawnTimeInterval = 60f;
 
     [Header("스폰할 몬스터의 팩토리")]
     [SerializeField] private BaseEnemyFactory _factory;
+    [SerializeField] private BossEliteFactory _bossEliteFactory;
   
 
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
     private float _nextSpawn = 0f;
-
+    
     private float _nextEliteSpawn;
     
-    private bool _isBossRound = false; 
-    private int _waveCnt = 0; // 웨이브 인덱스 
-    private int _eliteCnt = 0;
+    private bool _isBossRound = false;
+    private bool _isWaveTime = false;
+    private int _waveCnt = 0; // 웨이브 인덱스     
 
     void Awake()
     {
@@ -51,14 +51,7 @@ public class EnemySpawner : MonoBehaviour
             CPrint.Log("EnemySpawner -> _factory 연결 안됨");
             enabled = false;
             return;
-        }
-
-        if (_eliteMobPrefab == null)
-        {
-            CPrint.Log($"{this} _eliteMobPrefab 연결 안됨");
-            enabled = false;
-            return;
-        }
+        }    
 
         if (_waveTime == null)
         {
@@ -80,36 +73,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        Spawn2();
+        GatheredSpawnLogic();
     }
 
-
-    IEnumerator Spawn()
-    {
-        while(true)
-        {
-            if (_aliveList.Count >= _spawnCount)
-            {                
-                yield return null;
-                continue;
-            }
-
-            for (int i = 0; i < _spawnAtOnce; i++)
-            {
-                SpawnEnemy();
-            }
-
-            yield return new WaitForSeconds(_spawnTimeInterval);
-        }        
-    }
-
-    private void Spawn2()
-    {
-        if (_isBossRound)
-        {
-            return;
-        }
-
+    private void CommonSpawn()
+    {        
         if (Timer.Instance.GameTime <  _nextSpawn)
         {
             return;
@@ -117,46 +85,99 @@ public class EnemySpawner : MonoBehaviour
 
         _nextSpawn = Timer.Instance.GameTime + _spawnTimeInterval; // 다음 스폰 시간 재설정
 
+        if (_aliveList.Count >= _spawnCount)
+        {
+            return;
+        }
+        
+        // 일반 스폰
+        for (int i = 0; i < _spawnAtOnce; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
+    private void GatheredSpawnLogic()
+    {
+        if (_isBossRound)
+        {
+            return;
+        }
+
+        EliteSpawn();
+
+        if (!_isWaveTime)
+        {
+            CheckIsWaveTime();
+        }
+
+        if (_isWaveTime)
+        {
+            WaveSpawn();
+        }
+        else
+        {
+            CommonSpawn();
+        }
+        
+    }
+
+    private void CheckIsWaveTime()
+    {
+        if (Timer.Instance.GameTime >= _waveTime[_waveCnt] && Timer.Instance.GameTime <= (_waveTime[_waveCnt] + _waveDuration))
+        {
+            _isWaveTime = true;
+        }
+        else if (Timer.Instance.GameTime > (_waveTime[_waveCnt] + _waveDuration))
+        {
+            _isWaveTime = false;
+            _waveCnt++;
+        }
+        else
+        {
+            _isWaveTime = false;
+        }
+    }
+
+    private void EliteSpawn()
+    {
+        // 스폰 주기마다 엘리트몹 스폰
+        if (Timer.Instance.GameTime >= _nextEliteSpawn)
+        {
+            _nextEliteSpawn = _nextEliteSpawn + _eliteSpawnTimeInterval;
+
+            Vector2 _randSpawnPos = UnityEngine.Random.insideUnitCircle;
+            float randSpawnRadius = UnityEngine.Random.Range(_minSpawnRadius, _maxSpawnRadius);
+            _randSpawnPos = _randSpawnPos.normalized * randSpawnRadius;
+
+            _bossEliteFactory.CreateEnemy(_randSpawnPos);
+        }
+    }
+
+    private void WaveSpawn()
+    {
+        if (_isBossRound)
+        {
+            return;
+        }
 
         if (_aliveList.Count >= _spawnCount)
         {
             return;
         }
 
-        // 스폰 주기마다 엘리트몹 스폰
-        if (Timer.Instance.GameTime >= _nextEliteSpawn)
+        if (Timer.Instance.GameTime < _nextSpawn)
         {
-            _nextEliteSpawn = _nextEliteSpawn + _eliteSpawnTimeInterval;
-
-            GameObject go = Instantiate(_eliteMobPrefab[_eliteCnt], _factory.transform);
-            BaseEnemy enemy = go.GetComponent<BaseEnemy>();
-
-            enemy.Init(_factory.Pool, 0);
-
-            Vector2 _randSpawnPos = UnityEngine.Random.insideUnitCircle;
-            float randSpawnRadius = UnityEngine.Random.Range(_minSpawnRadius, _maxSpawnRadius);
-            _randSpawnPos = _randSpawnPos.normalized * randSpawnRadius;
-
-            enemy.transform.position = _randSpawnPos;
-            enemy.SetTarget(FindAnyObjectByType<Player>().gameObject);
-        }
-
-        // 웨이브시 스폰 -> (웨이브 타임 ~ 웨이브 타임 + _waveDuration)
-        if (Timer.Instance.GameTime >= _waveTime[_waveCnt] && Timer.Instance.GameTime <= (_waveTime[_waveCnt] + _waveDuration))
-        {
-            for (int i = 0; i < _waveSpawnAtOnce; i++)
-            {
-                SpawnEnemy();
-            }
-
             return;
         }
 
-        // 일반 스폰
-        for (int i = 0; i < _spawnAtOnce; i++)
+        _nextSpawn = Timer.Instance.GameTime + _waveSpawnTimeInterval;
+
+        for (int i = 0; i < _waveSpawnAtOnce; i++)
         {
             SpawnEnemy();
-        }
+        }  
+
     }
 
     private void SpawnEnemy()
@@ -181,7 +202,7 @@ public class EnemySpawner : MonoBehaviour
         _isBossRound = true;
         Vector2 spawnPos = new Vector2(3f, 3f);
 
-        BaseEnemy boss = _factory.CreateBoss(spawnPos, this);        
+        BaseEnemy boss = _bossEliteFactory.CreateBoss(spawnPos, this);        
         if (boss == null)
         {
             CPrint.Warn("Boss 없음");

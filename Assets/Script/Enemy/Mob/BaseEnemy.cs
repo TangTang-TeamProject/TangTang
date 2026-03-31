@@ -70,7 +70,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual bool CanUpdate()
     {
-        return Time.frameCount % 3 == _idx % 3;
+        return Time.frameCount % 2 == _idx % 2;
     }
 
     protected virtual void Update()

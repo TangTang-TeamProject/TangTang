@@ -15,9 +15,5 @@ public class EliteMob : BaseEnemy
     {
         
     }
-
-    public override void Die()
-    {
-        Destroy(gameObject);
-    }
+   
 }
