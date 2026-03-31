@@ -36,6 +36,6 @@ public class Axe : SkillAttack
 
     protected override void Rotate()
     {
-        transform.Rotate(new Vector3(0, 0, _spinZ) * Time.deltaTime, Space.World);
+        transform.Rotate(Vector3.forward * _spinZ * Time.deltaTime);
     }
 }

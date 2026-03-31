@@ -8,6 +8,8 @@ TagManager:
   - Trident
   - Mace
   - Axe
+  - DualBlade
+  - Wand
   layers:
   - Default
   - TransparentFX

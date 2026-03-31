@@ -5162,12 +5162,16 @@ PrefabInstance:
       objectReference: {fileID: 633836986}
     - target: {fileID: 6148184340753268270, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: _skillPrefab.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6148184340753268270, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: _skillPrefab.Array.data[3]
       value: 
       objectReference: {fileID: 1480235895901579696, guid: 92adfbc000d024b47986e0b2f51049b0, type: 3}
+    - target: {fileID: 6148184340753268270, guid: ffda31f3f0d855945854859912633227, type: 3}
+      propertyPath: _skillPrefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 6495812313512133773, guid: 5325639a2cc5fda4f81590f2b26dbf92, type: 3}
     - target: {fileID: 6182513920421937805, guid: ffda31f3f0d855945854859912633227, type: 3}
       propertyPath: m_Name
       value: SkillSpawner

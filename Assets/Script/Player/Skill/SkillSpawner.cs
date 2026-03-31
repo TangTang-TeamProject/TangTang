@@ -41,8 +41,9 @@ public class SkillSpawner : MonoBehaviour
         GetSkill("Trident", 5);
         GetSkill("Mace", 5);
         GetSkill("Axe", 6);
+        GetSkill("DualBlade", 6);
 
-        _spearCo = StartCoroutine(Co_AxeFire());
+        _spearCo = StartCoroutine(Co_DualBaldeFire());
     }
 
     // 임시로 만든 로직이므로 SO같은 데이터가 들어오면 수정될 것
@@ -86,8 +87,7 @@ public class SkillSpawner : MonoBehaviour
         {
             SkillAttack dBlade = _pool.UseSkill("DualBlade");
 
-            dBlade.transform.position = transform.position;
-            dBlade.Init(1, 1, 4, _pool);
+            dBlade.Init(1, 1, 720, _pool, 0.3f);
             dBlade.gameObject.SetActive(true);
 
             yield return _spearRate;
@@ -141,11 +141,15 @@ public class SkillSpawner : MonoBehaviour
 
     IEnumerator Co_WandFire()
     {
+        float x;
+        float y;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack wand = _pool.UseSkill("Wand");
+            x = Random.Range(-3f, 3f);
+            y = Random.Range(-3f, 3f);
 
-            wand.transform.position = transform.position;
+            wand.transform.position = transform.position + new Vector3(x, y, 0);
             wand.transform.up = _spawnDir.right;
             wand.Init(1, 1, 4, _pool);
             wand.gameObject.SetActive(true);
