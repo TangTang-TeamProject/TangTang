@@ -19,7 +19,7 @@ public class Equip : MonoBehaviour
     private EquipRegistry equip;
 
 
-    private void OnEnable()
+    private void Start()
     {
         DataRefresh();
     }

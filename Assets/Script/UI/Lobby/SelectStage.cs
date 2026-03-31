@@ -15,7 +15,7 @@ public class SelectStage : MonoBehaviour
         startBTN.onClick.AddListener(GameStart);    
     }
 
-    private void OnEnable()
+    private void Start()
     {
         DataRefresh();
     }
