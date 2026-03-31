@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public enum Scenes
 { 
@@ -40,6 +41,8 @@ public class SceneChanger : MonoBehaviour
 
     Coroutine coroutine = null;
 
+    Scenes currentScene = Scenes.Lobby;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -71,6 +74,21 @@ public class SceneChanger : MonoBehaviour
         }
 
         if (sceneDic.TryGetValue(target, out string _name))
+        {
+            currentScene = target;
+            coroutine = StartCoroutine(LoadSceneCoroutine(_name));
+        }
+    }
+
+    public void ReLoadScene()
+    {
+        if (coroutine != null)
+        {
+            CPrint.Log("이미 로딩중");
+            return;
+        }
+
+        if (sceneDic.TryGetValue(currentScene, out string _name))
         {
             coroutine = StartCoroutine(LoadSceneCoroutine(_name));
         }
