@@ -36,7 +36,7 @@ public class WaveRegistry : ScriptableObject
         }
     }
 
-    public List<WaveData_SO> GetEnemyByID(string _ID)
+    public List<WaveData_SO> GetEnemyByStageID(string _ID)
     {
         NullCheck();
 
