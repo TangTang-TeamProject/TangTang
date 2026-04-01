@@ -9,6 +9,16 @@ public enum EnemyType
     Boss,
 }
 
+public enum StatKey
+{ 
+    Damage,
+    HP,
+    CoolDown,
+    Duration,
+    Range,
+    ProjectileSpeed
+}
+
 public class SO_ENUMS : MonoBehaviour
 {
 }

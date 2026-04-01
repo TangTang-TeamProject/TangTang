@@ -77,15 +77,15 @@ public class Player : MonoBehaviour, IDamagables
 
     private void OnEnable()
     {
-        _data = _playerRegistry.GetEnemyByID(1);
+        _data = _playerRegistry.GetEnemyByID("");
         if (_data == null)
         {
             CPrint.Error("플레이어 데이터 SO없음");
             return;
         }
-        _hp = _data.HP;
-        _speed = _data.Speed;
-        _attack = _data.ATK;
+        _hp = _data.BaseHP;
+        _speed = _data.BaseMoveSpeed;
+        _attack = _data.BaseATK;
     }
 
     void Start()

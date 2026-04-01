@@ -6,22 +6,31 @@ using UnityEngine;
 public class PlayerData_SO : ScriptableObject
 {
     [SerializeField]
-    private int playerID = 0;
+    private string characterID = "";
     [SerializeField]
-    private int maxLevel = 0;
+    private string nameKR = "";
     [SerializeField]
-    private float hp = 0;
+    private string nameEN = "";
     [SerializeField]
-    private float atk = 0f;
+    private float baseHP = 0;
     [SerializeField]
-    private float speed = 0f;
+    private float baseATK = 0f;
+    [SerializeField]
+    private float baseMoveSpeed = 0f;
+    [SerializeField]
+    private float critRate = 0f;
+    [SerializeField]
+    private float pickUpRange = 0f;
     [SerializeField]
     private GameObject prefab;
 
-    public int PlayerID => playerID;
-    public int MaxLevel => maxLevel;
-    public float HP => hp;
-    public float ATK => atk;
-    public float Speed => speed;
+    public string CharacterID => characterID;
+    public string NameKR => nameKR;
+    public string NameEN => nameEN;
+    public float BaseHP => baseHP;
+    public float BaseATK => baseATK;
+    public float BaseMoveSpeed => baseMoveSpeed;
+    public float CritRate => critRate;
+    public float PickUpRange => pickUpRange;
     public GameObject Prefab => prefab;
 }

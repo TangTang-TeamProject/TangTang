@@ -12,52 +12,40 @@ public class EquipRegistry : ScriptableObject
 
     private Dictionary<int, EquipData_SO> dataDicID = new Dictionary<int, EquipData_SO>();
 
-    private Dictionary<EquipType, EquipData_SO> dataDicType = new Dictionary<EquipType, EquipData_SO>();
+    private Dictionary<EquipType, List<EquipData_SO>> dataDicType = new Dictionary<EquipType, List<EquipData_SO>>();
 
-    void NullCheckID()
+    void NullCheck()
     {
-        if (dataDicID != null && dataDicID.Count != 0)
+        if (dataDicType != null && dataDicType.Count != 0 && dataDicID != null && dataDicID.Count != 0)
         {
             return;
         }
 
-        MakeIDDic();
+        MakeDic();
     }
 
-    void NullCheckType()
-    {
-        if (dataDicType != null && dataDicType.Count != 0)
-        {
-            return;
-        }
-
-        MakeTypeDic();
-    }
-
-    public void MakeIDDic()
+    public void MakeDic()
     {
         dataDicID.Clear();
-
-        for (int i = 0; i < equips.Count; i++)
-        {
-            dataDicID.Add(equips[i].EquipID, equips[i]);
-        }
-    }
-
-    public void MakeTypeDic()
-    {
         dataDicType.Clear();
 
         for (int i = 0; i < equips.Count; i++)
         {
-            dataDicType.Add(equips[i].Type, equips[i]);
+            dataDicID.Add(equips[i].EquipID, equips[i]);
+            
+            if (!dataDicType.ContainsKey(equips[i].Type))
+            {
+                dataDicType.Add(equips[i].Type, new List<EquipData_SO>());
+            }
+
+            dataDicType[equips[i].Type].Add(equips[i]);
         }
     }
 
 
     public EquipData_SO GetEquipByID(int _ID)
     {
-        NullCheckID();
+        NullCheck();
 
         if (dataDicID.TryGetValue(_ID, out EquipData_SO data))
         {
@@ -70,20 +58,15 @@ public class EquipRegistry : ScriptableObject
 
     public List<EquipData_SO> GetEquipByType(EquipType _type)
     {
-        NullCheckType();
+        NullCheck();
 
-        List<EquipData_SO> data = new List<EquipData_SO>();
-
-        if (dataDicType.TryGetValue(_type, out EquipData_SO dataPart))
+        if (dataDicType.TryGetValue(_type, out List<EquipData_SO> data))
         {
-            data.Add(dataPart);
+            return data;
         }
 
-        if (data.Count == 0)
-        {
-            CPrint.Error("EquipRegistry - Cant Find");
-        }
+        CPrint.Error("EquipRegistry - Cant Find");
 
-        return data;
+        return null;
     }
 }

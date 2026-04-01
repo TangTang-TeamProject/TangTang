@@ -12,7 +12,7 @@ public class ArtifactRegistry : ScriptableObject
 
     public IReadOnlyList<ArtifactData_SO> Artifacts => artifacts;
 
-    private Dictionary<int, ArtifactData_SO> dataDic = new Dictionary<int, ArtifactData_SO>();
+    private Dictionary<string, ArtifactData_SO> dataDic = new Dictionary<string, ArtifactData_SO>();
 
     void NullCheck()
     {
@@ -34,7 +34,7 @@ public class ArtifactRegistry : ScriptableObject
         }
     }
 
-    public ArtifactData_SO GetArtifactByID(int _ID)
+    public ArtifactData_SO GetArtifactByID(string _ID)
     {
         NullCheck();
 
