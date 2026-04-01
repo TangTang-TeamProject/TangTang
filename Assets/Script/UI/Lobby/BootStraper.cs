@@ -52,8 +52,7 @@ public class BootStraper : MonoBehaviour
     {
         artifact.MakeDic();
         enemy.MakeDic();
-        equip.MakeIDDic();
-        equip.MakeTypeDic();
+        equip.MakeDic();
         item.MakeDic();
         player.MakeDic();
     }
