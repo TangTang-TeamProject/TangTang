@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: BossDataSO
   m_EditorClassIdentifier: 
   enemyID: 0
-  enemyName: Boss
-  atk: 2
-  hp: 10
-  speed: 1
+  nameKR: 
+  nameEN: 
+  hp: 4200
+  moveSpeed: 0.85
+  contactDamage: 26
+  expDrop: 0
+  sizeScale: 1.8
   atkCycle: 3
   bulletSpeed: 3
-  mobtype: 2
-  prefab: {fileID: 0}
+  enemytype: 2
+  prefab: {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}

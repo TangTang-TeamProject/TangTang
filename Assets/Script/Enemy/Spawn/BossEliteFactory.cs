@@ -9,7 +9,7 @@ public class BossEliteFactory : BaseEnemyFactory
 
     protected int _bossIdx = 0;    
 
-    public BaseEnemy CreateBoss(Vector2 pos, EnemySpawner spawner)
+    public BaseEnemy CreateBoss(Vector2 pos, RealEnemySpawner spawner)
     {
         if (_bossPrefab.Count < 1)
         {

@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55064b4c281be814a9a532c0b2046f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterData: {fileID: 11400000, guid: 999c08e943c542c40b3586d3ee668ac4, type: 2}
+  _monsterData: {fileID: 11400000, guid: cec8f4289bf243d4c8c8ea6c1e14d2fa, type: 2}
 --- !u!114 &6588646553605553867
 MonoBehaviour:
   m_ObjectHideFlags: 0
