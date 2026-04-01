@@ -1344,23 +1344,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 431584815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edce7147209e6754d9ee79fe82883358, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b9ffbe0a9a6904094a97227094d616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnCount: 500
-  _spawnAtOnce: 50
+  _stageId: STG_001
+  _waveRegistry: {fileID: 11400000, guid: 15b29f6a9aef5e84689519c7aa985552, type: 2}
   _minSpawnRadius: 8.5
   _maxSpawnRadius: 13
-  _spawnTimeInterval: 10
-  _waveTime:
-  - 30
-  - 540
-  - 840
-  _waveSpawnAtOnce: 100
-  _waveSpawnTimeInterval: 5
-  _waveDuration: 30
-  _eliteSpawnTimeInterval: 60
-  _factory: {fileID: 1222528657}
+  _factories:
+  - {fileID: 1222528657}
+  - {fileID: 1040954054}
   _bossEliteFactory: {fileID: 1993252533}
 --- !u!1 &451431161
 GameObject:
@@ -4684,6 +4677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 915092813}
+  _enemyData: {fileID: 11400000, guid: cec8f4289bf243d4c8c8ea6c1e14d2fa, type: 2}
   _pool: {fileID: 953437854}
   projectileFactory: {fileID: 531869810}
   projectilePool: {fileID: 1830073349}
@@ -5037,6 +5031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 915092813}
+  _enemyData: {fileID: 11400000, guid: 7b29e2741fe44ce4784109fc9fe36d5e, type: 2}
   _pool: {fileID: 595066357}
 --- !u!1 &1226573590
 GameObject:
@@ -6918,6 +6913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 915092813}
+  _enemyData: {fileID: 11400000, guid: 0880e8c3f4610af49b0626db14a24593, type: 2}
   _pool: {fileID: 416735477}
   _bossPrefab:
   - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}

@@ -28,7 +28,7 @@ public class ThrowingMob : BaseEnemy, IAttackables
         }
 
         _nextShoot = Timer.Instance.GameTime + _atkCycle;
-
+        
         _projectileFactory.CreateProjectile(transform.position);
     }
    

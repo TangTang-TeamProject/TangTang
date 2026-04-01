@@ -37,6 +37,11 @@ public class LayerSorting : MonoBehaviour
 
     private void Update()
     {
+        if (Time.frameCount % 3 != 0)
+        {
+            return;
+        }
+
         float currentYvalue = transform.position.y;
 
         if (Mathf.Abs(_prevY - currentYvalue) > 0.001f)

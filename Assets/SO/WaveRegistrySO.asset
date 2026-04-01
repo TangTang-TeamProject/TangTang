@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: WaveRegistrySO
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: b6ba5986b7613cc40b2fdd50af2782fa, type: 2}
+  - {fileID: 11400000, guid: 5b2893efce42a064896e591416344a22, type: 2}
+  - {fileID: 11400000, guid: 40a7e5f418c553545ae773b94a6be8b0, type: 2}

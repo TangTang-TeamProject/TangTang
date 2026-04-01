@@ -10,7 +10,13 @@ public class ProjectileFactory : MonoBehaviour
     public void CreateProjectile(Vector2 nowPos)
     {
         BaseProjectile projectile = _pool.GetProjectile(transform);
-        projectile.transform.position = nowPos;
+
+        nowPos.y += 0.2f; // 몬스터 피봇 위치에서 조금 위로 지정
+
+        Vector2 targetPos = _target.transform.position;
+        Vector2 dir = (targetPos - nowPos).normalized;        
+
+        projectile.transform.position = nowPos + dir * 0.5f;
         projectile.Init(_pool, _target.transform);        
         
     }

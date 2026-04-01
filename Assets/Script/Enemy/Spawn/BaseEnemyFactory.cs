@@ -5,9 +5,11 @@ using UnityEngine;
 public abstract class BaseEnemyFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject _target;
+    [SerializeField] protected EnemyData_SO _enemyData;
     [SerializeField] protected EnemyPool _pool;
     
     public EnemyPool Pool => _pool;
+    public EnemyData_SO EnemtData => _enemyData;
     
     protected int _idx = 0;
 

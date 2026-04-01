@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BossMob : BaseEnemy
 {
-    private EnemySpawner _spawner;
-    public void Init(EnemyPool pool, EnemySpawner spawner)
+    private RealEnemySpawner _spawner;
+    public void Init(EnemyPool pool, RealEnemySpawner spawner)
     {
         base.Init(pool, 0);
 
