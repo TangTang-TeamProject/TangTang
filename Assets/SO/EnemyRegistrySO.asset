@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: EnemyRegistrySO
   m_EditorClassIdentifier: 
   enemys:
-  - {fileID: 11400000, guid: 999c08e943c542c40b3586d3ee668ac4, type: 2}
+  - {fileID: 11400000, guid: cec8f4289bf243d4c8c8ea6c1e14d2fa, type: 2}
+  - {fileID: 11400000, guid: cec8f4289bf243d4c8c8ea6c1e14d2fa, type: 2}

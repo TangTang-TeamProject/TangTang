@@ -16,5 +16,5 @@ MonoBehaviour:
   startSec: 0
   endSec: 0
   spawnEnemy: 
-  enemyCount: 0
-  spawnIntervalSec: 0
+  enemyCount: 18
+  spawnIntervalSec: 4

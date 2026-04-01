@@ -25,17 +25,17 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     private string _enemyString = "Enemy";
     private string _playerBulletString = "PlayerBullet";
 
-    protected float _id;
+    protected string _id;
     protected float _maxHp;
-    protected float _atk;
+    protected float _contactDamage;
     protected float _speed;
     protected float _atkCycle;
     protected float _bulletSpeed;
-    protected MobType _mobType;
+    protected EnemyType _mobType;
     
     protected float _nextDmg;
     
-    public float Damage => _atk;
+    public float Damage => _contactDamage;
     
 
     protected virtual void Awake()
@@ -82,13 +82,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _pool = pool;
         _idx = idx; 
 
-        //_id = _monsterData.EmemyID;
-        //_maxHp = _monsterData.HP;
-        //_atk = _monsterData.ATK;
-        //_speed = _monsterData.Speed;
-        //_atkCycle = _monsterData.ATKCycle;
-        //_bulletSpeed = _monsterData.BulletSpeed;
-        //_mobType = _monsterData.MobType;        
+        _id = _monsterData.EmemyID;
+        _maxHp = _monsterData.HP;
+        _contactDamage = _monsterData.ContactDamage;
+        _speed = _monsterData.MoveSpeed;
+        _atkCycle = _monsterData.ATKCycle;
+        _bulletSpeed = _monsterData.BulletSpeed;
+        _mobType = _monsterData.EnemyType;        
     }
 
     public virtual void Chase()
