@@ -9,8 +9,21 @@ public class SkillSpawner : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Transform _spawnDir;
 
+
+    private WaitForSeconds _arrowRate = new WaitForSeconds(2.2f);
+    private Coroutine _arrowCo;
+    private WaitForSeconds _axeRate = new WaitForSeconds(2.2f);
+    private Coroutine _axeCo;
+    private WaitForSeconds _dualBladeRate = new WaitForSeconds(2.2f);
+    private Coroutine _dualBladeCo;
+    private WaitForSeconds _maceRate = new WaitForSeconds(2.2f);
+    private Coroutine _maceCo;
     private WaitForSeconds _spearRate= new WaitForSeconds(2.2f);
     private Coroutine _spearCo;
+    private WaitForSeconds _tridentRate = new WaitForSeconds(2.2f);
+    private Coroutine _tridentCo;
+    private WaitForSeconds _wandRate = new WaitForSeconds(2.2f);
+    private Coroutine _wandCo;
 
     private void Awake()
     {
@@ -37,19 +50,26 @@ public class SkillSpawner : MonoBehaviour
 
     void Start()
     {
-        GetSkill("Spear", 5);
-        GetSkill("Trident", 5);
-        GetSkill("Mace", 5);
         GetSkill("Axe", 6);
         GetSkill("DualBlade", 6);
+        GetSkill("Mace", 5);
+        GetSkill("Spear", 5);
+        GetSkill("Trident", 5);
+        GetSkill("Wand", 6);
 
-        _spearCo = StartCoroutine(Co_DualBaldeFire());
+        _axeCo = StartCoroutine(Co_AxeFire());
+        _dualBladeCo = StartCoroutine(Co_DualBaldeFire());
+        _maceCo = StartCoroutine(Co_MaceFire());
+        _spearCo = StartCoroutine(Co_SpearFire());
+        _tridentCo = StartCoroutine(Co_TridentFire());
+        _wandCo = StartCoroutine(Co_WandFire());
     }
 
     // 임시로 만든 로직이므로 SO같은 데이터가 들어오면 수정될 것
     #region 스킬 코루틴
     IEnumerator Co_ArrowFire()
     {
+        yield return null;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack arrow = _pool.UseSkill("Arrow");
@@ -59,12 +79,13 @@ public class SkillSpawner : MonoBehaviour
             arrow.Init(1, 1, 4, _pool);
             arrow.gameObject.SetActive(true);
 
-            yield return _spearRate;
+            yield return _arrowRate;
         }
     }
 
     IEnumerator Co_AxeFire()
     {
+        yield return null;
         int axeCount = 3;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
@@ -73,50 +94,53 @@ public class SkillSpawner : MonoBehaviour
                 SkillAttack axe = _pool.UseSkill("Axe");
 
                 axe.SetOrbit((360.0f / axeCount) * i);
-                axe.Init(1, 1, 2, _pool, 2);
+                axe.Init(40, 1, 2, _pool, 2);
                 axe.gameObject.SetActive(true);
             }
 
-            yield return _spearRate;
+            yield return _axeRate;
         }
     }
 
     IEnumerator Co_DualBaldeFire()
     {
+        yield return null;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack dBlade = _pool.UseSkill("DualBlade");
 
-            dBlade.Init(1, 1, 720, _pool, 0.3f);
+            dBlade.Init(40, 1, 800, _pool, 0.3f);
             dBlade.gameObject.SetActive(true);
 
-            yield return _spearRate;
+            yield return _dualBladeRate;
         }
     }
 
     IEnumerator Co_MaceFire()
     {
+        yield return null;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack mace = _pool.UseSkill("Mace");
 
             mace.transform.position = transform.position;
-            mace.Init(1, 1, 4, _pool);
+            mace.Init(40, 1, 4, _pool);
             mace.gameObject.SetActive(true);
 
-            yield return _spearRate;
+            yield return _maceRate;
         }
     }
 
     IEnumerator Co_SpearFire()
     {
-        while(_player.PlayerState != Player.EPlayerState.Dead)
+        yield return null;
+        while (_player.PlayerState != Player.EPlayerState.Dead)
         {
-            SkillAttack spear = _pool.UseSkill("Spear");            
+            SkillAttack spear = _pool.UseSkill("Spear");
 
             spear.transform.position = transform.position;
             spear.transform.rotation = Quaternion.Euler(0, 0, 90f);
-            spear.Init(1, 1, 4, _pool);
+            spear.Init(40, 1, 4, _pool);
             spear.gameObject.SetActive(true);
 
 
@@ -126,45 +150,76 @@ public class SkillSpawner : MonoBehaviour
 
     IEnumerator Co_TridentFire()
     {
+        yield return null;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack trident = _pool.UseSkill("Trident");
 
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
-            trident.Init(1, 1, 4, _pool);
+            trident.Init(40, 1, 4, _pool);
             trident.gameObject.SetActive(true);
 
-            yield return _spearRate;
+            yield return _tridentRate;
         }
     }
 
     IEnumerator Co_WandFire()
     {
+        yield return null;
         float x;
         float y;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack wand = _pool.UseSkill("Wand");
-            x = Random.Range(-3f, 3f);
+            x = Random.Range(-5f, 5f);
             y = Random.Range(-3f, 3f);
 
             wand.transform.position = transform.position + new Vector3(x, y, 0);
-            wand.transform.up = _spawnDir.right;
-            wand.Init(1, 1, 4, _pool);
+            wand.Init(40, 1, 4, _pool, 6.5f);
             wand.gameObject.SetActive(true);
 
-            yield return _spearRate;
+            yield return _wandRate;
         }
     }
     #endregion
 
     private void OnDisable()
     {
+        if (_arrowCo != null)
+        {
+            StopCoroutine(_arrowCo);
+            _arrowCo = null;
+        }
+        if (_axeCo != null)
+        {
+            StopCoroutine(_axeCo);
+            _axeCo = null;
+        }
+        if (_dualBladeCo != null)
+        {
+            StopCoroutine(_dualBladeCo);
+            _dualBladeCo = null;
+        }
+        if (_maceCo != null)
+        {
+            StopCoroutine(_maceCo);
+            _maceCo = null;
+        }
         if (_spearCo != null)
         {
             StopCoroutine(_spearCo);
             _spearCo = null;
+        }
+        if (_tridentCo != null)
+        {
+            StopCoroutine(_tridentCo);
+            _tridentCo = null;
+        }
+        if (_wandCo != null)
+        {
+            StopCoroutine(_wandCo);
+            _wandCo = null;
         }
     }
 

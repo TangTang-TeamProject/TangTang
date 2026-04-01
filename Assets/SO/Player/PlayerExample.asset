@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c7e16ae09bca94481874cbad65424a, type: 3}
   m_Name: PlayerExample
   m_EditorClassIdentifier: 
-  playerID: 1
-  maxLevel: 0
-  hp: 1000
-  atk: 0
-  speed: 6
+  characterID: 
+  nameKR: 
+  nameEN: 
+  baseHP: 20
+  baseATK: 1
+  baseMoveSpeed: 4
+  critRate: 0
+  pickUpRange: 0
   prefab: {fileID: 0}
