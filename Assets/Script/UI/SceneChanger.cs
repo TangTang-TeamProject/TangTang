@@ -91,10 +91,9 @@ public class SceneChanger : MonoBehaviour
             return;
         }
 
-        if (sceneDic.TryGetValue(currentScene, out string _name))
-        {
-            coroutine = StartCoroutine(LoadSceneCoroutine(_name));
-        }
+        string _name = NowScene();
+
+        coroutine = StartCoroutine(LoadSceneCoroutine(_name));
     }
 
     IEnumerator LoadSceneCoroutine(string _name)
