@@ -7,31 +7,40 @@ using UnityEngine;
 public class EnemyData_SO : ScriptableObject
 {
     [SerializeField]
-    private int enemyID = 0;
+    private string enemyID = "";
     [SerializeField]
-    private string enemyName = "";
+    private string nameKR = "";
     [SerializeField]
-    private float atk = 0f;
+    private string nameEN = "";
     [SerializeField]
     private float hp = 0f;
     [SerializeField]
-    private float speed = 0f;
+    private float moveSpeed = 0f;
+    [SerializeField]
+    private float contactDamage = 0f;
+    [SerializeField]
+    private float expDrop = 0f;
+    [SerializeField]
+    private float sizeScale = 0f;
     [SerializeField]
     private float atkCycle = 0f;
     [SerializeField]
     private float bulletSpeed = 0f;
     [SerializeField]
-    private MobType mobtype = MobType.Basic;
+    private EnemyType enemytype = EnemyType.Normal;
     [SerializeField]
     private GameObject prefab;
 
-    public int EmemyID => enemyID;
-    public string EnemyName => enemyName;
-    public float ATK => atk;
+    public string EmemyID => enemyID;
+    public string NameKR => nameKR;
+    public string NameEN => nameEN;
     public float HP => hp;
-    public float Speed => speed;
+    public float MoveSpeed => moveSpeed;
+    public float ContactDamage => contactDamage;
+    public float ExpDrop => expDrop;
+    public float SizeScale => sizeScale;
     public float ATKCycle => atkCycle;
     public float BulletSpeed => bulletSpeed;
-    public MobType MobType => mobtype;
+    public EnemyType EnemyType => enemytype;
     public GameObject Prefab => prefab;
 }

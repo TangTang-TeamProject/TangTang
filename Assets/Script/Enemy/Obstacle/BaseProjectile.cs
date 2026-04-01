@@ -19,7 +19,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
 
     private void Awake()
     {
-        _damage = _projectileSO.ATK;        
+        _damage = _projectileSO.ContactDamage;        
     }
     public virtual void Init(ProjectilePool pool, Transform targetPos)
     {

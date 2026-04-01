@@ -20,6 +20,6 @@ public class FireObstacles : MonoBehaviour
             enabled = false;
             return;
         }
-        _atk = _fireData.ATK;
+        _atk = _fireData.ContactDamage;
     }
 }
