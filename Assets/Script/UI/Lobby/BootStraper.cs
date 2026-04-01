@@ -16,6 +16,10 @@ public class BootStraper : MonoBehaviour
     private ItemRegistry item;
     [SerializeField]
     private PlayerRegistry player;
+    [SerializeField]
+    private WaveRegistry wave;
+    [SerializeField]
+    private EvolutionRegistry evo;
 
 
 
@@ -55,5 +59,7 @@ public class BootStraper : MonoBehaviour
         equip.MakeDic();
         item.MakeDic();
         player.MakeDic();
+        wave.MakeDic();
+        evo.MakeDic();
     }
 }
