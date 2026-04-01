@@ -149,4 +149,16 @@ public class SceneChanger : MonoBehaviour
     {
         coroutine = null;
     }
+
+    public string NowScene()
+    {
+        if (sceneDic.TryGetValue(currentScene, out string _name))
+        {
+            return _name;
+        }
+
+        CPrint.Error("ÇöÀç ¾À ºÒ¸í");
+
+        return null;
+    }
 }

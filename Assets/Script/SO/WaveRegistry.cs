@@ -21,6 +21,7 @@ public class WaveRegistry : ScriptableObject
 
         MakeDic();
     }
+
     public void MakeDic()
     {
         dataDic.Clear();

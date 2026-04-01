@@ -10,7 +10,7 @@ public class PlayerRegistry : ScriptableObject
 
     public IReadOnlyList<PlayerData_SO> Players => players;
 
-    private Dictionary<int, PlayerData_SO> dataDic = new Dictionary<int, PlayerData_SO>();
+    private Dictionary<string, PlayerData_SO> dataDic = new Dictionary<string, PlayerData_SO>();
 
     void NullCheck()
     {
@@ -27,11 +27,11 @@ public class PlayerRegistry : ScriptableObject
 
         for (int i = 0; i < players.Count; i++)
         {
-            dataDic.Add(players[i].PlayerID, players[i]);
+            dataDic.Add(players[i].CharacterID, players[i]);
         }
     }
 
-    public PlayerData_SO GetEnemyByID(int _ID)
+    public PlayerData_SO GetEnemyByID(string _ID)
     {
         NullCheck();
 

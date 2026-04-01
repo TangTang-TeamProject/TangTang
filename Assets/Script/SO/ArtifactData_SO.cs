@@ -5,22 +5,28 @@ using UnityEngine;
 public class ArtifactData_SO : ScriptableObject
 {
     [SerializeField]
-    private int artifactID = 0;
+    private string artifactID = "";
     [SerializeField]
-    private string artifactName = "";    
+    private string nameKR = "";
     [SerializeField]
-    private float atkCycle = 0f;
+    private string nameEN = "";
     [SerializeField]
-    private float bulletSpeed = 0f;
+    private StatKey statKey = StatKey.Damage;
     [SerializeField]
-    private float dmg = 0f;
+    private float valuePerLevel = 0f;
+    [SerializeField]
+    private int maxLevel = 0;
     [SerializeField]
     private GameObject prefab;
+    [SerializeField]
+    private Sprite img;
 
-    public int ArtifactID => artifactID;
-    public string ArtifactName => artifactName;
-    public float AtkCycle => atkCycle;
-    public float BulletSpeed => bulletSpeed;
-    public float Dmg => dmg;
+    public string ArtifactID => artifactID;
+    public string NameKR => nameKR;
+    public string NameEN => nameEN;
+    public StatKey StatKey => statKey;
+    public float ValuePerLevel => valuePerLevel;
+    public int MaxLevel => maxLevel;
     public GameObject Prefab => prefab;
+    public Sprite IMG => img;
 }
