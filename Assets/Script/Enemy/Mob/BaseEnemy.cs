@@ -82,13 +82,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _pool = pool;
         _idx = idx; 
 
-        _id = _monsterData.EmemyID;
-        _maxHp = _monsterData.HP;
-        _atk = _monsterData.ATK;
-        _speed = _monsterData.Speed;
-        _atkCycle = _monsterData.ATKCycle;
-        _bulletSpeed = _monsterData.BulletSpeed;
-        _mobType = _monsterData.MobType;        
+        //_id = _monsterData.EmemyID;
+        //_maxHp = _monsterData.HP;
+        //_atk = _monsterData.ATK;
+        //_speed = _monsterData.Speed;
+        //_atkCycle = _monsterData.ATKCycle;
+        //_bulletSpeed = _monsterData.BulletSpeed;
+        //_mobType = _monsterData.MobType;        
     }
 
     public virtual void Chase()

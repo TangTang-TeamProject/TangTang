@@ -11,7 +11,7 @@ public class EnemyRegistry : ScriptableObject
 
     public IReadOnlyList<EnemyData_SO> Enemys => enemys;
 
-    private Dictionary<int, EnemyData_SO> dataDic = new Dictionary<int, EnemyData_SO>();
+    private Dictionary<string, EnemyData_SO> dataDic = new Dictionary<string, EnemyData_SO>();
 
     void NullCheck()
     {
@@ -32,7 +32,7 @@ public class EnemyRegistry : ScriptableObject
         }
     }
 
-    public EnemyData_SO GetEnemyByID(int _ID)
+    public EnemyData_SO GetEnemyByID(string _ID)
     {
         NullCheck();
 
