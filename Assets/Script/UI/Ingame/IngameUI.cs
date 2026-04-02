@@ -60,6 +60,7 @@ public class IngameUI : MonoBehaviour
             return;
 
         beforeTime = currentTime;
+
         MakeTimeText(currentTime);
     }
 
