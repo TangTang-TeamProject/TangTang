@@ -41,6 +41,9 @@ public class Player : MonoBehaviour, IDamagables
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
     public event Action OnHit;
+    public event Action OnDead;
+    public event Action<float> OnCurrentHPChange;
+    public event Action<float> OnMaxHPChange;
 
     private void Reset()
     {
@@ -156,6 +159,7 @@ public class Player : MonoBehaviour, IDamagables
         // 예외 처리안함 어차피 Hit하지 않는이상 호출될 일이 없음
         CPrint.Warn("플레이어 죽었음");
         _playerState = EPlayerState.Dead;
+        OnDead?.Invoke();
         StopAllPlayerCoroutine();
     }
 
