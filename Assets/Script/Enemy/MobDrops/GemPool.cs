@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GemPool : MonoBehaviour
@@ -8,7 +10,8 @@ public class GemPool : MonoBehaviour
     [SerializeField] private GemType _type;
 
     private Queue<ExpGem> _gemPool = new Queue<ExpGem>();
-    
+
+    public Action<float> OnAbsorbed;
     
     public GemType GetPoolType()
     {
@@ -35,7 +38,8 @@ public class GemPool : MonoBehaviour
     }
 
     public void Return(ExpGem gem)
-    {       
+    {
+        OnAbsorbed?.Invoke(gem.Exp);
         _gemPool.Enqueue(gem);
     }
 }
