@@ -40,6 +40,9 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         _speed = speed;
         _keepTime = time;
         _remainTime = _keepTime;
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 
     protected virtual void Move() { }

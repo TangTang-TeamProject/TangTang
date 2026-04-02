@@ -42,7 +42,7 @@ public class SkillPool : MonoBehaviour
         {
             target = _skillDict[tag].Dequeue();
         }        
-        target.transform.SetParent(_godObject);
+        target.transform.SetParent(_godObject, true);
         return target;
     }
 
