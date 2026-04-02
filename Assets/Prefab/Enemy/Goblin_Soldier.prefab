@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8846226687828211315}
   - component: {fileID: 6043087083577703310}
   - component: {fileID: 5111203678573268273}
-  - component: {fileID: 1704497725600580210}
   - component: {fileID: -4827342097205769467}
+  - component: {fileID: 1409210823427016376}
   m_Layer: 9
-  m_Name: EliteMob_ImgVer
+  m_Name: Goblin_Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,22 +141,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 0.7}
+  m_Offset: {x: 0, y: 0.3}
   serializedVersion: 2
-  m_Radius: 1
---- !u!114 &1704497725600580210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130242760526685659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac7bc78611af504b95d9b336c5bb142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _monsterData: {fileID: 11400000, guid: 8406e12ca6f6f454bb0f1a61a5f47358, type: 2}
+  m_Radius: 0.35
 --- !u!114 &-4827342097205769467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b45c5d76697e04386314d4223130bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1409210823427016376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130242760526685659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d79952a67eb9244d8f50968214d03e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterData: {fileID: 11400000, guid: 7b29e2741fe44ce4784109fc9fe36d5e, type: 2}

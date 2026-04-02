@@ -1,17 +1,25 @@
 
-public class ThrowingMob : BaseEnemy, IAttackables
+public class ThrowingMob : BaseEnemy
 {    
     private ProjectileFactory _projectileFactory;
     private float _nextShoot = 0f;
+    private float _shootDelay = 1f;
 
     protected override void Update()
-    {
+    {        
         if (!CanUpdate())
             return;
 
-        Attack();
-        Chase();
         CheckDamaged();
+
+        if (Timer.Instance.GameTime >= _nextShoot)
+        {
+            _nextShoot = Timer.Instance.GameTime + _atkCycle;
+            Attack();            
+        }
+        
+        
+        Chase();
     }
 
     void FixedUpdate()
@@ -21,14 +29,7 @@ public class ThrowingMob : BaseEnemy, IAttackables
     
 
     public override void Attack()
-    {
-        if (Timer.Instance.GameTime < _nextShoot)
-        {
-            return;
-        }
-
-        _nextShoot = Timer.Instance.GameTime + _atkCycle;
-        
+    {                        
         _projectileFactory.CreateProjectile(transform.position);
     }
    
