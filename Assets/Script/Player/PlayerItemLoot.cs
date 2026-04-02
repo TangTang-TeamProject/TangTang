@@ -10,8 +10,8 @@ public class PlayerItemLoot : MonoBehaviour
 
 
     private readonly Collider2D[] _hits = new Collider2D[300];
-    private HashSet<ExpGem> _hitRecord = new HashSet<ExpGem>(300);
-    private HashSet<ExpGem> _thisFrameRecord = new HashSet<ExpGem>(300);
+    private HashSet<Items> _hitRecord = new HashSet<Items>(300);
+    private HashSet<Items> _thisFrameRecord = new HashSet<Items>(300);
 
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.1f);
     private Coroutine _rootCo;
@@ -62,10 +62,10 @@ public class PlayerItemLoot : MonoBehaviour
             {
                 // 마지막으로 널 체크 한번 더
                 // 경험치 체력회복 폭탄 자석 태그
-                if (_hits[i] != null && _hits[i].TryGetComponent(out ExpGem target))
+                if (_hits[i] != null && _hits[i].TryGetComponent(out Items target))
                 {
                     // 어차피 닿으면 사라짐 해쉬셋 필요없음
-                    _player.GainExp((int)target.Exp);
+                    //_player.GainExp((int)target.Exp);
                     target.SetActiveFalse();
                 }
             }
@@ -92,7 +92,7 @@ public class PlayerItemLoot : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 // 마지막으로 널 체크 한번 더
-                if (_hits[i] != null && _hits[i].TryGetComponent(out ExpGem target))
+                if (_hits[i] != null && _hits[i].TryGetComponent(out Items target))
                 {
                     _thisFrameRecord.Add(target);
 
