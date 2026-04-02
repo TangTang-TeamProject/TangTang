@@ -9,9 +9,7 @@ public class GemPool : MonoBehaviour
     [SerializeField] private GameObject _gemPrefab;
     [SerializeField] private GemType _type;
 
-    private Queue<ExpGem> _gemPool = new Queue<ExpGem>();
-
-    public Action<float> OnAbsorbed;
+    private Queue<ExpGem> _gemPool = new Queue<ExpGem>();    
     
     public GemType GetPoolType()
     {
@@ -38,8 +36,7 @@ public class GemPool : MonoBehaviour
     }
 
     public void Return(ExpGem gem)
-    {
-        OnAbsorbed?.Invoke(gem.Exp);
+    {        
         _gemPool.Enqueue(gem);
     }
 }

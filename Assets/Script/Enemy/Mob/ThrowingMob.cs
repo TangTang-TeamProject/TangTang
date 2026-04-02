@@ -1,24 +1,50 @@
 
+using UnityEngine;
+
 public class ThrowingMob : BaseEnemy
 {    
     private ProjectileFactory _projectileFactory;
     private float _nextShoot = 0f;
-    private float _shootDelay = 1f;
+   
+    private bool _isAttacking = false;
+    private float _attackDuration = 1f;
+
+    private string animParam = "IsMoving";
 
     protected override void Update()
-    {        
+    {
+        base.Update();
+
+        if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
+        {
+            return;
+        }
+
         if (!CanUpdate())
             return;
 
         CheckDamaged();
+
+        if (_isAttacking)
+        {
+            _attackDuration -= Time.deltaTime;
+
+            if (_attackDuration <= 0f)
+            {
+                _isAttacking = false;
+                _attackDuration = 1f;
+                _animator.SetBool(animParam, true);
+            }
+
+            return;
+        }
 
         if (Timer.Instance.GameTime >= _nextShoot)
         {
             _nextShoot = Timer.Instance.GameTime + _atkCycle;
             Attack();            
         }
-        
-        
+                       
         Chase();
     }
 
@@ -29,7 +55,9 @@ public class ThrowingMob : BaseEnemy
     
 
     public override void Attack()
-    {                        
+    {
+        _isAttacking = true;
+        _animator.SetBool(animParam, false);
         _projectileFactory.CreateProjectile(transform.position);
     }
    
@@ -37,6 +65,7 @@ public class ThrowingMob : BaseEnemy
     public override void Chase()
     {
         base.Chase();
+
     }
 
     protected override void Hit(float dmg)

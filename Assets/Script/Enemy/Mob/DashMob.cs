@@ -19,7 +19,13 @@ public class DashMob : BaseEnemy
 
     protected override void Update()
     {
-        
+        base.Update();
+
+        if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
+        {
+            return;
+        }
+
         _corTimeCnt += Time.deltaTime;
 
         if (Timer.Instance.RealTime >= _checkTime && !_isDashing)
@@ -76,5 +82,10 @@ public class DashMob : BaseEnemy
 
         _animator.SetBool(animParam, false);
         _isDashing = false;
+    }
+
+    public override void Die()
+    {
+        base.Die();
     }
 }
