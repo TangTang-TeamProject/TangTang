@@ -19,13 +19,11 @@ public class IngameFlow : MonoBehaviour
     [SerializeField]
     private InfiniteMap map;
     [SerializeField]
-    private GameObject hurtUI;
-    [SerializeField]
     private TextMeshProUGUI timeText;
     [SerializeField]
     private Button pauseBTN;
     [SerializeField]
-    private GameObject pauseUI;
+    private IngameSettings pauseUI;
     [SerializeField]
     private GameEnd gameEndUI;
 
@@ -33,9 +31,6 @@ public class IngameFlow : MonoBehaviour
 
     private PlayStats situation = PlayStats.Playing;
     private int beforeTime = 0;
-    private Coroutine hurtEffect;
-
-    private WaitForSeconds hurtTime = new WaitForSeconds(1f);
 
     private void Awake()
     {
@@ -46,7 +41,6 @@ public class IngameFlow : MonoBehaviour
 
     private void Start()
     {
-        player.OnHit += HurtUI;
         player.OnDead += GameOver;
         Timer.Instance.BossSpawn += BossAppear;
         Timer.Instance.BossDie += BossDisappear;
@@ -54,7 +48,6 @@ public class IngameFlow : MonoBehaviour
 
     private void OnDestroy()
     {
-        player.OnHit -= HurtUI;
         player.OnDead -= GameOver;
         Timer.Instance.BossSpawn -= BossAppear;
         Timer.Instance.BossDie -= BossDisappear;
@@ -88,7 +81,28 @@ public class IngameFlow : MonoBehaviour
 
     void ChangeStats(PlayStats _next)
     {
+        if (situation == _next)
+        {
+            return;
+        }
+
         situation = _next;
+
+        switch(situation)
+        {
+            case PlayStats.Playing:
+                PauseGame(false);
+                break;
+            case PlayStats.Pausing:
+                PauseGame(true);
+                break;
+            case PlayStats.Directing:
+                PauseGame(true);
+                break;
+            case PlayStats.GameOver:
+                PauseGame(true);
+                break;
+        }
     }
 
     void PauseButtonClick()
@@ -96,36 +110,13 @@ public class IngameFlow : MonoBehaviour
         if (situation == PlayStats.Pausing)
         {
             ChangeStats(PlayStats.Playing);
-            pauseUI.SetActive(false);
-            PauseGame(false);
+            pauseUI.ActiveUI(false);
         }
         else if (situation == PlayStats.Playing)
         {
             ChangeStats(PlayStats.Pausing);
-            pauseUI.SetActive(true);
-            PauseGame(true);
+            pauseUI.ActiveUI(true);
         }
-    }
-
-    void HurtUI()
-    {
-        if (hurtEffect != null)
-        {
-            StopCoroutine(hurtEffect);
-        }
-
-        hurtEffect = StartCoroutine(HurtCoroutine());
-    }
-
-    IEnumerator HurtCoroutine()
-    {
-        hurtUI.SetActive(true);
-
-        yield return hurtTime;
-
-        hurtUI.SetActive(false);
-
-        yield break;
     }
 
     void BossAppear()
@@ -136,14 +127,13 @@ public class IngameFlow : MonoBehaviour
     IEnumerator BossAppearCoroutine()
     {
         ChangeStats(PlayStats.Directing);
-        PauseGame(true);
 
         map.MakeLock();
 
         yield return pCam.ZoomCoroutine();
 
-        PauseGame(false);
         ChangeStats(PlayStats.Playing);
+
         yield break;
     }
 

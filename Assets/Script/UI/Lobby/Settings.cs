@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +19,7 @@ public class Settings : MonoBehaviour
 
     readonly RateSetting rs = new RateSetting();
 
-    private void Awake()
+    protected virtual void Awake()
     {
         List<string> options = new List<string>();
 
