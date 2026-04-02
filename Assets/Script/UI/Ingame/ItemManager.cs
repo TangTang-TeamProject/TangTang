@@ -11,8 +11,8 @@ public class ItemManager : MonoBehaviour
     public Action Heal;
     public Action Money;
     public Action Magnatic;
-
-    private int gemCount = 0;
+    public Action<float> EXP;
+    public Action ItemBox;
 
     private void Awake()
     {
@@ -27,9 +27,8 @@ public class ItemManager : MonoBehaviour
 
     public void GetGems(float _exp)
     {
-        gemCount++;
-
-        CPrint.Log($"gemCount : {gemCount}");
+        EXP?.Invoke(_exp);
+        CPrint.Log("GemCount");
     }
 
     public void BoomBoomPow()
@@ -50,5 +49,10 @@ public class ItemManager : MonoBehaviour
     public void LikeItsMagnatic()
     {
         Magnatic?.Invoke();
+    }
+
+    public void OpenTheBox()
+    {
+        ItemBox?.Invoke();
     }
 }
