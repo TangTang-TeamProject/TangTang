@@ -3145,7 +3145,6 @@ MonoBehaviour:
   _invincibleDuration: 0.5
   _playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
   _data: {fileID: 0}
-  _hp: 20
 --- !u!114 &4996004122945916129
 MonoBehaviour:
   m_ObjectHideFlags: 0
