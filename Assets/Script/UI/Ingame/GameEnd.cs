@@ -16,7 +16,7 @@ public class GameEnd : MonoBehaviour
     private Button reGameBTN;
     [SerializeField]
     private Button menuBTN;
-    
+
 
 
 
@@ -29,6 +29,11 @@ public class GameEnd : MonoBehaviour
     private void OnEnable()
     {
         MakeTimeText((int)Timer.Instance.RealTime);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
     void MakeTimeText(int _time)
@@ -53,7 +58,21 @@ public class GameEnd : MonoBehaviour
     }
 
     void GoldCalc()
-    { 
+    {
+
+    }
+
+    public void GameOver()
+    {
+        endStatsText.text = "GameOver!";
+
+
+    }
+
+    public void GameClear()
+    {
+        endStatsText.text = "GameClear!";
         
-    } 
+
+    }
 }
