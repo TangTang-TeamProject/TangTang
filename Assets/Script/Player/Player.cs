@@ -23,8 +23,9 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private float _invincibleDuration = 0.5f;
     [SerializeField] private PlayerRegistry _playerRegistry;
     [SerializeField] private PlayerData_SO _data;
-    // 나중에 SO로 하든 컨트롤할 값이 들어오면 변경
-    [SerializeField] private float _hp = 20;
+        
+    private float _maxHp;
+    private float _hp;
 
     public EPlayerState _playerState { get; private set; }
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
@@ -34,10 +35,12 @@ public class Player : MonoBehaviour, IDamagables
     private float _speed;
     private float _attack;
     private int _level;
-    private int _requireExp;
-    private int _currentExp;
+    private float _requireExp = 100;
+    private float _currentExp;
 
     public float MoveSpeed => _speed;
+    public float MaxHp => _maxHp;
+    public float CurrentHp => _hp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
     public event Action OnHit;
@@ -86,7 +89,8 @@ public class Player : MonoBehaviour, IDamagables
             CPrint.Error("플레이어 데이터 SO없음");
             return;
         }
-        _hp = _data.BaseHP;
+        _maxHp = _data.BaseHP;
+        _hp = _maxHp;
         _speed = _data.BaseMoveSpeed;
         _attack = _data.BaseATK;
     }
@@ -94,11 +98,15 @@ public class Player : MonoBehaviour, IDamagables
     void Start()
     {
         _checkCo = StartCoroutine(Co_CheckHit());
-        _invincibleTime = new WaitForSeconds(_invincibleDuration);        
+        _invincibleTime = new WaitForSeconds(_invincibleDuration);
+        ItemManager.instance.EXP += GainExp;
+        ItemManager.instance.Heal += GetHeal;
     }
 
     private void OnDisable()
     {
+        ItemManager.instance.EXP -= GainExp;
+        ItemManager.instance.Heal -= GetHeal;
         StopAllPlayerCoroutine();
     }
 
@@ -142,6 +150,7 @@ public class Player : MonoBehaviour, IDamagables
         CPrint.Log("플레이어 맞았음, 무적 시작");
         _hp -= damage;
         OnHit?.Invoke();
+        OnCurrentHPChange?.Invoke(_hp);
 
         if (_hp <= 0)
         {
@@ -181,6 +190,8 @@ public class Player : MonoBehaviour, IDamagables
     void LevelUp()
     {
         _currentExp = 0;
+        _level++;
+        ItemManager.instance.OpenTheBox();
     }
     /* 스킬 스크립트 리스트 활성화할거 -> 스킬 데이터, 사용여부 -> 스킬 사용스크립트 <- 플레이어 공격력
     // 예상 : 구조체 받아서 해체 스킬 레벨 공격계수 범위 등등
@@ -190,12 +201,22 @@ public class Player : MonoBehaviour, IDamagables
     }
     */
     // 젬이 플레이어에게 닿으면 젬에게서 경험치프로퍼티를 받는다
-    public void GainExp(int exp)
+    void GainExp(float exp)
     {
         _currentExp += exp;
         if (_currentExp >= _requireExp)
         {
             LevelUp();
         }
+    }
+
+    void GetHeal()
+    {
+        _hp += _maxHp / 2;
+        if (_hp > _maxHp)
+        {
+            _hp = _maxHp;
+        }
+        OnCurrentHPChange?.Invoke(_hp);
     }
 }
