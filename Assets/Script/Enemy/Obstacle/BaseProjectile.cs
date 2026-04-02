@@ -30,7 +30,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
         float angle = Mathf.Atan2(_shootDir.y, _shootDir.x) * Mathf.Rad2Deg; // 플레이어 바라보는 각도 구하기
         Quaternion rot = Quaternion.Euler(0, 0, angle);
         transform.rotation = rot;
-        _spawnedTime = Timer.Instance.GameTime;
+        _spawnedTime = Timer.Instance.RealTime;
     }
 
     void Update()
@@ -50,7 +50,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
 
     protected virtual void Destroy()
     {
-        if (Timer.Instance.GameTime < _spawnedTime + _aliveTime)
+        if (Timer.Instance.RealTime < _spawnedTime + _aliveTime)
         {
             return;
         }
