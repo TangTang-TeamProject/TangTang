@@ -137,7 +137,7 @@ public class SceneChanger : MonoBehaviour
 
         fadeEndText.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         faded.alpha = 0;
         faded.blocksRaycasts = false;
