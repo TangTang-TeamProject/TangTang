@@ -16,7 +16,7 @@ public class GameEnd : MonoBehaviour
     private Button reGameBTN;
     [SerializeField]
     private Button menuBTN;
-    
+
 
 
 
@@ -24,11 +24,6 @@ public class GameEnd : MonoBehaviour
     {
         reGameBTN.onClick.AddListener(ReGame);
         menuBTN.onClick.AddListener(BackToMenu);
-    }
-
-    private void OnEnable()
-    {
-        MakeTimeText((int)Timer.Instance.RealTime);
     }
 
     void MakeTimeText(int _time)
@@ -42,18 +37,32 @@ public class GameEnd : MonoBehaviour
 
     void BackToMenu()
     {
-        GoldCalc();
         SceneChanger.instance.MoveScene(Scenes.Lobby);
     }
 
     void ReGame()
     {
-        GoldCalc();
         SceneChanger.instance.ReLoadScene();
     }
 
     void GoldCalc()
-    { 
-        
-    } 
+    {
+
+    }
+
+    public void GameOver()
+    {
+        endStatsText.text = "GameOver!";
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc();
+        this.gameObject.SetActive(true);
+    }
+
+    public void GameClear()
+    {
+        endStatsText.text = "GameClear!";
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc();
+        this.gameObject.SetActive(true);
+    }
 }

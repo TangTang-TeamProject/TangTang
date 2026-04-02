@@ -1,19 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IngameUI : MonoBehaviour
+public class IngameFlow : MonoBehaviour
 {
     enum PlayStats
-    { 
+    {
         Playing,
         Pausing,
         Directing,
+        GameOver,
     }
 
-    [SerializeField]
-    private Player player;
     [SerializeField]
     private PlayerCamera pCam;
     [SerializeField]
@@ -26,6 +26,10 @@ public class IngameUI : MonoBehaviour
     private Button pauseBTN;
     [SerializeField]
     private GameObject pauseUI;
+    [SerializeField]
+    private GameEnd gameEndUI;
+
+    private Player player;
 
     private PlayStats situation = PlayStats.Playing;
     private int beforeTime = 0;
@@ -36,11 +40,14 @@ public class IngameUI : MonoBehaviour
     private void Awake()
     {
         pauseBTN.onClick.AddListener(PauseButtonClick);
+
+        player = FindFirstObjectByType<Player>();
     }
 
     private void Start()
     {
         player.OnHit += HurtUI;
+        player.OnDead += GameOver;
         Timer.Instance.BossSpawn += BossAppear;
         Timer.Instance.BossDie += BossDisappear;
     }
@@ -48,6 +55,7 @@ public class IngameUI : MonoBehaviour
     private void OnDestroy()
     {
         player.OnHit -= HurtUI;
+        player.OnDead -= GameOver;
         Timer.Instance.BossSpawn -= BossAppear;
         Timer.Instance.BossDie -= BossDisappear;
     }
@@ -60,6 +68,7 @@ public class IngameUI : MonoBehaviour
             return;
 
         beforeTime = currentTime;
+
         MakeTimeText(currentTime);
     }
 
@@ -90,7 +99,7 @@ public class IngameUI : MonoBehaviour
             pauseUI.SetActive(false);
             PauseGame(false);
         }
-        else if(situation == PlayStats.Playing)
+        else if (situation == PlayStats.Playing)
         {
             ChangeStats(PlayStats.Pausing);
             pauseUI.SetActive(true);
@@ -101,7 +110,7 @@ public class IngameUI : MonoBehaviour
     void HurtUI()
     {
         if (hurtEffect != null)
-        { 
+        {
             StopCoroutine(hurtEffect);
         }
 
@@ -141,5 +150,19 @@ public class IngameUI : MonoBehaviour
     void BossDisappear()
     {
         map.MakeInfinate();
+    }
+
+    void GameOver()
+    {
+        ChangeStats(PlayStats.GameOver);
+
+        gameEndUI.GameOver();
+    }
+
+    void GameClear()
+    {
+        ChangeStats(PlayStats.GameOver);
+
+        gameEndUI.GameClear();
     }
 }

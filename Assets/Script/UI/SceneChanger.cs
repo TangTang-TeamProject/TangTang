@@ -9,6 +9,9 @@ public enum Scenes
 { 
     Lobby = 0,
     Stage_01,
+    STG_001,
+    STG_002,
+    STG_003,
     SceneCount
 }
 
@@ -88,10 +91,9 @@ public class SceneChanger : MonoBehaviour
             return;
         }
 
-        if (sceneDic.TryGetValue(currentScene, out string _name))
-        {
-            coroutine = StartCoroutine(LoadSceneCoroutine(_name));
-        }
+        string _name = NowScene();
+
+        coroutine = StartCoroutine(LoadSceneCoroutine(_name));
     }
 
     IEnumerator LoadSceneCoroutine(string _name)
@@ -135,7 +137,7 @@ public class SceneChanger : MonoBehaviour
 
         fadeEndText.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         faded.alpha = 0;
         faded.blocksRaycasts = false;

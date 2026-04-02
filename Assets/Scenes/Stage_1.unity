@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278387459
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2303,6 +2303,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654532903}
   m_CullTransparentMesh: 1
+--- !u!1 &672612835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672612836}
+  - component: {fileID: 672612837}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672612836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672612835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 910.18805, y: 586.303, z: -7.428918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &672612837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672612835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7f98c23b0eef74f9dedbc3cfc90705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &689213001
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,16 +4214,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 988907539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c61982a77fb9340be12062af0179ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 6605394793533ce4bb5e8a9607865354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 915092814}
   pCam: {fileID: 519420033}
   map: {fileID: 460256869}
   hurtUI: {fileID: 451431161}
   timeText: {fileID: 1067857846}
   pauseBTN: {fileID: 654532905}
   pauseUI: {fileID: 916130435}
+  gameEndUI: {fileID: 941808213}
 --- !u!1 &998015612
 GameObject:
   m_ObjectHideFlags: 0
@@ -7366,3 +7410,4 @@ SceneRoots:
   - {fileID: 453232337}
   - {fileID: 988907543}
   - {fileID: 594524539}
+  - {fileID: 672612836}

@@ -6018,6 +6018,8 @@ MonoBehaviour:
   equip: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
   item: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
   player: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  wave: {fileID: 11400000, guid: 15b29f6a9aef5e84689519c7aa985552, type: 2}
+  evo: {fileID: 11400000, guid: 0ed14be7c08790449a1850d195675727, type: 2}
 --- !u!1 &1247610616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8841,6 +8843,12 @@ MonoBehaviour:
     name: Lobby
   - scene: 1
     name: Stage_1
+  - scene: 2
+    name: STG_001
+  - scene: 3
+    name: STG_002
+  - scene: 4
+    name: STG_003
   faded: {fileID: 1154244669}
   fadeText: {fileID: 1754840840}
   bigSize: {x: 20, y: 20, z: 1}
