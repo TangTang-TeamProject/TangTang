@@ -5,6 +5,8 @@ public class Zombie : BaseEnemy
 
     protected override void Update()
     {
+        base.Update();
+
         if (!CanUpdate())
         {
             return;

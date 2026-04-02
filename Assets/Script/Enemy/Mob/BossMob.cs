@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class BossMob : BaseEnemy
 {
-    private RealEnemySpawner _spawner;
-    public void Init(EnemyPool pool, RealEnemySpawner spawner)
-    {
-        base.Init(pool, 0);
-
-        _spawner = spawner;
-
-    }
+    
+    
 
     private void FixedUpdate()
     {
+        base.Update();
+
         Chase();
         CheckDamaged();
     }
@@ -25,7 +21,6 @@ public class BossMob : BaseEnemy
 
         // 보스 전리품 생성 호출
 
-        Timer.Instance.IsBossDie();
-        Destroy(gameObject);
+        base.Die();
     }
 }

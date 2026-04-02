@@ -7,17 +7,21 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
     [SerializeField] protected EnemyData_SO _monsterData;
-    [Header("피격 설정")]
-    
+    [Header("피격 설정")]    
     [SerializeField] protected float _hitTimer = 0.1f;
 
     protected bool _isHit = false;
+    protected float _hitTime;
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
     protected SpriteRenderer _sr;
+    
+
     protected EnemyPool _pool;
     protected GameObject _target;
+    protected bool _isElite = false;
+    protected bool _isBoss = false;
     protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
        
     protected Vector2 _dir;
@@ -44,7 +48,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     
     protected float _nextDmg;
     
-    public float Damage => _contactDamage;    
+    public float Damage => _contactDamage;  
+    
+    public bool IsBoss { get; set; }
+    public bool IsElite { get; set; }
+
     
 
     protected virtual void Awake()
@@ -58,6 +66,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         _animator = animator;
         _sr = GetComponent<SpriteRenderer>();
+        
+        _hitTime = _hitTimer;
 
         _playerLayer = LayerMask.GetMask(_playerString);
         _enemyLayer = LayerMask.GetMask(_enemyString);
@@ -76,6 +86,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected void Start()
     {
         Timer.Instance.BossSpawn += RemoveWhenBoss;
+        ItemManager.instance.Bomb += RemoveWhenBoss;
     }
 
     protected virtual bool CanUpdate()
@@ -87,7 +98,16 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     {        
         if (_isHit)
         {
+            _hitTime -= Time.deltaTime;
+            _speed = 0f; // 멈칫하는 모션
 
+            if (_hitTime <= 0f)
+            {
+                _isHit = false;
+                _hitTime = _hitTimer;
+                _speed = _monsterData.MoveSpeed; // 스피드 복구
+                _sr.color = Color.white;
+            }
         }
     }
 
@@ -102,7 +122,20 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _speed = _monsterData.MoveSpeed;
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
-        _mobType = _monsterData.EnemyType;        
+        _mobType = _monsterData.EnemyType;
+
+        _isHit = false;
+        _sr.color = Color.white;
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
+                         
+        if (_isElite)
+        {
+            transform.localScale = new Vector3(1.5f, 1.5f, 0); // 엘리트몹 크기 변경
+        }
+        else
+        {
+            transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);
+        }
     }
 
     public virtual void Chase()
@@ -159,20 +192,28 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     {
         _maxHp -= damage;
         _isHit = true;
-              
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
+        _sr.color = Color.red;                      
 
         if (_maxHp <= 0)
         {
             Die();
         }
     }
-
-    
     
     public virtual void Die()
     {             
-        gameObject.SetActive(false); // 몬스터 사망
-        _pool.Return(this);        
+        if (_isBoss)
+        {
+            Timer.Instance.IsBossDie();
+            Destroy(gameObject);
+        }
+        else
+        {
+            _isElite = false;             
+            gameObject.SetActive(false); // 몬스터 사망
+            _pool.Return(this);
+        }             
     }
 
     // 보스전 시작시 몬스터 정리

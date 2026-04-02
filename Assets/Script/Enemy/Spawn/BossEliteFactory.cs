@@ -9,7 +9,7 @@ public class BossEliteFactory : BaseEnemyFactory
 
     protected int _bossIdx = 0;    
 
-    public BaseEnemy CreateBoss(Vector2 pos, RealEnemySpawner spawner)
+    public BaseEnemy CreateBoss(Vector2 pos)
     {
         if (_bossPrefab.Count < 1)
         {
@@ -24,10 +24,11 @@ public class BossEliteFactory : BaseEnemyFactory
             _bossIdx = _bossPrefab.Count - 1;
         }
 
-        BossMob enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BossMob>();
+        BaseEnemy enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BaseEnemy>();
         _bossIdx++; // 보스 리스트 인덱스 증가
-        enemy.Init(_pool, spawner);
+        enemy.Init(_pool, 0);
         enemy.SetTarget(_target);
+        enemy.IsBoss = true;
 
         Vector2 spawnPos = _target.transform.position;
         spawnPos += pos; // 타겟 주변에서 일정 거리만큼 떨어지도록 스폰.
