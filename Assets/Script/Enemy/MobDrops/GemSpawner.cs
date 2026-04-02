@@ -8,7 +8,8 @@ public class GemSpawner : MonoBehaviour
     [Header("EnemyPool 참조 연결")]
     [SerializeField] private EnemyPool _pool;
     [Header("GemFactory 연결")]
-    [SerializeField] private GemFactory _factory;
+    [SerializeField] private GemFactory _factory;   
+
     void Awake()
     {
         if (_pool == null)
@@ -36,8 +37,8 @@ public class GemSpawner : MonoBehaviour
 
         GemType gemType = (GemType)randTypeInt; // int -> enum 변환
 
-        _factory.CreateGem(enemy.gameObject.transform.position, gemType); // 해당 type의 젬 생성하기.
-
+        ExpGem gem = _factory.CreateGem(enemy.gameObject.transform.position, gemType); // 해당 type의 젬 생성하기.
+        gem.GetExp += ItemManager.instance.GetGems;
     }
 }
 

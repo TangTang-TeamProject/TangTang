@@ -1355,6 +1355,7 @@ MonoBehaviour:
   - {fileID: 1222528657}
   - {fileID: 1040954054}
   _bossEliteFactory: {fileID: 1993252533}
+  _time: 240
 --- !u!1 &451431161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,7 +2073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+  _enemyPrefab: {fileID: 1410199820765603486, guid: b7504edfaf04062418fdeb87bc997f61, type: 3}
 --- !u!1001 &631717870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6948,6 +6949,8 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: 0880e8c3f4610af49b0626db14a24593, type: 2}
   _pool: {fileID: 416735477}
   _bossPrefab:
+  - {fileID: 8458380459228892208, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
+  - {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
   - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}
 --- !u!1 &2004860606
 GameObject:

@@ -11,7 +11,8 @@ public abstract class Items : MonoBehaviour
     [SerializeField] protected float _itemMoveSpeed = 5f;
 
     protected GameObject _target;
-   
+
+    public Action<float> OnAbsorbed;
 
     void Update()
     {
