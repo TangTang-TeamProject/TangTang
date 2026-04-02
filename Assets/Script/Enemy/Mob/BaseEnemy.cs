@@ -6,7 +6,12 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
-    [SerializeField] protected EnemyData_SO _monsterData;    
+    [SerializeField] protected EnemyData_SO _monsterData;
+    [Header("피격 설정")]
+    
+    [SerializeField] protected float _hitTimer = 0.1f;
+
+    protected bool _isHit = false;
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
@@ -14,10 +19,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected EnemyPool _pool;
     protected GameObject _target;
     protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
-
-    protected bool _isHit = false;
-    
-    
+       
     protected Vector2 _dir;
     protected float _radius;
     protected Vector2 _offset;
@@ -83,6 +85,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void Update()
     {        
+        if (_isHit)
+        {
+
+        }
     }
 
     public virtual void Init(EnemyPool pool, int idx)
