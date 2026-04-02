@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IAttackables
@@ -12,6 +14,9 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected EnemyPool _pool;
     protected GameObject _target;
     protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
+
+    protected bool _isHit = false;
+    
     
     protected Vector2 _dir;
     protected float _radius;
@@ -37,8 +42,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     
     protected float _nextDmg;
     
-    public float Damage => _contactDamage;
-    public Action OnHit;    
+    public float Damage => _contactDamage;    
     
 
     protected virtual void Awake()
@@ -148,15 +152,16 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected virtual void Hit(float damage)
     {
         _maxHp -= damage;
-
-
-        OnHit?.Invoke();
+        _isHit = true;
+              
 
         if (_maxHp <= 0)
         {
             Die();
         }
     }
+
+    
     
     public virtual void Die()
     {             

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,8 +34,11 @@ public class ExpGem : Items
 
     // 흡수 되었을 시 -> pool 로 리턴.
     public override void SetActiveFalse()
-    {       
-        _pool.Return(this);
+    {
+        _pool.Return(this);  
+        
+        OnAbsorbed?.Invoke();
+
         base.SetActiveFalse();
     }
 }
