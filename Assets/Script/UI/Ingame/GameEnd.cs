@@ -26,16 +26,6 @@ public class GameEnd : MonoBehaviour
         menuBTN.onClick.AddListener(BackToMenu);
     }
 
-    private void OnEnable()
-    {
-        MakeTimeText((int)Timer.Instance.RealTime);
-    }
-
-    private void OnDestroy()
-    {
-        
-    }
-
     void MakeTimeText(int _time)
     {
         int min = _time / 60;
@@ -47,13 +37,11 @@ public class GameEnd : MonoBehaviour
 
     void BackToMenu()
     {
-        GoldCalc();
         SceneChanger.instance.MoveScene(Scenes.Lobby);
     }
 
     void ReGame()
     {
-        GoldCalc();
         SceneChanger.instance.ReLoadScene();
     }
 
@@ -65,14 +53,16 @@ public class GameEnd : MonoBehaviour
     public void GameOver()
     {
         endStatsText.text = "GameOver!";
-
-
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc();
+        this.gameObject.SetActive(true);
     }
 
     public void GameClear()
     {
         endStatsText.text = "GameClear!";
-        
-
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc();
+        this.gameObject.SetActive(true);
     }
 }

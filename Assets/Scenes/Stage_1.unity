@@ -4180,6 +4180,7 @@ MonoBehaviour:
   timeText: {fileID: 1067857846}
   pauseBTN: {fileID: 654532905}
   pauseUI: {fileID: 916130435}
+  gameEndUI: {fileID: 941808213}
 --- !u!1 &998015612
 GameObject:
   m_ObjectHideFlags: 0
