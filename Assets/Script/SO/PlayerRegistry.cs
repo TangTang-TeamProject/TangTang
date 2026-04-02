@@ -21,6 +21,7 @@ public class PlayerRegistry : ScriptableObject
 
         MakeDic();
     }
+
     public void MakeDic()
     {
         dataDic.Clear();
