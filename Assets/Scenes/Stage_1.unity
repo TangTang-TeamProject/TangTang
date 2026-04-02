@@ -2039,7 +2039,7 @@ GameObject:
   - component: {fileID: 595066356}
   - component: {fileID: 595066357}
   m_Layer: 0
-  m_Name: ZombiePool
+  m_Name: GoblinSoldierPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4459202857756033555, guid: 059255892897fd54ea8f490ac3d699ad, type: 3}
+  _enemyPrefab: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
 --- !u!1001 &631717870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4997,7 +4997,7 @@ GameObject:
   - component: {fileID: 1222528656}
   - component: {fileID: 1222528657}
   m_Layer: 0
-  m_Name: ZombieFactory
+  m_Name: GoblinSoldierFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

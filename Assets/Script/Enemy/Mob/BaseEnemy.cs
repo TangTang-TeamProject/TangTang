@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IAttackables
@@ -7,6 +8,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
+    protected SpriteRenderer _sr;
     protected EnemyPool _pool;
     protected GameObject _target;
     protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
@@ -36,6 +38,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _nextDmg;
     
     public float Damage => _contactDamage;
+    public Action OnHit;    
     
 
     protected virtual void Awake()
@@ -48,6 +51,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
 
         _animator = animator;
+        _sr = GetComponent<SpriteRenderer>();
 
         _playerLayer = LayerMask.GetMask(_playerString);
         _enemyLayer = LayerMask.GetMask(_enemyString);
@@ -144,6 +148,9 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected virtual void Hit(float damage)
     {
         _maxHp -= damage;
+
+
+        OnHit?.Invoke();
 
         if (_maxHp <= 0)
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 public class RealEnemySpawner : MonoBehaviour
 {
     [Header("스테이지 정보 입력")]
-    [SerializeField] private string _stageId;
+    [SerializeField] private string _stageId = "STG_001";
 
     [Header("WaveRegistry SO")]
     [SerializeField] private WaveRegistry _waveRegistry;
@@ -28,12 +28,14 @@ public class RealEnemySpawner : MonoBehaviour
     private float _nextSpawnTime = 0f;
     private bool _isBossRound = false;
 
+    private bool _enabled = true;
+
     private void Awake()
     {
-        if (SceneChanger.instance != null)
-        {
-            _stageId = SceneChanger.instance.NowScene();
-        }
+        //if (SceneChanger.instance != null)
+        //{
+        //    _stageId = SceneChanger.instance.NowScene();
+        //}
         GetWaveDatas(); // 스테이지 웨이브 정보 받아오기
     }
 
@@ -51,7 +53,7 @@ public class RealEnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Time.frameCount % 3 != 0)
+        if (Time.frameCount % 3 != 0 || !_enabled)
         {
             return;
         }
@@ -77,6 +79,7 @@ public class RealEnemySpawner : MonoBehaviour
         }
 
         CPrint.Warn("웨이브 못찾음");
+        _enabled = false;
         return;
     }
 
