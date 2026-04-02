@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public abstract class Items : MonoBehaviour
     [Header("아이템 흡수 속도")]
     [SerializeField] protected float _itemMoveSpeed = 5f;
 
-    protected GameObject _target;        
+    protected GameObject _target;
+
+    public Action OnAbsorbed;
 
     void Update()
     {
