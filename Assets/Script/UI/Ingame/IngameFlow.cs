@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IngameUI : MonoBehaviour
+public class IngameFlow : MonoBehaviour
 {
     enum PlayStats
     {
@@ -13,8 +14,6 @@ public class IngameUI : MonoBehaviour
         GameOver,
     }
 
-    [SerializeField]
-    private Player player;
     [SerializeField]
     private PlayerCamera pCam;
     [SerializeField]
@@ -30,6 +29,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField]
     private GameEnd gameEndUI;
 
+    private Player player;
+
     private PlayStats situation = PlayStats.Playing;
     private int beforeTime = 0;
     private Coroutine hurtEffect;
@@ -39,6 +40,8 @@ public class IngameUI : MonoBehaviour
     private void Awake()
     {
         pauseBTN.onClick.AddListener(PauseButtonClick);
+
+        player = FindFirstObjectByType<Player>();
     }
 
     private void Start()
