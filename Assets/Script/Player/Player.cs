@@ -191,7 +191,7 @@ public class Player : MonoBehaviour, IDamagables
     {
         _currentExp = 0;
         _level++;
-        ItemManager.instance.OpenTheBox();
+        ItemManager.instance.PickMeUp();
     }
     /* 스킬 스크립트 리스트 활성화할거 -> 스킬 데이터, 사용여부 -> 스킬 사용스크립트 <- 플레이어 공격력
     // 예상 : 구조체 받아서 해체 스킬 레벨 공격계수 범위 등등
