@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +26,7 @@ public class BossEliteFactory : BaseEnemyFactory
         BaseEnemy enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BaseEnemy>();
         _bossIdx++; // 보스 리스트 인덱스 증가
         enemy.Init(_pool, 0);
-        enemy.SetTarget(_target);
-        enemy.IsBoss = true;
+        enemy.SetTarget(_target);       
 
         Vector2 spawnPos = _target.transform.position;
         spawnPos += pos; // 타겟 주변에서 일정 거리만큼 떨어지도록 스폰.

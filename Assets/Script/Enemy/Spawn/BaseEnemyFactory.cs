@@ -15,7 +15,8 @@ public abstract class BaseEnemyFactory : MonoBehaviour
 
     public virtual BaseEnemy CreateEnemy(Vector2 pos)
     {
-        BaseEnemy enemy = _pool.GetEnemy(transform);
+        BaseEnemy enemy = _pool.GetEnemy(_enemyData, transform);
+        enemy.IsElite(false);
         enemy.Init(_pool, _idx); // ÀÎµ¦½º ºÎ¿©
         _idx++;
         enemy.SetTarget(_target);
@@ -31,8 +32,8 @@ public abstract class BaseEnemyFactory : MonoBehaviour
 
     public virtual BaseEnemy CreateElite(Vector2 pos)
     {
-        BaseEnemy enemy = _pool.GetEnemy(transform);
-        enemy.IsElite = true;
+        BaseEnemy enemy = _pool.GetEnemy(_enemyData, transform);
+        enemy.IsElite(true);
         enemy.Init(_pool, 0);        
         enemy.SetTarget(_target);
 

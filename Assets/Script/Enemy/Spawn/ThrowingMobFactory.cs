@@ -10,7 +10,7 @@ public class ThrowingMobFactory : BaseEnemyFactory
 
     public override BaseEnemy CreateEnemy(Vector2 pos)
     {
-        ThrowingMob enemy = (ThrowingMob)_pool.GetEnemy(transform);
+        ThrowingMob enemy = (ThrowingMob)_pool.GetEnemy(_enemyData, transform);
 
         Vector2 spawnPos = _target.transform.position;
         spawnPos += pos; // 타겟 주변에서 일정 거리만큼 떨어지도록 스폰.
