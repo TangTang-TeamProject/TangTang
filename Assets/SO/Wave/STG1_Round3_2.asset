@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5337a6659503a994c8710d86714b6a26, type: 3}
-  m_Name: ExpGem_Large
+  m_Script: {fileID: 11500000, guid: 507db029d2ffc294e999720b140dc41c, type: 3}
+  m_Name: STG1_Round3_2
   m_EditorClassIdentifier: 
-  itemID: 7
-  itemName: ExpGem_L
-  exp: 20
-  gold: 0
-  dmg: 0
-  prefab: {fileID: 1772454461204316306, guid: 9bf861be9be71334b87cbc0b6a2a8811, type: 3}
+  stageID: STG_001
+  startSec: 660
+  endSec: 720
+  spawnEnemy: ENM_002
+  enemyCount: 20
+  spawnIntervalSec: 2

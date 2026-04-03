@@ -21,8 +21,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected EnemyPool _pool;
     protected GameObject _target;
     protected bool _isElite = false;
-    protected bool _isBoss = false;
+
     protected int _idx; // 그룹으로 나눌 기준이 될 인덱스
+    protected float _minX = -15f;
+    protected float _maxX = 15f;
+    protected float _minY = -15f;
+    protected float _maxY = 15f;
        
     protected Vector2 _dir;
     protected float _radius;
@@ -42,17 +46,21 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _maxHp;
     protected float _contactDamage;
     protected float _speed;
+    protected float _expDrop;
     protected float _atkCycle;
     protected float _bulletSpeed;
     protected EnemyType _mobType;
     
     protected float _nextDmg;
     
-    public float Damage => _contactDamage;  
+    public float Damage => _contactDamage;
+    public EnemyType MobType => _mobType;
+    public float ExpDrop => _expDrop;
     
-    public bool IsBoss { get; set; }
-    public bool IsElite { get; set; }
-
+    public void IsElite(bool tf)
+    {
+        _isElite = tf;
+    }
     
 
     protected virtual void Awake()
@@ -122,20 +130,22 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _speed = _monsterData.MoveSpeed;
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
-        _mobType = _monsterData.EnemyType;
-
-        _isHit = false;
-        _sr.color = Color.white;
-        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
-                         
+        _expDrop = _monsterData.ExpDrop;
         if (_isElite)
         {
+            _mobType = EnemyType.Elite;
             transform.localScale = new Vector3(1.5f, 1.5f, 0); // 엘리트몹 크기 변경
         }
         else
         {
+            _mobType = _monsterData.EnemyType;
             transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);
         }
+            
+        _isHit = false;
+        _sr.color = Color.white;
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
+                                 
     }
 
     public virtual void Chase()
@@ -202,18 +212,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
     
     public virtual void Die()
-    {             
-        if (_isBoss)
-        {
-            Timer.Instance.IsBossDie();
-            Destroy(gameObject);
-        }
-        else
-        {
-            _isElite = false;             
-            gameObject.SetActive(false); // 몬스터 사망
-            _pool.Return(this);
-        }             
+    {                     
+        _isElite = false;             
+        gameObject.SetActive(false); // 몬스터 사망
+        _pool.Return(this);                   
     }
 
     // 보스전 시작시 몬스터 정리
@@ -231,8 +233,6 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected virtual Vector2 CheckBoundary()
     {        
         Vector2 sumDir = Vector2.zero;
-
-        //Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius, _enemyLayer);
 
         int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, _radius, _boundaryBuffer, _enemyLayer);
 
@@ -259,9 +259,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             return;
         }
 
-        _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.
-
-        //Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _offset, _radius * 0.9f, _playerBulletLayer);
+        _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.        
 
         int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, 
             _radius, 
@@ -275,7 +273,31 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
                 Hit(attackables.Damage);
             }
         }
-    }    
-  
-    
+    }
+
+    // 배틀존 안으로 제한.
+    protected void MoveIntoBattlezone()
+    {
+        Vector2 nowPos = transform.position;
+
+        if (nowPos.x > _maxX)
+        {
+            nowPos.x = _maxX;
+        }
+        else if (nowPos.x < _minX)
+        {
+            nowPos.x = _minX;
+        }
+
+        if (nowPos.y > _maxY)
+        {
+            nowPos.y = _maxY;
+        }
+        else if (nowPos.y < _minY)
+        {
+            nowPos.y = _minY;
+        }
+
+        transform.position = nowPos;
+    }
 }

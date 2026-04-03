@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.Collections;
 using UnityEngine;
 
 public class RealEnemySpawner : MonoBehaviour
@@ -97,8 +94,7 @@ public class RealEnemySpawner : MonoBehaviour
         {
             SpawnWaves(_nowWave[i]);
         }
-        
-       
+               
     }
 
     private void CheckWaveTime()

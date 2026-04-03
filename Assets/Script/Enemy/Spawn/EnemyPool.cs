@@ -18,7 +18,7 @@ public class EnemyPool : MonoBehaviour
         _enemyPool.Enqueue(enemy);
     }
 
-    public BaseEnemy GetEnemy(Transform parent)
+    public BaseEnemy GetEnemy(EnemyData_SO enemyData, Transform parent)
     {
         if (_enemyPool.Count > 0)
         {
@@ -27,7 +27,7 @@ public class EnemyPool : MonoBehaviour
             return enemy;
         }
 
-        GameObject go = Instantiate(_enemyPrefab, parent);
+        GameObject go = Instantiate(enemyData.Prefab, parent);
         return go.GetComponentInChildren<BaseEnemy>();
     }
 
