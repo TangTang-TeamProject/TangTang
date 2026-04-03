@@ -8,7 +8,12 @@ public class GemSpawner : MonoBehaviour
     [Header("EnemyPool 참조 연결")]
     [SerializeField] private EnemyPool _pool;
     [Header("GemFactory 연결")]
-    [SerializeField] private GemFactory _factory;   
+    [SerializeField] private GemFactory _factory;
+
+    [Header("Gem Registry")]
+    [SerializeField] private ItemRegistry _itemRegistry;
+
+    private List<ItemData_SO> _gemDatas;
 
     void Awake()
     {
@@ -29,13 +34,31 @@ public class GemSpawner : MonoBehaviour
         _pool.OnEnemyDead += SpawnGem; // enemy 사망시 젬 스폰 구독.
     }
     
+    private void FindGemData()
+    {        
+    }
 
     public void SpawnGem(BaseEnemy enemy)
     {
-        int typeCnt = Enum.GetValues(typeof(GemType)).Length;
-        int randTypeInt = UnityEngine.Random.Range(0, typeCnt); // 타입 번호들 중 랜덤 번호 고르기
+        if (enemy.MobType != EnemyType.Normal)
+        {
+            return;
+        }
 
-        GemType gemType = (GemType)randTypeInt; // int -> enum 변환
+        GemType gemType;
+
+        if (enemy.ExpDrop < 10) // 10 미만 스몰
+        {
+            gemType = GemType.Small;
+        }
+        else if (enemy.ExpDrop < 20) // 20 미만 미디움
+        {
+            gemType = GemType.Medium;
+        }
+        else // 20 이상 라지
+        {
+            gemType = GemType.Large;
+        }        
 
         ExpGem gem = _factory.CreateGem(enemy.gameObject.transform.position, gemType); // 해당 type의 젬 생성하기.
         gem.GetExp += ItemManager.instance.GetGems;

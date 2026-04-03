@@ -5,15 +5,27 @@ using UnityEngine;
 public class BossMob : BaseEnemy
 {
     
-    
 
     private void FixedUpdate()
     {
         base.Update();
 
+        if (_target == null) // 타겟 없으면 return
+        {
+            return;
+        }
+
+       
+        if (!CanUpdate())
+        {
+            return;
+        }
+
         Chase();
         CheckDamaged();
     }
+
+   
 
     public override void Die()
     {
@@ -21,6 +33,7 @@ public class BossMob : BaseEnemy
 
         // 보스 전리품 생성 호출
 
-        base.Die();
+        Timer.Instance.IsBossDie();
+        Destroy(gameObject);
     }
 }
