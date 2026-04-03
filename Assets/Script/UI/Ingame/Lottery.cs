@@ -20,7 +20,7 @@ public class Lottery : MonoBehaviour
     
     }
 
-    void EndLottery()
+    public void EndLottery()
     {
         this.gameObject.SetActive(false);
         callback?.Invoke();
