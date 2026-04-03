@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     public float RealTime => _realTime;
     public float TickTime => _tickTime;
     public event Action BossSpawn;
-    public event Action BossDie;
+    public event Action<bool> BossDie;
 
     private void Awake()
     {
@@ -70,9 +70,9 @@ public class Timer : MonoBehaviour
         Time.timeScale = stop ? 0.0f : 1.0f;
     }
 
-    public void IsBossDie()
+    public void IsBossDie(bool last)
     {
         _isTimerRun = true;
-        BossDie?.Invoke();
+        BossDie?.Invoke(last);
     }
 }

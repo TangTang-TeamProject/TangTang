@@ -43,7 +43,7 @@ public class MidBoss2 : BaseEnemy
 
         // 보스 전리품 생성 호출
 
-        Timer.Instance.IsBossDie();
+        Timer.Instance.IsBossDie(false);
         Destroy(gameObject);
     }
 }
