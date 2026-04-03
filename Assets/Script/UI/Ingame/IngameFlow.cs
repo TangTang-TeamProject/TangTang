@@ -44,6 +44,8 @@ public class IngameFlow : MonoBehaviour
         player.OnDead += GameOver;
         Timer.Instance.BossSpawn += BossAppear;
         Timer.Instance.BossDie += BossDisappear;
+        ItemManager.instance.SkillPick += SkillPickEvent;
+        ItemManager.instance.ItemBox += RandomBoxEvent;
     }
 
     private void OnDisable()
@@ -57,6 +59,12 @@ public class IngameFlow : MonoBehaviour
         {
             Timer.Instance.BossSpawn -= BossAppear;
             Timer.Instance.BossDie -= BossDisappear;
+        }
+
+        if (ItemManager.instance)
+        {
+            ItemManager.instance.SkillPick -= SkillPickEvent;
+            ItemManager.instance.ItemBox -= RandomBoxEvent;
         }
     }
 
@@ -142,6 +150,16 @@ public class IngameFlow : MonoBehaviour
         ChangeStats(PlayStats.Playing);
 
         yield break;
+    }
+
+    void SkillPickEvent()
+    { 
+    
+    }
+
+    void RandomBoxEvent()
+    {
+
     }
 
     void BossDisappear(bool last)

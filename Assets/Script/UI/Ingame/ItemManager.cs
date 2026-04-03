@@ -7,12 +7,13 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
-    public Action Bomb;
-    public Action Heal;
-    public Action Money;
-    public Action<GameObject> Magnetic;
-    public Action<float> EXP;
-    public Action ItemBox;
+    public event Action Bomb;
+    public event Action Heal;
+    public event Action Money;
+    public event Action<GameObject> Magnetic;
+    public event Action<float> EXP;
+    public event Action ItemBox;
+    public event Action SkillPick;
 
     private void Awake()
     {
@@ -53,5 +54,10 @@ public class ItemManager : MonoBehaviour
     public void OpenTheBox()
     {
         ItemBox?.Invoke();
+    }
+
+    public void PickMeUp()
+    {
+        SkillPick?.Invoke();
     }
 }
