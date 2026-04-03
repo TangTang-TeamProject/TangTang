@@ -21,7 +21,7 @@ public class SkillPick : MonoBehaviour
 
     }
 
-    void EndPick()
+    public void EndPick()
     {
         this.gameObject.SetActive(false);
         callback?.Invoke();
