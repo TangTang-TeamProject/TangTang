@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MidBoss1 : BaseEnemy
 {
-    [SerializeField] private float _dashPower = 5f;
+    [SerializeField] private float _dashPower = 3f;
     [Header("해당 수치이하 만큼 접근하면 대시 발동")]
     [SerializeField] private float _dashDist = 5f;
     [SerializeField] private float _dashTime = 1f;
@@ -76,7 +76,7 @@ public class MidBoss1 : BaseEnemy
             newPos += _dashDir * _speed * _dashPower * Time.deltaTime;
 
             transform.position = newPos;
-
+            MoveIntoBattlezone();
             yield return null;
         }
 

@@ -2,29 +2,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossEliteFactory : BaseEnemyFactory
-{    
-    [Header("보스 프리팹 연결")]
-    [SerializeField] protected List<GameObject> _bossPrefab;    
+{
+    [Header("보스 SO 연결")]
+    [SerializeField] private List<EnemyData_SO> _bossDatas;  
 
-    protected int _bossIdx = 0;    
+    protected int _bossIdx = 0;
+
+    public int BossIdx => _bossIdx;
+
+    public List<EnemyData_SO> BossDatas => _bossDatas;
 
     public BaseEnemy CreateBoss(Vector2 pos)
     {
-        if (_bossPrefab.Count < 1)
+        if (_bossDatas.Count < 1)
         {
-            CPrint.Warn($"{this} : bossPrefab 연결 안됨");
+            CPrint.Warn($"{this} : boss 연결 안됨");
             enabled = false;
             return null;
         }
 
-        if (_bossIdx >= _bossPrefab.Count)
+        if (_bossIdx >= _bossDatas.Count)
         {
-            CPrint.Log($"{this} : _bossIdx >= bossPrefab.Count");
-            _bossIdx = _bossPrefab.Count - 1;
+            CPrint.Log($"{this} : _bossIdx >= _bossDatas.Count");
+            _bossIdx = _bossDatas.Count - 1;
         }
 
-        BaseEnemy enemy = Instantiate(_bossPrefab[_bossIdx], transform).GetComponent<BaseEnemy>();
-        _bossIdx++; // 보스 리스트 인덱스 증가
+        BaseEnemy enemy = Instantiate(_bossDatas[_bossIdx].Prefab, transform).GetComponent<BaseEnemy>();
+        _bossIdx++; // 보스 리스트 인덱스 증가        
         enemy.Init(_pool, 0);
         enemy.SetTarget(_target);       
 

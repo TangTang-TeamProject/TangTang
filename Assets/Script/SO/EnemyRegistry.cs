@@ -28,7 +28,7 @@ public class EnemyRegistry : ScriptableObject
 
         for (int i = 0; i < enemys.Count; i++)
         {
-            dataDic.Add(enemys[i].EmemyID, enemys[i]);
+            dataDic.Add(enemys[i].EnemyID, enemys[i]);
         }
     }
 

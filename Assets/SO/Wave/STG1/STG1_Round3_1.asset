@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c7e16ae09bca94481874cbad65424a, type: 3}
-  m_Name: PlayerExample
+  m_Script: {fileID: 11500000, guid: 507db029d2ffc294e999720b140dc41c, type: 3}
+  m_Name: STG1_Round3_1
   m_EditorClassIdentifier: 
-  characterID: 
-  nameKR: 
-  nameEN: 
-  baseHP: 2000
-  baseATK: 1
-  baseMoveSpeed: 4
-  critRate: 0
-  pickUpRange: 0
-  prefab: {fileID: 0}
+  stageID: STG_001
+  startSec: 601
+  endSec: 660
+  spawnEnemy: ENM_001
+  enemyCount: 10
+  spawnIntervalSec: 2

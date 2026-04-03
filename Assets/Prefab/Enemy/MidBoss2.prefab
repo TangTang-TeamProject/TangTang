@@ -168,5 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da8dcec579bdc74fbf17f38644c1933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterData: {fileID: 0}
+  _monsterData: {fileID: 11400000, guid: f95122333a7e88f458365baf7890f7dc, type: 2}
   _hitTimer: 0.1

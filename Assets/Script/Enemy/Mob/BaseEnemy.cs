@@ -93,6 +93,9 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected void Start()
     {
+        if (_monsterData.EnemyType == EnemyType.Boss)
+            return;
+
         Timer.Instance.BossSpawn += RemoveWhenBoss;
         ItemManager.instance.Bomb += RemoveWhenBoss;
     }
@@ -124,7 +127,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _pool = pool;
         _idx = idx; 
 
-        _id = _monsterData.EmemyID;
+        _id = _monsterData.EnemyID;
         _maxHp = _monsterData.HP;
         _contactDamage = _monsterData.ContactDamage;
         _speed = _monsterData.MoveSpeed;
