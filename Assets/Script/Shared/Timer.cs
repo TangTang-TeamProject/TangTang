@@ -12,7 +12,6 @@ public class Timer : MonoBehaviour
     private float _realTime;
     private float _keepTime;
     private float _tickTime;
-    [SerializeField] private int[] _bossTime = {300, 600 ,900};
     private int _bossCount = 0;
 
     public float GameTime => _timer;
@@ -53,16 +52,6 @@ public class Timer : MonoBehaviour
             return;
         }
         _timer += Time.deltaTime;
-
-        if (_timer >= _bossTime[_bossCount] && _bossCount < _bossTime.Length)
-        {
-            _isTimerRun = false;
-            BossSpawn?.Invoke();
-            // 보스 출현시 시간 고정
-            _keepTime = _bossTime[_bossCount];
-            _timer = _keepTime;
-            _bossCount++;
-        }
     }
 
     public void IsTimeStop(bool stop)
@@ -74,5 +63,15 @@ public class Timer : MonoBehaviour
     {
         _isTimerRun = true;
         BossDie?.Invoke(last);
+    }
+
+    public void IsBossSpawn(float time)
+    {
+        _isTimerRun = false;
+        BossSpawn?.Invoke();
+        // 보스 출현시 시간 고정
+        _keepTime = time;
+        _timer = _keepTime;
+        _bossCount++;
     }
 }
