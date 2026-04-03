@@ -116,7 +116,7 @@ public class SceneChanger : MonoBehaviour
 
         while (currentTime < fadeTime)
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.unscaledDeltaTime;
 
             t = currentTime / fadeTime;
 
@@ -137,7 +137,7 @@ public class SceneChanger : MonoBehaviour
 
         fadeEndText.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         faded.alpha = 0;
         faded.blocksRaycasts = false;

@@ -17,6 +17,7 @@ public class IngameSettings : Settings
 
     void GiveUpGame()
     {
+        Timer.Instance.IsTimeStop(false);
         SceneChanger.instance.MoveScene(Scenes.Lobby);
     }
 

@@ -46,7 +46,7 @@ public class IngameFlow : MonoBehaviour
         Timer.Instance.BossDie += BossDisappear;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         player.OnDead -= GameOver;
         Timer.Instance.BossSpawn -= BossAppear;
