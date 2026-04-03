@@ -23,6 +23,10 @@ public class IngameFlow : MonoBehaviour
     [SerializeField]
     private Button pauseBTN;
     [SerializeField]
+    private Lottery lotteryUI;
+    [SerializeField]
+    private SkillPick skillPickUI;
+    [SerializeField]
     private IngameSettings pauseUI;
     [SerializeField]
     private GameEnd gameEndUI;
@@ -45,7 +49,7 @@ public class IngameFlow : MonoBehaviour
         Timer.Instance.BossSpawn += BossAppear;
         Timer.Instance.BossDie += BossDisappear;
         ItemManager.instance.SkillPick += SkillPickEvent;
-        ItemManager.instance.ItemBox += RandomBoxEvent;
+        ItemManager.instance.LuckyBox += LotteryEvent;
     }
 
     private void OnDisable()
@@ -64,7 +68,7 @@ public class IngameFlow : MonoBehaviour
         if (ItemManager.instance)
         {
             ItemManager.instance.SkillPick -= SkillPickEvent;
-            ItemManager.instance.ItemBox -= RandomBoxEvent;
+            ItemManager.instance.LuckyBox -= LotteryEvent;
         }
     }
 
@@ -153,13 +157,22 @@ public class IngameFlow : MonoBehaviour
     }
 
     void SkillPickEvent()
-    { 
-    
+    {
+        ChangeStats(PlayStats.Directing);
+
+        skillPickUI.StartPick(EndEvent);
     }
 
-    void RandomBoxEvent()
+    void LotteryEvent()
     {
+        ChangeStats(PlayStats.Directing);
 
+        lotteryUI.StartLottery(EndEvent);
+    }
+
+    void EndEvent()
+    {
+        ChangeStats(PlayStats.Playing);
     }
 
     void BossDisappear(bool last)

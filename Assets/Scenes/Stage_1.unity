@@ -1181,6 +1181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 358549462}
+  - component: {fileID: 358549465}
   - component: {fileID: 358549464}
   - component: {fileID: 358549463}
   m_Layer: 5
@@ -1248,6 +1249,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358549461}
   m_CullTransparentMesh: 1
+--- !u!114 &358549465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358549461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8875d75571d21cf4393c08a7dd36a18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &429468541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4612,10 +4625,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026644666}
+  - component: {fileID: 1026644669}
   - component: {fileID: 1026644668}
   - component: {fileID: 1026644667}
   m_Layer: 5
-  m_Name: RandomBox
+  m_Name: Lottery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4680,6 +4694,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026644665}
   m_CullTransparentMesh: 1
+--- !u!114 &1026644669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026644665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3c20604deb70043b109d013043f15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1033226744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5869,7 +5895,7 @@ GameObject:
   - component: {fileID: 1306007743}
   - component: {fileID: 1306007742}
   m_Layer: 5
-  m_Name: RandomBoxResult
+  m_Name: LotteryResult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7391,7 +7417,7 @@ GameObject:
   - component: {fileID: 1758473485}
   - component: {fileID: 1758473484}
   m_Layer: 5
-  m_Name: RandomBoxMotion
+  m_Name: LotteryMotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
