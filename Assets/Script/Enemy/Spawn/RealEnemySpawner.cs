@@ -201,7 +201,7 @@ public class RealEnemySpawner : MonoBehaviour
         {
             CPrint.Warn("Boss ¾øÀ½");
             _isBossRound = false;
-            Timer.Instance.IsBossDie();
+            Timer.Instance.IsBossDie(true);
         }
     }
 
@@ -210,8 +210,12 @@ public class RealEnemySpawner : MonoBehaviour
         _aliveList.Clear();
     }
 
-    public void BossDie()
+    public void BossDie(bool last)
     {
+        if (last)
+        {
+            return;
+        }
         _isBossRound = false;
 
     }

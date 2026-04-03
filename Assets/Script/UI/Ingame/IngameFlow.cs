@@ -144,9 +144,13 @@ public class IngameFlow : MonoBehaviour
         yield break;
     }
 
-    void BossDisappear()
+    void BossDisappear(bool last)
     {
         map.MakeInfinate();
+        if (last)
+        {
+            GameClear();
+        }
     }
 
     void GameOver()

@@ -6,7 +6,6 @@ using UnityEngine;
 public class BossMob : BaseEnemy
 {
 
-    public Action FinalBossDie;
 
     private void FixedUpdate()
     {
@@ -35,7 +34,7 @@ public class BossMob : BaseEnemy
 
         // 보스 전리품 생성 호출
 
-        FinalBossDie?.Invoke();
+        Timer.Instance.IsBossDie(true);
         Destroy(gameObject);
     }
 }
