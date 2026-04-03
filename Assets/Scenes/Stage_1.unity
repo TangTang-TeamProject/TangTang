@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pool: {fileID: 595066357}
   _factory: {fileID: 1899557390}
+  _itemRegistry: {fileID: 0}
 --- !u!1 &36339451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,51 +1172,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337841848}
   m_CullTransparentMesh: 1
---- !u!1 &416735475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 416735476}
-  - component: {fileID: 416735477}
-  m_Layer: 0
-  m_Name: BossElitePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &416735476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416735475}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1993252532}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &416735477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416735475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
 --- !u!1 &429468541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,8 +6930,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 416735476}
+  m_Children: []
   m_Father: {fileID: 431584816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1993252533
@@ -6992,8 +6947,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 915092813}
   _enemyData: {fileID: 11400000, guid: 0880e8c3f4610af49b0626db14a24593, type: 2}
-  _pool: {fileID: 416735477}
+  _pool: {fileID: 0}
   _bossPrefab:
+  - {fileID: 8458380459228892208, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
+  - {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
   - {fileID: 8519397241856778277, guid: 652699b7895d2a8498d950018f534c26, type: 3}
 --- !u!1 &2004860606
 GameObject:
@@ -7039,7 +6996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e94e165961b494599ec305b538d529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossTime: 3c0000005802000084030000
+  _bossTime: 2c0100005802000084030000
 --- !u!1 &2024529127
 GameObject:
   m_ObjectHideFlags: 0
