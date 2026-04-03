@@ -28,7 +28,6 @@ public class ItemManager : MonoBehaviour
     public void GetGems(float _exp)
     {
         EXP?.Invoke(_exp);
-        CPrint.Log("GemCount");
     }
 
     public void BoomBoomPow()
