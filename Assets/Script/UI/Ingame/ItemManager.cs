@@ -12,7 +12,7 @@ public class ItemManager : MonoBehaviour
     public event Action Money;
     public event Action<GameObject> Magnetic;
     public event Action<float> EXP;
-    public event Action ItemBox;
+    public event Action LuckyBox;
     public event Action SkillPick;
 
     private void Awake()
@@ -53,7 +53,7 @@ public class ItemManager : MonoBehaviour
 
     public void OpenTheBox()
     {
-        ItemBox?.Invoke();
+        LuckyBox?.Invoke();
     }
 
     public void PickMeUp()
