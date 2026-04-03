@@ -16,5 +16,5 @@ MonoBehaviour:
   startSec: 660
   endSec: 720
   spawnEnemy: ENM_002
-  enemyCount: 20
+  enemyCount: 10
   spawnIntervalSec: 2
