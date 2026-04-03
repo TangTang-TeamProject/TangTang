@@ -9,6 +9,8 @@ public class RealEnemySpawner : MonoBehaviour
     [Header("WaveRegistry SO")]
     [SerializeField] private WaveRegistry _waveRegistry;
 
+    [Header("스폰 카운트")]
+    [SerializeField] private float _spawnCount;
 
     [Header("스폰 범위 최소 ~ 최대")]
     [SerializeField] private float _minSpawnRadius = 8.5f;
@@ -22,7 +24,6 @@ public class RealEnemySpawner : MonoBehaviour
     [SerializeField] private float _time = 240f;
 
     private List<WaveData_SO> _thisStageWave = new List<WaveData_SO>();
-
     
     private List<WaveData_SO> _nowWave = new List<WaveData_SO>();
 
@@ -32,8 +33,9 @@ public class RealEnemySpawner : MonoBehaviour
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
 
     private float _nextSpawnTime = 0f;
-    private bool _isBossRound = false;    
+    private bool _isBossRound = false;
     
+    private int _curWaveIdx = 0;
 
     private void Awake()
     {
@@ -51,9 +53,8 @@ public class RealEnemySpawner : MonoBehaviour
         {
             _factories[i].Pool.OnEnemyDead += RemoveAliveList;
         }
-               
-        Timer.Instance.BossSpawn += SpawnBoss;
-        Timer.Instance.BossSpawn += ClearAliveList;
+                       
+
         Timer.Instance.BossDie += BossDie;        
     }
 
@@ -70,6 +71,11 @@ public class RealEnemySpawner : MonoBehaviour
         }
 
         CheckWaveTime();
+        
+        if (_aliveList.Count > _spawnCount)
+        {
+            return;
+        }
 
         if (Timer.Instance.GameTime >= _time) // 엘리트 스폰 시간 체크
         {
@@ -98,34 +104,44 @@ public class RealEnemySpawner : MonoBehaviour
     }
 
     private void CheckWaveTime()
-    {
-        List<WaveData_SO> _curWave = new List<WaveData_SO>();
-
-        for (int i = 0; i < _thisStageWave.Count; i++)
+    {        
+        if (_thisStageWave.Count < 1)
         {
-            int start = _thisStageWave[i].StartSec;
-            int end = _thisStageWave[i].EndSec;
-
-            if (Timer.Instance.GameTime >= start && Timer.Instance.GameTime <= end)
-            {                
-                _curWave.Add(_thisStageWave[i]);                
-            }
-        }
-
-        if (_curWave.Count == 0)
-        {
-            CPrint.Warn("웨이브 못찾음");          
+            CPrint.Log("웨이브 모두 완료");
             return;
         }
 
-        if (_nowWave.Count != _curWave.Count || _nowWave[0] != _curWave[0])
-        {
-            _nowWave = _curWave;
-            CPrint.Log($"현재 시간: {Timer.Instance.GameTime}");
-            CPrint.Log($"현재 웨이브 개수: {_nowWave?.Count}");
-            _nowSpawnInterval = _nowWave[0].SpawnIntervalSec;
+        for (int i = 0; i < _thisStageWave.Count; i++)
+        {            
+
+            int start = _thisStageWave[i].StartSec;     
+            int end = _thisStageWave[i].EndSec;
+
+            if (Timer.Instance.GameTime >= start && Timer.Instance.GameTime <= end)
+            {                                                
+                if (CheckIsBossWave(_thisStageWave[i].SpawnEnemy)) // 해당 웨이브가 보스 웨이브라면
+                {                    
+                    Timer.Instance.IsBossSpawn(start);                                        
+                    _nowWave.Clear();
+                    SpawnBoss();
+                    ClearAliveList();
+                    _thisStageWave.RemoveAt(i);
+                    return;
+                }
+
+                _nowWave.Clear();
+                _nowWave.Add(_thisStageWave[i]);
+                _thisStageWave.RemoveAt(i);
+
+                _nowSpawnInterval = _thisStageWave[i].SpawnIntervalSec;
+                CPrint.Warn("웨이브 변경됨");
+                CPrint.Log($"현재 시간: {Timer.Instance.GameTime}");
+                CPrint.Log($"현재 웨이브 개수: {_nowWave?.Count}");
+            }
         }
-      
+
+
+                    
     }
 
     private void SpawnWaves(WaveData_SO nowWave)
@@ -139,14 +155,14 @@ public class RealEnemySpawner : MonoBehaviour
     }
 
     private void SpawnEnemy(string enemyId, bool isElite)
-    {
+    {        
         int factoryIdx = GetFactoryIdx(enemyId);
 
         if (factoryIdx == -1)
         {
             CPrint.Error($"{this} SpawnEnemy() -> {enemyId} 를 찾을 수 없음");
             return;
-        }
+        }        
 
         Vector2 _randSpawnPos = UnityEngine.Random.insideUnitCircle;
         float randSpawnRadius = UnityEngine.Random.Range(_minSpawnRadius, _maxSpawnRadius);
@@ -168,11 +184,24 @@ public class RealEnemySpawner : MonoBehaviour
 
     }    
 
+    private bool CheckIsBossWave(string enemyId)
+    {
+        for (int i = 0; i < _bossEliteFactory.BossDatas.Count; i++)
+        {
+            if (enemyId == _bossEliteFactory.BossDatas[i].EnemyID)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     private int GetFactoryIdx(string enemyId)
     {
         for (int i = 0; i < _factories.Count; i++)
         {
-            if (_factories[i].EnemtData.EmemyID ==  enemyId)
+            if (_factories[i].EnemyData.EnemyID ==  enemyId)
             {
                 return i;
             }

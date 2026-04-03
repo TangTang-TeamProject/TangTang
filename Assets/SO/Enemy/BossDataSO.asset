@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
   m_Name: BossDataSO
   m_EditorClassIdentifier: 
-  enemyID: 0
-  nameKR: 
-  nameEN: 
-  hp: 4200
+  enemyID: ENM_008
+  nameKR: "\uBD80\uC871\uC7A5 \uACE0\uB974\uB9C9"
+  nameEN: Chieftain Gormak
+  hp: 2000
   moveSpeed: 0.85
   contactDamage: 26
   expDrop: 0

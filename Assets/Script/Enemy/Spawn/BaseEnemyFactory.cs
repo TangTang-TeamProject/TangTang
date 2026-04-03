@@ -9,7 +9,7 @@ public abstract class BaseEnemyFactory : MonoBehaviour
     [SerializeField] protected EnemyPool _pool;
     
     public EnemyPool Pool => _pool;
-    public EnemyData_SO EnemtData => _enemyData;
+    public EnemyData_SO EnemyData => _enemyData;
     
     protected int _idx = 0;
 

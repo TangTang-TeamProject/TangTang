@@ -35,6 +35,6 @@ public class BossMob : BaseEnemy
         // 보스 전리품 생성 호출
 
         Timer.Instance.IsBossDie(true);
-        Destroy(gameObject);
+        _pool.Return(this);
     }
 }

@@ -31,7 +31,7 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField]
     private GameObject prefab;
 
-    public string EmemyID => enemyID;
+    public string EnemyID => enemyID;
     public string NameKR => nameKR;
     public string NameEN => nameEN;
     public float HP => hp;
