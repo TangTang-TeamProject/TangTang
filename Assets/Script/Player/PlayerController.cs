@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _spawnDir;
+    [SerializeField] private SpriteRenderer _playerBody;
     [SerializeField] private Vector3 _spawnArrowPos = new Vector3(0, 0.5f, 0);
     [SerializeField] private float _radius = 0.7f;
 
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _mainCam = Camera.main;
-        _baseScale = transform.localScale;
         MoveSpeedSet(_player.MoveSpeed);
     }
 
@@ -70,17 +70,14 @@ public class PlayerController : MonoBehaviour
 
     void PlayerLook()
     {
-        Vector3 scale = _baseScale;
-        if(_mouse.x < transform.position.x)
+        if (_mouse.x < transform.position.x)
         {
-            scale.x = _baseScale.x;
+            _playerBody.flipX = false;
         }
         else
         {
-            scale.x = -_baseScale.x;
+            _playerBody.flipX = true;
         }
-        transform.localScale = scale;
-        _spawnDir.transform.localScale = -scale;
     }
 
     void SpawnLook()
