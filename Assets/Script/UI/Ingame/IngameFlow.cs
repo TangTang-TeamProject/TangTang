@@ -19,8 +19,6 @@ public class IngameFlow : MonoBehaviour
     [SerializeField]
     private InfiniteMap map;
     [SerializeField]
-    private TextMeshProUGUI timeText;
-    [SerializeField]
     private Button pauseBTN;
     [SerializeField]
     private Lottery lotteryUI;
@@ -28,6 +26,8 @@ public class IngameFlow : MonoBehaviour
     private SkillPick skillPickUI;
     [SerializeField]
     private IngameSettings pauseUI;
+    [SerializeField]
+    private Alarm AlarmUI;
     [SerializeField]
     private GameEnd gameEndUI;
 
@@ -50,6 +50,8 @@ public class IngameFlow : MonoBehaviour
         Timer.Instance.BossDie += BossDisappear;
         ItemManager.instance.SkillPick += SkillPickEvent;
         ItemManager.instance.LuckyBox += LotteryEvent;
+        AlarmUI.BigWaveMode += ZoomOutCam;
+        AlarmUI.BasicMode += ZoomInCam;
     }
 
     private void OnDisable()
@@ -81,16 +83,7 @@ public class IngameFlow : MonoBehaviour
 
         beforeTime = currentTime;
 
-        MakeTimeText(currentTime);
-    }
-
-    void MakeTimeText(int _time)
-    {
-        int min = _time / 60;
-
-        int sec = _time % 60;
-
-        timeText.text = $"{min:00} : {sec:00}";
+        AlarmUI.CheckAlarm(currentTime);
     }
 
     void PauseGame(bool isPause)
@@ -138,24 +131,6 @@ public class IngameFlow : MonoBehaviour
         }
     }
 
-    void BossAppear()
-    {
-        StartCoroutine(BossAppearCoroutine());
-    }
-
-    IEnumerator BossAppearCoroutine()
-    {
-        ChangeStats(PlayStats.Directing);
-
-        map.MakeLock();
-
-        yield return pCam.ZoomCoroutine();
-
-        ChangeStats(PlayStats.Playing);
-
-        yield break;
-    }
-
     void SkillPickEvent()
     {
         ChangeStats(PlayStats.Directing);
@@ -175,9 +150,29 @@ public class IngameFlow : MonoBehaviour
         ChangeStats(PlayStats.Playing);
     }
 
+    void ZoomOutCam()
+    {
+        pCam.ZoomOut();
+    }
+
+    void ZoomInCam()
+    {
+        pCam.ZoomIn();
+    }
+
+
+    void BossAppear()
+    {
+        map.MakeLock();
+    }
+
+
     void BossDisappear(bool last)
     {
         map.MakeInfinate();
+
+        AlarmUI.Clear();
+
         if (last)
         {
             GameClear();
