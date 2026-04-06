@@ -8,6 +8,7 @@ public class SkillSpawner : MonoBehaviour
     [SerializeField] private SkillPool _pool;
     [SerializeField] private Player _player;
     [SerializeField] private Transform _spawnDir;
+    [SerializeField] private Camera _cam;
 
 
     private WaitForSeconds _arrowRate = new WaitForSeconds(2.2f);
@@ -44,6 +45,11 @@ public class SkillSpawner : MonoBehaviour
         {
             CPrint.Log("스킬스포너에 공격방향 참조 안됐음");
             return;
+        }
+
+        if (_cam == null)
+        {
+            _cam = Camera.main;
         }
 
     }
@@ -137,7 +143,11 @@ public class SkillSpawner : MonoBehaviour
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             SkillAttack spear = _pool.UseSkill("Spear");
-
+            /*
+            for (int i = 0;, i < spearNum; i++)
+            {
+                spear.transform.rotation = Quaternion.Euler(0, 0, 90f + 360 / spearNum);
+            }*/
             spear.transform.position = transform.position;
             spear.transform.rotation = Quaternion.Euler(0, 0, 90f);
             spear.Init(40, 1, 4, _pool);
@@ -157,6 +167,7 @@ public class SkillSpawner : MonoBehaviour
 
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
+            trident.SetTrident(_cam, _player.transform);
             trident.Init(40, 1, 7, _pool, 50);
             trident.gameObject.SetActive(true);
 

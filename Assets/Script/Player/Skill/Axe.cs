@@ -13,8 +13,8 @@ public class Axe : SkillAttack
     private float _timer;
     private float _offset;
     private float _hitRadius;
-    private readonly Collider2D[] _hits = new Collider2D[150];
-    private HashSet<BaseProjectile> _hitRecord = new HashSet<BaseProjectile>(150);
+    private readonly Collider2D[] _hits = new Collider2D[20];
+    private HashSet<BaseProjectile> _hitRecord = new HashSet<BaseProjectile>(20);
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.1f);
     private Coroutine _checkCo;
 
