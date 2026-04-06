@@ -8,16 +8,23 @@ public class DualBlade : SkillAttack
     [SerializeField] private CircleCollider2D _collider;
     [SerializeField] private LayerMask _hitLayer;
     [SerializeField] private string _hitLayerString = "EnemyBullet";
+    [SerializeField] private ParticleSystem[] _particle = new ParticleSystem[2];
 
     private float _hitRadius;
-    private readonly Collider2D[] _hits = new Collider2D[150];
-    private HashSet<BaseProjectile> _hitRecord = new HashSet<BaseProjectile>(150);
+    private readonly Collider2D[] _hits = new Collider2D[20];
+    private HashSet<BaseProjectile> _hitRecord = new HashSet<BaseProjectile>(20);
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.1f);
     private Coroutine _checkCo;
 
     private void Awake()
     {
         _hitLayer = LayerMask.GetMask(_hitLayerString);
+        if (_particle == null)
+        {
+            CPrint.Warn($"{gameObject.name} 파티클 없음");
+            enabled = false;
+            return;
+        }
     }
 
     private void OnEnable()
@@ -26,18 +33,16 @@ public class DualBlade : SkillAttack
         GameObject spawner = GameObject.Find("SkillSpawner");
         _spawner = spawner.transform;
         //
-        _isSpin = true;
         _hitRadius = _collider.radius;
+        _particle[0].Clear();
+        _particle[1].Clear();
+        _particle[0].Play();
+        _particle[1].Play();
         _checkCo = StartCoroutine(Co_CheckTarget());
     }
     protected override void Move()
     {
         transform.position = _spawner.transform.position;
-    }
-
-    protected override void Rotate()
-    {
-        transform.Rotate(Vector3.forward * _speed * Time.deltaTime);
     }
 
     IEnumerator Co_CheckTarget()
@@ -67,6 +72,8 @@ public class DualBlade : SkillAttack
     {
         if (_checkCo != null)
         {
+            _particle[0].Stop();
+            _particle[1].Stop();
             StopCoroutine(_checkCo);
             _checkCo = null;
         }

@@ -65,7 +65,6 @@ public class PlayerItemLoot : MonoBehaviour
                 if (_hits[i] != null && _hits[i].TryGetComponent(out Items target))
                 {
                     // 어차피 닿으면 사라짐 해쉬셋 필요없음
-                    //_player.GainExp((int)target.Exp);
                     target.SetActiveFalse();
                 }
             }

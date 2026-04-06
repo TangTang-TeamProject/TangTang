@@ -7,9 +7,28 @@ public class Player : MonoBehaviour, IDamagables
     [Flags]
     public enum EPlayerSkill
     {
-        Arrow = 0 << 1,
-        Spear = 1 << 1
+        None = 0,
+        Arrow = 1 << 1,
+        Axe = 2 << 1,
+        DualBlade = 3 << 1,
+        Mace = 4 << 1,
+        Spear = 5 << 1,
+        Trident = 6 << 1,
+        Wand = 7 << 1,
     }
+    [Flags]
+    public enum EPlayerMaxSkill
+    {
+        None = 0,
+        Arrow = 1 << 1,
+        Axe = 2 << 1,
+        DualBlade = 3 << 1,
+        Mace = 4 << 1,
+        Spear = 5 << 1,
+        Trident = 6 << 1,
+        Wand = 7 << 1,
+    }
+
     public enum EPlayerState
     {
         Normal,
@@ -26,8 +45,7 @@ public class Player : MonoBehaviour, IDamagables
         
     private float _maxHp;
     private float _hp;
-
-    public EPlayerState _playerState { get; private set; }
+    private EPlayerState _playerState;
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
     private WaitForSeconds _invincibleTime;
     private Coroutine _checkCo;
@@ -37,12 +55,20 @@ public class Player : MonoBehaviour, IDamagables
     private int _level;
     private float _requireExp = 100;
     private float _currentExp;
+    private int _hasSkillNum;
+    private int _hasArtifactNum;
+    private EPlayerSkill _playerSkill;
+    private EPlayerMaxSkill _maxSkill;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
     public float CurrentHp => _hp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
+    public EPlayerSkill PlayerSkill => _playerSkill;
+    public EPlayerMaxSkill MaxSkill => _maxSkill;
+    public int HasSkillNum => _hasSkillNum;
+    public int HasArtifactNum => _hasArtifactNum;
     public event Action OnHit;
     public event Action OnDead;
     public event Action<float> OnCurrentHPChange;
@@ -193,14 +219,12 @@ public class Player : MonoBehaviour, IDamagables
         _level++;
         ItemManager.instance.PickMeUp();
     }
-    /* 스킬 스크립트 리스트 활성화할거 -> 스킬 데이터, 사용여부 -> 스킬 사용스크립트 <- 플레이어 공격력
-    // 예상 : 구조체 받아서 해체 스킬 레벨 공격계수 범위 등등
+
     public void SkillUpgrade()
     {
 
     }
-    */
-    // 젬이 플레이어에게 닿으면 젬에게서 경험치프로퍼티를 받는다
+
     void GainExp(float exp)
     {
         _currentExp += exp;
