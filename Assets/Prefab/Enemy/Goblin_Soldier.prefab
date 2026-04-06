@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: 7b29e2741fe44ce4784109fc9fe36d5e, type: 2}
   _hitTimer: 0.1
+  _eliteMobGE: {fileID: 397027359009539500, guid: 104bb44e61d84b94c93ae31121c8ed3f, type: 3}
 --- !u!58 &4124107654674284783
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,7 +1,18 @@
 using UnityEngine;
 
 public class Zombie : BaseEnemy
-{          
+{
+    [Header("¿¤¸®Æ® ¸÷ Ground UX")]
+    [SerializeField] private GameObject _eliteMobGE;
+
+    public override void Init(EnemyPool pool, int idx)
+    {
+        base.Init(pool, idx);
+        if (_isElite)
+        {
+            Instantiate(_eliteMobGE, transform);
+        }        
+    }
 
     protected override void Update()
     {

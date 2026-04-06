@@ -2,7 +2,10 @@
 using UnityEngine;
 
 public class ThrowingMob : BaseEnemy
-{    
+{
+    [Header("¿¤¸®Æ® ¸÷ Ground UX")]
+    [SerializeField] private GameObject _eliteMobGE;
+
     private ProjectileFactory _projectileFactory;
     private float _nextShoot = 0f;
    
@@ -10,6 +13,15 @@ public class ThrowingMob : BaseEnemy
     private float _attackDuration = 1f;
 
     private string animParam = "IsMoving";
+
+    public override void Init(EnemyPool pool, int idx)
+    {
+        base.Init(pool, idx);
+        if (_isElite)
+        {
+            Instantiate(_eliteMobGE, transform);
+        }
+    }
 
     protected override void Update()
     {
