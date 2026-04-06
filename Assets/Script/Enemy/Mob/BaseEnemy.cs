@@ -20,13 +20,15 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected EnemyPool _pool;
     protected GameObject _target;
+
+    // ¿¤¸®Æ®¸÷À¸·Î ¼ÒÈ¯µÇ´ÂÁö
     protected bool _isElite = false;
 
     protected int _idx; // ±×·ìÀ¸·Î ³ª´­ ±âÁØÀÌ µÉ ÀÎµ¦½º
     protected float _minX = -15f;
     protected float _maxX = 15f;
-    protected float _minY = -15f;
-    protected float _maxY = 15f;
+    protected float _minY = -10f;
+    protected float _maxY = 10f;
        
     protected Vector2 _dir;
     protected float _radius;
@@ -55,6 +57,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _nextDmg;
     
     public float Damage => _contactDamage;
+
+    public string Id => _id;
     public EnemyType MobType => _mobType;
     public float ExpDrop => _expDrop;
     
@@ -74,6 +78,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
 
         _animator = animator;
+
         if (TryGetComponent(out SpriteRenderer spriteRenderer))
         {
             _sr = spriteRenderer;
@@ -137,7 +142,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     public virtual void Init(EnemyPool pool, int idx)
     {
-        _pool = pool;
+        if (pool != null)
+        {
+            _pool = pool;
+        }        
         _idx = idx; 
 
         _id = _monsterData.EnemyID;
@@ -150,7 +158,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         if (_isElite)
         {
             _mobType = EnemyType.Elite;
-            transform.localScale = new Vector3(1.5f, 1.5f, 0); // ¿¤¸®Æ®¸÷ Å©±â º¯°æ
+            transform.localScale = new Vector3(2.5f, 2.5f, 0); // ¿¤¸®Æ®¸÷ Å©±â º¯°æ
         }
         else
         {

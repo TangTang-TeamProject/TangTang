@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: cec8f4289bf243d4c8c8ea6c1e14d2fa, type: 2}
   _hitTimer: 0.1
+  _eliteMobGE: {fileID: 397027359009539500, guid: 104bb44e61d84b94c93ae31121c8ed3f, type: 3}
 --- !u!114 &6588646553605553867
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,11 +15,11 @@ MonoBehaviour:
   enemyID: ENM_003
   nameKR: "\uC624\uD06C \uC804\uC0AC"
   nameEN: Orc_Berserker
-  hp: 500
-  moveSpeed: 1.35
+  hp: 1000
+  moveSpeed: 2
   contactDamage: 16
   expDrop: 10
-  sizeScale: 1.1
+  sizeScale: 3.5
   atkCycle: 3
   bulletSpeed: 0
   enemytype: 2

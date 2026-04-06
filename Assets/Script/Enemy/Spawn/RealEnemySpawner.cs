@@ -18,7 +18,12 @@ public class RealEnemySpawner : MonoBehaviour
 
     [Header("Enemy Factory 연결")]
     [SerializeField] private List<BaseEnemyFactory> _factories = new List<BaseEnemyFactory>();
-    [SerializeField] private BossEliteFactory _bossEliteFactory;
+
+    [Header("Boss 3종류 연결")]
+    [SerializeField] private List<GameObject> _bossPrefabs = new List<GameObject>();
+
+    [Header("타겟")]
+    [SerializeField] private GameObject _target;
 
     [Header("Elite 몬스터 설정")]
     [SerializeField] private float _time = 240f;
@@ -36,6 +41,7 @@ public class RealEnemySpawner : MonoBehaviour
     private bool _isBossRound = false;
     
     private int _curWaveIdx = 0;
+    private int _bossIdx = 0;
 
     private void Awake()
     {
@@ -45,6 +51,11 @@ public class RealEnemySpawner : MonoBehaviour
         //}
         GetWaveDatas(); // 스테이지 웨이브 정보 받아오기
         _eliteSpawnInterval = _time;
+
+        for (int i = 0; i < _bossPrefabs.Count; i++)
+        {
+            _bossPrefabs[i].SetActive(false);
+        }
     }
 
     void Start()
@@ -186,9 +197,9 @@ public class RealEnemySpawner : MonoBehaviour
 
     private bool CheckIsBossWave(string enemyId)
     {
-        for (int i = 0; i < _bossEliteFactory.BossDatas.Count; i++)
+        for (int i = 0; i < _bossPrefabs.Count; i++)
         {
-            if (enemyId == _bossEliteFactory.BossDatas[i].EnemyID)
+            if (enemyId == "ENM_003" || enemyId == "ENM_004" || enemyId == "ENM_008")
             {
                 return true;
             }
@@ -223,15 +234,15 @@ public class RealEnemySpawner : MonoBehaviour
     public void SpawnBoss()
     {
         _isBossRound = true;
-        Vector2 spawnPos = new Vector2(3f, 3f);
+        Vector2 spawnPos = new Vector2(0f, 0f);
 
-        BaseEnemy boss = _bossEliteFactory.CreateBoss(spawnPos);
-        if (boss == null)
-        {
-            CPrint.Warn("Boss 없음");
-            _isBossRound = false;
-            Timer.Instance.IsBossDie(true);
-        }
+        _bossPrefabs[_bossIdx].SetActive(true);
+        
+        BaseEnemy boss = _bossPrefabs[_bossIdx].GetComponent<BaseEnemy>();
+        boss.Init(null, 0);
+        boss.SetTarget(_target);
+
+        _bossIdx++;
     }
 
     public void ClearAliveList()

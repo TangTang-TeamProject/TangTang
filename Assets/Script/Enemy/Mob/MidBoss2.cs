@@ -11,14 +11,12 @@ public class MidBoss2 : BaseEnemy
         }
 
         Chase();
-        CheckDamaged();
-
-        MoveIntoBattlezone();
+        CheckDamaged();        
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-
+        MoveIntoBattlezone();
     }
 
     public override void Attack()

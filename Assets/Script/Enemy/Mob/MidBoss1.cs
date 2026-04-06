@@ -18,32 +18,35 @@ public class MidBoss1 : BaseEnemy
 
     private float _corTimeCnt = 0f;
 
-    private void FixedUpdate()
+    protected override void Update()
     {
         base.Update();
 
         if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
         {
             return;
-        }
-
-        _corTimeCnt += Time.deltaTime;
+        }        
 
         if (Timer.Instance.RealTime >= _checkTime && !_isDashing)
         {
             Attack();
             _checkTime = Timer.Instance.RealTime + _atkCycle;
         }
+       
+        CheckDamaged();
 
-        MoveIntoBattlezone();
-
-        if (!CanUpdate())
+        if (!CanUpdate() || _isDashing)
         {
             return;
         }
 
         Chase();
-        CheckDamaged();
+        
+    }
+
+    private void LateUpdate()
+    {
+        MoveIntoBattlezone();
     }
 
     public override void Attack()
@@ -54,6 +57,8 @@ public class MidBoss1 : BaseEnemy
         {
             return;
         }
+
+        _dashDir.Normalize();
 
         StartCoroutine(Dash());
     }        
@@ -67,10 +72,18 @@ public class MidBoss1 : BaseEnemy
         _corTimeCnt = Timer.Instance.RealTime;
         float endTime = _corTimeCnt + _dashTime;
 
-        yield return new WaitForSeconds(0.5f);
+        float t = 0f;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            MoveIntoBattlezone();
+            yield return null;
+        }
 
         while (_corTimeCnt < endTime)
         {
+            _corTimeCnt += Time.deltaTime;
+
             Vector2 newPos = transform.position;
 
             newPos += _dashDir * _speed * _dashPower * Time.deltaTime;
