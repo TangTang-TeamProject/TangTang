@@ -12,7 +12,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private Transform player;
     [SerializeField]
-    private float basicZoom = 4.5f;
+    private float basicZoom = 5.5f;
     [SerializeField]
     private float magnify = 8f;
     [SerializeField]
