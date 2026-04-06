@@ -9,6 +9,8 @@ public class GemSpawner : MonoBehaviour
     [SerializeField] private EnemyPool _pool;
     [Header("GemFactory 연결")]
     [SerializeField] private GemFactory _factory;
+    [Header("FireFence 연결")]
+    [SerializeField] private FireFence _fence;
 
     [Header("Gem Registry")]
     [SerializeField] private ItemRegistry _itemRegistry;
@@ -32,11 +34,17 @@ public class GemSpawner : MonoBehaviour
         }
 
         _pool.OnEnemyDead += SpawnGem; // enemy 사망시 젬 스폰 구독.
+        
     }
-    
+
+    private void Start()
+    {
+        _fence.OnFireFenceDie += SpawnGem;
+    }
+
     private void FindGemData()
     {        
-    }
+    }    
 
     public void SpawnGem(BaseEnemy enemy)
     {

@@ -30,6 +30,9 @@ public abstract class Items : MonoBehaviour
     // 플레이어가 흡수 시작할 때 호출       
     public virtual void GetItem(GameObject target)
     {
+        if (_isAbsorbed)
+            return;
+
         _isAbsorbed = true; // 흡수 시작
         _target = target; // 타겟 설정
     }

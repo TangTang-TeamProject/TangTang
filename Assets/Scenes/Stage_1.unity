@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pool: {fileID: 595066357}
   _factory: {fileID: 1899557390}
+  _fence: {fileID: 453232338}
   _itemRegistry: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
 --- !u!1 &36339451
 GameObject:
@@ -1468,6 +1469,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ae71da07748da4a8b2d5136907a1d2, type: 3}
+--- !u!114 &453232338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7334135690745872030, guid: 45ae71da07748da4a8b2d5136907a1d2, type: 3}
+  m_PrefabInstance: {fileID: 453232337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5b4b53df94c384bad450ed993d5706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460256867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,6 +3550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gemPrefab: {fileID: 3743321671426041571, guid: 7e4c32f8c5768a34089a0665b5fd96d2, type: 3}
   _type: 1
+  _fireFence: {fileID: 0}
 --- !u!1 &908457568
 GameObject:
   m_ObjectHideFlags: 0
@@ -7103,6 +7116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gemPrefab: {fileID: 1835535690699433974, guid: 44f12c42fadc25f4384a984cbff5efed, type: 3}
   _type: 0
+  _fireFence: {fileID: 0}
 --- !u!1 &1593119270
 GameObject:
   m_ObjectHideFlags: 0
@@ -7224,6 +7238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gemPrefab: {fileID: 1772454461204316306, guid: 9bf861be9be71334b87cbc0b6a2a8811, type: 3}
   _type: 2
+  _fireFence: {fileID: 0}
 --- !u!1 &1599308198
 GameObject:
   m_ObjectHideFlags: 0

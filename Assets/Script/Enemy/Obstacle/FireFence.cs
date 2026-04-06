@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,12 @@ public class FireFence : MonoBehaviour
 
     private FireObstacles[] _fireObstacles;
 
+    public Action<FireObstacles> OnFireFenceDie;    
+
     void Awake()
     {
-        _fireObstacles = GetComponentsInChildren<FireObstacles>();        
+        _fireObstacles = GetComponentsInChildren<FireObstacles>();   
+     
     }
 
     private void Start()
@@ -33,12 +37,16 @@ public class FireFence : MonoBehaviour
 
     public void ToggleFenceStateTrue()
     {
-        _isActive = !_isActive;
+        _isActive = true;        
     }
 
     public void ToggleFenceStateFalse(bool last)
     {
-        _isActive = !_isActive;
+        for (int i = 0; i < _fireObstacles.Length; i++)
+        {
+            OnFireFenceDie?.Invoke(_fireObstacles[i]);
+        }
+        _isActive = false;        
     }
 
     private void ToggleObstacles(bool isActive)
@@ -47,5 +55,5 @@ public class FireFence : MonoBehaviour
         {
             _fireObstacles[i].gameObject.SetActive(isActive); 
         }
-    }
+    }   
 }

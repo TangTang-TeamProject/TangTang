@@ -41,6 +41,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     private string _playerString = "Player";
     private string _enemyString = "Enemy";
     private string _playerBulletString = "PlayerBullet";
+    private string _defenceBulletString = "DefenceBullet";
 
     protected string _id;
     protected float _maxHp;
@@ -73,16 +74,28 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
 
         _animator = animator;
-        _sr = GetComponent<SpriteRenderer>();
+        if (TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            _sr = spriteRenderer;
+        }        
         
         _hitTime = _hitTimer;
 
         _playerLayer = LayerMask.GetMask(_playerString);
         _enemyLayer = LayerMask.GetMask(_enemyString);
-        _playerBulletLayer = LayerMask.GetMask(_playerBulletString);        
+        _playerBulletLayer = LayerMask.GetMask(_playerBulletString, _defenceBulletString);  
         
-        _offset = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().offset : (Vector2)transform.position;
-        _radius = GetComponent<CircleCollider2D>() != null ? GetComponent<CircleCollider2D>().radius : 0f;
+        
+        if (TryGetComponent(out CircleCollider2D circleCollider2D))
+        {
+            _offset = circleCollider2D.offset;
+            _radius = circleCollider2D.radius;
+        }
+        else
+        {
+            _offset = transform.position;
+            _radius = 0f;
+        } 
 
         if (_radius == 0f)
         {
@@ -91,7 +104,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         if (_monsterData.EnemyType == EnemyType.Boss)
             return;
