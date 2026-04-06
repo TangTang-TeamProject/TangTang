@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3924428144613606337}
   - component: {fileID: 3974625621221501224}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5556357284352452994}
   - component: {fileID: 6495812313512133773}
   - component: {fileID: 4028377928168309400}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: DualBlade
   m_TagString: DualBlade
   m_Icon: {fileID: 0}
@@ -132,6 +132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 0}
+  _collider: {fileID: 4028377928168309400}
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _hitLayerString: EnemyBullet
 --- !u!58 &4028377928168309400
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -177,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5497947397678337205}
   - component: {fileID: 2185638737127008088}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

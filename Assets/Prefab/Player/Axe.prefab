@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3024345442043146788}
   - component: {fileID: 8939225881726994098}
-  - component: {fileID: 4671485504215859986}
-  m_Layer: 11
+  - component: {fileID: 7338858500885250335}
+  m_Layer: 12
   m_Name: Axe
   m_TagString: Axe
   m_Icon: {fileID: 0}
@@ -48,8 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawner: {fileID: 0}
   _radius: 3
---- !u!61 &4671485504215859986
-BoxCollider2D:
+  _collider: {fileID: 7338858500885250335}
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _hitLayerString: EnemyBullet
+--- !u!58 &7338858500885250335
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,22 +82,12 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.05}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.7}
-  m_EdgeRadius: 0
+  m_Radius: 0.4
 --- !u!1 &5529957576958173549
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7403878740778628970}
   - component: {fileID: 9148467647912508768}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}

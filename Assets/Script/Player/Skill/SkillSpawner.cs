@@ -20,7 +20,7 @@ public class SkillSpawner : MonoBehaviour
     private Coroutine _maceCo;
     private WaitForSeconds _spearRate= new WaitForSeconds(2.2f);
     private Coroutine _spearCo;
-    private WaitForSeconds _tridentRate = new WaitForSeconds(2.2f);
+    private WaitForSeconds _tridentRate = new WaitForSeconds(52.2f);
     private Coroutine _tridentCo;
     private WaitForSeconds _wandRate = new WaitForSeconds(2.2f);
     private Coroutine _wandCo;
@@ -157,7 +157,7 @@ public class SkillSpawner : MonoBehaviour
 
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
-            trident.Init(40, 1, 4, _pool);
+            trident.Init(40, 1, 7, _pool, 50);
             trident.gameObject.SetActive(true);
 
             yield return _tridentRate;
