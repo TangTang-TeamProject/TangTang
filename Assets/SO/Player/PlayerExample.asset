@@ -15,7 +15,7 @@ MonoBehaviour:
   characterID: 
   nameKR: 
   nameEN: 
-  baseHP: 2000
+  baseHP: 10
   baseATK: 1
   baseMoveSpeed: 4
   critRate: 0
