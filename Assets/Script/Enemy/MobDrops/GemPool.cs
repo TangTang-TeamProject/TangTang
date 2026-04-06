@@ -8,9 +8,10 @@ public class GemPool : MonoBehaviour
 {
     [SerializeField] private GameObject _gemPrefab;
     [SerializeField] private GemType _type;
+    [SerializeField] private FireFence _fireFence;
 
-    private Queue<ExpGem> _gemPool = new Queue<ExpGem>();    
-    
+    private Queue<ExpGem> _gemPool = new Queue<ExpGem>();  
+
     public GemType GetPoolType()
     {
         return _type;

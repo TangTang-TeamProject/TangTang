@@ -12,6 +12,9 @@ public class ExpGem : Items
     private float _exp;
     private int _id;
 
+    private float _delayCheckTime = 0f;
+    private float _delay = 0.1f; // 뒤로 이동하는 시간
+
     public Action<float> GetExp;
 
     public float Exp => _exp;
@@ -48,5 +51,49 @@ public class ExpGem : Items
     {
         base.GetItem(target);
         _itemMoveSpeed *= 1.5f;
+    }
+
+    public override void MoveToTarget()
+    {
+        if (_target == null)
+        {
+            return;
+        }                      
+
+        Vector2 dir = _target.transform.position - transform.position;
+
+        if (dir.magnitude > 0.001f)
+        {
+            dir.Normalize();
+        }
+        else
+        {
+            dir = Vector2.zero;
+        }
+
+        Vector2 pos = transform.position;
+
+        if (Timer.Instance.RealTime < _delayCheckTime)
+        {
+            pos += -dir * _itemMoveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            pos += dir * _itemMoveSpeed * Time.deltaTime;
+        }
+     
+        transform.position = pos;
+    }
+
+    public override void GetItem(GameObject target)
+    {
+        if (_isAbsorbed || _target == target)
+        {
+            return;
+        }
+
+        _isAbsorbed = true; // 흡수 시작
+        _target = target; // 타겟 설정
+        _delayCheckTime = Timer.Instance.RealTime + _delay; // 뒤로 이동하는 시간 설정
     }
 }

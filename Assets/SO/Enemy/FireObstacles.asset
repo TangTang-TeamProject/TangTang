@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: FireObstacles
   m_EditorClassIdentifier: 
   enemyID: 0
-  enemyName: 
-  atk: 0
-  hp: 0
-  speed: 0
+  nameKR: 
+  nameEN: 
+  hp: 100000
+  moveSpeed: 0
+  contactDamage: 0
+  expDrop: 1
+  sizeScale: 0
   atkCycle: 1
   bulletSpeed: 0
-  dmg: 1
+  enemytype: 0
   prefab: {fileID: 4748681987041982144, guid: aef0cc0b3ad61284784c80daa1f9c97f, type: 3}
