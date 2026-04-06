@@ -70,14 +70,17 @@ public class Alarm : MonoBehaviour
     {
         MakeTimeText(_currentTime);
 
+        if (alarmStack >= alarms.Count)
+        {
+            return;
+        }
+
+
         if (_currentTime == alarms[alarmStack].time)
         {
             DecideBehaviour(alarms[alarmStack].type);
 
-            if (alarmStack < alarms.Count)
-            {
-                alarmStack++;
-            }
+            alarmStack++;
         }
     }
 

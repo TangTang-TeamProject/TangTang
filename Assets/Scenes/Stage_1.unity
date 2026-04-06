@@ -2236,7 +2236,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   camTr: {fileID: 519420032}
   player: {fileID: 659132136}
-  basicZoom: 4.5
+  basicZoom: 5.5
   magnify: 8
   zoomTime: 2
 --- !u!1 &531869808
