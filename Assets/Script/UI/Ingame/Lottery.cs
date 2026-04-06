@@ -16,7 +16,7 @@ public class Lottery : MonoBehaviour
     }
 
     void Settings()
-    { 
+    {
     
     }
 

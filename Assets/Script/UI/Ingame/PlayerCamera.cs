@@ -14,11 +14,13 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private float basicZoom = 4.5f;
     [SerializeField]
-    private float magnify = 10f;
+    private float magnify = 8f;
     [SerializeField]
-    private float zoomTime = 2;
+    private float zoomTime = 2f;
 
     private float currentTime = 0;
+
+    private Coroutine coroutine;
 
     private void LateUpdate()
     {
@@ -30,22 +32,31 @@ public class PlayerCamera : MonoBehaviour
         camTr.transform.position = new Vector3(player.position.x, player.position.y, camTr.position.z);
     }
 
-    public IEnumerator ZoomCoroutine()
+    public void ZoomIn()
+    { 
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);    
+        }
+
+        coroutine = StartCoroutine(ZoomCoroutine(basicZoom));
+    }
+
+    public void ZoomOut()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        coroutine = StartCoroutine(ZoomCoroutine(magnify));
+    }
+
+    IEnumerator ZoomCoroutine(float end)
     {
         currentTime = 0;
 
-        while (currentTime < zoomTime)
-        {
-            currentTime += Time.unscaledDeltaTime;
-
-            float t = currentTime / zoomTime;
-
-            cam.orthographicSize = Mathf.Lerp(basicZoom, magnify, t);
-
-            yield return null;
-        }
-
-        currentTime = 0;
+        float start = cam.orthographicSize;
 
         while (currentTime < zoomTime)
         {
@@ -53,12 +64,12 @@ public class PlayerCamera : MonoBehaviour
 
             float t = currentTime / zoomTime;
 
-            cam.orthographicSize = Mathf.Lerp(magnify, basicZoom, t);
+            cam.orthographicSize = Mathf.Lerp(start, end, t);
 
             yield return null;
         }
 
-        cam.orthographicSize = basicZoom;
+        cam.orthographicSize = end;
 
         yield break;
     }
