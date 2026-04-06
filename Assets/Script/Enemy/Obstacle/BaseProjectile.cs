@@ -58,4 +58,10 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
         _targetPos = null;        
         _pool.Return(this);
     }
+
+    public void CutOff()
+    {
+        _targetPos = null;
+        _pool.Return(this);
+    }
 }
