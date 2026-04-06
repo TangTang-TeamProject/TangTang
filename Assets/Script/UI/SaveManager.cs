@@ -29,6 +29,12 @@ public class SaveData
 
     public int rateIndex;
     public bool fullScreen;
+
+    public string selectedChar;
+
+    public bool RiaOpen;
+    public bool ErinOpen;
+    public bool NoahOpen;
 }
 
 public static class SaveManager
@@ -108,6 +114,12 @@ public static class SaveManager
         newData.rateIndex = 0;
 
         newData.fullScreen = false;
+
+        newData.selectedChar = "CHR_001";
+
+        newData.RiaOpen = false;
+        newData.ErinOpen = false;
+        newData.NoahOpen = false;
 
         return newData;
     }
