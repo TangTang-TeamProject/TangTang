@@ -21,6 +21,9 @@ public class RealEnemySpawner : MonoBehaviour
 
     [Header("Boss 3종류 연결")]
     [SerializeField] private List<GameObject> _bossPrefabs = new List<GameObject>();
+    [Header("Boss 써클 연결")]
+    [SerializeField] private GameObject _bossCircle;
+    [SerializeField] private float _circleErase = 3f;
 
     [Header("타겟")]
     [SerializeField] private GameObject _target;
@@ -39,9 +42,10 @@ public class RealEnemySpawner : MonoBehaviour
 
     private float _nextSpawnTime = 0f;
     private bool _isBossRound = false;
+    private float _bossCircleCheckTime;
     
     private int _curWaveIdx = 0;
-    private int _bossIdx = 0;
+    private int _bossIdx = 0;    
 
     private void Awake()
     {
@@ -56,6 +60,8 @@ public class RealEnemySpawner : MonoBehaviour
         {
             _bossPrefabs[i].SetActive(false);
         }
+
+        _bossCircle.SetActive(false);
     }
 
     void Start()
@@ -73,31 +79,40 @@ public class RealEnemySpawner : MonoBehaviour
     {
         if (_isBossRound)
         {
+            if (Timer.Instance.RealTime < _bossCircleCheckTime)
+            {
+                return;
+            }
+            _bossCircle.SetActive(false);
             return;
         }
 
-        if (Time.frameCount % 3 != 0)
+        if (Time.frameCount % 2 != 0)
         {
             return;
         }
 
         CheckWaveTime();
-        
-        if (_aliveList.Count > _spawnCount)
+
+        if (_nowWave == null || _nowWave.Count == 0)
         {
             return;
         }
 
+        CheckInActiveWave();
+
+        if (_aliveList.Count > _spawnCount)
+        {
+            return;
+        }
+       
         if (Timer.Instance.GameTime >= _time) // 엘리트 스폰 시간 체크
         {
-            if (_nowWave == null || _nowWave.Count == 0)
-                return;
+            _time = Timer.Instance.GameTime + _eliteSpawnInterval;
 
             int randIdx = Random.Range(0, _nowWave.Count); // 랜덤 enemyId 중에 고르기
 
-            SpawnEnemy(_nowWave[randIdx].SpawnEnemy, true);
-
-            _time += _eliteSpawnInterval;
+            SpawnEnemy(_nowWave[randIdx].SpawnEnemy, true);            
         }
 
         if (Timer.Instance.GameTime < _nextSpawnTime)
@@ -139,8 +154,7 @@ public class RealEnemySpawner : MonoBehaviour
                     _thisStageWave.RemoveAt(i);
                     return;
                 }
-
-                _nowWave.Clear();
+                
                 _nowWave.Add(_thisStageWave[i]);
                 _thisStageWave.RemoveAt(i);
 
@@ -149,16 +163,24 @@ public class RealEnemySpawner : MonoBehaviour
                 CPrint.Log($"현재 시간: {Timer.Instance.GameTime}");
                 CPrint.Log($"현재 웨이브 개수: {_nowWave?.Count}");
             }
+        }                    
+    }
+
+    private void CheckInActiveWave()
+    {       
+        for (int i = _nowWave.Count - 1; i > 0; i--)
+        {
+            if (Timer.Instance.GameTime > _nowWave[i].EndSec)
+            {
+                _nowWave.RemoveAt(i);
+            }
         }
-
-
-                    
     }
 
     private void SpawnWaves(WaveData_SO nowWave)
     {                      
         for (int j = 0; j < nowWave.EnemyCount; j++)
-        {
+        {                                   
             SpawnEnemy(nowWave.SpawnEnemy, false);
         }
         CPrint.Log($"{Timer.Instance.GameTime} : {nowWave.EnemyCount} 마리 스폰.");
@@ -234,9 +256,10 @@ public class RealEnemySpawner : MonoBehaviour
     public void SpawnBoss()
     {
         _isBossRound = true;
-        Vector2 spawnPos = new Vector2(0f, 0f);
+        _bossCircleCheckTime = Timer.Instance.RealTime + _circleErase;
 
         _bossPrefabs[_bossIdx].SetActive(true);
+        _bossCircle.SetActive(true);
         
         BaseEnemy boss = _bossPrefabs[_bossIdx].GetComponent<BaseEnemy>();
         boss.Init(null, 0);
@@ -256,7 +279,6 @@ public class RealEnemySpawner : MonoBehaviour
         {
             return;
         }
-        _isBossRound = false;
-
+        _isBossRound = false;        
     }
 }

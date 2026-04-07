@@ -5,12 +5,14 @@ public class Zombie : BaseEnemy
     [Header("¿¤¸®Æ® ¸÷ Ground UX")]
     [SerializeField] private GameObject _eliteMobGE;
 
+    private GameObject _eliteUX;  
+
     public override void Init(EnemyPool pool, int idx)
     {
         base.Init(pool, idx);
         if (_isElite)
         {
-            Instantiate(_eliteMobGE, transform);
+            _eliteUX = Instantiate(_eliteMobGE, transform);
         }        
     }
 
@@ -50,8 +52,16 @@ public class Zombie : BaseEnemy
     
     public override void Die()
     {
-        base.Die();
+        if (_isElite)
+        {
+            if (_eliteUX != null)
+            {
+                Destroy(_eliteUX);
+            }
+        }
 
+        base.Die();
+        
         // Á×¾úÀ»¶§ È¿°ú Ãß°¡ ¿¹Á¤
     }   
     

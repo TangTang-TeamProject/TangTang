@@ -14,12 +14,13 @@ public class ThrowingMob : BaseEnemy
 
     private string animParam = "IsMoving";
 
+    private GameObject _eliteUX;
     public override void Init(EnemyPool pool, int idx)
     {
         base.Init(pool, idx);
         if (_isElite)
         {
-            Instantiate(_eliteMobGE, transform);
+            _eliteUX = Instantiate(_eliteMobGE, transform);
         }
     }
 
@@ -85,16 +86,24 @@ public class ThrowingMob : BaseEnemy
         base.Hit(dmg);
 
     }
-
-    public override void Die()
-    {
-        base.Die();
-
-        // 죽었을때 효과 추가 예정
-    }
-    
+   
     public void SetProjectileFactory(ProjectileFactory projectileFactory)
     {
         _projectileFactory = projectileFactory;
+    }
+
+    public override void Die()
+    {
+        if (_isElite)
+        {
+            if (_eliteUX != null)
+            {
+                Destroy(_eliteUX);
+            }
+        }
+
+        base.Die();
+
+        // 죽었을때 효과 추가 예정
     }
 }

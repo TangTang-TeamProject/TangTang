@@ -18,9 +18,28 @@ public class ThrowingMobFactory : BaseEnemyFactory
         enemy.transform.position = spawnPos;
        
         enemy.SetProjectileFactory(projectileFactory);
+        enemy.IsElite(false);
         enemy.Init(_pool, _idx);
         _idx++;
         enemy.SetTarget(_target);        
+
+        return enemy;
+    }
+
+    public override BaseEnemy CreateElite(Vector2 pos)
+    {
+        ThrowingMob enemy = (ThrowingMob)_pool.GetEnemy(_enemyData, transform);
+
+        Vector2 spawnPos = _target.transform.position;
+        spawnPos += pos; // 타겟 주변에서 일정 거리만큼 떨어지도록 스폰.
+
+        enemy.transform.position = spawnPos;
+
+        enemy.SetProjectileFactory(projectileFactory);
+        enemy.IsElite(true);
+        enemy.Init(_pool, 0);
+        enemy.SetTarget(_target);
+
 
         return enemy;
     }
