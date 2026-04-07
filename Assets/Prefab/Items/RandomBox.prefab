@@ -49,7 +49,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
   _playerBulletLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 6144
 --- !u!212 &4234694915830776714
 SpriteRenderer:
   m_ObjectHideFlags: 0
