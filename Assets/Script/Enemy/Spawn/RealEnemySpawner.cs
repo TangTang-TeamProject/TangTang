@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,10 +42,9 @@ public class RealEnemySpawner : MonoBehaviour
     private List<BaseEnemy> _aliveList = new List<BaseEnemy>();
 
     private float _nextSpawnTime = 0f;
-    private bool _isBossRound = false;
-    private float _bossCircleCheckTime;
+    private bool _isBossRound = false;    
     
-    private int _curWaveIdx = 0;
+   
     private int _bossIdx = 0;    
 
     private void Awake()
@@ -78,12 +78,7 @@ public class RealEnemySpawner : MonoBehaviour
     void Update()
     {
         if (_isBossRound)
-        {
-            if (Timer.Instance.RealTime < _bossCircleCheckTime)
-            {
-                return;
-            }
-            _bossCircle.SetActive(false);
+        {                        
             return;
         }
 
@@ -255,12 +250,19 @@ public class RealEnemySpawner : MonoBehaviour
 
     public void SpawnBoss()
     {
-        _isBossRound = true;
-        _bossCircleCheckTime = Timer.Instance.RealTime + _circleErase;
+        _isBossRound = true;    
 
-        _bossPrefabs[_bossIdx].SetActive(true);
         _bossCircle.SetActive(true);
-        
+        StartCoroutine(BossSpawnAfterSeconds());
+    }
+
+    IEnumerator BossSpawnAfterSeconds()
+    {
+        yield return new WaitForSeconds(_circleErase);
+
+        _bossCircle.SetActive(false);
+        _bossPrefabs[_bossIdx].SetActive(true);
+
         BaseEnemy boss = _bossPrefabs[_bossIdx].GetComponent<BaseEnemy>();
         boss.Init(null, 0);
         boss.SetTarget(_target);
