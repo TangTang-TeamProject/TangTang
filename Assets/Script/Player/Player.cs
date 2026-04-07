@@ -69,6 +69,7 @@ public class Player : MonoBehaviour, IDamagables
     public EPlayerMaxSkill MaxSkill => _maxSkill;
     public int HasSkillNum => _hasSkillNum;
     public int HasArtifactNum => _hasArtifactNum;
+    public int Level => _level;
     public event Action OnHit;
     public event Action OnDead;
     public event Action<float> OnCurrentHPChange;
