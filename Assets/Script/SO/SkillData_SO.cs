@@ -15,11 +15,12 @@ public class SkillData_SO : ScriptableObject
     [SerializeField]
     private Sprite img;
     [SerializeField]
-    private GameObject prefab;
+    private SkillAttack prefab;
 
     public string SkillID => skillID;
     public string NameKR => nameKR;
     public string NameEN => nameEN;
     public string MaxLevel => maxLevel;
     public Sprite IMG => img;
+    public SkillAttack Prefab => prefab;
 }
