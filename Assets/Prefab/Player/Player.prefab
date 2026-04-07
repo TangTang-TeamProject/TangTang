@@ -663,3 +663,5 @@ MonoBehaviour:
   _spawner: {fileID: 4504020100660297730}
   _maxSkillNum: 4
   _maxArtifactNum: 4
+  _playerSkills: []
+  _playerArtifacts: []
