@@ -9,16 +9,17 @@ public class SkillPool : MonoBehaviour
 
     private Dictionary<string, Queue<SkillAttack>> _skillDict = new Dictionary<string, Queue<SkillAttack>>();
     
-    public void InitCreateSkill(string tag, int num)
+    public void InitCreateSkill(string id, int num, SkillAttack prefab)
     {
-        if (!_skillDict.TryGetValue(tag, out Queue<SkillAttack> queue))
+        if (!_skillDict.TryGetValue(id, out Queue<SkillAttack> queue))
         {
             queue = new Queue<SkillAttack>();
-            _skillDict[tag] = queue;
+            _skillDict[id] = queue;
+            _skillFactory.FirstGetSkill(id, prefab);
         }
         for (int i = 0; i < num; i++)
         {
-            SkillAttack target = _skillFactory.CreateWeapon(tag);
+            SkillAttack target = _skillFactory.CreateWeapon(id);
             if (target == null)
             {
                 CPrint.Error($"{gameObject.name}에 null반환됨 인스펙터 태그 확인");
@@ -31,27 +32,27 @@ public class SkillPool : MonoBehaviour
         }
     }
 
-    public SkillAttack UseSkill(string tag)
+    public SkillAttack UseSkill(string id)
     {
         SkillAttack target;
-        if (_skillDict[tag].Count == 0)
+        if (_skillDict[id].Count == 0)
         {
-            target = _skillFactory.CreateWeapon(tag);
+            target = _skillFactory.CreateWeapon(id);
         }
         else
         {
-            target = _skillDict[tag].Dequeue();
+            target = _skillDict[id].Dequeue();
         }        
         target.transform.SetParent(_godObject);
         return target;
     }
 
-    public void ReturnPool(string tag, SkillAttack target)
+    public void ReturnPool(string id, SkillAttack target)
     {
-        if (!_skillDict.TryGetValue(tag, out Queue<SkillAttack> queue))
+        if (!_skillDict.TryGetValue(id, out Queue<SkillAttack> queue))
         {
             queue = new Queue<SkillAttack>();
-            _skillDict[tag] = queue;
+            _skillDict[id] = queue;
         }
         target.transform.SetParent(transform);
         target.gameObject.SetActive(false);

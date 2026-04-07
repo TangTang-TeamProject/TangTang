@@ -45,6 +45,11 @@ public class SkillSlot : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SkillUp(_player.FirstSkill());
+    }
+
     public void SkillLevel(int num, out string id, out int level)
     {
         if (num >= _playerSkills.Count)

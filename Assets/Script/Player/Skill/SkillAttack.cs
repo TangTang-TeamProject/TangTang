@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class SkillAttack : MonoBehaviour, IAttackables
 {
     protected SkillPool _pool;
-    
+
+    protected string _id;
     protected float _damage = 1;
     protected float _baseDamage;
     protected float _keepTime;
@@ -32,8 +33,9 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         
     }
 
-    public void Init(float damage, float playerAttack, float speed, SkillPool pool, float time = 5.0f)
+    public void Init(string id, float damage, float playerAttack, float speed, SkillPool pool, float time = 5.0f)
     {
+        _id = id;
         _pool = pool;
         _baseDamage = damage;
         _damage = playerAttack * _baseDamage;
@@ -56,7 +58,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected void ReturnPool()
     {
         _remainTime = _keepTime;
-        _pool.ReturnPool(gameObject.tag, this);
+        _pool.ReturnPool(_id, this);
     }
 
 

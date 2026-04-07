@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class SkillFactory : MonoBehaviour
 {
-    [SerializeField] private SkillAttack[] _skillPrefab;
-    public SkillAttack CreateWeapon(string tag)
+    private Dictionary<string, SkillAttack> _skillDict = new Dictionary<string, SkillAttack>();
+    public SkillAttack CreateWeapon(string id)
     {
-        SkillAttack target = null;
-        foreach (SkillAttack skillP in _skillPrefab)
+        if(!_skillDict.TryGetValue(id, out SkillAttack target))
         {
-            if(skillP.tag == tag)
-            {
-                target = skillP;
-                break;
-            }
+            CPrint.Log($"{id}의 스킬이 등록되어 있지 않음");
+            return null;
         }
+
         if (target == null)
         {
-            CPrint.Log($"{tag}의 프리팹이 등록되어 있지 않음");
+            CPrint.Log($"{id}의 프리팹이 등록되어 있지 않음");
             return null;
         }
 
         return Instantiate(target);
+    }
+
+    public void FirstGetSkill(string id, SkillAttack prefab)
+    {
+        if (prefab == null)
+        {
+            CPrint.Error($"{id}의 프리펩 없음");
+            return;
+        }
+        _skillDict[id] = prefab;
     }
 }

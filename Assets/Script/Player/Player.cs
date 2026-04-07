@@ -4,32 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagables
 {
-    /*
-    [Flags]
-    public enum EPlayerSkill
-    {
-        None = 0,
-        Arrow = 1 << 1,
-        Axe = 2 << 1,
-        DualBlade = 3 << 1,
-        Mace = 4 << 1,
-        Spear = 5 << 1,
-        Trident = 6 << 1,
-        Wand = 7 << 1,
-    }
-    [Flags]
-    public enum EPlayerMaxSkill
-    {
-        None = 0,
-        Arrow = 1 << 1,
-        Axe = 2 << 1,
-        DualBlade = 3 << 1,
-        Mace = 4 << 1,
-        Spear = 5 << 1,
-        Trident = 6 << 1,
-        Wand = 7 << 1,
-    }
-    */
     public enum EPlayerState
     {
         Normal,
@@ -58,16 +32,12 @@ public class Player : MonoBehaviour, IDamagables
     private float _currentExp;
     private int _hasSkillNum;
     private int _hasArtifactNum;
-    //private EPlayerSkill _playerSkill;
-    //private EPlayerMaxSkill _maxSkill;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
     public float CurrentHp => _hp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
-    //public EPlayerSkill PlayerSkill => _playerSkill;
-    //public EPlayerMaxSkill MaxSkill => _maxSkill;
     public int HasSkillNum => _hasSkillNum;
     public int HasArtifactNum => _hasArtifactNum;
     public int Level => _level;
@@ -136,6 +106,11 @@ public class Player : MonoBehaviour, IDamagables
         ItemManager.instance.EXP -= GainExp;
         ItemManager.instance.Heal -= GetHeal;
         StopAllPlayerCoroutine();
+    }
+
+    public string FirstSkill()
+    {
+        return "Axe";
     }
 
     IEnumerator Co_CheckHit()

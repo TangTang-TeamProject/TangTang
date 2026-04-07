@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed183b4b16ecff409a8a3697b06e56e, type: 3}
+  m_Name: Mace
+  m_EditorClassIdentifier: 
+  skillID: Mace
+  nameKR: "\uBA54\uC774\uC2A4"
+  nameEN: Mace
+  maxLevel: 5
+  img: {fileID: 0}
+  prefab: {fileID: 8284904972113470649, guid: b553163839083e645b23b0360f83e776, type: 3}
