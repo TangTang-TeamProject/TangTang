@@ -40,7 +40,8 @@ public class BoxOpenRandom : MonoBehaviour
         int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset,
             _radius,
             _dmgCheckBuffer,
-            _playerBulletLayer);
+            _playerBulletLayer
+        );
 
         for (int i = 0; i < count; i++)
         {
@@ -63,6 +64,8 @@ public class BoxOpenRandom : MonoBehaviour
         int gotcha = Random.Range(1, 5);
 
         GameObject obj = Instantiate(item.GetItemByID(gotcha).Prefab, mother.transform);
+        
+
 
         obj.transform.position = transform.position;
     }
