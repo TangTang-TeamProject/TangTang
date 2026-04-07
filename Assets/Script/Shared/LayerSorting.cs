@@ -9,29 +9,22 @@ public class LayerSorting : MonoBehaviour
 
     private SpriteRenderer _sr;
     private SortingGroup _sg;
-    
+
+    private EnemyType _enemyType;
+
     private string _playerLayerString = "Player";
 
     private int _yValue;
     private float _prevY;
+    private bool _isFinalBoss = false;
 
     void Awake()
     {        
-        if (gameObject.layer == LayerMask.NameToLayer(_playerLayerString))
+        _sr = GetComponent<SpriteRenderer>();
+        if (TryGetComponent(out BossMob finalBoss))
         {
-            _isPlayer = true;
-            _sg = GetComponent<SortingGroup>();
-            if (_sg == null)
-            {
-                CPrint.Warn($"{this} : SortingGroup 연결 안됨");
-                enabled = false;
-                return;
-            }
-        }
-        else
-        {
-            _isPlayer = false;
-            _sr = GetComponent<SpriteRenderer>();
+            _sg = finalBoss.GetComponent<SortingGroup>();
+            _isFinalBoss = true;
         }
     }
 
@@ -55,8 +48,8 @@ public class LayerSorting : MonoBehaviour
         _yValue = -(int)(transform.position.y * 1000); 
 
         int sortOrder = _yValue; // y 좌표 반올림한 후 * -1000 -> order layer 값 
-
-        if (_isPlayer)
+        
+        if (_isFinalBoss)
         {
             _sg.sortingOrder = sortOrder;
         }
@@ -64,6 +57,7 @@ public class LayerSorting : MonoBehaviour
         {
             _sr.sortingOrder = sortOrder;
         }
+                    
         _prevY = _yValue;   
     }
 }

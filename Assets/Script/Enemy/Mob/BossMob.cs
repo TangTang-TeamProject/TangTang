@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class BossMob : BaseEnemy
 {
-
+    [Header("무기 연결")]
+    [SerializeField] private GameObject _leftWeaponSlot;
+    [SerializeField] private GameObject _rightWeaponSlot;
+    [SerializeField] private GameObject _weaponPrefab;
+    
 
     private void FixedUpdate()
     {
@@ -26,7 +30,10 @@ public class BossMob : BaseEnemy
         CheckDamaged();
     }
 
-   
+    private void Pattern_ThrowWeapon()
+    {
+
+    }
 
     public override void Die()
     {
