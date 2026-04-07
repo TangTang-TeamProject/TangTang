@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagables
 {
+    /*
     [Flags]
     public enum EPlayerSkill
     {
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour, IDamagables
         Trident = 6 << 1,
         Wand = 7 << 1,
     }
-
+    */
     public enum EPlayerState
     {
         Normal,
@@ -57,16 +58,16 @@ public class Player : MonoBehaviour, IDamagables
     private float _currentExp;
     private int _hasSkillNum;
     private int _hasArtifactNum;
-    private EPlayerSkill _playerSkill;
-    private EPlayerMaxSkill _maxSkill;
+    //private EPlayerSkill _playerSkill;
+    //private EPlayerMaxSkill _maxSkill;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
     public float CurrentHp => _hp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
-    public EPlayerSkill PlayerSkill => _playerSkill;
-    public EPlayerMaxSkill MaxSkill => _maxSkill;
+    //public EPlayerSkill PlayerSkill => _playerSkill;
+    //public EPlayerMaxSkill MaxSkill => _maxSkill;
     public int HasSkillNum => _hasSkillNum;
     public int HasArtifactNum => _hasArtifactNum;
     public int Level => _level;
@@ -221,9 +222,9 @@ public class Player : MonoBehaviour, IDamagables
         ItemManager.instance.PickMeUp();
     }
 
-    public void SkillUpgrade()
+    public void GetArtifact(string id, int level)
     {
-
+        // 아티팩트 SO에서 id, 레벨확인 파라미터 적용
     }
 
     void GainExp(float exp)
