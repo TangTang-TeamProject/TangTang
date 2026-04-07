@@ -7,6 +7,15 @@ public class SkillPick : MonoBehaviour
 {
     private Action callback;
 
+    [SerializeField]
+    private Transform pos_1;
+    [SerializeField]
+    private Transform pos_2;
+    [SerializeField]
+    private Transform pos_3;
+
+    private string pickedID;
+
     public void StartPick(Action _callback)
     {
         callback = _callback;
@@ -24,6 +33,7 @@ public class SkillPick : MonoBehaviour
     public void EndPick()
     {
         this.gameObject.SetActive(false);
+
         callback?.Invoke();
     }
 }
