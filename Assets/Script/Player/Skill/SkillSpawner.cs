@@ -56,12 +56,12 @@ public class SkillSpawner : MonoBehaviour
 
     void Start()
     {
-        GetSkill("Axe", 6);
-        GetSkill("DualBlade", 6);
-        GetSkill("Mace", 5);
-        GetSkill("Spear", 5);
-        GetSkill("Trident", 5);
-        GetSkill("Wand", 6);
+        SkillLearn("Axe", 6);
+        SkillLearn("DualBlade", 6);
+        SkillLearn("Mace", 5);
+        SkillLearn("Spear", 5);
+        SkillLearn("Trident", 5);
+        SkillLearn("Wand", 6);
 
         _axeCo = StartCoroutine(Co_AxeFire());
         _dualBladeCo = StartCoroutine(Co_DualBaldeFire());
@@ -234,12 +234,30 @@ public class SkillSpawner : MonoBehaviour
         }
     }
 
-    // 나중에 플레이어 같은데서 실행받고 SO같은걸 넘긴다
-    public void GetSkill(string tag, int num)
+    public void GetSkill(string id, int level)
+    {
+        // 슬롯에서 id와 레벨을 받고 GetSkill한다.
+        /*
+        if (level == 1)
+        {
+            GetSkill(id, 8);
+            return;
+        }
+
+        SkillUpgrade(id, level);
+        */
+    }
+
+    void SkillLearn(string tag, int num)
     {
         _pool.InitCreateSkill(tag, num);
 
         //CoroutineActivate(tag);
+    }
+
+    void SkillUpgrade(string id, int level)
+    {
+
     }
 
     void CoroutineActivate(string tag)
