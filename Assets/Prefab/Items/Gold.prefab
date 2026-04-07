@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9006340536676809948}
+  - component: {fileID: 3231392796780141628}
   - component: {fileID: 2554807763334706547}
   m_Layer: 8
   m_Name: Gold
@@ -32,6 +33,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3231392796780141628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788929143090124143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4d7d14dd90b2442be78396d139c488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemData: {fileID: 11400000, guid: 6f38a6bed00a5ff4dad709821b736209, type: 2}
+  _itemMoveSpeed: 5
 --- !u!212 &2554807763334706547
 SpriteRenderer:
   m_ObjectHideFlags: 0

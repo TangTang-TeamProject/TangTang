@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 540057535688766965}
+  - component: {fileID: 8166738781456575805}
   - component: {fileID: 7259629392289635565}
   m_Layer: 8
   m_Name: Magnatic
@@ -32,6 +33,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8166738781456575805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391811410350670171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faab7ef93b753f44ab6cc4339bd0fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemData: {fileID: 11400000, guid: 4835c3647a109af41b245235b7bced89, type: 2}
+  _itemMoveSpeed: 5
 --- !u!212 &7259629392289635565
 SpriteRenderer:
   m_ObjectHideFlags: 0
