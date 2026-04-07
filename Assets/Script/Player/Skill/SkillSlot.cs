@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,18 +9,20 @@ public class SkillSlot : MonoBehaviour
     [SerializeField] private int _maxSkillNum = 4;
     [SerializeField] private int _maxArtifactNum = 4;
 
+    [Serializable]
     public class PlayerSkill
     {
         public string id;
         public int level;
     }
+    [Serializable]
     public class PlayerArtifact
     {
         public string id;
         public int level;
     }
-    private List<PlayerSkill> _playerSkills = new List<PlayerSkill>();
-    private List<PlayerArtifact> _playerArtifacts = new List<PlayerArtifact>();
+    [SerializeField] private List<PlayerSkill> _playerSkills = new List<PlayerSkill>();
+    [SerializeField] private List<PlayerArtifact> _playerArtifacts = new List<PlayerArtifact>();
     private readonly Dictionary<string, PlayerSkill> _skillDict = new Dictionary<string, PlayerSkill>();
     private readonly Dictionary<string, PlayerArtifact> _artifactDict = new Dictionary<string, PlayerArtifact>();
 
@@ -76,11 +79,13 @@ public class SkillSlot : MonoBehaviour
         return _playerArtifacts.Count >= _maxArtifactNum;
     }
 
-    public void SkillUp(string id, int level)
+    public void SkillUp(string id)
     {
+        int level = 1;
         if (_skillDict.TryGetValue(id, out PlayerSkill skill))
         {
-            skill.level = level;
+            skill.level++;
+            level = skill.level;
         }
         else
         {
@@ -100,11 +105,13 @@ public class SkillSlot : MonoBehaviour
         _spawner.GetSkill(id, level);
     }
 
-    public void ArtifactUp(string id, int level)
+    public void ArtifactUp(string id)
     {
+        int level = 1;
         if (_artifactDict.TryGetValue(id, out PlayerArtifact artifact))
         {
-            artifact.level = level;
+            artifact.level++;
+            level = artifact.level;
         }
         else
         {
