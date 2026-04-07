@@ -50,6 +50,13 @@ MonoBehaviour:
   _player: {fileID: 0}
   _spawnDir: {fileID: 0}
   _cam: {fileID: 0}
+  _skillData:
+  - {fileID: 11400000, guid: e2fc433c80cd25949b293df0a77c074f, type: 2}
+  - {fileID: 11400000, guid: d9f14960312e4084f80bb4bb95b6f22e, type: 2}
+  - {fileID: 11400000, guid: 0987f4d8a2ee0bf41afa0415b59702a6, type: 2}
+  - {fileID: 11400000, guid: 99ee755ee48110841b408389ebf2d163, type: 2}
+  - {fileID: 11400000, guid: 9dccd6443d5b6df4bba9b39e95b4fde2, type: 2}
+  - {fileID: 11400000, guid: 27c1944a64e375d45a77b150c6d9c841, type: 2}
 --- !u!114 &7729459255250177713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,10 +83,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107ac7829d66a264cb0e01e5735992d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillPrefab:
-  - {fileID: 7630629797730303655, guid: a6c30988251b05a4ea1048cb4b6e8d22, type: 3}
-  - {fileID: 8441061280361703149, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
-  - {fileID: 8284904972113470649, guid: b553163839083e645b23b0360f83e776, type: 3}
-  - {fileID: 8939225881726994098, guid: 4f3d1ce6920973843b85bf0a460a1406, type: 3}
-  - {fileID: 6495812313512133773, guid: 62ad915ccc476e243befbc4612a1fd5b, type: 3}
-  - {fileID: 7995378173483756500, guid: 695e59c52f44ade429544c128a1760ff, type: 3}
