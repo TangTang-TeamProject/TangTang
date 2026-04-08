@@ -16,5 +16,5 @@ MonoBehaviour:
   nameKR: "\uC30D\uAC80"
   nameEN: DualBlade
   maxLevel: 5
-  img: {fileID: 0}
+  img: {fileID: 21300000, guid: 13c035a6820ee40139858ef1f949e854, type: 3}
   prefab: {fileID: 6495812313512133773, guid: 62ad915ccc476e243befbc4612a1fd5b, type: 3}

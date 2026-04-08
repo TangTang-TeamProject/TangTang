@@ -11,7 +11,9 @@ public class SkillData_SO : ScriptableObject
     [SerializeField]
     private string nameEN = "";
     [SerializeField]
-    private string maxLevel = "";
+    private int maxLevel = 0;
+    [SerializeField]
+    private bool isEvo = false;
     [SerializeField]
     private Sprite img;
     [SerializeField]
@@ -20,7 +22,8 @@ public class SkillData_SO : ScriptableObject
     public string SkillID => skillID;
     public string NameKR => nameKR;
     public string NameEN => nameEN;
-    public string MaxLevel => maxLevel;
+    public int MaxLevel => maxLevel;
+    public bool IsEvo => isEvo;
     public Sprite IMG => img;
     public SkillAttack Prefab => prefab;
 }

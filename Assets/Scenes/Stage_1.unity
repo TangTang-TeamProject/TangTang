@@ -2040,6 +2040,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8875d75571d21cf4393c08a7dd36a18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillList:
+  - {fileID: 890291696}
+  - {fileID: 1627353683}
+  - {fileID: 585748688}
+  - {fileID: 72132115}
+  artiList:
+  - {fileID: 1798175318}
+  - {fileID: 849290515}
+  - {fileID: 1951333242}
+  - {fileID: 1086989313}
+  skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
+  artifactRegistry: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
+  evolutionRegistry: {fileID: 11400000, guid: 0ed14be7c08790449a1850d195675727, type: 2}
   choices:
   - choice: {fileID: 875275363}
     choice_back: {fileID: 875275364}
