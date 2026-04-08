@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private float _invincibleDuration = 0.5f;
     [SerializeField] private PlayerRegistry _playerRegistry;
     [SerializeField] private PlayerData_SO _data;
+    [SerializeField] private string _firstWeapon;
         
     private float _maxHp;
     private float _hp;
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour, IDamagables
 
     public string FirstSkill()
     {
-        return "Trident";
+        return _firstWeapon;
     }
 
     IEnumerator Co_CheckHit()
