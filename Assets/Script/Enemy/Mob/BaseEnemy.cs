@@ -8,7 +8,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     [Header("EnemyData SO")]
     [SerializeField] protected EnemyData_SO _monsterData;
     [Header("피격 설정")]    
-    [SerializeField] protected float _hitTimer = 0.1f;
+    [SerializeField] protected float _hitTimer = 0.1f;    
 
     protected bool _isHit = false;
     protected float _hitTime;
@@ -159,11 +159,16 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         {
             _mobType = EnemyType.Elite;
             transform.localScale = new Vector3(2.5f, 2.5f, 0); // 엘리트몹 크기 변경
+            int randExp = UnityEngine.Random.Range(10, 30);
+            _expDrop = randExp;
+            _maxHp = _monsterData.HP * 2;
         }
         else
         {
             _mobType = _monsterData.EnemyType;
             transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);
+            _expDrop = _monsterData.ExpDrop;
+            _maxHp = _monsterData.HP;
         }
             
         _isHit = false;

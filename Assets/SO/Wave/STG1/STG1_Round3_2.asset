@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: STG1_Round3_2
   m_EditorClassIdentifier: 
   stageID: STG_001
-  startSec: 661
-  endSec: 720
+  startSec: 241
+  endSec: 300
   spawnEnemy: ENM_002
-  enemyCount: 10
-  spawnIntervalSec: 2
+  enemyCount: 5
+  spawnIntervalSec: 3
