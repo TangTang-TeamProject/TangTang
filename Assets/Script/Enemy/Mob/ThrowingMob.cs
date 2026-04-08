@@ -33,7 +33,7 @@ public class ThrowingMob : BaseEnemy
         {
             if (_eliteUX != null)
             {
-                _eliteUX.SetActive(true);
+                _eliteUX.SetActive(false);
             }
         }
     }
