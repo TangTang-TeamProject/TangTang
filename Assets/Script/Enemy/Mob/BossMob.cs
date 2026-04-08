@@ -34,7 +34,11 @@ public class BossMob : BaseEnemy
 
     private SpriteRenderer[] _spriteRenderers;
     private List<SpriteRenderer> _activeList = new List<SpriteRenderer>();
-    private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();    
+    private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();
+
+    private string _animString_Move = "1_Move";
+    private string _animString_Damaged = "3_Damaged";
+    private string _animString_Attack = "2_Attack";
 
     protected override void Awake()
     {
@@ -151,7 +155,7 @@ public class BossMob : BaseEnemy
             _throwedWeapon1 = Instantiate(_weaponPrefab, spawnPos, Quaternion.identity);
             _throwedWeapon1.GetComponent<BossWeapon_Axe>().ThrowedToTarget(_target);
             _leftHand = false;
-
+            _animator.SetTrigger(_animString_Attack);
             StartCoroutine(ThrowToGet(true));
         }
         else
@@ -161,7 +165,7 @@ public class BossMob : BaseEnemy
             _throwedWeapon2 = Instantiate(_weaponPrefab, spawnPos, Quaternion.identity);
             _throwedWeapon2.GetComponent<BossWeapon_Axe>().ThrowedToTarget(_target);
             _rightHand = false;
-
+            _animator.SetTrigger(_animString_Attack);
             StartCoroutine(ThrowToGet(false));
         }            
     }
@@ -193,12 +197,20 @@ public class BossMob : BaseEnemy
             _throwedWeapon2.GetComponent<BossWeapon_Axe>().IsCatched();
         }
     }
-    
+
+    public override void Chase()
+    {
+        base.Chase();
+        _animator.SetBool(_animString_Move, true);
+    }
+
     protected override void Hit(float damage)
     {        
         _maxHp -= damage;
         _isHit = true;
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.        
+        //_animator.SetBool(_animString_Move, false);
+        //_animator.SetTrigger(_animString_Damaged);
 
         float ratio = _maxHp / _monsterData.HP;
         _HPBarImage.fillAmount = ratio;
