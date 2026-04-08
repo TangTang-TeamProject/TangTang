@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: ArtifactRegistrySO
   m_EditorClassIdentifier: 
   artifacts:
+  - {fileID: 11400000, guid: a4ee882d74597b842b32f5705a57a253, type: 2}
+  - {fileID: 11400000, guid: c98000efdfd50974fa96ed8c727c9e9a, type: 2}
+  - {fileID: 11400000, guid: afedaebd84321c04e826c240d60d4b8b, type: 2}
+  - {fileID: 11400000, guid: d8ce869e727c6434fbbcf19d95ee4e8a, type: 2}
+  - {fileID: 11400000, guid: 73dd33d665748b6409642dc64f16cd77, type: 2}
   - {fileID: 11400000, guid: dd1861797987e244bb62bf53a29dfeec, type: 2}
