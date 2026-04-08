@@ -1466,6 +1466,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1450121155220666291, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
+      propertyPath: _HPBar
+      value: 
+      objectReference: {fileID: 1988993336}
     - target: {fileID: 4339710413839413416, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
       propertyPath: m_Size.x
       value: 0.375

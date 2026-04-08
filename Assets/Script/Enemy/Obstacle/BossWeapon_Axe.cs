@@ -96,9 +96,10 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
             collisionVec = new Vector2(_dirAimed.x, 0);            
         }
 
-        else if ((nowX >= _maxX || nowX <= _minX) && (nowY >= _maxY || nowY <= _minY))
+        if ((nowX >= _maxX || nowX <= _minX) && (nowY >= _maxY || nowY <= _minY))
         {
-            contactedToVertex = true;            
+            contactedToVertex = true;
+            contactedToWall = false;
         }
 
         if (contactedToWall)
