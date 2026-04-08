@@ -41,10 +41,11 @@ public class ExpGem : Items
     // 흡수 되었을 시 -> pool 로 리턴.
     public override void SetActiveFalse()
     {
-        _pool.Return(this);
+        
         GetExp?.Invoke(Exp);
         GetExp = null;
         base.SetActiveFalse();
+        _pool.Return(this);
     }
 
     private void MagneticAbsorbed(GameObject target)
