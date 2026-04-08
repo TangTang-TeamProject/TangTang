@@ -377,7 +377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9c510a45f021d47bcf5611d5d33218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool: {fileID: 595066357}
+  _pools:
+  - {fileID: 595066357}
+  - {fileID: 953437854}
   _factory: {fileID: 1899557390}
   _fence: {fileID: 453232338}
   _itemRegistry: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
@@ -1909,12 +1911,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1784810360}
     - target: {fileID: -3186519328723176080, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+      propertyPath: _randomBox
+      value: 
+      objectReference: {fileID: 5771510562381001829, guid: 87961c646cd11254991f708d7a0a1e16, type: 3}
+    - target: {fileID: -3186519328723176080, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: _HPBarImage
       value: 
       objectReference: {fileID: 116661178}
     - target: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_Name
       value: MidBoss2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7274080097361058139, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2231,8 +2241,8 @@ MonoBehaviour:
   - {fileID: 1222528657}
   - {fileID: 1040954054}
   _bossPrefabs:
-  - {fileID: 641102115}
   - {fileID: 2045022638}
+  - {fileID: 641102115}
   - {fileID: 1797194432}
   _bossCircle: {fileID: 1614123249}
   _circleErase: 3
@@ -5102,6 +5112,10 @@ PrefabInstance:
       propertyPath: _HPBar
       value: 
       objectReference: {fileID: 1784810360}
+    - target: {fileID: 3636056399893758029, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
+      propertyPath: _randomBox
+      value: 
+      objectReference: {fileID: 5771510562381001829, guid: 87961c646cd11254991f708d7a0a1e16, type: 3}
     - target: {fileID: 3636056399893758029, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: _HPBarImage
       value: 

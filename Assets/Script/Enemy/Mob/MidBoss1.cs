@@ -15,6 +15,9 @@ public class MidBoss1 : BaseEnemy
     [SerializeField] private GameObject _HPBar;
     [SerializeField] private Image _HPBarImage;
 
+    [Header("·£´ý ¹Ú½º")]
+    [SerializeField] private GameObject _randomBox;   
+
     private bool _isDashing = false;
     private string animParam = "Dash";
 
@@ -124,6 +127,7 @@ public class MidBoss1 : BaseEnemy
 
         Timer.Instance.IsBossDie(false);
         _HPBar.SetActive(false);
+        Instantiate(_randomBox, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

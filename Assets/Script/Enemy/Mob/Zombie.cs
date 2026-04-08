@@ -12,7 +12,14 @@ public class Zombie : BaseEnemy
         base.Init(pool, idx);
         if (_isElite)
         {
-            _eliteUX = Instantiate(_eliteMobGE, transform);
+            if (_eliteUX != null)
+            {
+                _eliteUX.SetActive(true);
+            }
+            else
+            {
+                _eliteUX = Instantiate(_eliteMobGE, transform);
+            }                
         }        
     }
 
@@ -56,7 +63,7 @@ public class Zombie : BaseEnemy
         {
             if (_eliteUX != null)
             {
-                Destroy(_eliteUX);
+                _eliteUX.SetActive(false);
             }
         }
 
