@@ -178,7 +178,7 @@ public class Alarm : MonoBehaviour
         alarmText.text = _text;
         mark.sprite = _img;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         this.gameObject.SetActive(false);
 
