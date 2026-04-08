@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IDamagables
     private Coroutine _invincibleCo;
     private float _speed;
     private float _attack;
-    private int _level;
+    private int _level = 1;
     private float _requireExp = 100;
     private float _currentExp;
     private int _hasSkillNum;
@@ -36,6 +36,8 @@ public class Player : MonoBehaviour, IDamagables
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
     public float CurrentHp => _hp;
+    public float Exp => _currentExp;
+    public float RequireExp => _requireExp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
     public int HasSkillNum => _hasSkillNum;
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour, IDamagables
     public event Action OnDead;
     public event Action<float> OnCurrentHPChange;
     public event Action<float> OnMaxHPChange;
+    public event Action<float> OnCurrentEXPChange;
+    public event Action<float> OnRequireEXPChange;
 
     private void Reset()
     {
@@ -110,7 +114,7 @@ public class Player : MonoBehaviour, IDamagables
 
     public string FirstSkill()
     {
-        return "Axe";
+        return "Trident";
     }
 
     IEnumerator Co_CheckHit()
@@ -195,6 +199,8 @@ public class Player : MonoBehaviour, IDamagables
         _currentExp = 0;
         _level++;
         ItemManager.instance.PickMeUp();
+        OnCurrentEXPChange?.Invoke(_currentExp);
+        OnRequireEXPChange?.Invoke(_requireExp);
     }
 
     public void GetArtifact(string id, int level)
@@ -205,6 +211,7 @@ public class Player : MonoBehaviour, IDamagables
     void GainExp(float exp)
     {
         _currentExp += exp;
+        OnCurrentEXPChange?.Invoke(_currentExp);
         if (_currentExp >= _requireExp)
         {
             LevelUp();
