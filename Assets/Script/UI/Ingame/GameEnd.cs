@@ -51,6 +51,7 @@ public class GameEnd : MonoBehaviour
     {
         earnCoinText.text = _endgold.ToString();
         SaveManager.CalcGold(_endgold);
+        SaveManager.Save();
     }
 
     public void GameOver(int endgold)
