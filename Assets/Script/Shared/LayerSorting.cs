@@ -5,14 +5,14 @@ using UnityEngine.Rendering;
 public class LayerSorting : MonoBehaviour
 {
     
-    private bool _isPlayer = false;
+    //private bool _isPlayer = false;
 
     private SpriteRenderer _sr;
     private SortingGroup _sg;
 
     private EnemyType _enemyType;
 
-    private string _playerLayerString = "Player";
+    //private string _playerLayerString = "Player";
 
     private int _yValue;
     private float _prevY;
