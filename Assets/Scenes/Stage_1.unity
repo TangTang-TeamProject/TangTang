@@ -3648,7 +3648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6651259472453020151, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
       propertyPath: _firstWeapon
-      value: DualBlade
+      value: Trident
       objectReference: {fileID: 0}
     - target: {fileID: 8528839051561741518, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6706,6 +6706,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1076602054}
+  - {fileID: 1784810361}
   - {fileID: 1326141337}
   - {fileID: 963740015}
   - {fileID: 654532904}
@@ -6713,7 +6714,6 @@ RectTransform:
   - {fileID: 941808210}
   - {fileID: 358549462}
   - {fileID: 1026644666}
-  - {fileID: 1784810361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
