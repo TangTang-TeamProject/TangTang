@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7274080097361058139
 Transform:
   m_ObjectHideFlags: 0
@@ -170,3 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: f95122333a7e88f458365baf7890f7dc, type: 2}
   _hitTimer: 0.1
+  _HPBar: {fileID: 0}
+  _HPBarImage: {fileID: 0}
