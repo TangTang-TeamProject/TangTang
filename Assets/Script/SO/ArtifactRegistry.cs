@@ -46,4 +46,11 @@ public class ArtifactRegistry : ScriptableObject
         CPrint.Error("ArtifactRegistry - Cant Find");
         return null;
     }
+
+    public ArtifactData_SO GetRandomArti()
+    {
+        int a = Random.Range(0, artifacts.Count);
+
+        return artifacts[a];
+    }
 }

@@ -31,7 +31,7 @@ public class SkillRegistry : ScriptableObject
         }
     }
 
-    public SkillData_SO GetArtifactByID(string _ID)
+    public SkillData_SO GetSkillByID(string _ID)
     {
         NullCheck();
 
@@ -42,5 +42,24 @@ public class SkillRegistry : ScriptableObject
 
         CPrint.Error("SkillRegistry - Cant Find");
         return null;
+    }
+
+    public SkillData_SO GetRandomSkill()
+    {
+        int maxLoop = 0;
+
+        while (maxLoop < 10)
+        {
+            maxLoop++;
+
+            int a = Random.Range(0, skills.Count);
+
+            if (skills[a].IsEvo == false)
+            {
+                return skills[a];
+            }
+        }
+
+        return skills[0];
     }
 }

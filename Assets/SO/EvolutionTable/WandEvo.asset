@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c7e16ae09bca94481874cbad65424a, type: 3}
-  m_Name: PlayerExample
+  m_Script: {fileID: 11500000, guid: d00c809b4f3df5d4384da57b06fb07c8, type: 3}
+  m_Name: WandEvo
   m_EditorClassIdentifier: 
-  characterID: 
-  nameKR: 
-  nameEN: 
-  baseHP: 100
-  baseATK: 1
-  baseMoveSpeed: 4
-  critRate: 0
-  pickUpRange: 0
-  prefab: {fileID: 0}
+  evolutionID: WandEvo
+  baseSkillID: Wand
+  requiredArtifactID: WandBook

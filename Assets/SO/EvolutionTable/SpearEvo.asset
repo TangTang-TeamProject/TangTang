@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361d905e0e47a7047a29017ef36f64b7, type: 3}
-  m_Name: ArtifactExample
+  m_Script: {fileID: 11500000, guid: d00c809b4f3df5d4384da57b06fb07c8, type: 3}
+  m_Name: SpearEvo
   m_EditorClassIdentifier: 
-  artifactID: 0
-  atkCycle: 0
-  bulletSpeed: 0
-  dmg: 0
+  evolutionID: SpearEvo
+  baseSkillID: Spear
+  requiredArtifactID: SpearBook

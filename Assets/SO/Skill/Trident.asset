@@ -16,5 +16,5 @@ MonoBehaviour:
   nameKR: "\uC0BC\uC9C0\uCC3D"
   nameEN: Trident
   maxLevel: 5
-  img: {fileID: 0}
+  img: {fileID: 21300000, guid: 9ceba41c6fb6d463ab9ecab86706972e, type: 3}
   prefab: {fileID: 8441061280361703149, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}

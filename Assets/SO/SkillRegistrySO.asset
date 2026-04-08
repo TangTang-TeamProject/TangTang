@@ -13,4 +13,15 @@ MonoBehaviour:
   m_Name: SkillRegistrySO
   m_EditorClassIdentifier: 
   skills:
-  - {fileID: 11400000, guid: e713b1adf8724fc44b414e290ebbf251, type: 2}
+  - {fileID: 11400000, guid: e2fc433c80cd25949b293df0a77c074f, type: 2}
+  - {fileID: 11400000, guid: d9f14960312e4084f80bb4bb95b6f22e, type: 2}
+  - {fileID: 11400000, guid: 0987f4d8a2ee0bf41afa0415b59702a6, type: 2}
+  - {fileID: 11400000, guid: 99ee755ee48110841b408389ebf2d163, type: 2}
+  - {fileID: 11400000, guid: 9dccd6443d5b6df4bba9b39e95b4fde2, type: 2}
+  - {fileID: 11400000, guid: 27c1944a64e375d45a77b150c6d9c841, type: 2}
+  - {fileID: 11400000, guid: a24d0fb94f2b44040a85960a5ee0b270, type: 2}
+  - {fileID: 11400000, guid: 9df75c3cf4b304a43898f65dd6a58ac0, type: 2}
+  - {fileID: 11400000, guid: 44407840b693dd04a94907feeb0258ab, type: 2}
+  - {fileID: 11400000, guid: 36a67f9be45780149aa1f5f3571e7c46, type: 2}
+  - {fileID: 11400000, guid: a0839b0fa148193418a2214661d1f114, type: 2}
+  - {fileID: 11400000, guid: 393614b77d63f55439e4100bab33c9a8, type: 2}

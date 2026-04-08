@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5033cb4515e00a43a196c16dfc4e29a, type: 3}
   m_Name: EvolutionRegistrySO
   m_EditorClassIdentifier: 
-  evolution: []
+  evolution:
+  - {fileID: 11400000, guid: 6104e4d9b2d8e464d8a2b2063b89ec7d, type: 2}
+  - {fileID: 11400000, guid: d3f198615e5148f4b9ea1867806dfb5e, type: 2}
+  - {fileID: 11400000, guid: 53f85d36a9e26094b9c0aa9e341c4c86, type: 2}
+  - {fileID: 11400000, guid: 6ceae148747aaa44199abfc9f57fb92e, type: 2}
+  - {fileID: 11400000, guid: eed854acf9da49849886ced4e5aec179, type: 2}
+  - {fileID: 11400000, guid: d89b98c832b36c145b4ed96b2cd478a0, type: 2}
