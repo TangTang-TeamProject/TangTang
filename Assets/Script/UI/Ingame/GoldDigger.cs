@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldDigger : MonoBehaviour
+public class GoldDigger
 {
-    void Start()
+    private int totalGold = 0;
+    private int amount;
+
+    public void AddGold()
     {
-        
+        totalGold += amount;
     }
 
-    void Update()
+
+    public int CalcGold()
     {
-        
+        return totalGold;
     }
 }

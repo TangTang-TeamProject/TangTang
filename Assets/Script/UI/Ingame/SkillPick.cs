@@ -301,8 +301,9 @@ public class SkillPick : MonoBehaviour
             case ChoiceType.Evo:
                 slot.SkillUp(choices[i].pickedID);
                 break;
+
             case ChoiceType.Gold:
-                // 차후 추가
+                ItemManager.instance.ShowMeTheMoney();
                 break;
         }
 

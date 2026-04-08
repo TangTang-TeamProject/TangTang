@@ -30,6 +30,8 @@ public class IngameFlow : MonoBehaviour
     private Alarm AlarmUI;
     [SerializeField]
     private GameEnd gameEndUI;
+    [SerializeField]
+    private GoldDigger goldDigger = new GoldDigger();
 
     private Player player;
 
@@ -50,6 +52,7 @@ public class IngameFlow : MonoBehaviour
         Timer.Instance.BossDie += BossDisappear;
         ItemManager.instance.SkillPick += SkillPickEvent;
         ItemManager.instance.LuckyBox += LotteryEvent;
+        ItemManager.instance.Money += goldDigger.AddGold;
         AlarmUI.BigWaveMode += ZoomOutCam;
         AlarmUI.BasicMode += ZoomInCam;
     }
