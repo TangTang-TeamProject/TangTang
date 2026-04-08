@@ -49,8 +49,7 @@ public class ExpGem : Items
 
     private void MagneticAbsorbed(GameObject target)
     {
-        base.GetItem(target);
-        _itemMoveSpeed *= 1.5f;
+        base.GetItem(target);       
     }
 
     public override void MoveToTarget()
