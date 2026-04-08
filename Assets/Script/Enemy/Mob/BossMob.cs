@@ -200,7 +200,7 @@ public class BossMob : BaseEnemy
 
     public override void Chase()
     {
-        base.Chase();
+        base.Chase();        
         _animator.SetBool(_animString_Move, true);
     }
 
@@ -228,7 +228,7 @@ public class BossMob : BaseEnemy
 
     public override void Die()
     {
-        // 사망 애니메이션
+        // 
 
         // 보스 전리품 생성 호출
 
