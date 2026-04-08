@@ -1918,6 +1918,10 @@ PrefabInstance:
       propertyPath: _HPBarImage
       value: 
       objectReference: {fileID: 116661178}
+    - target: {fileID: -3186519328723176080, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+      propertyPath: _itemParent
+      value: 
+      objectReference: {fileID: 73851142}
     - target: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_Name
       value: MidBoss2
@@ -5244,6 +5248,10 @@ PrefabInstance:
       propertyPath: _HPBarImage
       value: 
       objectReference: {fileID: 116661178}
+    - target: {fileID: 3636056399893758029, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
+      propertyPath: _itemParent
+      value: 
+      objectReference: {fileID: 73851142}
     - target: {fileID: 8458380459228892208, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: m_Name
       value: MidBoss1

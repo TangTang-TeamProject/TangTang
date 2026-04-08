@@ -9,6 +9,7 @@ public class MidBoss2 : BaseEnemy
     [SerializeField] private Image _HPBarImage;
 
     [Header("·£´ý ¹Ú½º")]
+    [SerializeField] private GameObject _itemParent;
     [SerializeField] private GameObject _randomBox;
 
     protected override void Awake()
@@ -16,6 +17,7 @@ public class MidBoss2 : BaseEnemy
         base.Awake();
 
         _HPBar.SetActive(true);
+        _HPBarImage.fillAmount = 1f;
     }
 
     protected override void Update()
@@ -61,7 +63,7 @@ public class MidBoss2 : BaseEnemy
 
         Timer.Instance.IsBossDie(false);
         _HPBar.SetActive(false);
-        Instantiate(_randomBox, transform.position, Quaternion.identity);
+        Instantiate(_randomBox, transform.position, Quaternion.identity, _itemParent.transform);
         Destroy(gameObject);
     }
 }
