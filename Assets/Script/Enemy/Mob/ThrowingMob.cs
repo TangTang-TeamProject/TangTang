@@ -20,7 +20,18 @@ public class ThrowingMob : BaseEnemy
         base.Init(pool, idx);
         if (_isElite)
         {
-            _eliteUX = Instantiate(_eliteMobGE, transform);
+            if (_eliteUX != null)
+            {
+                _eliteUX.SetActive(true);
+            }
+            else
+            {
+                _eliteUX = Instantiate(_eliteMobGE, transform);
+            }
+        }
+        else
+        {
+            _eliteUX.SetActive(false);
         }
     }
 

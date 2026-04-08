@@ -20,7 +20,11 @@ public class Zombie : BaseEnemy
             {
                 _eliteUX = Instantiate(_eliteMobGE, transform);
             }                
-        }        
+        }
+        else
+        {
+            _eliteUX.SetActive(false);
+        }
     }
 
     protected override void Update()
