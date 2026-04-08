@@ -115,7 +115,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             return;
 
         Timer.Instance.BossSpawn += RemoveWhenBoss;
-        ItemManager.instance.Bomb += RemoveWhenBoss;
+        ItemManager.instance.Bomb += Die;
     }
 
     protected virtual bool CanUpdate()
