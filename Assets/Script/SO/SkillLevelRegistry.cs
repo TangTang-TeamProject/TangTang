@@ -31,23 +31,23 @@ public class SkillLevelRegistry : ScriptableObject
         {
             if (!dataDic.ContainsKey(levels[i].SkillID))
             {
-                //dataDic.Add(levels[i].SkillID,);
+                dataDic.Add(levels[i].SkillID, new Dictionary<int, SkillLevel_SO>());
             }
 
+            dataDic[levels[i].SkillID].Add(levels[i].Level, levels[i]);
         }
     }
-    /*
+
     public SkillLevel_SO GetSkillDataByIDLevel(string _ID, int level)
     {
         NullCheck();
 
-        if (dataDic.TryGetValue(_ID, out SkillLevel_SO data))
+        if (dataDic.TryGetValue(_ID, out Dictionary<int, SkillLevel_SO> data))
         {
-            return data;
+            return data[level];
         }
 
         CPrint.Error("SkillRegistry - Cant Find");
         return null;
     }
-    */
 }
