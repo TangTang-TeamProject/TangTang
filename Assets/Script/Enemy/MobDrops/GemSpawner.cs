@@ -6,7 +6,7 @@ using UnityEngine;
 public class GemSpawner : MonoBehaviour
 {
     [Header("EnemyPool 참조 연결")]
-    [SerializeField] private EnemyPool _pool;
+    [SerializeField] private List<EnemyPool> _pools;
     [Header("GemFactory 연결")]
     [SerializeField] private GemFactory _factory;
     [Header("FireFence 연결")]
@@ -19,7 +19,7 @@ public class GemSpawner : MonoBehaviour
 
     void Awake()
     {
-        if (_pool == null)
+        if (_pools == null)
         {
             CPrint.Error($"{this} : EnemyPool 연결 안됨");
             enabled = false;
@@ -33,7 +33,11 @@ public class GemSpawner : MonoBehaviour
             return;
         }
 
-        _pool.OnEnemyDead += SpawnGem; // enemy 사망시 젬 스폰 구독.
+        for (int i = 0; i < _pools.Count; i++)
+        {
+            _pools[i].OnEnemyDead += SpawnGem; // enemy 사망시 젬 스폰 구독.
+        }
+        
         
     }
 
@@ -48,7 +52,7 @@ public class GemSpawner : MonoBehaviour
 
     public void SpawnGem(BaseEnemy enemy)
     {
-        if (enemy.MobType != EnemyType.Normal)
+        if (enemy.MobType == EnemyType.Boss)
         {
             return;
         }

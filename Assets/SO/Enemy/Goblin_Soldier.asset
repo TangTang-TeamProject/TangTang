@@ -19,7 +19,7 @@ MonoBehaviour:
   moveSpeed: 1.1
   contactDamage: 6
   expDrop: 1
-  sizeScale: 0.95
+  sizeScale: 1
   atkCycle: 0
   bulletSpeed: 0
   enemytype: 0
