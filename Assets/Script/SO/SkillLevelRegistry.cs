@@ -38,13 +38,13 @@ public class SkillLevelRegistry : ScriptableObject
         }
     }
 
-    public SkillLevel_SO GetSkillDataByIDLevel(string _ID, int level)
+    public SkillLevel_SO GetSkillDataByIDLevel(string _ID, int _level)
     {
         NullCheck();
 
         if (dataDic.TryGetValue(_ID, out Dictionary<int, SkillLevel_SO> data))
         {
-            return data[level];
+            return data[_level];
         }
 
         CPrint.Error("SkillRegistry - Cant Find");
