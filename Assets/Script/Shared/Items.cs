@@ -1,13 +1,13 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Items : MonoBehaviour
 {
-    [Header("¾ÆÀÌÅÛ µ¥ÀÌÅÍ SO")]
+    [Header("ì•„ì´í…œ ë°ì´í„° SO")]
     [SerializeField] protected ItemData_SO _itemData;
-    [Header("¾ÆÀÌÅÛ Èí¼ö ¼Óµµ")]
+    [Header("ì•„ì´í…œ í¡ìˆ˜ ì†ë„")]
     [SerializeField] protected float _itemMoveSpeed = 5f;
 
     protected GameObject _target;
@@ -16,29 +16,29 @@ public abstract class Items : MonoBehaviour
 
     void Update()
     {
-        if (!_isAbsorbed) // Èí¼ö ½ÃÀÛµÇ¾ú´ÂÁö °Ë»ç
+        if (!_isAbsorbed) // í¡ìˆ˜ ì‹œì‘ë˜ì—ˆëŠ”ì§€ ê²€ì‚¬
             return;
 
         MoveToTarget();
 
     }
 
-    // ÇÃ·¹ÀÌ¾î¿¡°Ô Èí¼ö ½ÃÀÛ µÆ´ÂÁö
-    // true -> ÇÃ·¹ÀÌ¾î¿¡°Ô ÀÌµ¿ / false -> ÀÌµ¿ X
+    // í”Œë ˆì´ì–´ì—ê²Œ í¡ìˆ˜ ì‹œì‘ ëëŠ”ì§€
+    // true -> í”Œë ˆì´ì–´ì—ê²Œ ì´ë™ / false -> ì´ë™ X
     protected bool _isAbsorbed = false;
 
-    // ÇÃ·¹ÀÌ¾î°¡ Èí¼ö ½ÃÀÛÇÒ ¶§ È£Ãâ       
+    // í”Œë ˆì´ì–´ê°€ í¡ìˆ˜ ì‹œì‘í•  ë•Œ í˜¸ì¶œ       
     public virtual void GetItem(GameObject target)
     {
 
         if (_isAbsorbed)
             return;
 
-        _isAbsorbed = true; // Èí¼ö ½ÃÀÛ
-        _target = target; // Å¸°Ù ¼³Á¤
+        _isAbsorbed = true; // í¡ìˆ˜ ì‹œì‘
+        _target = target; // íƒ€ê²Ÿ ì„¤ì •
     }
     
-    // Èí¼ö ½ÃÀÛµÇ¾úÀ»¶§ Å¸°Ù ¹æÇâÀ¸·Î ÀÌµ¿.   
+    // í¡ìˆ˜ ì‹œì‘ë˜ì—ˆì„ë•Œ íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ì´ë™.   
     public virtual void MoveToTarget()
     {
         if (_target == null)
@@ -62,8 +62,8 @@ public abstract class Items : MonoBehaviour
         transform.position = pos;
     }
 
-    // ¾ÆÀÌÅÛ Èí¼ö ¿Ï·á½Ã È£Ãâ (ºñÈ°¼ºÈ­ ÇÔ¼ö)
-    // °¢ ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®¿¡¼­ override ÇØ¼­ Ä¿½ºÅÒ.
+    // ì•„ì´í…œ í¡ìˆ˜ ì™„ë£Œì‹œ í˜¸ì¶œ (ë¹„í™œì„±í™” í•¨ìˆ˜)
+    // ê° ì•„ì´í…œ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ override í•´ì„œ ì»¤ìŠ¤í…€.
     public virtual void SetActiveFalse()
     {
         _target = null;
@@ -71,7 +71,7 @@ public abstract class Items : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // ¾ÆÀÌÅÛ Tag ¹İÈ¯.
+    // ì•„ì´í…œ Tag ë°˜í™˜.
     public virtual string GetItemTag()
     {
         return gameObject.tag;

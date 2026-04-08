@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Zombie : BaseEnemy
 {
-    [Header("¿¤¸®Æ® ¸÷ Ground UX")]
+    [Header("ì—˜ë¦¬íŠ¸ ëª¹ Ground UX")]
     [SerializeField] private GameObject _eliteMobGE;
 
     private GameObject _eliteUX;  
@@ -76,7 +76,7 @@ public class Zombie : BaseEnemy
 
         base.Die();
         
-        // Á×¾úÀ»¶§ È¿°ú Ãß°¡ ¿¹Á¤
+        // ì£½ì—ˆì„ë•Œ íš¨ê³¼ ì¶”ê°€ ì˜ˆì •
     }   
     
 }

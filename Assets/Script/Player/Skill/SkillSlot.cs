@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,13 +33,13 @@ public class SkillSlot : MonoBehaviour
     {
         if (_player == null)
         {
-            CPrint.Error("SkillSlot¿¡ ÇÃ·¹ÀÌ¾î ¾øÀ½");
+            CPrint.Error("SkillSlotì— í”Œë ˆì´ì–´ ì—†ìŒ");
             enabled = false;
             return;
         }
         if (_spawner == null)
         {
-            CPrint.Error("SkillSlot¿¡ ½ºÅ³½ºÆ÷³Ê ¾øÀ½");
+            CPrint.Error("SkillSlotì— ìŠ¤í‚¬ìŠ¤í¬ë„ˆ ì—†ìŒ");
             enabled = false;
             return;
         }
@@ -96,7 +96,7 @@ public class SkillSlot : MonoBehaviour
         {
             if (_playerSkills.Count >= _maxSkillNum)
             {
-                CPrint.Warn("½ºÅ³ ½½·Ô ²Ë Âü");
+                CPrint.Warn("ìŠ¤í‚¬ ìŠ¬ë¡¯ ê½‰ ì°¸");
                 return;
             }
             PlayerSkill newSkill = new PlayerSkill
@@ -122,7 +122,7 @@ public class SkillSlot : MonoBehaviour
         {
             if (_playerArtifacts.Count >= _maxArtifactNum)
             {
-                CPrint.Warn("¾ÆÆ¼ÆÑÆ® ½½·Ô ²ËÂü");
+                CPrint.Warn("ì•„í‹°íŒ©íŠ¸ ìŠ¬ë¡¯ ê½‰ì°¸");
                 return;
             }
             PlayerArtifact newArtifact = new PlayerArtifact

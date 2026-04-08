@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,13 +9,13 @@ public class SkillFactory : MonoBehaviour
     {
         if(!_skillDict.TryGetValue(id, out SkillAttack target))
         {
-            CPrint.Log($"{id}ÀÇ ½ºÅ³ÀÌ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀ½");
+            CPrint.Log($"{id}ì˜ ìŠ¤í‚¬ì´ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŒ");
             return null;
         }
 
         if (target == null)
         {
-            CPrint.Log($"{id}ÀÇ ÇÁ¸®ÆÕÀÌ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀ½");
+            CPrint.Log($"{id}ì˜ í”„ë¦¬íŒ¹ì´ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŒ");
             return null;
         }
 
@@ -26,7 +26,7 @@ public class SkillFactory : MonoBehaviour
     {
         if (prefab == null)
         {
-            CPrint.Error($"{id}ÀÇ ÇÁ¸®Æé ¾øÀ½");
+            CPrint.Error($"{id}ì˜ í”„ë¦¬í© ì—†ìŒ");
             return;
         }
         _skillDict[id] = prefab;

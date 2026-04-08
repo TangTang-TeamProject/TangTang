@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -75,9 +75,9 @@ public class AFK : MonoBehaviour
 
     void GetReward()
     {
-        // º¸»ó ´©Àû ÄÚµå
+        // ë³´ìƒ ëˆ„ì  ì½”ë“œ
 
-        CPrint.Log("º¸»ó ¼ö·É");
+        CPrint.Log("ë³´ìƒ ìˆ˜ë ¹");
 
         SaveManager.SetDate();
         SaveManager.Save();
@@ -95,7 +95,7 @@ public class AFK : MonoBehaviour
         }
 
         dateTime = new DateTime(SaveManager.data.dateTime);
-        // ¼ö·É ÁÖ±â ÀÌÈÄ¿¡ Ãß°¡ ÇÊ¿ä
+        // ìˆ˜ë ¹ ì£¼ê¸° ì´í›„ì— ì¶”ê°€ í•„ìš”
         endTime = dateTime.AddMinutes(10);
         total = endTime - dateTime;
     }

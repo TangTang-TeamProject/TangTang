@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 public class FireObstacles : BaseEnemy
@@ -15,7 +15,7 @@ public class FireObstacles : BaseEnemy
     {
         if ( _fireData == null )
         {
-            CPrint.Log("_fireData SO ¿¬°á ¾ÈµÊ");
+            CPrint.Log("_fireData SO ì—°ê²° ì•ˆë¨");
             enabled = false;
             return;
         }

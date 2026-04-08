@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class ProjectileFactory : MonoBehaviour
     {
         BaseProjectile projectile = _pool.GetProjectile(transform);
 
-        nowPos.y += 0.2f; // ¸ó½ºÅÍ ÇÇº¿ À§Ä¡¿¡¼­ Á¶±İ À§·Î ÁöÁ¤
+        nowPos.y += 0.2f; // ëª¬ìŠ¤í„° í”¼ë´‡ ìœ„ì¹˜ì—ì„œ ì¡°ê¸ˆ ìœ„ë¡œ ì§€ì •
 
         Vector2 targetPos = _target.transform.position;
         Vector2 dir = (targetPos - nowPos).normalized;        

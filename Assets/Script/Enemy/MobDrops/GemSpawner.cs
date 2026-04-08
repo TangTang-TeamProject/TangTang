@@ -1,15 +1,15 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GemSpawner : MonoBehaviour
 {
-    [Header("EnemyPool ¬¸¡∂ ø¨∞·")]
+    [Header("EnemyPool Ï∞∏Ï°∞ Ïó∞Í≤∞")]
     [SerializeField] private List<EnemyPool> _pools;
-    [Header("GemFactory ø¨∞·")]
+    [Header("GemFactory Ïó∞Í≤∞")]
     [SerializeField] private GemFactory _factory;
-    [Header("FireFence ø¨∞·")]
+    [Header("FireFence Ïó∞Í≤∞")]
     [SerializeField] private FireFence _fence;
 
     [Header("Gem Registry")]
@@ -21,21 +21,21 @@ public class GemSpawner : MonoBehaviour
     {
         if (_pools == null)
         {
-            CPrint.Error($"{this} : EnemyPool ø¨∞· æ»µ ");
+            CPrint.Error($"{this} : EnemyPool Ïó∞Í≤∞ ÏïàÎê®");
             enabled = false;
             return;
         }
 
         if (_factory == null)
         {
-            CPrint.Error($"{this} : GemFactory ø¨∞· æ»µ ");
+            CPrint.Error($"{this} : GemFactory Ïó∞Í≤∞ ÏïàÎê®");
             enabled = false;
             return;
         }
 
         for (int i = 0; i < _pools.Count; i++)
         {
-            _pools[i].OnEnemyDead += SpawnGem; // enemy ªÁ∏¡Ω√ ¡™ Ω∫∆˘ ±∏µ∂.
+            _pools[i].OnEnemyDead += SpawnGem; // enemy ÏÇ¨ÎßùÏãú Ï†¨ Ïä§Ìè∞ Íµ¨ÎèÖ.
         }
         
         
@@ -59,20 +59,20 @@ public class GemSpawner : MonoBehaviour
 
         GemType gemType;
 
-        if (enemy.ExpDrop < 10) // 10 πÃ∏∏ Ω∫∏Ù
+        if (enemy.ExpDrop < 10) // 10 ÎØ∏Îßå Ïä§Î™∞
         {
             gemType = GemType.Small;
         }
-        else if (enemy.ExpDrop < 20) // 20 πÃ∏∏ πÃµøÚ
+        else if (enemy.ExpDrop < 20) // 20 ÎØ∏Îßå ÎØ∏ÎîîÏõÄ
         {
             gemType = GemType.Medium;
         }
-        else // 20 ¿ÃªÛ ∂Û¡ˆ
+        else // 20 Ïù¥ÏÉÅ ÎùºÏßÄ
         {
             gemType = GemType.Large;
         }        
 
-        ExpGem gem = _factory.CreateGem(enemy.gameObject.transform.position, gemType); // «ÿ¥Á type¿« ¡™ ª˝º∫«œ±‚.
+        ExpGem gem = _factory.CreateGem(enemy.gameObject.transform.position, gemType); // Ìï¥Îãπ typeÏùò Ï†¨ ÏÉùÏÑ±ÌïòÍ∏∞.
         gem.GetExp += ItemManager.instance.GetGems;
     }
 }

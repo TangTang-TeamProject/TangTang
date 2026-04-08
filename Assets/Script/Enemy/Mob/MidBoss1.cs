@@ -1,4 +1,4 @@
-
+ï»¿
 
 using System.Collections;
 using UnityEngine;
@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class MidBoss1 : BaseEnemy
 {
     [SerializeField] private float _dashPower = 3f;
-    [Header("ÇØ´ç ¼öÄ¡ÀÌÇÏ ¸¸Å­ Á¢±ÙÇÏ¸é ´ë½Ã ¹ßµ¿")]
+    [Header("í•´ë‹¹ ìˆ˜ì¹˜ì´í•˜ ë§Œí¼ ì ‘ê·¼í•˜ë©´ ëŒ€ì‹œ ë°œë™")]
     [SerializeField] private float _dashDist = 5f;
     [SerializeField] private float _dashTime = 1f;
 
-    [Header("HP Bar ¿¬°á")]
+    [Header("HP Bar ì—°ê²°")]
     [SerializeField] private GameObject _HPBar;
     [SerializeField] private Image _HPBarImage;
 
-    [Header("·£´ı ¹Ú½º")]
+    [Header("ëœë¤ ë°•ìŠ¤")]
     [SerializeField] private GameObject _itemParent;
     [SerializeField] private GameObject _randomBox;   
 
@@ -38,7 +38,7 @@ public class MidBoss1 : BaseEnemy
     {
         base.Update();
 
-        if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
+        if (_target == null) // íƒ€ê²Ÿ ì—†ìœ¼ë©´ return
         {
             return;
         }        
@@ -123,9 +123,9 @@ public class MidBoss1 : BaseEnemy
 
     public override void Die()
     {
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼Ç
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜
 
-        // º¸½º Àü¸®Ç° »ı¼º È£Ãâ
+        // ë³´ìŠ¤ ì „ë¦¬í’ˆ ìƒì„± í˜¸ì¶œ
 
         Timer.Instance.IsBossDie(false);
         _HPBar.SetActive(false);

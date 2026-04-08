@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,13 +7,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 {
     [Header("EnemyData SO")]
     [SerializeField] protected EnemyData_SO _monsterData;
-    [Header("ÇÇ°İ ¼³Á¤")]    
+    [Header("í”¼ê²© ì„¤ì •")]    
     [SerializeField] protected float _hitTimer = 0.1f;    
 
     protected bool _isHit = false;
     protected float _hitTime;
 
-    // »ı¼º ½Ã ÃÊ±âÈ­ º¯¼öµé
+    // ìƒì„± ì‹œ ì´ˆê¸°í™” ë³€ìˆ˜ë“¤
     protected Animator _animator;
     protected SpriteRenderer _sr;
     
@@ -21,10 +21,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected EnemyPool _pool;
     protected GameObject _target;
 
-    // ¿¤¸®Æ®¸÷À¸·Î ¼ÒÈ¯µÇ´ÂÁö
+    // ì—˜ë¦¬íŠ¸ëª¹ìœ¼ë¡œ ì†Œí™˜ë˜ëŠ”ì§€
     protected bool _isElite = false;
 
-    protected int _idx; // ±×·ìÀ¸·Î ³ª´­ ±âÁØÀÌ µÉ ÀÎµ¦½º
+    protected int _idx; // ê·¸ë£¹ìœ¼ë¡œ ë‚˜ëˆŒ ê¸°ì¤€ì´ ë  ì¸ë±ìŠ¤
     protected float _minX = -15f;
     protected float _maxX = 15f;
     protected float _minY = -10f;
@@ -72,7 +72,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     {
         if (!TryGetComponent(out Animator animator))
         {
-            CPrint.Warn($"{this} : Animator ¿¬°á ¾ÈµÊ");
+            CPrint.Warn($"{this} : Animator ì—°ê²° ì•ˆë¨");
             enabled = false;
             return;
         }
@@ -104,7 +104,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         if (_radius == 0f)
         {
-            CPrint.Log($"{this} -> CircleCollider2D ¾øÀ½");
+            CPrint.Log($"{this} -> CircleCollider2D ì—†ìŒ");
         }
         
     }
@@ -128,13 +128,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
-            _speed = 0f; // ¸ØÄ©ÇÏ´Â ¸ğ¼Ç
+            _speed = 0f; // ë©ˆì¹«í•˜ëŠ” ëª¨ì…˜
 
             if (_hitTime <= 0f)
             {
                 _isHit = false;
                 _hitTime = _hitTimer;
-                _speed = _monsterData.MoveSpeed; // ½ºÇÇµå º¹±¸
+                _speed = _monsterData.MoveSpeed; // ìŠ¤í”¼ë“œ ë³µêµ¬
                 _sr.color = Color.white;
             }
         }
@@ -158,7 +158,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         if (_isElite)
         {
             _mobType = EnemyType.Elite;
-            transform.localScale = new Vector3(2.5f, 2.5f, 0); // ¿¤¸®Æ®¸÷ Å©±â º¯°æ
+            transform.localScale = new Vector3(2.5f, 2.5f, 0); // ì—˜ë¦¬íŠ¸ëª¹ í¬ê¸° ë³€ê²½
             int randExp = UnityEngine.Random.Range(10, 30);
             _expDrop = randExp;
             _maxHp = _monsterData.HP * 2;
@@ -173,18 +173,18 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             
         _isHit = false;
         _sr.color = Color.white;
-        _hitTime = _hitTimer; // °è¼Ó ÃÖ½Å ±âÁØ hit ·Î º¯°æ.
+        _hitTime = _hitTimer; // ê³„ì† ìµœì‹  ê¸°ì¤€ hit ë¡œ ë³€ê²½.
                                  
     }
 
     public virtual void Chase()
     {
-        if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
+        if (_target == null) // íƒ€ê²Ÿ ì—†ìœ¼ë©´ return
         {
             return;
         }
 
-        _dir = _target.transform.position - transform.position; // ÇÃ·¹ÀÌ¾î·ÎÀÇ ¹æÇâº¤ÅÍ
+        _dir = _target.transform.position - transform.position; // í”Œë ˆì´ì–´ë¡œì˜ ë°©í–¥ë²¡í„°
 
         float buffer = 0.1f;
         Quaternion rot = transform.rotation;
@@ -198,11 +198,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             rot.y = 180f;
         }
 
-        transform.rotation = rot; // ÃßÀû ¹æÇâ¿¡ µû¸¥ ¹æÇâ ÀüÈ¯ Àû¿ë
+        transform.rotation = rot; // ì¶”ì  ë°©í–¥ì— ë”°ë¥¸ ë°©í–¥ ì „í™˜ ì ìš©
         
-        Vector2 preventCollision = CheckBoundary(); // ¸÷ °£ °ãÄ§ ¹æÁö ¹æÇâº¤ÅÍ
+        Vector2 preventCollision = CheckBoundary(); // ëª¹ ê°„ ê²¹ì¹¨ ë°©ì§€ ë°©í–¥ë²¡í„°
 
-        _dir = Vector2.Lerp(_dir, _dir + preventCollision, Time.deltaTime * 5f); // ÀÌµ¿ ¹æÇâ º¸°£                       
+        _dir = Vector2.Lerp(_dir, _dir + preventCollision, Time.deltaTime * 5f); // ì´ë™ ë°©í–¥ ë³´ê°„                       
 
         if (_dir.magnitude > 0.001f)
         {
@@ -220,19 +220,19 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         transform.position = nowPos;
     }
 
-    // ¸ó½ºÅÍ °ø°İ ÇÔ¼ö
+    // ëª¬ìŠ¤í„° ê³µê²© í•¨ìˆ˜
     public virtual void Attack()
     {
         
     }
 
-    // µ¥¹ÌÁö ¹Ş´Â ÇÔ¼ö
+    // ë°ë¯¸ì§€ ë°›ëŠ” í•¨ìˆ˜
     protected virtual void Hit(float damage)
     {        
 
         _maxHp -= damage;
         _isHit = true;
-        _hitTime = _hitTimer; // °è¼Ó ÃÖ½Å ±âÁØ hit ·Î º¯°æ.
+        _hitTime = _hitTimer; // ê³„ì† ìµœì‹  ê¸°ì¤€ hit ë¡œ ë³€ê²½.
         _sr.color = Color.red;                      
 
         if (_maxHp <= 0)
@@ -244,11 +244,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     public virtual void Die()
     {                     
         _isElite = false;             
-        gameObject.SetActive(false); // ¸ó½ºÅÍ »ç¸Á
+        gameObject.SetActive(false); // ëª¬ìŠ¤í„° ì‚¬ë§
         _pool.Return(this);                   
     }
 
-    // º¸½ºÀü ½ÃÀÛ½Ã ¸ó½ºÅÍ Á¤¸®
+    // ë³´ìŠ¤ì „ ì‹œì‘ì‹œ ëª¬ìŠ¤í„° ì •ë¦¬
     public void RemoveWhenBoss()
     {
         gameObject.SetActive(false);
@@ -268,13 +268,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         for (int i = 0; i < count; i++)
         {            
-            Vector2 newDir = transform.position - _boundaryBuffer[i].transform.position; // ´ë»ó°ú ÀÚ½ÅÀÌ °ãÄ¡Áö ¾Ê´Â ÂÊÀ¸·ÎÀÇ ¹æÇâº¤ÅÍ            
+            Vector2 newDir = transform.position - _boundaryBuffer[i].transform.position; // ëŒ€ìƒê³¼ ìì‹ ì´ ê²¹ì¹˜ì§€ ì•ŠëŠ” ìª½ìœ¼ë¡œì˜ ë°©í–¥ë²¡í„°            
             float distance = newDir.magnitude;
 
             if (distance < 0.001f)
                 continue;
             
-            float force = 1f / (distance * distance); // °¡±î¿ï¼ö·Ï force °¡ °­ÇØÁü
+            float force = 1f / (distance * distance); // ê°€ê¹Œìš¸ìˆ˜ë¡ force ê°€ ê°•í•´ì§
             sumDir += newDir.normalized * force;
             
         }       
@@ -289,7 +289,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             return;
         }
 
-        _nextDmg = Timer.Instance.TickTime; // µ¥¹ÌÁö ÆÇÁ¤ °Ë»ç _checkTime ÁÖ±â¸¶´Ù ÁøÀÔ.        
+        _nextDmg = Timer.Instance.TickTime; // ë°ë¯¸ì§€ íŒì • ê²€ì‚¬ _checkTime ì£¼ê¸°ë§ˆë‹¤ ì§„ì….        
 
         int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, 
             _radius, 
@@ -305,7 +305,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
     }
 
-    // ¹èÆ²Á¸ ¾ÈÀ¸·Î Á¦ÇÑ.
+    // ë°°í‹€ì¡´ ì•ˆìœ¼ë¡œ ì œí•œ.
     protected void MoveIntoBattlezone()
     {
         Vector2 nowPos = transform.position;

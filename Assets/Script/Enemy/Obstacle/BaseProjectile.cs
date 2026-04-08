@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
@@ -27,7 +27,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
         _pool = pool;
 
         _shootDir = (targetPos.position - transform.position).normalized;
-        float angle = Mathf.Atan2(_shootDir.y, _shootDir.x) * Mathf.Rad2Deg; // ÇÃ·¹ÀÌ¾î ¹Ù¶óº¸´Â °¢µµ ±¸ÇÏ±â
+        float angle = Mathf.Atan2(_shootDir.y, _shootDir.x) * Mathf.Rad2Deg; // í”Œë ˆì´ì–´ ë°”ë¼ë³´ëŠ” ê°ë„ êµ¬í•˜ê¸°
         Quaternion rot = Quaternion.Euler(0, 0, angle);
         transform.rotation = rot;
         _spawnedTime = Timer.Instance.RealTime;

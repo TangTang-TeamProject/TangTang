@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +59,7 @@ public class SceneChanger : MonoBehaviour
 
         if (sceneLib.Count < (int)Scenes.SceneCount)
         {
-            CPrint.Error("¾À ¼³Á¤ ¿À·ù - ÀÎ½ºÆåÅÍ È®ÀÎ");
+            CPrint.Error("ì”¬ ì„¤ì • ì˜¤ë¥˜ - ì¸ìŠ¤íŽ™í„° í™•ì¸");
         }
 
         for (int i = 0; i < sceneLib.Count; i++)
@@ -72,7 +72,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (coroutine != null)
         {
-            CPrint.Log("ÀÌ¹Ì ·ÎµùÁß");
+            CPrint.Log("ì´ë¯¸ ë¡œë”©ì¤‘");
             return;
         }
 
@@ -87,7 +87,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (coroutine != null)
         {
-            CPrint.Log("ÀÌ¹Ì ·ÎµùÁß");
+            CPrint.Log("ì´ë¯¸ ë¡œë”©ì¤‘");
             return;
         }
 
@@ -159,7 +159,7 @@ public class SceneChanger : MonoBehaviour
             return _name;
         }
 
-        CPrint.Error("ÇöÀç ¾À ºÒ¸í");
+        CPrint.Error("í˜„ìž¬ ì”¬ ë¶ˆëª…");
 
         return null;
     }

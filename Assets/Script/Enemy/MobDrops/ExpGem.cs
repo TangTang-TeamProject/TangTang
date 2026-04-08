@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class ExpGem : Items
     private int _id;
 
     private float _delayCheckTime = 0f;
-    private float _delay = 0.1f; // µÚ·Î ÀÌµ¿ÇÏ´Â ½Ã°£
+    private float _delay = 0.1f; // ë’¤ë¡œ ì´ë™í•˜ëŠ” ì‹œê°„
 
     public Action<float> GetExp;
 
@@ -25,7 +25,7 @@ public class ExpGem : Items
     {
         if (_itemData == null)
         {
-            CPrint.Log($"{this} -> SO ¿¬°á ¾ÈµÊ");
+            CPrint.Log($"{this} -> SO ì—°ê²° ì•ˆë¨");
             enabled = false;
             return;
         }
@@ -38,7 +38,7 @@ public class ExpGem : Items
     }
     
 
-    // Èí¼ö µÇ¾úÀ» ½Ã -> pool ·Î ¸®ÅÏ.
+    // í¡ìˆ˜ ë˜ì—ˆì„ ì‹œ -> pool ë¡œ ë¦¬í„´.
     public override void SetActiveFalse()
     {
         
@@ -92,8 +92,8 @@ public class ExpGem : Items
             return;
         }
 
-        _isAbsorbed = true; // Èí¼ö ½ÃÀÛ
-        _target = target; // Å¸°Ù ¼³Á¤
-        _delayCheckTime = Timer.Instance.RealTime + _delay; // µÚ·Î ÀÌµ¿ÇÏ´Â ½Ã°£ ¼³Á¤
+        _isAbsorbed = true; // í¡ìˆ˜ ì‹œì‘
+        _target = target; // íƒ€ê²Ÿ ì„¤ì •
+        _delayCheckTime = Timer.Instance.RealTime + _delay; // ë’¤ë¡œ ì´ë™í•˜ëŠ” ì‹œê°„ ì„¤ì •
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Rendering;
 
 
@@ -47,7 +47,7 @@ public class LayerSorting : MonoBehaviour
     {        
         _yValue = -(int)(transform.position.y * 1000); 
 
-        int sortOrder = _yValue; // y ÁÂÇ¥ ¹Ý¿Ã¸²ÇÑ ÈÄ * -1000 -> order layer °ª 
+        int sortOrder = _yValue; // y ì¢Œí‘œ ë°˜ì˜¬ë¦¼í•œ í›„ * -1000 -> order layer ê°’ 
         
         if (_isFinalBoss)
         {
