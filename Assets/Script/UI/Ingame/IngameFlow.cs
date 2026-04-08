@@ -186,13 +186,13 @@ public class IngameFlow : MonoBehaviour
     {
         ChangeStats(PlayStats.GameOver);
 
-        gameEndUI.GameOver();
+        gameEndUI.GameOver(goldDigger.CalcGoldGameOver());
     }
 
     void GameClear()
     {
         ChangeStats(PlayStats.GameOver);
 
-        gameEndUI.GameClear();
+        gameEndUI.GameClear(goldDigger.CalcGoldClear());
     }
 }

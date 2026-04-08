@@ -47,24 +47,25 @@ public class GameEnd : MonoBehaviour
         SceneChanger.instance.ReLoadScene();
     }
 
-    void GoldCalc()
+    void GoldCalc(int _endgold)
     {
-
+        earnCoinText.text = _endgold.ToString();
+        SaveManager.CalcGold(_endgold);
     }
 
-    public void GameOver()
+    public void GameOver(int endgold)
     {
         endStatsText.text = "GameOver!";
         MakeTimeText((int)Timer.Instance.RealTime);
-        GoldCalc();
+        GoldCalc(endgold);
         this.gameObject.SetActive(true);
     }
 
-    public void GameClear()
+    public void GameClear(int endgold)
     {
         endStatsText.text = "GameClear!";
         MakeTimeText((int)Timer.Instance.RealTime);
-        GoldCalc();
+        GoldCalc(endgold);
         this.gameObject.SetActive(true);
     }
 }
