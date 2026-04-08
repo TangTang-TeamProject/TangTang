@@ -37,7 +37,7 @@ public class BossMob : BaseEnemy
     private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();
 
     private string _animString_Move = "1_Move";
-    private string _animString_Damaged = "3_Damaged";
+    //private string _animString_Damaged = "3_Damaged";
     private string _animString_Attack = "2_Attack";
 
     protected override void Awake()

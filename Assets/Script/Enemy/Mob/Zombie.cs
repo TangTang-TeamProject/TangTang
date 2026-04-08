@@ -23,7 +23,10 @@ public class Zombie : BaseEnemy
         }
         else
         {
-            _eliteUX.SetActive(false);
+            if (_eliteUX != null)
+            {
+                _eliteUX.SetActive(true);
+            }
         }
     }
 
