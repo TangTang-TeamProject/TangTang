@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class SkillPool : MonoBehaviour
             SkillAttack target = _skillFactory.CreateWeapon(id);
             if (target == null)
             {
-                CPrint.Error($"{gameObject.name}¿¡ null¹İÈ¯µÊ ÀÎ½ºÆåÅÍ ÅÂ±× È®ÀÎ");
+                CPrint.Error($"{gameObject.name}ì— nullë°˜í™˜ë¨ ì¸ìŠ¤í™í„° íƒœê·¸ í™•ì¸");
                 break;
             }
             target.transform.SetParent(transform);

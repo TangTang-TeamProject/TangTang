@@ -1,14 +1,14 @@
-
+ï»¿
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MidBoss2 : BaseEnemy
 {
-    [Header("HP Bar ¿¬°á")]
+    [Header("HP Bar ì—°ê²°")]
     [SerializeField] private GameObject _HPBar;
     [SerializeField] private Image _HPBarImage;
 
-    [Header("·£´ı ¹Ú½º")]
+    [Header("ëœë¤ ë°•ìŠ¤")]
     [SerializeField] private GameObject _itemParent;
     [SerializeField] private GameObject _randomBox;
 
@@ -57,9 +57,9 @@ public class MidBoss2 : BaseEnemy
 
     public override void Die()
     {
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼Ç
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜
 
-        // º¸½º Àü¸®Ç° »ı¼º È£Ãâ
+        // ë³´ìŠ¤ ì „ë¦¬í’ˆ ìƒì„± í˜¸ì¶œ
 
         Timer.Instance.IsBossDie(false);
         _HPBar.SetActive(false);

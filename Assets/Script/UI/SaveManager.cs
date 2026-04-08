@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -86,7 +86,7 @@ public static class SaveManager
         }
         catch
         {
-            CPrint.Error("ºº¿Ã∫Í µ•¿Ã≈Õ ø¿∑˘");
+            CPrint.Error("ÏÑ∏Ïù¥Î∏å Îç∞Ïù¥ÌÑ∞ Ïò§Î•ò");
             saveData = MakeNew();
             Save();
         }

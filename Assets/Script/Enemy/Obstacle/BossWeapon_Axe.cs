@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossWeapon_Axe : MonoBehaviour, IAttackables
 {
-    [Header("ÀÌµ¿ ¹× È¸Àü ¼Óµµ")]
+    [Header("ì´ë™ ë° íšŒì „ ì†ë„")]
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _rotSpeed = 30f;
 
-    [Header("µ¥¹ÌÁö")]
+    [Header("ë°ë¯¸ì§€")]
     [SerializeField] private float _damage = 10f;
 
     public float Damage => _damage;
@@ -52,14 +52,14 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
 
     private void MovingToTarget()
     {
-        // È¸Àü
+        // íšŒì „
         Quaternion euler = Quaternion.Euler(0f, 0f, _rotSpeed);
         transform.Rotate(new Vector3(0f, 0f, _rotSpeed));
 
-        // ¿ïÅ¸¸® °Ë»ç + µµ³¢ ¹æÇâ º¤ÅÍ ¹İ»ç
+        // ìš¸íƒ€ë¦¬ ê²€ì‚¬ + ë„ë¼ ë°©í–¥ ë²¡í„° ë°˜ì‚¬
         CheckBoundary();
 
-        // ÀÌµ¿
+        // ì´ë™
         Vector2 newPos = transform.position;        
         newPos += _dirAimed * _moveSpeed * Time.deltaTime;
         transform.position = newPos;
@@ -75,12 +75,12 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
         float nowX = transform.position.x;
         float nowY = transform.position.y;
 
-        Vector2 collisionVec = Vector2.zero; // Ãæµ¹ ¸éÀÇ º¤ÅÍ
-        float collisionAngle = 0f; // Ãæµ¹¸éÀÇ °¢µµ
+        Vector2 collisionVec = Vector2.zero; // ì¶©ëŒ ë©´ì˜ ë²¡í„°
+        float collisionAngle = 0f; // ì¶©ëŒë©´ì˜ ê°ë„
 
-        float incidentAngle = 0f; // ÀÔ»ç°¢
-        float reflectAngle = 0f; // ¹İ»ç°¢
-        float reflectRadian = 0f; // ¹İ»ç¶óµğ¾È
+        float incidentAngle = 0f; // ì…ì‚¬ê°
+        float reflectAngle = 0f; // ë°˜ì‚¬ê°
+        float reflectRadian = 0f; // ë°˜ì‚¬ë¼ë””ì•ˆ
 
         Vector2 reflectVec = Vector2.zero;
 

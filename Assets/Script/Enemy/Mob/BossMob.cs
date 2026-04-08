@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class BossMob : BaseEnemy
 {
-    [Header("¹«±â ¿¬°á")]
+    [Header("ë¬´ê¸° ì—°ê²°")]
     [SerializeField] private GameObject _leftWeaponSlot;
     [SerializeField] private GameObject _rightWeaponSlot;
     [SerializeField] private GameObject _weaponPrefab;
 
-    [Header("µµ³¢ ´øÁö±â ÄğÅ¸ÀÓ ¼³Á¤")]
+    [Header("ë„ë¼ ë˜ì§€ê¸° ì¿¨íƒ€ì„ ì„¤ì •")]
     [SerializeField] private float _throwingPatternCool = 3f;
     [SerializeField] private float _getWeapontime = 5f;
 
-    [Header("HP Bar ¿¬°á")]
+    [Header("HP Bar ì—°ê²°")]
     [SerializeField] private GameObject _HPBar;
     [SerializeField] private Image _HPBarImage;
     
@@ -87,7 +87,7 @@ public class BossMob : BaseEnemy
 
     protected override void Update()
     {
-        if (_target == null) // Å¸°Ù ¾øÀ¸¸é return
+        if (_target == null) // íƒ€ê²Ÿ ì—†ìœ¼ë©´ return
         {
             return;
         }
@@ -96,13 +96,13 @@ public class BossMob : BaseEnemy
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
-            _speed = 0f; // ¸ØÄ©ÇÏ´Â ¸ğ¼Ç
+            _speed = 0f; // ë©ˆì¹«í•˜ëŠ” ëª¨ì…˜
 
             if (_hitTime <= 0f)
             {
                 _isHit = false;
                 _hitTime = _hitTimer;
-                _speed = _monsterData.MoveSpeed; // ½ºÇÇµå º¹±¸
+                _speed = _monsterData.MoveSpeed; // ìŠ¤í”¼ë“œ ë³µêµ¬
                 for (int i = 0; i < _activeList.Count; i++)
                 {
                     _activeList[i].color = _colorMap[_activeList[i]];
@@ -186,7 +186,7 @@ public class BossMob : BaseEnemy
             _leftAxe.size = new Vector2(1f, 1f);
             _leftHand = true;
 
-            // µµ³¢ ÇÔ¼ö È£Ãâ
+            // ë„ë¼ í•¨ìˆ˜ í˜¸ì¶œ
             _throwedWeapon1.GetComponent<BossWeapon_Axe>().IsCatched();            
         }
         else if (!isLeft)
@@ -209,7 +209,7 @@ public class BossMob : BaseEnemy
     {        
         _maxHp -= damage;
         _isHit = true;
-        _hitTime = _hitTimer; // °è¼Ó ÃÖ½Å ±âÁØ hit ·Î º¯°æ.        
+        _hitTime = _hitTimer; // ê³„ì† ìµœì‹  ê¸°ì¤€ hit ë¡œ ë³€ê²½.        
         //_animator.SetBool(_animString_Move, false);
         //_animator.SetTrigger(_animString_Damaged);
 
@@ -231,7 +231,7 @@ public class BossMob : BaseEnemy
     {
         // 
 
-        // º¸½º Àü¸®Ç° »ı¼º È£Ãâ
+        // ë³´ìŠ¤ ì „ë¦¬í’ˆ ìƒì„± í˜¸ì¶œ
 
         Timer.Instance.IsBossDie(true);
         _HPBar.SetActive(false);

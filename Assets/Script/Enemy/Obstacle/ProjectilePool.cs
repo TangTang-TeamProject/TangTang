@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -14,7 +14,7 @@ public class ProjectilePool : MonoBehaviour
     {
         if (_projectilePrefab == null)
         {
-            CPrint.Log($"{this} : ProjectilePrefab ø¨∞· æ»µ ");
+            CPrint.Log($"{this} : ProjectilePrefab Ïó∞Í≤∞ ÏïàÎê®");
             enabled = false;
             return;
         }

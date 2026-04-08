@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +74,7 @@ public class SkillPick : MonoBehaviour
         {
             if (choices[i] == null)
             {
-                CPrint.Error("¿ŒΩ∫∆Â≈Õ ¬¸¡∂ ø¿∑˘ - choices");
+                CPrint.Error("Ïù∏Ïä§ÌéôÌÑ∞ Ï∞∏Ï°∞ Ïò§Î•ò - choices");
             }
 
             int index = i;
@@ -259,7 +259,7 @@ public class SkillPick : MonoBehaviour
                 case ChoiceType.Gold:
                     choices[i].choice_icon.sprite = goldIcon;
                     choices[i].choice_back.sprite = evoPlate;
-                    choices[i].choice_desc.text = "µ∑ µ∑ µ∑";
+                    choices[i].choice_desc.text = "Îèà Îèà Îèà";
                     break;
             }
         }

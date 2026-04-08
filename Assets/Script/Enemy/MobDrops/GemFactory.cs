@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GemFactory : MonoBehaviour
 {
-    [Header("3 °¡Áö Á¾·ùÀÇ GemPool ¿¬°á")]
-    [SerializeField] private List<GemPool> _pool; // gemPool 3°¡Áö Á¾·ù ¸ğµÎ ¿¬°áÇØ¾ß ÇÔ.
+    [Header("3 ê°€ì§€ ì¢…ë¥˜ì˜ GemPool ì—°ê²°")]
+    [SerializeField] private List<GemPool> _pool; // gemPool 3ê°€ì§€ ì¢…ë¥˜ ëª¨ë‘ ì—°ê²°í•´ì•¼ í•¨.
     
     public ExpGem CreateGem(Vector2 pos, GemType gemType)
     {
         for (int i = 0; i < _pool.Count; i++)
         {
-            if (_pool[i].GetPoolType() == gemType) // ÇØ´ç type ÀÇ gempool ¿¡¼­ »ı¼º
+            if (_pool[i].GetPoolType() == gemType) // í•´ë‹¹ type ì˜ gempool ì—ì„œ ìƒì„±
             {
                 ExpGem gem = _pool[i].GetGem(transform);
                 gem.Init(_pool[i]);
@@ -21,7 +21,7 @@ public class GemFactory : MonoBehaviour
             }
         }
 
-        CPrint.Error($"{this} : GemPool ¿¬°á ¿À·ù");
+        CPrint.Error($"{this} : GemPool ì—°ê²° ì˜¤ë¥˜");
         return null;
     }
 }
