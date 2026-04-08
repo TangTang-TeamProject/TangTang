@@ -64,6 +64,7 @@ public class BossMob : BaseEnemy
         }
 
         _HPBar.SetActive(true);
+        _HPBarImage.fillAmount = 1f;
     }
 
     public override void Init(EnemyPool pool, int idx)
