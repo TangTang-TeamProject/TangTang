@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossMob : BaseEnemy
 {
@@ -14,6 +15,10 @@ public class BossMob : BaseEnemy
     [SerializeField] private float _throwingPatternCool = 3f;
     [SerializeField] private float _getWeapontime = 5f;
 
+    [Header("HP Bar 연결")]
+    [SerializeField] private GameObject _HPBar;
+    [SerializeField] private Image _HPBarImage;
+    
     private SpriteRenderer _leftAxe;
     private SpriteRenderer _rightAxe;
     private GameObject _throwedWeapon1;
@@ -29,14 +34,16 @@ public class BossMob : BaseEnemy
 
     private SpriteRenderer[] _spriteRenderers;
     private List<SpriteRenderer> _activeList = new List<SpriteRenderer>();
-    private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();
+    private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();    
 
     protected override void Awake()
     {
         base.Awake();
 
         _leftAxe = _leftWeaponSlot.GetComponent<SpriteRenderer>();
+        _leftAxe.size = new Vector2(1f, 1f);
         _rightAxe = _rightWeaponSlot.GetComponent<SpriteRenderer>();
+        _rightAxe.size = new Vector2(1f, 1f);
         
         _nextPatternTime = Timer.Instance.RealTime + _throwingPatternCool;        
         _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -51,6 +58,8 @@ public class BossMob : BaseEnemy
             _activeList.Add(_spriteRenderers[i]);
             _colorMap.Add(_spriteRenderers[i], _spriteRenderers[i].color);
         }
+
+        _HPBar.SetActive(true);
     }
 
     public override void Init(EnemyPool pool, int idx)
@@ -73,6 +82,12 @@ public class BossMob : BaseEnemy
 
     protected override void Update()
     {
+        if (_target == null) // 타겟 없으면 return
+        {
+            return;
+        }
+
+
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
@@ -90,11 +105,15 @@ public class BossMob : BaseEnemy
             }
         }
 
-        if (_target == null) // 타겟 없으면 return
+        if (!CanUpdate())
         {
             return;
         }
 
+        Chase();
+        CheckDamaged();
+
+        
         if (Timer.Instance.RealTime >= _nextPatternTime)
         {            
             if (!_leftHand && !_rightHand)
@@ -116,20 +135,8 @@ public class BossMob : BaseEnemy
                 Pattern_ThrowWeapon(false);
             }
         }
-
-        if (Timer.Instance.RealTime >= _nextGetWeapon)
-        {
-            GetWeaponToHand();
-        }
-
        
-        if (!CanUpdate())
-        {
-            return;
-        }
         
-        Chase();
-        CheckDamaged();
     }
 
     private void Pattern_ThrowWeapon(bool isLeft)
@@ -144,6 +151,8 @@ public class BossMob : BaseEnemy
             _throwedWeapon1 = Instantiate(_weaponPrefab, spawnPos, Quaternion.identity);
             _throwedWeapon1.GetComponent<BossWeapon_Axe>().ThrowedToTarget(_target);
             _leftHand = false;
+
+            StartCoroutine(ThrowToGet(true));
         }
         else
         {            
@@ -152,33 +161,48 @@ public class BossMob : BaseEnemy
             _throwedWeapon2 = Instantiate(_weaponPrefab, spawnPos, Quaternion.identity);
             _throwedWeapon2.GetComponent<BossWeapon_Axe>().ThrowedToTarget(_target);
             _rightHand = false;
+
+            StartCoroutine(ThrowToGet(false));
         }            
     }
 
-    private void GetWeaponToHand()
+    IEnumerator ThrowToGet(bool isLeft)
     {
-        if (!_leftHand)
+        yield return new WaitForSeconds(_getWeapontime);
+
+        GetWeaponToHand(isLeft);
+    }
+
+    private void GetWeaponToHand(bool isLeft)
+    {
+        if (isLeft)
         {
             _leftAxe.sprite = _throwedWeapon1.GetComponent<SpriteRenderer>().sprite;
             _leftAxe.size = new Vector2(1f, 1f);
+            _leftHand = true;
 
             // 도끼 함수 호출
             _throwedWeapon1.GetComponent<BossWeapon_Axe>().IsCatched();            
         }
-        else if (!_rightHand)
+        else if (!isLeft)
         {
             _rightAxe.sprite = _throwedWeapon2.GetComponent<SpriteRenderer>().sprite;
             _rightAxe.size = new Vector2(1f, 1f);
+            _rightHand = true;
 
             _throwedWeapon2.GetComponent<BossWeapon_Axe>().IsCatched();
         }
     }
     
     protected override void Hit(float damage)
-    {
+    {        
         _maxHp -= damage;
         _isHit = true;
-        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.        
+
+        float ratio = _maxHp / _monsterData.HP;
+        _HPBarImage.fillAmount = ratio;
+
         for (int i = 0; i < _activeList.Count; i++)
         {
             _activeList[i].color = Color.red;
@@ -186,7 +210,7 @@ public class BossMob : BaseEnemy
 
         if (_maxHp <= 0)
         {
-            Die();
+            Die();            
         }
     }
 
@@ -197,6 +221,7 @@ public class BossMob : BaseEnemy
         // 보스 전리품 생성 호출
 
         Timer.Instance.IsBossDie(true);
-        _pool.Return(this);
+        _HPBar.SetActive(false);
+        Destroy(gameObject);
     }  
 }

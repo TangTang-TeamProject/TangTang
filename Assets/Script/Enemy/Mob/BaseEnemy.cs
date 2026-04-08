@@ -65,7 +65,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     public void IsElite(bool tf)
     {
         _isElite = tf;
-    }
+    }    
     
 
     protected virtual void Awake()
@@ -223,7 +223,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 데미지 받는 함수
     protected virtual void Hit(float damage)
-    {
+    {        
+
         _maxHp -= damage;
         _isHit = true;
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.

@@ -1,6 +1,20 @@
 
+using UnityEngine;
+using UnityEngine.UI;
+
 public class MidBoss2 : BaseEnemy
 {
+    [Header("HP Bar 연결")]
+    [SerializeField] private GameObject _HPBar;
+    [SerializeField] private Image _HPBarImage;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _HPBar.SetActive(true);
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -32,7 +46,8 @@ public class MidBoss2 : BaseEnemy
     protected override void Hit(float dmg)
     {
         base.Hit(dmg);
-
+        float ratio = _maxHp / _monsterData.HP;
+        _HPBarImage.fillAmount = ratio;
     }
 
     public override void Die()
@@ -42,6 +57,7 @@ public class MidBoss2 : BaseEnemy
         // 보스 전리품 생성 호출
 
         Timer.Instance.IsBossDie(false);
+        _HPBar.SetActive(false);
         Destroy(gameObject);
     }
 }

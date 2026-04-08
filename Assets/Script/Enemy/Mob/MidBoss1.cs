@@ -2,6 +2,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MidBoss1 : BaseEnemy
 {
@@ -10,6 +11,10 @@ public class MidBoss1 : BaseEnemy
     [SerializeField] private float _dashDist = 5f;
     [SerializeField] private float _dashTime = 1f;
 
+    [Header("HP Bar 연결")]
+    [SerializeField] private GameObject _HPBar;
+    [SerializeField] private Image _HPBarImage;
+
     private bool _isDashing = false;
     private string animParam = "Dash";
 
@@ -17,6 +22,12 @@ public class MidBoss1 : BaseEnemy
     private float _checkTime;
 
     private float _corTimeCnt = 0f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _HPBar.SetActive(true);
+    }
 
     protected override void Update()
     {
@@ -97,6 +108,14 @@ public class MidBoss1 : BaseEnemy
         _isDashing = false;
     }
 
+    protected override void Hit(float damage)
+    {
+        base.Hit(damage);
+
+        float ratio = _maxHp / _monsterData.HP;
+        _HPBarImage.fillAmount = ratio;
+    }
+
     public override void Die()
     {
         // 사망 애니메이션
@@ -104,6 +123,7 @@ public class MidBoss1 : BaseEnemy
         // 보스 전리품 생성 호출
 
         Timer.Instance.IsBossDie(false);
+        _HPBar.SetActive(false);
         Destroy(gameObject);
     }
 }
