@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
-{
-
-    [SerializeField] private GameObject _enemyPrefab;
-
+{    
     private Queue<BaseEnemy> _enemyPool = new Queue<BaseEnemy>();
 
     public Action<BaseEnemy> OnEnemyDead;
