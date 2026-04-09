@@ -18,9 +18,10 @@ public class SkillSpawner : MonoBehaviour
         public float damage;
         public float speed;
         public float time;
-        public float rate;
+        public float cool;
+        public WaitForSeconds rate;
     }
-    private Dictionary<string, SkillParameter> _parameterDict;
+    private Dictionary<string, SkillParameter> _paramDict = new Dictionary<string, SkillParameter>();
 
     private WaitForSeconds _arrowRate = new WaitForSeconds(2.2f);
     private Coroutine _arrowCo;
@@ -75,10 +76,9 @@ public class SkillSpawner : MonoBehaviour
 
             arrow.transform.position = transform.position;
             arrow.transform.up = _spawnDir.right;
-            arrow.Init(id, 1, 1, 4, _pool);
-            arrow.gameObject.SetActive(true);
-
-            yield return _arrowRate;
+            arrow.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
+            arrow.gameObject.SetActive(true);            
+            yield return _paramDict[id].rate;
         }
     }
 
@@ -93,7 +93,7 @@ public class SkillSpawner : MonoBehaviour
                 SkillAttack axe = _pool.UseSkill(id);
 
                 axe.SetOrbit((360.0f / axeCount) * i);
-                axe.Init(id, 40, 1, 2, _pool, 2);
+                axe.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
                 axe.gameObject.SetActive(true);
             }
 
@@ -108,7 +108,8 @@ public class SkillSpawner : MonoBehaviour
         {
             SkillAttack dBlade = _pool.UseSkill(id);
 
-            dBlade.Init(id, 40, 1, 800, _pool, 0.3f);
+            dBlade.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
+            dBlade.SetComponent(transform);
             dBlade.gameObject.SetActive(true);
 
             yield return _dualBladeRate;
@@ -123,7 +124,7 @@ public class SkillSpawner : MonoBehaviour
             SkillAttack mace = _pool.UseSkill(id);
 
             mace.transform.position = transform.position;
-            mace.Init(id, 40, 1, 4, _pool);
+            mace.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
             mace.gameObject.SetActive(true);
 
             yield return _maceRate;
@@ -143,7 +144,7 @@ public class SkillSpawner : MonoBehaviour
             }*/
             spear.transform.position = transform.position;
             spear.transform.rotation = Quaternion.Euler(0, 0, 90f);
-            spear.Init(id, 40, 1, 4, _pool);
+            spear.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
             spear.gameObject.SetActive(true);
 
 
@@ -160,8 +161,8 @@ public class SkillSpawner : MonoBehaviour
 
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
-            trident.SetTrident(_cam, _player.transform);
-            trident.Init(id, 40, 1, 7, _pool);
+            trident.SetComponent(_player.transform, _cam);
+            trident.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
             trident.gameObject.SetActive(true);
 
             yield return _tridentRate;
@@ -180,7 +181,7 @@ public class SkillSpawner : MonoBehaviour
             y = Random.Range(-3f, 3f);
 
             wand.transform.position = transform.position + new Vector3(x, y, 0);
-            wand.Init(id, 40, 1, 4, _pool, 6.5f);
+            wand.Init(id, _paramDict[id].damage, 1, _paramDict[id].speed, _pool, _paramDict[id].time);
             wand.gameObject.SetActive(true);
 
             yield return _wandRate;
@@ -233,7 +234,7 @@ public class SkillSpawner : MonoBehaviour
         
         if (level == 1)
         {
-            _parameterDict[id] = new SkillParameter();
+            _paramDict[id] = new SkillParameter();
             SkillUpgrade(id, level);
             SkillLearn(id, 8);
             return;
@@ -267,11 +268,12 @@ public class SkillSpawner : MonoBehaviour
     void SkillUpgrade(string id, int level)
     {
         SkillLevel_SO data = _levelRegistry.GetSkillDataByIDLevel(id, level);
-        _parameterDict[id].id = data.SkillID;
-        _parameterDict[id].damage = data.Damage;
-        _parameterDict[id].speed = data.Speed;
-        _parameterDict[id].time = data.AppearTime;
-        _parameterDict[id].rate = data.DisAppearTime;
+        _paramDict[id].id = data.SkillID;
+        _paramDict[id].damage = data.Damage;
+        _paramDict[id].speed = data.Speed;
+        _paramDict[id].time = data.AppearTime;
+        _paramDict[id].cool = data.DisAppearTime;
+        _paramDict[id].rate = new WaitForSeconds(_paramDict[id].time + _paramDict[id].cool);
     }
 
     void CoroutineActivate(string id)
@@ -282,22 +284,22 @@ public class SkillSpawner : MonoBehaviour
                 _arrowCo = StartCoroutine(Co_ArrowFire(id));
                 break;
             case "Axe":
-                _axeCo = StartCoroutine(Co_AxeFire("Axe"));
+                _axeCo = StartCoroutine(Co_AxeFire(id));
                 break;
             case "DualBlade":
-                _dualBladeCo = StartCoroutine(Co_DualBaldeFire("DualBlade"));
+                _dualBladeCo = StartCoroutine(Co_DualBaldeFire(id));
                 break;
             case "Mace":
-                _maceCo = StartCoroutine(Co_MaceFire("Mace"));
+                _maceCo = StartCoroutine(Co_MaceFire(id));
                 break;
             case "Spear":
-                _spearCo = StartCoroutine(Co_SpearFire("Spear"));
+                _spearCo = StartCoroutine(Co_SpearFire(id));
                 break;
             case "Trident":
-                _tridentCo = StartCoroutine(Co_TridentFire("Trident"));
+                _tridentCo = StartCoroutine(Co_TridentFire(id));
                 break;
             case "Wand":
-                _wandCo = StartCoroutine(Co_WandFire("Wand"));
+                _wandCo = StartCoroutine(Co_WandFire(id));
                 break;
         }
     }

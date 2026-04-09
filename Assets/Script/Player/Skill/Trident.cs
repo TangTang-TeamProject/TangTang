@@ -3,7 +3,7 @@
 public class Trident : SkillAttack
 {
     [SerializeField] private Camera _cam;
-    [SerializeField] private Transform _player;
+    [SerializeField] private Transform _spawner;
     [SerializeField] float _top, _bottom, _right, _left;
 
     private void OnEnable()
@@ -15,14 +15,14 @@ public class Trident : SkillAttack
         GetWall();
     }
 
-    public override void SetTrident(Camera cam, Transform player)
+    public override void SetComponent(Transform spawner, Camera cam)
     {
-        if (_cam != null &&  _player != null)
+        if (_cam != null &&  _spawner != null)
         {
             return;
         }
         _cam = cam;
-        _player = player;
+        _spawner = spawner;
     }
 
     protected override void Move()
@@ -65,9 +65,9 @@ public class Trident : SkillAttack
         float camHeight = _cam.orthographicSize;
         float camWidth = camHeight * _cam.aspect;
 
-        _top = _player.position.y + camHeight;
-        _bottom = _player.position.y - camHeight;
-        _right = _player.position.x + camWidth;
-        _left = _player.position.x - camWidth;
+        _top = _spawner.position.y + camHeight;
+        _bottom = _spawner.position.y - camHeight;
+        _right = _spawner.position.x + camWidth;
+        _left = _spawner.position.x - camWidth;
     }
 }

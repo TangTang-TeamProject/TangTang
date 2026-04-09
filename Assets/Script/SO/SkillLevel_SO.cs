@@ -14,6 +14,8 @@ public class SkillLevel_SO : ScriptableObject
     [SerializeField]
     private float speed = 0f;
     [SerializeField]
+    private int count = 0;
+    [SerializeField]
     private float appearTime = 0f;
     [SerializeField]
     private float disAppearTime = 0f;
@@ -24,6 +26,7 @@ public class SkillLevel_SO : ScriptableObject
     public int Level => level;
     public float Damage => damage;
     public float Speed => speed;
+    public int Count => count;
     public float AppearTime => appearTime;
     public float DisAppearTime => disAppearTime;
 }

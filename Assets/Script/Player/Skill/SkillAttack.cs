@@ -7,7 +7,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected SkillPool _pool;
 
     protected string _id;
-    protected float _damage = 1;
+    [SerializeField] protected float _damage = 1;
     protected float _baseDamage;
     protected float _keepTime;
     protected float _speed = 2f;
@@ -47,7 +47,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected virtual void Move() { }
     protected virtual void Rotate() { }
     public virtual void SetOrbit(float dist) { }
-    public virtual void SetTrident(Camera cam, Transform player) { }
+    public virtual void SetComponent(Transform center, Camera cam = null) { }
 
     // 플레이 도중 플레이어의 attack값이 바뀔경우 아티팩트에서 있을수도 있으니
     public void DamageChange(float playerAttack)

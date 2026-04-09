@@ -16,5 +16,6 @@ MonoBehaviour:
   level: 2
   damage: 60
   speed: 1
-  appearTime: 0
-  disAppearTime: 0
+  count: 2
+  appearTime: 5
+  disAppearTime: 2
