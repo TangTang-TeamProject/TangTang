@@ -138,17 +138,17 @@ public class IngameFlow : MonoBehaviour
     {
         ChangeStats(PlayStats.Directing);
 
-        skillPickUI.StartPick(EndEvent);
+        skillPickUI.StartPick(EventEnd);
     }
 
     void LotteryEvent()
     {
         ChangeStats(PlayStats.Directing);
 
-        lotteryUI.StartLottery(EndEvent);
+        lotteryUI.StartLottery(EventEnd, goldDigger.CalcGoldGameOver(), goldDigger.GetAmount());
     }
 
-    void EndEvent()
+    void EventEnd()
     {
         ChangeStats(PlayStats.Playing);
     }
