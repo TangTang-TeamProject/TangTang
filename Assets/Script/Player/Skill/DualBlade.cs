@@ -27,12 +27,17 @@ public class DualBlade : SkillAttack
         }
     }
 
+    public override void SetComponent(Transform spawner, Camera cam = null)
+    {
+        if (_spawner != null)
+        {
+            return;
+        }
+        _spawner = spawner;
+    }
+
     private void OnEnable()
     {
-        // 임시 실험용 나중에 구조 고치면서 스포너에서 넘겨줄거임
-        GameObject spawner = GameObject.Find("SkillSpawner");
-        _spawner = spawner.transform;
-        //
         _hitRadius = _collider.radius;
         _particle[0].Clear();
         _particle[1].Clear();
