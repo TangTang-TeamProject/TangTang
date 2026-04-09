@@ -25,6 +25,11 @@ public class GoldDigger
         return totalGold;
     }
 
+    public int GetAmount()
+    {
+        return amount;
+    }
+
     public int CalcGoldClear()
     {
         totalGold += clearGold;
