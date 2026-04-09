@@ -34,14 +34,15 @@ public class ExpGem : Items
 
         _exp = _itemData.EXP;
         _id = _itemData.ItemID;
+        _target = null;
+        _isAbsorbed = false;
         ItemManager.instance.Magnetic += MagneticAbsorbed;    
     }
     
 
     // 흡수 되었을 시 -> pool 로 리턴.
     public override void SetActiveFalse()
-    {
-        
+    {        
         GetExp?.Invoke(Exp);
         GetExp = null;
         base.SetActiveFalse();

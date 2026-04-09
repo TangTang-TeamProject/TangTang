@@ -5106,7 +5106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1410199820765603486, guid: b7504edfaf04062418fdeb87bc997f61, type: 3}
 --- !u!1 &614618107
 GameObject:
   m_ObjectHideFlags: 0
@@ -8406,7 +8405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eaffed3ed18f94f8b17c1f07f5ae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4459202857756033555, guid: de119d691bb001a4384a357b99f996a5, type: 3}
 --- !u!1 &958410422
 GameObject:
   m_ObjectHideFlags: 0
@@ -16318,11 +16316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441210734705468463, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 800
+      value: 820
       objectReference: {fileID: 0}
     - target: {fileID: 1441210734705468463, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1441210734705468463, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16375,10 +16373,6 @@ PrefabInstance:
     - target: {fileID: 3318896192483404442, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
       propertyPath: m_Name
       value: BossHPBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 3318896192483404442, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
