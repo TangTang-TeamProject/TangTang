@@ -110,6 +110,11 @@ public class SkillSlot : MonoBehaviour
         _spawner.GetSkill(id, level);
     }
 
+    public void SkillEvo(string id, string evolutionId)
+    {
+
+    }
+
     public void ArtifactUp(string id)
     {
         int level = 1;
