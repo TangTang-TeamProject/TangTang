@@ -18,7 +18,7 @@ public class Lottery : MonoBehaviour
         public ChoiceType type;
     }
 
-    private class PreChoice
+    private struct PreChoice
     {
         public string id;
         public ChoiceType type;
