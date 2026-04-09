@@ -16374,6 +16374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHPBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3318896192483404442, guid: ba1f2053f6ea1c1489e33af34fa9635d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
