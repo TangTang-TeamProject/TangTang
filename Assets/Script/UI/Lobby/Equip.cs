@@ -141,6 +141,29 @@ public class Equip : MonoBehaviour
 
     void Sorting()
     {
+        switch (sortType)
+        {
+            case SortType.ALL:
+
+                break;
+
+            case SortType.Cape:
+
+                break;
+            case SortType.Body:
+
+                break;
+
+            case SortType.Head:
+
+                break;
+
+            case SortType.Legs:
+
+                break;
+        }
+
+
         switch (sortWay)
         { 
             case SortWay.Up:

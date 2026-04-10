@@ -120,7 +120,7 @@ public static class SaveManager
 
         newData.rateIndex = 0;
 
-        newData.fullScreen = false;
+        newData.fullScreen = true;
 
         newData.selectedChar = "CHR_001";
 
