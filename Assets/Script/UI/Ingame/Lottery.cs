@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -191,6 +190,8 @@ public class Lottery : MonoBehaviour
 
     IEnumerator RollingCoroutine()
     {
+        yield return new WaitForSecondsRealtime(1.5f);
+
         for (int i = 0; i < rolltime.Count; i++)
         {
             yield return SelectedRoll(rolltime[i]);
@@ -204,7 +205,7 @@ public class Lottery : MonoBehaviour
 
             if (i == selectedChoice)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(1.0f);
 
                 break;
             }
@@ -270,7 +271,7 @@ public class Lottery : MonoBehaviour
         goldText.text = nowGold.ToString();
 
         float realtime = 0;
-        float slidetime = 2;
+        float slidetime = 1.0f;
 
         while (realtime < slidetime)
         { 
