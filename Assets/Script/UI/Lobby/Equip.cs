@@ -149,7 +149,13 @@ public class Equip : MonoBehaviour
 
     void Sorting()
     {
-        
+        switch (sortWay)
+        { 
+            case SortWay.Up:
+                break;
+            case SortWay.Down:
+                break;
+        }
     }
 
 
