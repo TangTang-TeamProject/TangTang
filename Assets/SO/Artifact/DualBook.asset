@@ -17,6 +17,6 @@ MonoBehaviour:
   nameEN: 
   statKey: 0
   valuePerLevel: 0
-  maxLevel: 0
+  maxLevel: 5
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: b855210befe62460880af947a417d021, type: 3}

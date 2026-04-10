@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361d905e0e47a7047a29017ef36f64b7, type: 3}
   m_Name: AxeBook
   m_EditorClassIdentifier: 
-  artifactID: Axebook
+  artifactID: AxeBook
   nameKR: "\uB3C4\uB07C \uAC15\uD654\uC11C"
   nameEN: 
   statKey: 0
   valuePerLevel: 0
-  maxLevel: 0
+  maxLevel: 5
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: 2fcf690509e6f4bf08fc7d368d573377, type: 3}
