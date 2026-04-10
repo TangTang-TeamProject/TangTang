@@ -68,7 +68,7 @@ public class SkillPick : MonoBehaviour
     private List<string> allSkill = new List<string>();
     private List<string> allArti = new List<string>();
 
-    private void Awake()
+    public void ManualAwake()
     {
         for (int i = 0; i < choices.Count; i++)
         {
@@ -82,6 +82,8 @@ public class SkillPick : MonoBehaviour
             choices[i].choice.onClick.AddListener(() => EndPick(index));
         }
 
+
+        CPrint.Warn($"{skillRegistry.Skills.Count} 개 존재함");
         for (int i = 0; i < skillRegistry.Skills.Count; i++)
         {
             if (!skillRegistry.Skills[i].IsEvo)
@@ -90,6 +92,7 @@ public class SkillPick : MonoBehaviour
             }
         }
 
+        CPrint.Warn($"{artifactRegistry.Artifacts.Count} 개 존재함");
         for (int i = 0; i < artifactRegistry.Artifacts.Count; i++)
         {
             allArti.Add(artifactRegistry.Artifacts[i].ArtifactID);
@@ -197,7 +200,7 @@ public class SkillPick : MonoBehaviour
             {
                 break;
             }
-            else if (slot.IsSkillFull() && notHaveSkill.Count > 0)
+            else if (slot.IsArtifactFull() && notHaveSkill.Count > 0)
             {
                 int pick = UnityEngine.Random.Range(0, notHaveSkill.Count);
 
@@ -207,10 +210,8 @@ public class SkillPick : MonoBehaviour
 
                 choiceList.Add(pc);
             }
-            else if (slot.IsArtifactFull() && notHaveArti.Count > 0)
+            else if (slot.IsSkillFull() && notHaveArti.Count > 0)
             {
-                flag = true;
-
                 int pick = UnityEngine.Random.Range(0, notHaveArti.Count);
 
                 PreChoice pc = MakePreData(notHaveArti[pick], ChoiceType.Artifact);
@@ -231,7 +232,7 @@ public class SkillPick : MonoBehaviour
 
                 choiceList.Add(pc);
             }
-            else if(notHaveArti.Count > 0)
+            else if (notHaveArti.Count > 0)
             {
                 flag = true;
 
@@ -242,6 +243,10 @@ public class SkillPick : MonoBehaviour
                 notHaveArti.RemoveAt(pick);
 
                 choiceList.Add(pc);
+            }
+            else
+            {
+                CPrint.Warn("헛돌았음");
             }
         }
     }
@@ -303,7 +308,8 @@ public class SkillPick : MonoBehaviour
         while(n > 1)
         {
             n--;
-            int k = UnityEngine.Random.Range(0, n);
+
+            int k = UnityEngine.Random.Range(0, n + 1);
 
             PreChoice pc = choiceList[k];
             choiceList[k] = choiceList[n];

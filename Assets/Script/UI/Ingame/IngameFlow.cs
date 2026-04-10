@@ -43,6 +43,8 @@ public class IngameFlow : MonoBehaviour
         pauseBTN.onClick.AddListener(PauseButtonClick);
 
         player = FindFirstObjectByType<Player>();
+
+        skillPickUI.ManualAwake();
     }
 
     private void Start()

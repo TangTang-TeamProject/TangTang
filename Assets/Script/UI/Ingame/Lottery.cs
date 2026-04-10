@@ -76,18 +76,14 @@ public class Lottery : MonoBehaviour
 
     private Coroutine coroutine;
 
-    private void Awake()
-    {
-        resultPlate.SetActive(false);
-        lotteryPlate.transform.position = basePos.position;
-    }
-
     public void StartLottery(Action _callback, int _nowGold, int _amount)
     {
         callback = _callback;
 
         amount = _amount;
         nowGold = _nowGold;
+
+        CleanUp();
 
         LotteryListUp();
 
@@ -293,7 +289,7 @@ public class Lottery : MonoBehaviour
             yield return null;
         }
 
-        CleanUp();
+        EndLottery();
 
         yield break;
     }
@@ -309,8 +305,6 @@ public class Lottery : MonoBehaviour
         resultPlate.SetActive(false);
         lotteryPlate.transform.position = basePos.position;
         selected.position = choices[0].choice_Icon.transform.position;
-
-        EndLottery();
     }
 
     public void EndLottery()
