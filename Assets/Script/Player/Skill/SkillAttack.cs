@@ -14,8 +14,10 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected float _remainTime;
     protected float _spinZ;
     protected bool _isSpin = false;
+    protected float _stunTime;
 
     public float Damage => _damage;
+    public float Stun => _stunTime;
 
     private void Update()
     {

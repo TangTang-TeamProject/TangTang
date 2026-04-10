@@ -12,6 +12,7 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
     [SerializeField] private float _damage = 10f;
 
     public float Damage => _damage;
+    public float Stun => 0;
 
 
     private bool _isThrowed = false;
