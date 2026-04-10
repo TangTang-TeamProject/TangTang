@@ -15,7 +15,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
-    protected SpriteRenderer _sr;
+    protected SpriteRenderer _sr;    
     
 
     protected EnemyPool _pool;
@@ -243,15 +243,19 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     
     public virtual void Die()
     {                     
-        _isElite = false;             
-        gameObject.SetActive(false); // 몬스터 사망
+        _isElite = false;        
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        gameObject.SetActive(false); // 몬스터 사망        
         _pool.Return(this);                   
     }
 
     // 보스전 시작시 몬스터 정리
     public void RemoveWhenBoss()
-    {
-        gameObject.SetActive(false);
+    {        
+        gameObject.SetActive(false);        
         _pool.Add(this);
     }
 
