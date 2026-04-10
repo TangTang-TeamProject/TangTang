@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: EquipRegistrySO
   m_EditorClassIdentifier: 
   equips:
-  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
   - {fileID: 11400000, guid: f5d6cc4a0c021b841ab9f5959c209972, type: 2}
-  - {fileID: 11400000, guid: 329638e6be7314b48920ac32234c9c3e, type: 2}
+  - {fileID: 11400000, guid: 6ff147655915bf24b811f361103e3617, type: 2}
   - {fileID: 11400000, guid: 7bd9b9ebe100682429e4a6218bd436bb, type: 2}
+  - {fileID: 11400000, guid: 4c9a12139b34bbe499de74fad00cdc12, type: 2}
+  - {fileID: 11400000, guid: 24eac60897398094eb48edb6abc48332, type: 2}
+  - {fileID: 11400000, guid: 99e771af36df9ba40addb48961687f12, type: 2}
+  - {fileID: 11400000, guid: 329638e6be7314b48920ac32234c9c3e, type: 2}
+  - {fileID: 11400000, guid: 68db789800310614a885d7763477be22, type: 2}
   - {fileID: 11400000, guid: 69bac81f26f1a99449f705c6cc965342, type: 2}

@@ -11,7 +11,7 @@ public class Equip : MonoBehaviour
         Head,
         Body,
         Legs,
-        Cape
+        Cape,
     }
 
     enum SortWay
@@ -32,7 +32,11 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private Image cape;
     [SerializeField]
+    private Image player;
+    [SerializeField]
     private EquipRegistry equip;
+    [SerializeField]
+    private PlayerRegistry playerRegistry;
 
     [SerializeField]
     private Button allSort;
@@ -84,6 +88,16 @@ public class Equip : MonoBehaviour
 
     private void OnEnable()
     {
+        SaveManager.data.equipID[(int)EquipType.Cape] = "CAPE1";
+        SaveManager.data.equipID[(int)EquipType.Head] = "HEAD1";
+        SaveManager.data.equipID[(int)EquipType.Body] = "BODY1";
+        SaveManager.data.equipID[(int)EquipType.Leg] = "LEG1";
+        SaveManager.data.equipID[(int)EquipType.Weapon] = "WEAPON1";
+        SaveManager.Save();
+
+
+        player.sprite = playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Icon;
+
         DataRefresh();
         DecideType(allSortimg, SortType.ALL);
     }

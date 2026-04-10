@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21f348c8260cdb04b9774161cd213058, type: 3}
-  m_Name: EquipDataSO 1
+  m_Name: Body1
   m_EditorClassIdentifier: 
-  equipID: 1
+  equipID: BODY1
   equipName: 
   type: 1
   atk: 0
   hpChange: 0
   speedChange: 0
   prefab: {fileID: 0}
-  img: {fileID: 21300000, guid: 57626ad4d3c63564b8f4eb67898228b3, type: 3}
+  img: {fileID: 21300000, guid: 6a3e125cc163448aba89bf81a3921cda, type: 3}
