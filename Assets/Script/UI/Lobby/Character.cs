@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
     private void OnEnable()
     {
         selectedChar = SaveManager.data.selectedChar;
-        ViewChar();
+        //ViewChar();
     }
 
     void ViewChar()
@@ -69,7 +69,7 @@ public class Character : MonoBehaviour
 
     void SelectChar()
     {
-        SaveManager.data.selectedChar = selectedChar;
+        SaveManager.data.selectedChar = "CHR_001";
         SaveManager.Save();
     }
 }
