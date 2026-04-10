@@ -17,6 +17,9 @@ public class WaveData_SO : ScriptableObject
     private int enemyCount = 0;
     [SerializeField]
     private int spawnIntervalSec = 0;
+    [SerializeField]
+    private Waves waveType = Waves.Basic;
+
 
     public string StageID => stageID;
     public int StartSec => startSec;
@@ -24,4 +27,6 @@ public class WaveData_SO : ScriptableObject
     public int EnemyCount => enemyCount;
     public string SpawnEnemy => spawnEnemy;
     public int SpawnIntervalSec => spawnIntervalSec;
+    public Waves WaveType => waveType;
+
 }
