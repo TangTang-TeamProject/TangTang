@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +19,7 @@ public class SkillPick : MonoBehaviour
         public ChoiceType type;
     }
 
-    private class PreChoice
+    private struct PreChoice
     {
         public string pickedID;
         public ChoiceType type;
@@ -66,9 +63,12 @@ public class SkillPick : MonoBehaviour
 
     private List<PreChoice> choiceList = new List<PreChoice>();
     private HashSet<string> artiList = new HashSet<string>();
-    private HashSet<string> haveList = new HashSet<string>();
+    private HashSet<string> skillList = new HashSet<string>();
 
-    private void Awake()
+    private List<string> allSkill = new List<string>();
+    private List<string> allArti = new List<string>();
+
+    public void ManualAwake()
     {
         for (int i = 0; i < choices.Count; i++)
         {
@@ -81,6 +81,22 @@ public class SkillPick : MonoBehaviour
 
             choices[i].choice.onClick.AddListener(() => EndPick(index));
         }
+
+
+        CPrint.Warn($"{skillRegistry.Skills.Count} 개 존재함");
+        for (int i = 0; i < skillRegistry.Skills.Count; i++)
+        {
+            if (!skillRegistry.Skills[i].IsEvo)
+            {
+                allSkill.Add(skillRegistry.Skills[i].SkillID);
+            }
+        }
+
+        CPrint.Warn($"{artifactRegistry.Artifacts.Count} 개 존재함");
+        for (int i = 0; i < artifactRegistry.Artifacts.Count; i++)
+        {
+            allArti.Add(artifactRegistry.Artifacts[i].ArtifactID);
+        }
     }
 
     public void StartPick(Action _callback)
@@ -88,6 +104,8 @@ public class SkillPick : MonoBehaviour
         callback = _callback;
 
         HoldListUp();
+
+        UnHoldListUp();
 
         Settings();
 
@@ -98,7 +116,6 @@ public class SkillPick : MonoBehaviour
     {
         choiceList.Clear();
         artiList.Clear();
-        haveList.Clear();
 
         for(int i = 0; i < slot.ArtifactNum; i++)
         {
@@ -116,7 +133,6 @@ public class SkillPick : MonoBehaviour
             }
 
             artiList.Add(id);
-            haveList.Add(id);
         }
 
         for (int i = 0; i < slot.SkillNum; i++)
@@ -133,7 +149,7 @@ public class SkillPick : MonoBehaviour
 
                 choiceList.Add(pc);
             }
-            else
+            else if(!skill.IsEvo)
             {
                 string require = evolutionRegistry.GetEvolutionRequire(id);
                 string evo = evolutionRegistry.GetEvolution(id);
@@ -146,71 +162,91 @@ public class SkillPick : MonoBehaviour
                 }
             }
 
-            haveList.Add(id);
+            skillList.Add(id);
+        }
+    }
+
+    void UnHoldListUp()
+    {
+
+        List<string> notHaveSkill = new List<string>();
+        List<string> notHaveArti = new List<string>();
+
+        for (int i = 0; i < allSkill.Count; i++)
+        {
+            if (!skillList.Contains(allSkill[i]))
+            {
+                notHaveSkill.Add(allSkill[i]);
+            }
         }
 
-        int executeLimit = 0;
-
-        while(choiceList.Count < 8 && executeLimit < 50)
+        for (int i = 0; i < allArti.Count; i++)
         {
-            executeLimit++;
+            if (!artiList.Contains(allArti[i]))
+            {
+                notHaveArti.Add(allArti[i]);
+            }
+        }
 
-            if (slot.IsArtifactFull() && slot.IsSkillFull())
+        bool flag = false;
+
+        int safety = 10;
+
+        while (choiceList.Count < 8 && safety > 0)
+        {
+            safety--;
+
+            if (slot.IsSkillFull() && slot.IsArtifactFull())
             {
                 break;
             }
-            else if (slot.IsSkillFull())
+            else if (slot.IsArtifactFull() && notHaveSkill.Count > 0)
             {
-                ArtifactData_SO a = artifactRegistry.GetRandomArti();
+                int pick = UnityEngine.Random.Range(0, notHaveSkill.Count);
 
-                PreChoice pc = MakePreData(a.ArtifactID, ChoiceType.Artifact);
+                PreChoice pc = MakePreData(notHaveSkill[pick], ChoiceType.Skill);
 
-                if (!haveList.Contains(pc.pickedID))
-                {
-                    choiceList.Add(pc);
-                    haveList.Add(pc.pickedID);
-                }
+                notHaveSkill.RemoveAt(pick);
+
+                choiceList.Add(pc);
             }
-            else if (slot.IsArtifactFull())
+            else if (slot.IsSkillFull() && notHaveArti.Count > 0)
             {
-                SkillData_SO s = skillRegistry.GetRandomSkill();
+                int pick = UnityEngine.Random.Range(0, notHaveArti.Count);
 
-                PreChoice pc = MakePreData(s.SkillID, ChoiceType.Skill);
+                PreChoice pc = MakePreData(notHaveArti[pick], ChoiceType.Artifact);
 
-                if (!haveList.Contains(pc.pickedID))
-                {
-                    choiceList.Add(pc);
-                    haveList.Add(pc.pickedID);
-                }
+                notHaveArti.RemoveAt(pick);
+
+                choiceList.Add(pc);
+            }
+            else if (flag && notHaveSkill.Count > 0)
+            {
+                flag = false;
+
+                int pick = UnityEngine.Random.Range(0, notHaveSkill.Count);
+
+                PreChoice pc = MakePreData(notHaveSkill[pick], ChoiceType.Skill);
+
+                notHaveSkill.RemoveAt(pick);
+
+                choiceList.Add(pc);
+            }
+            else if (notHaveArti.Count > 0)
+            {
+                flag = true;
+
+                int pick = UnityEngine.Random.Range(0, notHaveArti.Count);
+
+                PreChoice pc = MakePreData(notHaveArti[pick], ChoiceType.Artifact);
+
+                notHaveArti.RemoveAt(pick);
+
+                choiceList.Add(pc);
             }
             else
             {
-                int c = UnityEngine.Random.Range(0, 2);
-
-                if (c == 0)
-                {
-                    SkillData_SO s = skillRegistry.GetRandomSkill();
-
-                    PreChoice pc = MakePreData(s.SkillID, ChoiceType.Skill);
-
-                    if (!haveList.Contains(pc.pickedID))
-                    {
-                        choiceList.Add(pc);
-                        haveList.Add(pc.pickedID);
-                    }
-                }
-                else
-                {
-                    ArtifactData_SO a = artifactRegistry.GetRandomArti();
-
-                    PreChoice pc = MakePreData(a.ArtifactID, ChoiceType.Artifact);
-
-                    if (!haveList.Contains(pc.pickedID))
-                    {
-                        choiceList.Add(pc);
-                        haveList.Add(pc.pickedID);
-                    }
-                }
+                CPrint.Warn("헛돌았음");
             }
         }
     }
@@ -272,7 +308,8 @@ public class SkillPick : MonoBehaviour
         while(n > 1)
         {
             n--;
-            int k = UnityEngine.Random.Range(0, n);
+
+            int k = UnityEngine.Random.Range(0, n + 1);
 
             PreChoice pc = choiceList[k];
             choiceList[k] = choiceList[n];
@@ -298,8 +335,11 @@ public class SkillPick : MonoBehaviour
                 break;
 
             case ChoiceType.Skill:
-            case ChoiceType.Evo:
                 slot.SkillUp(choices[i].pickedID);
+                break;
+
+            case ChoiceType.Evo:
+                slot.SkillEvo(evolutionRegistry.GetBase(choices[i].pickedID) , choices[i].pickedID);
                 break;
 
             case ChoiceType.Gold:

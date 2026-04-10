@@ -10,11 +10,12 @@ public class EvolutionRegistry : ScriptableObject
     public IReadOnlyList<EvolutionData_SO> Evolution => evolution;
 
     private Dictionary<string, string> dataDic = new Dictionary<string, string>();
+    private Dictionary<string, string> baseDic = new Dictionary<string, string>();
     private Dictionary<string, string> reqDic = new Dictionary<string, string>();
 
     void NullCheck()
     {
-        if (dataDic != null && dataDic.Count != 0 && reqDic != null && reqDic.Count != 0)
+        if (dataDic != null && dataDic.Count != 0 && reqDic != null && reqDic.Count != 0 && baseDic != null && baseDic.Count != 0)
         {
             return;
         }
@@ -30,6 +31,7 @@ public class EvolutionRegistry : ScriptableObject
         for (int i = 0; i < evolution.Count; i++)
         {
             dataDic.Add(evolution[i].BaseSkillID, evolution[i].EvolutionID);
+            baseDic.Add(evolution[i].EvolutionID, evolution[i].BaseSkillID);
             reqDic.Add(evolution[i].BaseSkillID, evolution[i].RequiredArtifactID);
         }
     }
@@ -52,6 +54,19 @@ public class EvolutionRegistry : ScriptableObject
         NullCheck();
 
         if (dataDic.TryGetValue(_ID, out string data))
+        {
+            return data;
+        }
+
+        CPrint.Error("EvolutionRegistry - Cant Find");
+        return null;
+    }
+
+    public string GetBase(string _ID)
+    {
+        NullCheck();
+
+        if (baseDic.TryGetValue(_ID, out string data))
         {
             return data;
         }
