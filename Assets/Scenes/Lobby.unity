@@ -3465,10 +3465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e588fb26cb2fd541a27c1255c1893c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRegistry: {fileID: 0}
-  charName: {fileID: 0}
-  charDesc: {fileID: 0}
-  charIMG: {fileID: 0}
+  playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  charName: {fileID: 1366949248}
+  charDesc: {fileID: 161387932}
+  charIMG: {fileID: 299836722}
   isClosed: {fileID: 0}
   selectBTN: {fileID: 1704499392}
 --- !u!1 &782138927

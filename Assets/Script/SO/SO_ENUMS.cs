@@ -19,6 +19,13 @@ public enum StatKey
     ProjectileSpeed
 }
 
+public enum Waves
+{ 
+    Basic,
+    Big,
+    Boss,
+}
+
 public class SO_ENUMS : MonoBehaviour
 {
 }
