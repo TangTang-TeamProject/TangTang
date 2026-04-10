@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: SpearEvo
   nameKR: "\uB79C\uC2A4 \uC9C4\uD654\uD615"
   nameEN: Spear
-  maxLevel: 5
+  maxLevel: 1
   isEvo: 1
   img: {fileID: 21300000, guid: bb71197c3cd5f4dc09e7b129399d0048, type: 3}
-  prefab: {fileID: 7630629797730303655, guid: a6c30988251b05a4ea1048cb4b6e8d22, type: 3}
+  prefab: {fileID: 7630629797730303655, guid: ec82f4ff1b1a0e34db298dc7d486553f, type: 3}

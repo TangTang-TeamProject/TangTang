@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: MaceEvo
   nameKR: "\uBA54\uC774\uC2A4\uC9C4\uD654\uD615"
   nameEN: Mace
-  maxLevel: 5
+  maxLevel: 1
   isEvo: 1
   img: {fileID: 21300000, guid: 529a1a0c4dde84b71a261ee01ec0e428, type: 3}
-  prefab: {fileID: 8284904972113470649, guid: b553163839083e645b23b0360f83e776, type: 3}
+  prefab: {fileID: 8284904972113470649, guid: 2ee431f38de63d440aa422d4231790ba, type: 3}
