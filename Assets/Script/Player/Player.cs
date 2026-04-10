@@ -86,7 +86,7 @@ public class Player : MonoBehaviour, IDamagables
 
     private void OnEnable()
     {
-        _data = _playerRegistry.GetPlayerByID("");
+        _data = _playerRegistry.GetPlayerByID(SaveManager.data.selectedChar);
         if (_data == null)
         {
             CPrint.Error("플레이어 데이터 SO없음");
