@@ -40,6 +40,11 @@ public class Settings : MonoBehaviour
         sfxVolume.onValueChanged.AddListener(SFXVolumeChanged);
     }
 
+    private void OnEnable()
+    {
+        DataRefresh();
+    }
+
     private void Start()
     {
         DataRefresh();

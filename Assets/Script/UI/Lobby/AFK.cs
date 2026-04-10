@@ -35,7 +35,7 @@ public class AFK : MonoBehaviour
         rewardBTN.onClick.AddListener(() => GetReward());
     }
 
-    private void Start()
+    private void OnEnable()
     {
         CalcTimes();
         UpdateGold();
@@ -89,11 +89,6 @@ public class AFK : MonoBehaviour
 
     void CalcTimes()
     {
-        if (dateTime == null)
-        {
-            CPrint.Error("SaveManager-dateTime == null");
-        }
-
         dateTime = new DateTime(SaveManager.data.dateTime);
         // 수령 주기 이후에 추가 필요
         endTime = dateTime.AddMinutes(10);

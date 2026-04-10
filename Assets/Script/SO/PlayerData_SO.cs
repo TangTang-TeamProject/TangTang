@@ -21,6 +21,15 @@ public class PlayerData_SO : ScriptableObject
     private float critRate = 0f;
     [SerializeField]
     private float pickUpRange = 0f;
+
+    [SerializeField]
+    private bool isClosed = true;
+    [SerializeField]
+    private ClosedChar openRequire = ClosedChar.Erin;
+    [SerializeField]
+    private string desc;
+    [SerializeField]
+    private Sprite icon;
     [SerializeField]
     private GameObject prefab;
 
@@ -32,5 +41,10 @@ public class PlayerData_SO : ScriptableObject
     public float BaseMoveSpeed => baseMoveSpeed;
     public float CritRate => critRate;
     public float PickUpRange => pickUpRange;
+
+    public bool IsClosed => isClosed;
+    public ClosedChar OpenRequire => openRequire;
+    public string Desc => desc;
+    public Sprite Icon => icon;
     public GameObject Prefab => prefab;
 }

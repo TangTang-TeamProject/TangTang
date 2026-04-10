@@ -32,7 +32,7 @@ public class PlayerRegistry : ScriptableObject
         }
     }
 
-    public PlayerData_SO GetEnemyByID(string _ID)
+    public PlayerData_SO GetPlayerByID(string _ID)
     {
         NullCheck();
 

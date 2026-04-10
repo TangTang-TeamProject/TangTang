@@ -82,7 +82,7 @@ public class Equip : MonoBehaviour
         updownSort.onClick.AddListener(() => DecideWay(updownSortimg));
     }
 
-    private void Start()
+    private void OnEnable()
     {
         DataRefresh();
         DecideType(allSortimg, SortType.ALL);

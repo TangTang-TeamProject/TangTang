@@ -14,6 +14,14 @@ public enum EquipType
     TypeCount,
 }
 
+public enum ClosedChar
+{ 
+    Erin = 0,
+    Noah,
+    Ria,
+    CharCount,
+}
+
 [System.Serializable]
 public class SaveData
 {
@@ -32,9 +40,7 @@ public class SaveData
 
     public string selectedChar;
 
-    public bool RiaOpen;
-    public bool ErinOpen;
-    public bool NoahOpen;
+    public bool[] openChar;
 }
 
 public static class SaveManager
@@ -117,9 +123,12 @@ public static class SaveManager
 
         newData.selectedChar = "CHR_001";
 
-        newData.RiaOpen = false;
-        newData.ErinOpen = false;
-        newData.NoahOpen = false;
+        newData.openChar = new bool[(int)ClosedChar.CharCount];
+
+        for (int i = 0; i < (int)ClosedChar.CharCount; i++)
+        {
+            newData.openChar[i] = false;
+        }
 
         return newData;
     }

@@ -83,8 +83,6 @@ public class SkillPick : MonoBehaviour
             choices[i].choice.onClick.AddListener(() => EndPick(index));
         }
 
-
-        CPrint.Warn($"{skillRegistry.Skills.Count} 개 존재함");
         for (int i = 0; i < skillRegistry.Skills.Count; i++)
         {
             if (!skillRegistry.Skills[i].IsEvo)
@@ -93,7 +91,6 @@ public class SkillPick : MonoBehaviour
             }
         }
 
-        CPrint.Warn($"{artifactRegistry.Artifacts.Count} 개 존재함");
         for (int i = 0; i < artifactRegistry.Artifacts.Count; i++)
         {
             allArti.Add(artifactRegistry.Artifacts[i].ArtifactID);
