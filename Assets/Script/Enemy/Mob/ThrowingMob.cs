@@ -10,7 +10,10 @@ public class ThrowingMob : BaseEnemy
     private float _nextShoot = 0f;
    
     private bool _isAttacking = false;
+
     private float _attackDuration = 1f;
+    private float _attackDelay = 0.2f;
+    private bool _isDelay = false;
 
     private string animParam = "IsMoving";
 
@@ -56,6 +59,17 @@ public class ThrowingMob : BaseEnemy
         {
             _attackDuration -= Time.deltaTime;
 
+            if (_isDelay)
+            {
+                _attackDelay -= Time.deltaTime;
+                if (_attackDelay <= 0f)
+                {
+                    _projectileFactory.CreateProjectile(transform.position);
+                    _attackDelay = 0.2f;
+                    _isDelay = false;
+                }
+            }
+                        
             if (_attackDuration <= 0f)
             {
                 _isAttacking = false;
@@ -71,6 +85,7 @@ public class ThrowingMob : BaseEnemy
             _nextShoot = Timer.Instance.GameTime + _atkCycle;
             Attack();            
         }
+    
                        
         Chase();
     }
@@ -85,7 +100,7 @@ public class ThrowingMob : BaseEnemy
     {
         _isAttacking = true;
         _animator.SetBool(animParam, false);
-        _projectileFactory.CreateProjectile(transform.position);
+        _isDelay = true;        
     }
    
 

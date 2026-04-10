@@ -17,7 +17,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
 
     public float Damage => _damage;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _damage = _projectileSO.ContactDamage;        
     }
