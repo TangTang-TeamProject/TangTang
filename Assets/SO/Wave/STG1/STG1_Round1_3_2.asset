@@ -18,3 +18,4 @@ MonoBehaviour:
   spawnEnemy: ENM_002
   enemyCount: 5
   spawnIntervalSec: 4
+  waveType: 1
