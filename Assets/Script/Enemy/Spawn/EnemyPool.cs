@@ -8,11 +8,12 @@ public class EnemyPool : MonoBehaviour
     private Queue<BaseEnemy> _enemyPool = new Queue<BaseEnemy>();
 
     public Action<BaseEnemy> OnEnemyDead;
-   
+    public Action<BaseEnemy> OnRemoveEnemy;
 
     public void Add(BaseEnemy enemy)
     {
         _enemyPool.Enqueue(enemy);
+        OnRemoveEnemy?.Invoke(enemy);
     }
 
     public BaseEnemy GetEnemy(EnemyData_SO enemyData, Transform parent)
@@ -32,6 +33,5 @@ public class EnemyPool : MonoBehaviour
     {        
         _enemyPool.Enqueue(enemy);  
         OnEnemyDead?.Invoke(enemy);
-    }   
-    
+    }         
 }

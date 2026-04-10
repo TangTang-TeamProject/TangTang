@@ -254,7 +254,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 보스전 시작시 몬스터 정리
     public void RemoveWhenBoss()
-    {        
+    {
+        _isElite = false;
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
         gameObject.SetActive(false);        
         _pool.Add(this);
     }
