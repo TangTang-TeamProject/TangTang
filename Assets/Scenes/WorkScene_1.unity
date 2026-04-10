@@ -490,7 +490,7 @@ MonoBehaviour:
   _bossCircle: {fileID: 263245897}
   _circleErase: 3
   _target: {fileID: 304332992}
-  _time: 5
+  _time: 30
 --- !u!1 &582943651
 GameObject:
   m_ObjectHideFlags: 0
