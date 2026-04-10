@@ -62,8 +62,9 @@ public class SkillPick : MonoBehaviour
     private Sprite goldIcon;
 
     private List<PreChoice> choiceList = new List<PreChoice>();
-    private HashSet<string> artiList = new HashSet<string>();
-    private HashSet<string> skillList = new HashSet<string>();
+
+    private HashSet<string> artiHistory = new HashSet<string>();
+    private HashSet<string> skillHistory = new HashSet<string>();
 
     private List<string> allSkill = new List<string>();
     private List<string> allArti = new List<string>();
@@ -115,7 +116,6 @@ public class SkillPick : MonoBehaviour
     void HoldListUp()
     {
         choiceList.Clear();
-        artiList.Clear();
 
         for(int i = 0; i < slot.ArtifactNum; i++)
         {
@@ -132,7 +132,7 @@ public class SkillPick : MonoBehaviour
                 choiceList.Add(pc);
             }
 
-            artiList.Add(id);
+            artiHistory.Add(id);
         }
 
         for (int i = 0; i < slot.SkillNum; i++)
@@ -154,7 +154,7 @@ public class SkillPick : MonoBehaviour
                 string require = evolutionRegistry.GetEvolutionRequire(id);
                 string evo = evolutionRegistry.GetEvolution(id);
 
-                if (artiList.Contains(require))
+                if (artiHistory.Contains(require))
                 {
                     PreChoice pc = MakePreData(evo, ChoiceType.Evo);
 
@@ -162,7 +162,7 @@ public class SkillPick : MonoBehaviour
                 }
             }
 
-            skillList.Add(id);
+            skillHistory.Add(id);
         }
     }
 
@@ -174,7 +174,7 @@ public class SkillPick : MonoBehaviour
 
         for (int i = 0; i < allSkill.Count; i++)
         {
-            if (!skillList.Contains(allSkill[i]))
+            if (!skillHistory.Contains(allSkill[i]))
             {
                 notHaveSkill.Add(allSkill[i]);
             }
@@ -182,7 +182,7 @@ public class SkillPick : MonoBehaviour
 
         for (int i = 0; i < allArti.Count; i++)
         {
-            if (!artiList.Contains(allArti[i]))
+            if (!artiHistory.Contains(allArti[i]))
             {
                 notHaveArti.Add(allArti[i]);
             }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EquipData_SO : ScriptableObject
 {
     [SerializeField]
-    private int equipID = 0;
+    private string equipID = "";
     [SerializeField]
     private string equipName = "";
     [SerializeField]
@@ -23,7 +23,7 @@ public class EquipData_SO : ScriptableObject
     [SerializeField]
     private Sprite img;
 
-    public int EquipID => equipID;
+    public string EquipID => equipID;
     public string EquipName => equipName;
     public EquipType Type => type;
     public float ATK => atk;

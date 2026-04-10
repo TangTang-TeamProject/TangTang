@@ -19,7 +19,7 @@ public class SaveData
 {
     public int gold;
 
-    public int[] equipID;
+    public string[] equipID;
 
     public long dateTime;
 
@@ -98,11 +98,11 @@ public static class SaveManager
 
         newData.gold = 0;
         
-        newData.equipID = new int[(int)EquipType.TypeCount];
+        newData.equipID = new string[(int)EquipType.TypeCount];
 
         for (int i = 0; i < (int)EquipType.TypeCount; i++)
         {
-            newData.equipID[i] = i;
+            newData.equipID[i] = "";
         }
 
         newData.masterVolume = 1f;
@@ -134,12 +134,12 @@ public static class SaveManager
         saveData.gold += num;
     }
 
-    public static void SetEquip(EquipType slot, int ID)
+    public static void SetEquip(EquipType slot, string ID)
     {
         saveData.equipID[(int)slot] = ID;
     }
 
-    public static int GetEquip(EquipType slot)
+    public static string GetEquip(EquipType slot)
     {
         return saveData.equipID[(int)slot];
     }
