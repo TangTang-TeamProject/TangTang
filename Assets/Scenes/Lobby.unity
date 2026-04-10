@@ -6525,8 +6525,8 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
   wave: {fileID: 11400000, guid: 15b29f6a9aef5e84689519c7aa985552, type: 2}
   evo: {fileID: 11400000, guid: 0ed14be7c08790449a1850d195675727, type: 2}
-  skill: {fileID: 0}
-  level: {fileID: 0}
+  skill: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
+  level: {fileID: 11400000, guid: 533befca93fd2a5409a4c846a60f40dc, type: 2}
 --- !u!1 &1247610616
 GameObject:
   m_ObjectHideFlags: 0
