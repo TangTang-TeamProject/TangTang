@@ -57,6 +57,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected float _nextDmg;
     
     public float Damage => _contactDamage;
+    public float Stun => 0;
 
     public string Id => _id;
     public EnemyType MobType => _mobType;
