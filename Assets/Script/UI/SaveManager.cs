@@ -14,12 +14,20 @@ public enum EquipType
     TypeCount,
 }
 
+public enum ClosedChar
+{ 
+    Erin = 0,
+    Noah,
+    Ria,
+    CharCount,
+}
+
 [System.Serializable]
 public class SaveData
 {
     public int gold;
 
-    public int[] equipID;
+    public string[] equipID;
 
     public long dateTime;
 
@@ -32,9 +40,7 @@ public class SaveData
 
     public string selectedChar;
 
-    public bool RiaOpen;
-    public bool ErinOpen;
-    public bool NoahOpen;
+    public bool[] openChar;
 }
 
 public static class SaveManager
@@ -98,11 +104,11 @@ public static class SaveManager
 
         newData.gold = 0;
         
-        newData.equipID = new int[(int)EquipType.TypeCount];
+        newData.equipID = new string[(int)EquipType.TypeCount];
 
         for (int i = 0; i < (int)EquipType.TypeCount; i++)
         {
-            newData.equipID[i] = i;
+            newData.equipID[i] = "";
         }
 
         newData.masterVolume = 1f;
@@ -117,9 +123,12 @@ public static class SaveManager
 
         newData.selectedChar = "CHR_001";
 
-        newData.RiaOpen = false;
-        newData.ErinOpen = false;
-        newData.NoahOpen = false;
+        newData.openChar = new bool[(int)ClosedChar.CharCount];
+
+        for (int i = 0; i < (int)ClosedChar.CharCount; i++)
+        {
+            newData.openChar[i] = false;
+        }
 
         return newData;
     }
@@ -134,12 +143,12 @@ public static class SaveManager
         saveData.gold += num;
     }
 
-    public static void SetEquip(EquipType slot, int ID)
+    public static void SetEquip(EquipType slot, string ID)
     {
         saveData.equipID[(int)slot] = ID;
     }
 
-    public static int GetEquip(EquipType slot)
+    public static string GetEquip(EquipType slot)
     {
         return saveData.equipID[(int)slot];
     }

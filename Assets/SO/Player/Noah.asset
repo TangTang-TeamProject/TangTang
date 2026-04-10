@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c7e16ae09bca94481874cbad65424a, type: 3}
-  m_Name: PlayerExample
+  m_Name: Noah
   m_EditorClassIdentifier: 
-  characterID: 
-  nameKR: 
+  characterID: CHR_003
+  nameKR: "\uBC29\uD328 \uC804\uC0AC \uB178\uC544"
   nameEN: 
   baseHP: 100
   baseATK: 1
   baseMoveSpeed: 4
   critRate: 0
-  pickUpRange: 0
-  prefab: {fileID: 0}
+  pickUpRange: 1
+  isClosed: 1
+  openRequire: 1
+  desc: "\uB0B4\uAC00 \uADF8\uB300\uB4E4\uC758 \uBC29\uD328\uB77C\uB124"
+  icon: {fileID: 21300000, guid: 09c989090ac9a43b0881ce143ce9b2cb, type: 3}
+  prefab: {fileID: 2988542607015746279, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}

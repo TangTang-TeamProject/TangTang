@@ -10,7 +10,7 @@ public class EquipRegistry : ScriptableObject
 
     public IReadOnlyList<EquipData_SO> Equips => equips;
 
-    private Dictionary<int, EquipData_SO> dataDicID = new Dictionary<int, EquipData_SO>();
+    private Dictionary<string, EquipData_SO> dataDicID = new Dictionary<string, EquipData_SO>();
 
     private Dictionary<EquipType, List<EquipData_SO>> dataDicType = new Dictionary<EquipType, List<EquipData_SO>>();
 
@@ -43,7 +43,7 @@ public class EquipRegistry : ScriptableObject
     }
 
 
-    public EquipData_SO GetEquipByID(int _ID)
+    public EquipData_SO GetEquipByID(string _ID)
     {
         NullCheck();
 

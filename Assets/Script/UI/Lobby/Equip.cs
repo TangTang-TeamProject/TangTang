@@ -82,7 +82,7 @@ public class Equip : MonoBehaviour
         updownSort.onClick.AddListener(() => DecideWay(updownSortimg));
     }
 
-    private void Start()
+    private void OnEnable()
     {
         DataRefresh();
         DecideType(allSortimg, SortType.ALL);
@@ -141,7 +141,7 @@ public class Equip : MonoBehaviour
 
     void ChangeImg(Image img, EquipType type)
     {
-        int id = SaveManager.GetEquip(type);
+        string id = SaveManager.GetEquip(type);
 
         img.sprite = equip.GetEquipByID(id).IMG;
     }
