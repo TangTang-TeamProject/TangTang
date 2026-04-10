@@ -88,14 +88,6 @@ public class Equip : MonoBehaviour
 
     private void OnEnable()
     {
-        SaveManager.data.equipID[(int)EquipType.Cape] = "CAPE1";
-        SaveManager.data.equipID[(int)EquipType.Head] = "HEAD1";
-        SaveManager.data.equipID[(int)EquipType.Body] = "BODY1";
-        SaveManager.data.equipID[(int)EquipType.Leg] = "LEG1";
-        SaveManager.data.equipID[(int)EquipType.Weapon] = "WEAPON1";
-        SaveManager.Save();
-
-
         player.sprite = playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Icon;
 
         DataRefresh();
@@ -149,7 +141,36 @@ public class Equip : MonoBehaviour
 
     void Sorting()
     {
-        
+        switch (sortType)
+        {
+            case SortType.ALL:
+
+                break;
+
+            case SortType.Cape:
+
+                break;
+            case SortType.Body:
+
+                break;
+
+            case SortType.Head:
+
+                break;
+
+            case SortType.Legs:
+
+                break;
+        }
+
+
+        switch (sortWay)
+        { 
+            case SortWay.Up:
+                break;
+            case SortWay.Down:
+                break;
+        }
     }
 
 
