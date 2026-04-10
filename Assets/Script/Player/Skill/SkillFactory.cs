@@ -31,4 +31,15 @@ public class SkillFactory : MonoBehaviour
         }
         _skillDict[id] = prefab;
     }
+
+    public void SkillEvol(string id, string evolutionId, SkillAttack prefab)
+    {
+        if (prefab == null)
+        {
+            CPrint.Error($"{id}의 프리펩 없음");
+            return;
+        }
+        _skillDict.Remove(id);
+        _skillDict[evolutionId] = prefab;
+    }
 }

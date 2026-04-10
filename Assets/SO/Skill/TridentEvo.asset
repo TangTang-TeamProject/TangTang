@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: TridentEvo
   nameKR: "\uC0BC\uC9C0\uCC3D \uC9C4\uD654\uD615"
   nameEN: Trident
-  maxLevel: 5
+  maxLevel: 1
   isEvo: 1
   img: {fileID: 21300000, guid: 9ceba41c6fb6d463ab9ecab86706972e, type: 3}
-  prefab: {fileID: 8441061280361703149, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
+  prefab: {fileID: 8441061280361703149, guid: 90f8ad43a4dbbd14a808b1aa55f32686, type: 3}

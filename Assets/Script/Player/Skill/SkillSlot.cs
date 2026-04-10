@@ -112,7 +112,22 @@ public class SkillSlot : MonoBehaviour
 
     public void SkillEvo(string id, string evolutionId)
     {
+        PlayerSkill newSkill = new PlayerSkill
+        {
+            id = evolutionId,
+            level = 1
+        };
 
+        int index = _playerSkills.FindIndex(s  => s.id == id);
+        if (index != -1)
+        {
+            _playerSkills[index] = newSkill;
+        }
+
+        _skillDict.Remove(id);
+        _skillDict[evolutionId] = newSkill;
+
+        _spawner.GetEvolution(id, evolutionId);
     }
 
     public void ArtifactUp(string id)

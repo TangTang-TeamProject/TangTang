@@ -32,6 +32,26 @@ public class SkillPool : MonoBehaviour
         }
     }
 
+    public void InitSkillEvol(string id, string evolutionId, int num, SkillAttack prefab)
+    {
+        Queue<SkillAttack> queue = new Queue<SkillAttack>();
+        _skillDict[evolutionId] = queue;
+        _skillFactory.SkillEvol(id, evolutionId, prefab);
+        for (int i = 0; i < num; i++)
+        {
+            SkillAttack target = _skillFactory.CreateWeapon(evolutionId);
+            if (target == null)
+            {
+                CPrint.Error($"{gameObject.name}에 null반환됨 인스펙터 태그 확인");
+                break;
+            }
+            target.transform.SetParent(transform);
+            target.gameObject.SetActive(false);
+
+            queue.Enqueue(target);
+        }
+    }
+
     public SkillAttack UseSkill(string id)
     {
         SkillAttack target;
