@@ -6,7 +6,12 @@ using UnityEngine.UI;
 public class SelectStage : MonoBehaviour
 {
     [SerializeField]
+    private PlayerRegistry playerRegistry;
+
+    [SerializeField]
     private Button startBTN;
+    [SerializeField]
+    private Image selectedChar;
 
     private Scenes selectedScene = Scenes.Stage_01;
 
@@ -22,7 +27,7 @@ public class SelectStage : MonoBehaviour
 
     void DataRefresh()
     {
-
+        selectedChar.sprite = playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Icon;
 
     }
 

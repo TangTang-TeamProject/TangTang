@@ -1,18 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    private class CharBlock
-    {
-        public string id;
-        public Image img;
-        public Button menuBTN;
-    }
-
     [SerializeField]
     private PlayerRegistry playerRegistry;
 
@@ -27,24 +21,39 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Button selectBTN;
     [SerializeField]
-    private List<CharBlock> menuBTN;
+    private GameObject prefabBTN;
+    [SerializeField]
+    private GridLayoutGroup charBox;
 
     private string selectedChar;
 
     private void Awake()
     {
         selectBTN.onClick.AddListener(SelectChar);
+
+        for(int i = 0; i < playerRegistry.Players.Count; i++)
+        {
+            GameObject g = Instantiate(prefabBTN, charBox.transform);
+
+            Button btn = g.GetComponentInChildren<Button>();
+
+            PlayerData_SO p = playerRegistry.Players[i];
+
+            btn.onClick.AddListener(() => ViewChar(p.CharacterID));
+
+            btn.image.sprite = p.Icon;
+        }
     }
 
     private void OnEnable()
     {
         selectedChar = SaveManager.data.selectedChar;
-        ViewChar();
+        ViewChar(selectedChar);
     }
 
-    void ViewChar()
+    void ViewChar(string id)
     {
-        PlayerData_SO p = playerRegistry.GetPlayerByID(selectedChar);
+        PlayerData_SO p = playerRegistry.GetPlayerByID(id);
 
         charName.text = p.NameKR;
 

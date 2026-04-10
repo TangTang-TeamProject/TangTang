@@ -9310,9 +9310,9 @@ MonoBehaviour:
   movePos: {fileID: 239785141}
   selected: {fileID: 1032932842}
   rolltime:
+  - 0.05
   - 0.1
   - 0.2
-  - 0.3
   choices:
   - id: 
     choice_Icon: {fileID: 1543739431}
