@@ -3472,7 +3472,7 @@ MonoBehaviour:
   charIMG: {fileID: 299836722}
   isClosed: {fileID: 1602260289}
   selectBTN: {fileID: 1704499392}
-  prefabBTN: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
+  charPrefab: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
   charBox: {fileID: 1093330320}
 --- !u!1 &782138927
 GameObject:
@@ -9579,8 +9579,11 @@ MonoBehaviour:
   legs: {fileID: 1525544323}
   cape: {fileID: 1989921747}
   player: {fileID: 1672686405}
-  equip: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
+  equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
   playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  equips: []
+  equipPrefab: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
+  equipBox: {fileID: 791564606}
   allSort: {fileID: 1885448626}
   headSort: {fileID: 329591045}
   bodySort: {fileID: 1771893537}
