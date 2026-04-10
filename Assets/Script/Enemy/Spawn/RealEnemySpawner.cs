@@ -70,6 +70,7 @@ public class RealEnemySpawner : MonoBehaviour
         for (int i = 0; i <  _factories.Count; i++)
         {
             _factories[i].Pool.OnEnemyDead += RemoveAliveList;
+            _factories[i].Pool.OnRemoveEnemy += RemoveAliveList;
         }
 
         
