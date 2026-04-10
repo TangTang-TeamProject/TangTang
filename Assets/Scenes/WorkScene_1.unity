@@ -134,6 +134,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4451048058255473145, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+      propertyPath: _playerSkills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451048058255473145, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+      propertyPath: _playerSkills.Array.data[0].id
+      value: Axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451048058255473145, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+      propertyPath: _playerSkills.Array.data[0].level
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504020100660297730, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 962050200}
+    - target: {fileID: 6651259472453020151, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+      propertyPath: _firstWeapon
+      value: Axe
+      objectReference: {fileID: 0}
     - target: {fileID: 8528839051561741518, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.95
@@ -780,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441a962ef4b92d240bc7d1553b9a3618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 8321321597071923668, guid: 1e5ed9cdc9b74b1499a3003b383c0ad0, type: 3}
+  _projectilePrefab: {fileID: 6680242328445465290, guid: ea7d519cc96313f449b7ffe7876a03cb, type: 3}
 --- !u!4 &1320531159
 Transform:
   m_ObjectHideFlags: 0
@@ -1036,7 +1056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9c510a45f021d47bcf5611d5d33218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pools: []
+  _pools:
+  - {fileID: 582943652}
+  - {fileID: 2098265714}
   _factory: {fileID: 1522190323}
   _fence: {fileID: 1516093285}
   _itemRegistry: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
@@ -1176,7 +1198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1988993337
 MonoBehaviour:
   m_ObjectHideFlags: 0
