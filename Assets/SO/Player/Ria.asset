@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c7e16ae09bca94481874cbad65424a, type: 3}
   m_Name: Ria
   m_EditorClassIdentifier: 
-  characterID: CHR_002
+  characterID: CHR_004
   nameKR: "\uC232\uC758 \uAD81\uC218 \uB9AC\uC544"
   nameEN: 
   baseHP: 100
