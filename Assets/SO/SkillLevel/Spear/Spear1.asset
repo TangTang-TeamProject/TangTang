@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: Spear
   level: 1
   damage: 40
-  speed: 4
+  speed: 5
   count: 1
-  appearTime: 5
+  appearTime: 3
   disAppearTime: 2

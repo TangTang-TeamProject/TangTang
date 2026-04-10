@@ -29,7 +29,7 @@ public class Player : MonoBehaviour, IDamagables
     private float _speed;
     private float _attack;
     private int _level = 1;
-    private float _requireExp = 100;
+    private float _requireExp = 10;
     private float _currentExp;
     private int _hasSkillNum;
     private int _hasArtifactNum;
@@ -198,6 +198,7 @@ public class Player : MonoBehaviour, IDamagables
     void LevelUp()
     {
         _currentExp = 0;
+        _requireExp = _requireExp + 10;
         _level++;
         ItemManager.instance.PickMeUp();
         OnCurrentEXPChange?.Invoke(_currentExp);
