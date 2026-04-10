@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: AxeEvo
   nameKR: "\uD68C\uC804\uB3C4\uB07C \uC9C4\uD654\uD615"
   nameEN: Axe
-  maxLevel: 5
+  maxLevel: 1
   isEvo: 1
   img: {fileID: 21300000, guid: 89a79317a445e4ed8a8e70115f8a1cc0, type: 3}
-  prefab: {fileID: 8939225881726994098, guid: 4f3d1ce6920973843b85bf0a460a1406, type: 3}
+  prefab: {fileID: 8939225881726994098, guid: 511d0d8532a09f84baa9da0cfbaac7ea, type: 3}
