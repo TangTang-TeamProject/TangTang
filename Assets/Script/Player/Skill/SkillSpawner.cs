@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class SkillSpawner : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class SkillSpawner : MonoBehaviour
     [SerializeField] private SkillData_SO[] _skillData;
     [SerializeField] private SkillLevelRegistry _levelRegistry;
 
-    [Serializable]
+    [System.Serializable]
     public class SkillParameter
     {
         public string id;
@@ -181,8 +179,8 @@ public class SkillSpawner : MonoBehaviour
             for (int i = 0; i < use.count; i++)
             {
                 SkillAttack wand = _pool.UseSkill(use.id);
-                x = UnityEngine.Random.Range(-5f, 5f);
-                y = UnityEngine.Random.Range(-3f, 3f);
+                x = Random.Range(-5f, 5f);
+                y = Random.Range(-3f, 3f);
 
                 wand.transform.position = transform.position + new Vector3(x, y, 0);
                 wand.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
