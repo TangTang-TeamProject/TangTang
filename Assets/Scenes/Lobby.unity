@@ -3472,7 +3472,7 @@ MonoBehaviour:
   charIMG: {fileID: 299836722}
   isClosed: {fileID: 1602260289}
   selectBTN: {fileID: 1704499392}
-  prefabBTN: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
+  charPrefab: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
   charBox: {fileID: 1093330320}
 --- !u!1 &782138927
 GameObject:
@@ -3646,15 +3646,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 30
+    m_Right: 30
+    m_Top: 30
+    m_Bottom: 30
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 200, y: 200}
+  m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &791564607
@@ -9579,8 +9579,11 @@ MonoBehaviour:
   legs: {fileID: 1525544323}
   cape: {fileID: 1989921747}
   player: {fileID: 1672686405}
-  equip: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
+  equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
   playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  equips: []
+  equipPrefab: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
+  equipBox: {fileID: 791564606}
   allSort: {fileID: 1885448626}
   headSort: {fileID: 329591045}
   bodySort: {fileID: 1771893537}

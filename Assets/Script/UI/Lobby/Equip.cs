@@ -34,9 +34,16 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private Image player;
     [SerializeField]
-    private EquipRegistry equip;
+    private EquipRegistry equipRegistry;
     [SerializeField]
     private PlayerRegistry playerRegistry;
+
+    [SerializeField]
+    private List<GameObject> equips;
+    [SerializeField]
+    private GameObject equipPrefab;
+    [SerializeField]
+    private GridLayoutGroup equipBox;
 
     [SerializeField]
     private Button allSort;
@@ -92,6 +99,7 @@ public class Equip : MonoBehaviour
 
         DataRefresh();
         DecideType(allSortimg, SortType.ALL);
+        DecideWay(updownSortimg);
     }
 
     void DataRefresh()
@@ -125,15 +133,16 @@ public class Equip : MonoBehaviour
 
     void DecideWay(Image _img)
     {
-        if (sortWay == SortWay.Up)
+        switch (sortWay)
         {
-            _img.sprite = downSprite;
-            sortWay = SortWay.Down;
-        }
-        else
-        {
-            _img.sprite = upSprite;
-            sortWay = SortWay.Up;
+            case SortWay.Up:
+                sortWay = SortWay.Down;
+                _img.sprite = downSprite;
+                break;
+            case SortWay.Down:
+                sortWay = SortWay.Up;
+                _img.sprite = upSprite;
+                break;
         }
 
         Sorting();
@@ -141,36 +150,104 @@ public class Equip : MonoBehaviour
 
     void Sorting()
     {
+        Clean();
+
         switch (sortType)
         {
             case SortType.ALL:
-
+                AllSort();
                 break;
-
             case SortType.Cape:
-
+                TypeSort(EquipType.Cape);
                 break;
             case SortType.Body:
-
+                TypeSort(EquipType.Body);
                 break;
-
             case SortType.Head:
-
+                TypeSort(EquipType.Head);
                 break;
-
             case SortType.Legs:
-
+                TypeSort(EquipType.Leg);
                 break;
         }
 
+        WaySort();
+    }
 
+    void TypeSort(EquipType _t)
+    {
+        List<EquipData_SO> e = new List<EquipData_SO>(equipRegistry.GetEquipByType(_t));
+
+        for (int i = 0; i < e.Count; i++)
+        {
+            GameObject g = Instantiate(equipPrefab);
+            Button btn = g.GetComponentInChildren<Button>();
+
+            btn.image.sprite = e[i].IMG;
+
+            string _id = e[i].EquipID;
+
+            btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
+
+            equips.Add(g);
+        }
+    }
+
+    void AllSort()
+    {
+        List<EquipData_SO> e = new List<EquipData_SO>(equipRegistry.Equips);
+
+        for (int i = 0; i < e.Count; i++)
+        {
+            GameObject g = Instantiate(equipPrefab);
+            Button btn = g.GetComponentInChildren<Button>();
+
+            btn.image.sprite = e[i].IMG;
+
+            string _id = e[i].EquipID;
+            EquipType _t = e[i].Type;
+
+            btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
+
+            equips.Add(g);
+        }
+    }
+
+    void WaySort()
+    {
         switch (sortWay)
-        { 
+        {
             case SortWay.Up:
+                for (int i = 0; i < equips.Count; i++)
+                {
+                    equips[i].transform.SetParent(equipBox.transform);
+                }
                 break;
             case SortWay.Down:
+                for (int i = equips.Count - 1; i >= 0; i--)
+                {
+                    equips[i].transform.SetParent(equipBox.transform);
+                }
                 break;
         }
+    }
+
+    void Clean()
+    {
+        for (int i = 0; i < equips.Count; i++)
+        {
+            Destroy(equips[i]);
+        }
+
+        equips.Clear();
+    }
+
+    void ChangeWearEquip(EquipType _t, string _id)
+    {
+        SaveManager.SetEquip(_t, _id);
+        SaveManager.Save();
+
+        DataRefresh();
     }
 
 
@@ -178,6 +255,6 @@ public class Equip : MonoBehaviour
     {
         string id = SaveManager.GetEquip(type);
 
-        img.sprite = equip.GetEquipByID(id).IMG;
+        img.sprite = equipRegistry.GetEquipByID(id).IMG;
     }
 }

@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Button selectBTN;
     [SerializeField]
-    private GameObject prefabBTN;
+    private GameObject charPrefab;
     [SerializeField]
     private GridLayoutGroup charBox;
 
@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
         for(int i = 0; i < playerRegistry.Players.Count; i++)
         {
-            GameObject g = Instantiate(prefabBTN, charBox.transform);
+            GameObject g = Instantiate(charPrefab, charBox.transform);
 
             Button btn = g.GetComponentInChildren<Button>();
 
