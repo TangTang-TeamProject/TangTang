@@ -99,6 +99,7 @@ public class Equip : MonoBehaviour
 
         DataRefresh();
         DecideType(allSortimg, SortType.ALL);
+        DecideWay(updownSortimg);
     }
 
     void DataRefresh()
@@ -132,15 +133,16 @@ public class Equip : MonoBehaviour
 
     void DecideWay(Image _img)
     {
-        if (sortWay == SortWay.Up)
+        switch (sortWay)
         {
-            _img.sprite = downSprite;
-            sortWay = SortWay.Down;
-        }
-        else
-        {
-            _img.sprite = upSprite;
-            sortWay = SortWay.Up;
+            case SortWay.Up:
+                sortWay = SortWay.Down;
+                _img.sprite = downSprite;
+                break;
+            case SortWay.Down:
+                sortWay = SortWay.Up;
+                _img.sprite = upSprite;
+                break;
         }
 
         Sorting();
@@ -169,14 +171,7 @@ public class Equip : MonoBehaviour
                 break;
         }
 
-
-        switch (sortWay)
-        { 
-            case SortWay.Up:
-                break;
-            case SortWay.Down:
-                break;
-        }
+        WaySort();
     }
 
     void TypeSort(EquipType _t)
@@ -185,7 +180,7 @@ public class Equip : MonoBehaviour
 
         for (int i = 0; i < e.Count; i++)
         {
-            GameObject g = Instantiate(equipPrefab, equipBox.transform);
+            GameObject g = Instantiate(equipPrefab);
             Button btn = g.GetComponentInChildren<Button>();
 
             btn.image.sprite = e[i].IMG;
@@ -204,7 +199,7 @@ public class Equip : MonoBehaviour
 
         for (int i = 0; i < e.Count; i++)
         {
-            GameObject g = Instantiate(equipPrefab, equipBox.transform);
+            GameObject g = Instantiate(equipPrefab);
             Button btn = g.GetComponentInChildren<Button>();
 
             btn.image.sprite = e[i].IMG;
@@ -215,6 +210,25 @@ public class Equip : MonoBehaviour
             btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
 
             equips.Add(g);
+        }
+    }
+
+    void WaySort()
+    {
+        switch (sortWay)
+        {
+            case SortWay.Up:
+                for (int i = 0; i < equips.Count; i++)
+                {
+                    equips[i].transform.SetParent(equipBox.transform);
+                }
+                break;
+            case SortWay.Down:
+                for (int i = equips.Count - 1; i >= 0; i--)
+                {
+                    equips[i].transform.SetParent(equipBox.transform);
+                }
+                break;
         }
     }
 
