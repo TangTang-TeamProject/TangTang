@@ -18,17 +18,24 @@ public class PlayerItemLoot : MonoBehaviour
     private Coroutine _absorbeCo;
     private Vector2 _center;
     private float _radius;
+    private float _baseRange = 3.0f;
     private float _absorbeMultiply;
 
     private void Start()
     {
+        StartCoroutine(Co_DelayedInput());
         _targetLayer = LayerMask.GetMask(_targetLayerMask);
         _radius = _player.PlayerCol.bounds.extents.x;
-        _absorbeMultiply = 3.0f;
+        _absorbeMultiply = _baseRange;
         _rootCo = StartCoroutine(Co_CheckLoot());
         _absorbeCo = StartCoroutine(Co_CheckAbsorbe());
     }
 
+    IEnumerator Co_DelayedInput()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _player.OnLootRangeChange += AbsorbeRangeUP;
+    }
     private void OnDisable()
     {
         if (_rootCo != null)
@@ -112,7 +119,7 @@ public class PlayerItemLoot : MonoBehaviour
 
     public void AbsorbeRangeUP(float percent)
     {
-        _absorbeMultiply *= 1 + percent * 0.01f;
+        _absorbeMultiply = _baseRange * (1 + percent * 0.01f);
     }
 
     private void OnDrawGizmosSelected()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Animations;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,13 +8,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer _playerBody;
     [SerializeField] private Vector3 _spawnArrowPos = new Vector3(0, 0.5f, 0);
     [SerializeField] private float _radius = 0.7f;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private float _speedDamp = 0.05f;
+    [SerializeField] private string _paramSpeed = "aSpeed";
 
+    private int _hashSpeed;
     private float _moveSpeed;
     private float _moveX;
     private float _moveY;
     private Camera _mainCam;
     private Vector2 _mouse;
-    private Vector2 _baseScale;
 
     void Awake()
     {
@@ -32,6 +36,7 @@ public class PlayerController : MonoBehaviour
             }
             CPrint.Log("PlayerController에 Player참조 안되어있어서 받아옴");
         }
+        _hashSpeed = Animator.StringToHash(_paramSpeed);
     }
 
     void Start()
@@ -65,7 +70,13 @@ public class PlayerController : MonoBehaviour
             dir.Normalize();
         }
 
-        transform.position += dir * _moveSpeed * Time.deltaTime;
+        Vector3 speed = dir * _moveSpeed * Time.deltaTime;
+        
+        transform.position += speed;
+
+        // 이동시 애니메이션 변경하도록
+        _animator.SetFloat(_hashSpeed, speed.magnitude, _speedDamp, Time.deltaTime);
+
     }
 
     void PlayerLook()

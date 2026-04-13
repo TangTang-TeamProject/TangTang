@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4fe199d04c64d43930297c7abe1a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   _spawner: {fileID: 0}
   _collider: {fileID: 4028377928168309400}
   _hitLayer:
@@ -99,6 +100,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5556357284352452994}
     m_Modifications:
+    - target: {fileID: -8759425826186554283, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8099863664288577841, guid: b1a46f348faf75447b90007848a080de, type: 2}
     - target: {fileID: 4748681987041982144, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
       propertyPath: m_Name
       value: VFX_Sword_Slash_01_Mask_Static
@@ -174,6 +179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5556357284352452994}
     m_Modifications:
+    - target: {fileID: -8759425826186554283, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8099863664288577841, guid: b1a46f348faf75447b90007848a080de, type: 2}
     - target: {fileID: 4748681987041982144, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
       propertyPath: m_Name
       value: VFX_Sword_Slash_01_Mask_Static_180

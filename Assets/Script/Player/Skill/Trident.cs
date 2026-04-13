@@ -6,6 +6,10 @@ public class Trident : SkillAttack
     [SerializeField] private Transform _spawner;
     [SerializeField] float _top, _bottom, _right, _left;
 
+    private void Awake()
+    {
+        _baseScale = transform.localScale;
+    }
     private void OnEnable()
     {
         if (_cam == null)

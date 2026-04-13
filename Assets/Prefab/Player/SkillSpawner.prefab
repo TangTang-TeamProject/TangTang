@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409592904514903907}
   - component: {fileID: 2936441837558416884}
+  - component: {fileID: 1182895449671291532}
   - component: {fileID: 7729459255250177713}
   - component: {fileID: 6148184340753268270}
   m_Layer: 0
@@ -64,6 +65,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0839b0fa148193418a2214661d1f114, type: 2}
   - {fileID: 11400000, guid: 393614b77d63f55439e4100bab33c9a8, type: 2}
   _levelRegistry: {fileID: 11400000, guid: 533befca93fd2a5409a4c846a60f40dc, type: 2}
+  _debugList: []
+--- !u!114 &1182895449671291532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182513920421937805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935fbb5a294868942aadcd5ff8fcd57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _spawner: {fileID: 0}
+  _maxSkillNum: 4
+  _maxArtifactNum: 4
+  _playerSkills: []
+  _playerArtifacts: []
 --- !u!114 &7729459255250177713
 MonoBehaviour:
   m_ObjectHideFlags: 0
