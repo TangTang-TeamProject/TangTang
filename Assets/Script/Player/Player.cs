@@ -34,12 +34,10 @@ public class Player : MonoBehaviour, IDamagables
     private int _level = 1;
     private float _requireExp = 10;
     private float _currentExp;
-    private int _hasSkillNum;
-    private int _hasArtifactNum;
-    private float _absorbePer;
-    private float _cool;
-    private float _duration;
-    private float _range;
+    private float _absorbePer = 1;
+    private float _cool = 1;
+    private float _duration = 1;
+    private float _range = 1;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
@@ -52,8 +50,6 @@ public class Player : MonoBehaviour, IDamagables
     public float RequireExp => _requireExp;
     public CircleCollider2D PlayerCol => _playerCol;
     public EPlayerState PlayerState => _playerState;
-    public int HasSkillNum => _hasSkillNum;
-    public int HasArtifactNum => _hasArtifactNum;
     public int Level => _level;
     public event Action OnHit;
     public event Action OnDead;
