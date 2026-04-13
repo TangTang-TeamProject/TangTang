@@ -27,6 +27,7 @@ public class EvolutionRegistry : ScriptableObject
     {
         dataDic.Clear();
         reqDic.Clear();
+        baseDic.Clear();
 
         for (int i = 0; i < evolution.Count; i++)
         {
