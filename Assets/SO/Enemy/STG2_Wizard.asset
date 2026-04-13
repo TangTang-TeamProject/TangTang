@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
   m_Name: STG2_Wizard
   m_EditorClassIdentifier: 
-  enemyID: ENM_006
+  enemyID: ENM_007
   nameKR: 
   nameEN: 
   hp: 50

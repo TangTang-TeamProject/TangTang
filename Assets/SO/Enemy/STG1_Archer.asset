@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
-  m_Name: Goblin_Archer
+  m_Name: STG1_Archer
   m_EditorClassIdentifier: 
   enemyID: ENM_002
   nameKR: "\uACE0\uBE14\uB9B0 \uAD81\uC218"
