@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class SkillAttack : MonoBehaviour, IAttackables
 {
@@ -13,8 +11,10 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected float _speed = 2f;
     protected float _remainTime;
     protected float _spinZ;
+    protected float _range;
     protected bool _isSpin = false;
     protected float _stunTime;
+    protected Vector3 _baseScale;
 
     public float Damage => _damage;
     public float Stun => _stunTime;
@@ -35,13 +35,14 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         
     }
 
-    public void Init(string id, float damage, float playerAttack, float speed, SkillPool pool, float time = 5.0f)
+    public void Init(string id, float damage, float playerAttack, float speed, SkillPool pool, float time = 5.0f, float range = 1.0f)
     {
         _id = id;
         _pool = pool;
         _baseDamage = damage;
         _damage = playerAttack * _baseDamage;
         _speed = speed;
+        transform.localScale = _baseScale * range;
         _keepTime = time;
         _remainTime = _keepTime;
     }

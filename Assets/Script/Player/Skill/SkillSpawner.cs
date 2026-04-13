@@ -22,7 +22,6 @@ public class SkillSpawner : MonoBehaviour
         public int count;
         public float time;
         public float cool;
-        public WaitForSeconds rate;
     }
     [SerializeField] private List<SkillParameter> _debugList;
     private Dictionary<string, SkillParameter> _paramDict = new Dictionary<string, SkillParameter>();
@@ -60,110 +59,132 @@ public class SkillSpawner : MonoBehaviour
     IEnumerator Co_ArrowFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             SkillAttack arrow = _pool.UseSkill(use.id);
 
             arrow.transform.position = transform.position;
             arrow.transform.up = _spawnDir.right;
-            arrow.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
-            arrow.gameObject.SetActive(true);            
-            yield return use.rate;
+            arrow.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+            arrow.gameObject.SetActive(true);
+
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     IEnumerator Co_AxeFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             for (int i = 0; i < use.count; i++)
             {
                 SkillAttack axe = _pool.UseSkill(use.id);
 
                 axe.SetOrbit((360.0f / use.count) * i);
-                axe.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+                axe.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
                 axe.gameObject.SetActive(true);
             }
 
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     IEnumerator Co_DualBaldeFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             SkillAttack dBlade = _pool.UseSkill(use.id);
 
-            dBlade.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+            dBlade.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
             dBlade.SetComponent(transform);
             dBlade.gameObject.SetActive(true);
 
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     IEnumerator Co_MaceFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             SkillAttack mace = _pool.UseSkill(use.id);
 
             mace.transform.position = transform.position;
-            mace.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+            mace.Init(use.id, use.damage, _player.Attack, _spawnDir.localPosition.x < 0 ?
+                -use.speed : use.speed, _pool, time, _player.Range);
             mace.gameObject.SetActive(true);
 
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     IEnumerator Co_SpearFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             for (int i = 0; i < use.count; i++)
             {
                 SkillAttack spear = _pool.UseSkill(use.id);
                 spear.transform.position = transform.position;
-                spear.transform.rotation = Quaternion.Euler(0, 0, 90f + (360f / use.count) * i);
-                spear.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+                // 왼쪽을 바라보면 Z축이 90f에서 시작, 오른쪽으면 270 -> -90f에서 시작
+                spear.transform.rotation = _spawnDir.localPosition.x < 0 ?
+                    Quaternion.Euler(0, 0, 90f + (360f / use.count) * i) : Quaternion.Euler(0, 0, 270f + (360f / use.count) * i);
+                spear.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
                 spear.gameObject.SetActive(true);
             }
 
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     IEnumerator Co_TridentFire(string id)
     {
         yield return null;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             SkillAttack trident = _pool.UseSkill(use.id);
 
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
             trident.SetComponent(_player.transform, _cam);
-            trident.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+            trident.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
             trident.gameObject.SetActive(true);
 
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
 
@@ -172,10 +193,12 @@ public class SkillSpawner : MonoBehaviour
         yield return null;
         float x;
         float y;
+        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
+            time = use.time * _player.Duration;
             for (int i = 0; i < use.count; i++)
             {
                 SkillAttack wand = _pool.UseSkill(use.id);
@@ -183,11 +206,11 @@ public class SkillSpawner : MonoBehaviour
                 y = Random.Range(-3f, 3f);
 
                 wand.transform.position = transform.position + new Vector3(x, y, 0);
-                wand.Init(use.id, use.damage, 1, use.speed, _pool, use.time);
+                wand.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
                 wand.gameObject.SetActive(true);
             }
-
-            yield return use.rate;
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
         }
     }
     #endregion
@@ -261,7 +284,6 @@ public class SkillSpawner : MonoBehaviour
         _paramDict[id].count = data.Count;
         _paramDict[id].time = data.AppearTime;
         _paramDict[id].cool = data.DisAppearTime;
-        _paramDict[id].rate = new WaitForSeconds(_paramDict[id].time + _paramDict[id].cool);
         _debugList = _paramDict.Values.ToList();
     }
 

@@ -16,9 +16,11 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private string _targetLayerMask2 = "EnemyBullet";
     [SerializeField] private float _invincibleDuration = 0.5f;
     [SerializeField] private PlayerRegistry _playerRegistry;
-    [SerializeField] private PlayerData_SO _data;
+    [SerializeField] private EquipRegistry _equipRegistry;
+    [SerializeField] private ArtifactRegistry _artifactRegistry;
     [SerializeField] private string _firstWeapon;
         
+    private PlayerData_SO _data;
     private float _maxHp;
     private float _hp;
     private EPlayerState _playerState;
@@ -27,16 +29,25 @@ public class Player : MonoBehaviour, IDamagables
     private Coroutine _checkCo;
     private Coroutine _invincibleCo;
     private float _speed;
+    private float _baseAttack;
     private float _attack;
     private int _level = 1;
     private float _requireExp = 10;
     private float _currentExp;
     private int _hasSkillNum;
     private int _hasArtifactNum;
+    private float _absorbePer;
+    private float _cool;
+    private float _duration;
+    private float _range;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
     public float CurrentHp => _hp;
+    public float Attack => _attack;
+    public float Cool => _cool;
+    public float Duration => _duration;
+    public float Range => _range;
     public float Exp => _currentExp;
     public float RequireExp => _requireExp;
     public CircleCollider2D PlayerCol => _playerCol;
@@ -50,6 +61,7 @@ public class Player : MonoBehaviour, IDamagables
     public event Action<float> OnMaxHPChange;
     public event Action<float> OnCurrentEXPChange;
     public event Action<float> OnRequireEXPChange;
+    public event Action<float> OnLootRangeChange;
 
     private void Reset()
     {
@@ -93,9 +105,27 @@ public class Player : MonoBehaviour, IDamagables
             return;
         }
         _maxHp = _data.BaseHP;
-        _hp = _maxHp;
         _speed = _data.BaseMoveSpeed;
-        _attack = _data.BaseATK;
+        _baseAttack = _data.BaseATK;
+        SetEquipParam();
+        _hp = _maxHp;
+        _attack = _baseAttack;
+    }
+
+    void SetEquipParam()
+    {
+        float atk = 0, hp = 0, speed = 0;
+        string[] ids = SaveManager.data.equipID;
+        for (int i = 0; i < ids.Length; i++)
+        {
+            EquipData_SO _equipData = _equipRegistry.GetEquipByID(ids[i]);
+            atk += _equipData.ATK;
+            hp += _equipData.HPChange;
+            speed += _equipData.SpeedChange;
+        }
+        _maxHp *= 1 + (hp * 0.01f);
+        _baseAttack *= 1 + (atk * 0.01f);
+        _speed *= 1 + (speed * 0.01f);
     }
 
     void Start()
@@ -207,7 +237,37 @@ public class Player : MonoBehaviour, IDamagables
 
     public void GetArtifact(string id, int level)
     {
-        // 아티팩트 SO에서 id, 레벨확인 파라미터 적용
+        ArtifactData_SO data = _artifactRegistry.GetArtifactByID(id);
+        switch (data.StatKey)
+        {
+            // 공격력 증가
+            case StatKey.Damage:
+                _attack = _baseAttack * (1 + (data.ValuePerLevel * 0.01f) * level);
+                break;
+            // 체력 증가
+            case StatKey.HP:
+                _maxHp += data.ValuePerLevel;
+                _hp += data.ValuePerLevel;
+                OnMaxHPChange?.Invoke(_maxHp);
+                break;
+            // 발사 쿨
+            case StatKey.CoolDown:
+                _cool -= data.ValuePerLevel * 0.01f;
+                break;
+            // 지속 시간
+            case StatKey.Duration:
+                _duration += data.ValuePerLevel * 0.01f;
+                break;
+            // 범위
+            case StatKey.Range:
+                _range += data.ValuePerLevel * 0.01f;
+                break;
+            // 흡수 범위
+            case StatKey.AbsorbeRange:
+                _absorbePer += data.ValuePerLevel * 0.01f;
+                OnLootRangeChange?.Invoke(_absorbePer);
+                break;
+        }
     }
 
     void GainExp(float exp)

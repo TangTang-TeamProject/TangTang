@@ -6,6 +6,10 @@ public class Mace : SkillAttack
 {
     //발사 방향에따라 rightSpeed 음수 양수 변경
     private float _upSpeed;
+    private void Awake()
+    {
+        _baseScale = transform.localScale;
+    }
     private void OnEnable()
     {
         _isSpin = true;

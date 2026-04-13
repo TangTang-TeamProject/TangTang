@@ -21,6 +21,7 @@ public class Axe : SkillAttack
     private void Awake()
     {
         _hitLayer = LayerMask.GetMask(_hitLayerString);
+        _baseScale = transform.localScale;
     }
 
     private void OnEnable()
