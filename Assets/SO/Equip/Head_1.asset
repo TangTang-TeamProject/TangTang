@@ -15,8 +15,8 @@ MonoBehaviour:
   equipID: HEAD1
   equipName: 
   type: 0
-  atk: 0
-  hpChange: 0
-  speedChange: 0
+  atk: 1
+  hpChange: 20
+  speedChange: 1
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: 0017858006d224e73ac97bfa41fbec2f, type: 3}
