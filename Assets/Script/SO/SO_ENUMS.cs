@@ -16,7 +16,7 @@ public enum StatKey
     CoolDown,
     Duration,
     Range,
-    ProjectileSpeed
+    AbsorbeRange
 }
 
 public enum Waves

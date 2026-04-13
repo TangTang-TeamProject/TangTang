@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32a70d573e489dc418811470c63b9ad4, type: 3}
-  m_Name: WaveRegistrySO
+  m_Name: WaveRegistrySO_STG1
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: 5b2893efce42a064896e591416344a22, type: 2}

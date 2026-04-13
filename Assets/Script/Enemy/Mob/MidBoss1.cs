@@ -113,9 +113,9 @@ public class MidBoss1 : BaseEnemy
         _isDashing = false;
     }
 
-    protected override void Hit(float damage)
+    protected override void Hit(IAttackables attackables)
     {
-        base.Hit(damage);
+        base.Hit(attackables);
 
         float ratio = _maxHp / _monsterData.HP;
         _HPBarImage.fillAmount = ratio;

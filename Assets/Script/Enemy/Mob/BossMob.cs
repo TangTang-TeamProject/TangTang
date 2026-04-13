@@ -205,9 +205,9 @@ public class BossMob : BaseEnemy
         _animator.SetBool(_animString_Move, true);
     }
 
-    protected override void Hit(float damage)
+    protected override void Hit(IAttackables attackables)
     {        
-        _maxHp -= damage;
+        _maxHp -= attackables.Damage;
         _isHit = true;
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.        
         //_animator.SetBool(_animString_Move, false);

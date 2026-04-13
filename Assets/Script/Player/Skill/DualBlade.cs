@@ -25,6 +25,7 @@ public class DualBlade : SkillAttack
             enabled = false;
             return;
         }
+        _baseScale = transform.localScale;
     }
 
     public override void SetComponent(Transform spawner, Camera cam = null)

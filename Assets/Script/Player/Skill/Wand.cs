@@ -12,6 +12,10 @@ public class Wand : SkillAttack
     private float _elapsed;
     private float _duration = 1;
 
+    private void Awake()
+    {
+        _baseScale = transform.localScale;
+    }
     private void OnEnable()
     {
         _targetPos = transform.position;

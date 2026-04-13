@@ -57,13 +57,7 @@ public class Zombie : BaseEnemy
     {
         base.Chase();
     }
-
-    protected override void Hit(float dmg)
-    {
-        base.Hit(dmg);
-       
-    }  
-    
+ 
     public override void Die()
     {
         if (_isElite)

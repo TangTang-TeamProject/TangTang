@@ -110,11 +110,6 @@ public class ThrowingMob : BaseEnemy
 
     }
 
-    protected override void Hit(float dmg)
-    {
-        base.Hit(dmg);
-
-    }
    
     public void SetProjectileFactory(ProjectileFactory projectileFactory)
     {

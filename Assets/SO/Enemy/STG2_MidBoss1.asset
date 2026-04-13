@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
+  m_Name: STG2_MidBoss1
+  m_EditorClassIdentifier: 
+  enemyID: ENM_008
+  nameKR: "\uB2AA\uC9C0 \uC624\uC6B0\uAC70"
+  nameEN: Swamp Orge
+  hp: 520
+  moveSpeed: 1.2
+  contactDamage: 22
+  expDrop: 20
+  sizeScale: 3.5
+  atkCycle: 3
+  bulletSpeed: 0
+  enemytype: 2
+  prefab: {fileID: 0}

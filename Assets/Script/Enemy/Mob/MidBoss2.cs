@@ -48,9 +48,9 @@ public class MidBoss2 : BaseEnemy
         base.Chase();
     }
 
-    protected override void Hit(float dmg)
+    protected override void Hit(IAttackables attackables)
     {
-        base.Hit(dmg);
+        base.Hit(attackables);
         float ratio = _maxHp / _monsterData.HP;
         _HPBarImage.fillAmount = ratio;
     }
@@ -63,7 +63,8 @@ public class MidBoss2 : BaseEnemy
 
         Timer.Instance.IsBossDie(false);
         _HPBar.SetActive(false);
-        Instantiate(_randomBox, transform.position, Quaternion.identity, _itemParent.transform);
+
+        Instantiate(_randomBox, transform.position, Quaternion.identity, _itemParent.transform);        
         Destroy(gameObject);
     }
 }
