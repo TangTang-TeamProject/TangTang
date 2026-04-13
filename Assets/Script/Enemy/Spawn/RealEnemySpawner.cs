@@ -53,7 +53,7 @@ public class RealEnemySpawner : MonoBehaviour
         //{
         //    _stageId = SceneChanger.instance.NowScene();
         //}
-        
+
         _eliteSpawnInterval = _time;
 
         for (int i = 0; i < _bossPrefabs.Count; i++)

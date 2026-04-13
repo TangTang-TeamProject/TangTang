@@ -12,6 +12,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected bool _isHit = false;
     protected float _hitTime;
+    protected bool _isStun = false;
+    protected float _stunValue = -0.5f; // 스턴 강도 <-------------------- 수치 조정
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
@@ -70,21 +72,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     
 
     protected virtual void Awake()
-    {
-        if (!TryGetComponent(out Animator animator))
-        {
-            CPrint.Warn($"{this} : Animator 연결 안됨");
-            enabled = false;
-            return;
-        }
+    {        
+        _animator = GetComponent<Animator>();        
 
-        _animator = animator;
+        _sr = GetComponent<SpriteRenderer>();
 
-        if (TryGetComponent(out SpriteRenderer spriteRenderer))
-        {
-            _sr = spriteRenderer;
-        }        
-        
         _hitTime = _hitTimer;
 
         _playerLayer = LayerMask.GetMask(_playerString);
@@ -129,11 +121,26 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
-            _speed = 0f; // 멈칫하는 모션
-
+            if (_isStun)
+            {
+                if (_mobType == EnemyType.Boss)
+                {
+                    _speed = 0f;
+                }
+                else
+                {
+                    _speed = _stunValue; // 넉백 ------------------> 넉백 강도 _stunValue 로 조정
+                }                   
+            }
+            else
+            {
+                _speed = 0f; // 경직
+            }
+               
             if (_hitTime <= 0f)
             {
                 _isHit = false;
+                _isStun = false;
                 _hitTime = _hitTimer;
                 _speed = _monsterData.MoveSpeed; // 스피드 복구
                 _sr.color = Color.white;
@@ -143,6 +150,15 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     public virtual void Init(EnemyPool pool, int idx)
     {
+        if (_sr == null)
+        {
+            _sr = GetComponent<SpriteRenderer>();
+        }
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();   
+        }
+
         if (pool != null)
         {
             _pool = pool;
@@ -173,7 +189,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
             
         _isHit = false;
-        _sr.color = Color.white;
+        _isStun = false;
+        _sr.color = Color.white; 
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
                                  
     }
@@ -228,11 +245,21 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
 
     // 데미지 받는 함수
-    protected virtual void Hit(float damage)
+    protected virtual void Hit(IAttackables attackables)
     {        
-
-        _maxHp -= damage;
-        _isHit = true;
+        _maxHp -= attackables.Damage;
+        if (!_isStun) // _isStun 이 false 일때만 진입
+        {
+            if (attackables.Stun > 0)
+            {
+                _isStun = true;
+            }
+            else
+            {
+                _isStun = false;
+            }
+        }        
+        _isHit = true;        
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
         _sr.color = Color.red;                      
 
@@ -309,8 +336,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         for (int i = 0; i < count; i++)
         {
             if (_dmgCheckBuffer[i].TryGetComponent(out IAttackables attackables))
-            {
-                Hit(attackables.Damage);
+            {                
+                Hit(attackables);
             }
         }
     }

@@ -14,9 +14,5 @@ public class Orc : BaseEnemy
         
     }
 
-    protected override void Hit(float dmg)
-    {
-        
-    }
 
 }

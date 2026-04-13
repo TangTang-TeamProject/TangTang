@@ -9,18 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
-  m_Name: ProjectileExmaple
+  m_Script: {fileID: 11500000, guid: 507db029d2ffc294e999720b140dc41c, type: 3}
+  m_Name: STG2_Round3_1
   m_EditorClassIdentifier: 
-  enemyID: 0
-  nameKR: 
-  nameEN: 
-  hp: 0
-  moveSpeed: 0
-  contactDamage: 5
-  expDrop: 0
-  sizeScale: 0
-  atkCycle: 0
-  bulletSpeed: 3
-  enemytype: 0
-  prefab: {fileID: 0}
+  stageID: STG_002
+  startSec: 241
+  endSec: 300
+  spawnEnemy: ENM_006
+  enemyCount: 10
+  spawnIntervalSec: 3
+  waveType: 0
