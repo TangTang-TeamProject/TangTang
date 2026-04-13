@@ -15,8 +15,8 @@ MonoBehaviour:
   artifactID: DualBook
   nameKR: "\uC30D\uAC80 \uAC15\uD654\uC11C"
   nameEN: 
-  statKey: 0
-  valuePerLevel: 0
+  statKey: 5
+  valuePerLevel: 0.1
   maxLevel: 5
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: b855210befe62460880af947a417d021, type: 3}

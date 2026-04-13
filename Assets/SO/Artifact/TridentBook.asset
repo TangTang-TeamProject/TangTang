@@ -15,8 +15,8 @@ MonoBehaviour:
   artifactID: TridentBook
   nameKR: "\uC0BC\uC9C0\uCC3D \uAC15\uD654\uC11C"
   nameEN: 
-  statKey: 0
-  valuePerLevel: 0
+  statKey: 2
+  valuePerLevel: 0.1
   maxLevel: 5
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: 62e2f39de825d4424900e777d352f3f9, type: 3}
