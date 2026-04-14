@@ -1692,7 +1692,7 @@ MonoBehaviour:
   skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
   artifactRegistry: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
   evolutionRegistry: {fileID: 11400000, guid: 0ed14be7c08790449a1850d195675727, type: 2}
-  slot: {fileID: 0}
+  slot: {fileID: 1871429748}
   choices:
   - choice: {fileID: 627464799}
     choice_back: {fileID: 627464798}
@@ -13050,7 +13050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
   artifactRegistry: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
-  slot: {fileID: 0}
+  slot: {fileID: 1871429748}
   lotteryPlate: {fileID: 2097901089}
   basePos: {fileID: 125217711}
   movePos: {fileID: 508987920}
@@ -14489,6 +14489,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1e6855de9228c44a4da07aba249f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1871429748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 444542467824752506, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}
+  m_PrefabInstance: {fileID: 1871429744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935fbb5a294868942aadcd5ff8fcd57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1885590944 stripped
