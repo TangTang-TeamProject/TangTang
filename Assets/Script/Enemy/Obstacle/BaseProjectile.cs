@@ -53,9 +53,7 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
     }
 
     public virtual void Destroy()
-    {
-       
-
+    {       
         _targetPos = null;        
         _pool.Return(this);
     }
@@ -76,6 +74,6 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
 
     public void GetDestroy()
     {
-
+        Destroy();
     }
 }
