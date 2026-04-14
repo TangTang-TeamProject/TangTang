@@ -162,6 +162,11 @@ public static class SaveManager
         saveData.selectedChar = ID;
     }
 
+    public static void UnLockChar(ClosedChar _enum)
+    {
+        saveData.openChar[(int)_enum] = true;
+    }
+
     public static void SetMasterVolume(float _master)
     {
         saveData.masterVolume = _master;

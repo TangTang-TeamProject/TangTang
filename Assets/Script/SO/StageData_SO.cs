@@ -16,12 +16,18 @@ public class StageData_SO : ScriptableObject
     [SerializeField]
     private bool unLockStage = false;
     [SerializeField]
-    private string unLockChar = "";
+    private ClosedChar unLockChar;
+    [SerializeField]
+    private int clearReward;
+    [SerializeField]
+    private int amount;
 
     public string StageID => stageID;
     public Scenes SceneEnum => sceneEnum;
     public string StageName => stageName;
     public Sprite IMG => img;
     public bool UnLockStage => unLockStage;
-    public string UnLockChar => unLockChar;
+    public ClosedChar UnLockChar => unLockChar;
+    public int ClearReward => clearReward;
+    public int Amount => amount;
 }

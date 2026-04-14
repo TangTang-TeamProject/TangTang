@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameEnd : MonoBehaviour
 {
     [SerializeField]
+    private StageRegistry stageRegistry;
+    [SerializeField]
     private TextMeshProUGUI endStatsText;
     [SerializeField]
     private TextMeshProUGUI earnCoinText;
@@ -25,6 +27,24 @@ public class GameEnd : MonoBehaviour
         reGameBTN.onClick.AddListener(ReGame);
         menuBTN.onClick.AddListener(BackToMenu);
     }
+
+    public void GameOver(int endgold)
+    {
+        endStatsText.text = "GameOver!";
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc(endgold);
+        this.gameObject.SetActive(true);
+    }
+
+    public void GameClear(int endgold)
+    {
+        endStatsText.text = "GameClear!";
+        MakeTimeText((int)Timer.Instance.RealTime);
+        GoldCalc(endgold);
+        CheckUnLock();
+        this.gameObject.SetActive(true);
+    }
+
 
     void MakeTimeText(int _time)
     {
@@ -54,19 +74,17 @@ public class GameEnd : MonoBehaviour
         SaveManager.Save();
     }
 
-    public void GameOver(int endgold)
+    void CheckUnLock()
     {
-        endStatsText.text = "GameOver!";
-        MakeTimeText((int)Timer.Instance.RealTime);
-        GoldCalc(endgold);
-        this.gameObject.SetActive(true);
-    }
+        string n = SceneChanger.instance.NowScene();
 
-    public void GameClear(int endgold)
-    {
-        endStatsText.text = "GameClear!";
-        MakeTimeText((int)Timer.Instance.RealTime);
-        GoldCalc(endgold);
-        this.gameObject.SetActive(true);
+        StageData_SO sd = stageRegistry.GetStageDataByID(n);
+
+        if (sd.UnLockStage)
+        {
+            SaveManager.UnLockChar(sd.UnLockChar);
+
+            SaveManager.Save();
+        }
     }
 }
