@@ -54,25 +54,38 @@ public class Character : MonoBehaviour
 
         charName.text = p.NameKR;
 
-        if (p.IsClosed)
+        if (!p.IsClosed)
         {
-            isClosed.SetActive(true);
-            charDesc.text = "해당 캐릭터 해금 필요";
-            charDesc.color = Color.red;
-            charIMG.sprite = p.Icon;
-            selectBTN.gameObject.SetActive(false);
+            OpenedCharacter(id, p);
+        }
+        else if (SaveManager.data.openChar[(int)p.OpenRequire])
+        {
+            OpenedCharacter(id, p);
         }
         else
         {
-            isClosed.SetActive(false);
-            charDesc.text = p.Desc;
-            charDesc.color = Color.white;
-            charIMG.sprite = p.Icon;
-            selectedChar = id;
-            selectBTN.gameObject.SetActive(true);
+            ClosedCharacter(id, p);
         }
     }
 
+    void OpenedCharacter(string id, PlayerData_SO p)
+    {
+        isClosed.SetActive(false);
+        charDesc.text = p.Desc;
+        charDesc.color = Color.white;
+        charIMG.sprite = p.Icon;
+        selectedChar = id;
+        selectBTN.gameObject.SetActive(true);
+    }
+
+    void ClosedCharacter(string id, PlayerData_SO p)
+    {
+        isClosed.SetActive(true);
+        charDesc.text = "해당 캐릭터 해금 필요";
+        charDesc.color = Color.red;
+        charIMG.sprite = p.Icon;
+        selectBTN.gameObject.SetActive(false);
+    }
 
     void SelectChar()
     {
