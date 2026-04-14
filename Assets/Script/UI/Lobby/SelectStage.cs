@@ -12,6 +12,8 @@ public class SelectStage : MonoBehaviour
     private EquipRegistry equipRegistry;
     [SerializeField]
     private SkillRegistry skillRegistry;
+    [SerializeField]
+    private StageRegistry stageRegistry;
 
     [SerializeField]
     private Button startBTN;
@@ -30,9 +32,9 @@ public class SelectStage : MonoBehaviour
     private Image charWeapon;
 
     [SerializeField]
-    private List<Sprite> stageIMG;
-    [SerializeField]
     private Image selectedStageIMG;
+    [SerializeField]
+    private TextMeshProUGUI selectedStageName;
 
 
     private Scenes selectedScene = Scenes.STG_001;
@@ -47,10 +49,12 @@ public class SelectStage : MonoBehaviour
 
     private void OnEnable()
     {
-        DataRefresh();
+        PlayerDataRefresh();
+
+        StageDataRefresh();
     }
 
-    void DataRefresh()
+    void PlayerDataRefresh()
     {
         PlayerData_SO p = playerRegistry.GetPlayerByID(SaveManager.data.selectedChar);
 
@@ -67,8 +71,13 @@ public class SelectStage : MonoBehaviour
 
 
         charWeapon.sprite = skillRegistry.GetSkillByID(playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Weapon).IMG;
+    }
 
-        selectedStageIMG.sprite = stageIMG[(int)selectedScene];
+    void StageDataRefresh()
+    {
+        string selected = stageRegistry.GetStageDataByEnum(selectedScene);
+        selectedStageName.text = stageRegistry.GetStageDataByID(selected).StageName;
+        selectedStageIMG.sprite = stageRegistry.GetStageDataByID(selected).IMG;
     }
 
     void MoveSelect(int a)
@@ -86,7 +95,7 @@ public class SelectStage : MonoBehaviour
 
         selectedScene = (Scenes)nextScene;
 
-        selectedStageIMG.sprite = stageIMG[nextScene];
+        StageDataRefresh();
     }
 
     void GameStart()

@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Scenes
+{
+    Lobby = 0,
+    STG_001,
+    STG_002,
+    SceneCount
+}
+
+
 public enum EnemyType
 { 
     Normal,
