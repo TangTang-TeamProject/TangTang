@@ -58,6 +58,8 @@ public class Player : MonoBehaviour, IDamagables
     public event Action<float> OnCurrentEXPChange;
     public event Action<float> OnRequireEXPChange;
     public event Action<float> OnLootRangeChange;
+    public event Action<float> OnAttackChange;
+    public event Action<float> OnRangeChange;
 
     private void Reset()
     {
@@ -239,6 +241,7 @@ public class Player : MonoBehaviour, IDamagables
             // 공격력 증가
             case StatKey.Damage:
                 _attack = _baseAttack * (1 + (data.ValuePerLevel * 0.01f) * level);
+                OnAttackChange?.Invoke(_attack);
                 break;
             // 체력 증가
             case StatKey.HP:
@@ -257,6 +260,7 @@ public class Player : MonoBehaviour, IDamagables
             // 범위
             case StatKey.Range:
                 _range += data.ValuePerLevel * 0.01f;
+                OnRangeChange?.Invoke(_range);
                 break;
             // 흡수 범위
             case StatKey.AbsorbeRange:

@@ -17,5 +17,5 @@ MonoBehaviour:
   damage: 120
   speed: 7
   count: 1
-  appearTime: 5
-  disAppearTime: -3
+  appearTime: 2.5
+  disAppearTime: -0.5

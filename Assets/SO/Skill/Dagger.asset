@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ed183b4b16ecff409a8a3697b06e56e, type: 3}
-  m_Name: Trident
+  m_Name: Dagger
   m_EditorClassIdentifier: 
-  skillID: Trident
-  nameKR: "\uC0BC\uC9C0\uCC3D"
-  nameEN: Trident
+  skillID: Dagger
+  nameKR: "\uB2E8\uAC80"
+  nameEN: Dagger
   maxLevel: 5
   isEvo: 0
-  img: {fileID: 21300000, guid: d9e76854390974b5aa6d9ba973659387, type: 3}
-  prefab: {fileID: 8441061280361703149, guid: 8049833878cfdce45b3671badde0f4ed, type: 3}
+  img: {fileID: 21300000, guid: 30e47371660a44f038c174865e5af8d3, type: 3}
+  prefab: {fileID: 2145875538132076893, guid: 0a60315bcbfbcd04da8e81f09eceb4ab, type: 3}

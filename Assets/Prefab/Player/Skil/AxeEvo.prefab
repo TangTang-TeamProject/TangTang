@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b747152974f777488bab482450713c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   _spawner: {fileID: 0}
   _radius: 3
   _collider: {fileID: 7338858500885250335}
@@ -162,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 89a79317a445e4ed8a8e70115f8a1cc0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6383837, g: 0.65487134, b: 0.93207544, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

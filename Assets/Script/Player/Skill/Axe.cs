@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Axe : SkillAttack
 {
-    [SerializeField] private Transform _spawner;
+    [SerializeField] private Transform _center;
     [SerializeField] private float _radius = 2.0f;
     [SerializeField] private CircleCollider2D _collider;
     [SerializeField] private LayerMask _hitLayer;
@@ -26,15 +26,19 @@ public class Axe : SkillAttack
 
     private void OnEnable()
     {
-        // 임시 실험용 나중에 구조 고치면서 스포너에서 넘겨줄거임
-        GameObject spawner = GameObject.Find("SkillSpawner");
-        _spawner = spawner.transform;
-        //
         _isSpin = true;
         _spinZ = 360f;
         _timer = 0;
         _hitRadius = _collider.radius;
         _checkCo = StartCoroutine(Co_CheckTarget());
+    }
+    public override void SetComponent(Transform center, Camera cam = null)
+    {
+        if (_center != null)
+        {
+            return;
+        }
+        _center = center;
     }
 
     public override void SetOrbit(float dist)
@@ -51,7 +55,11 @@ public class Axe : SkillAttack
         float x = Mathf.Cos(targetPos) * _radius;
         float y = Mathf.Sin(targetPos) * _radius;
 
-        transform.position = _spawner.position + new Vector3(x, y, 0);
+        transform.position = _center.position + new Vector3(x, y, 0);
+        if (_id == "AxeEvo")
+        {
+            _remainTime = _keepTime;
+        }
     }
 
     protected override void Rotate()
