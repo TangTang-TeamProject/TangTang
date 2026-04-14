@@ -37,7 +37,10 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
     void Update()
     {
         ShootToTarget();
-        Destroy();
+        if (Timer.Instance.RealTime >= _spawnedTime + _aliveTime)
+        {
+            Destroy();
+        }        
     }
 
     protected virtual void ShootToTarget()
@@ -49,12 +52,9 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
         transform.position = pos;
     }
 
-    protected virtual void Destroy()
+    public virtual void Destroy()
     {
-        if (Timer.Instance.RealTime < _spawnedTime + _aliveTime)
-        {
-            return;
-        }
+       
 
         _targetPos = null;        
         _pool.Return(this);
@@ -72,5 +72,10 @@ public abstract class BaseProjectile : MonoBehaviour, IAttackables
     {
         _targetPos = null;
         _pool.Return(this);
+    }
+
+    public void GetDestroy()
+    {
+
     }
 }

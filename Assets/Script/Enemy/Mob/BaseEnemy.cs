@@ -42,10 +42,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected LayerMask _enemyLayer;
     protected LayerMask _playerBulletLayer;
 
-    private string _playerString = "Player";
-    private string _enemyString = "Enemy";
-    private string _playerBulletString = "PlayerBullet";
-    private string _defenceBulletString = "DefenceBullet";
+    protected string _playerString = "Player";
+    protected string _enemyString = "Enemy";
+    protected string _playerBulletString = "PlayerBullet";
+    protected string _defenceBulletString = "DefenceBullet";
 
     protected string _id;
     protected float _maxHp;
@@ -73,7 +73,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void Awake()
     {        
-        _animator = GetComponent<Animator>();        
+        if (TryGetComponent(out Animator animator))
+        {
+            _animator = animator;
+        }
 
         _sr = GetComponent<SpriteRenderer>();
 
@@ -366,5 +369,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }
 
         transform.position = nowPos;
+    }
+
+    public void GetDestroy()
+    {
+
     }
 }

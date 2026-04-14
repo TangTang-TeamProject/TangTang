@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
-  m_Name: STG2_MidBoss2
+  m_Name: STG2_FinalBoss
   m_EditorClassIdentifier: 
-  enemyID: ENM_009
-  nameKR: "\uC218\uD638\uBCD1"
-  nameEN: Guard
-  hp: 2000
-  moveSpeed: 1.5
-  contactDamage: 11
-  expDrop: 20
+  enemyID: ENM_010
+  nameKR: "\uD30C\uC774\uB110 \uBCF4\uC2A4"
+  nameEN: 
+  hp: 5500
+  moveSpeed: 2
+  contactDamage: 25
+  expDrop: 100
   sizeScale: 3.5
   atkCycle: 5
   bulletSpeed: 0
   enemytype: 2
-  prefab: {fileID: 134590060924655178, guid: 199469b566405ef4db40d66f6ed3d1f3, type: 3}
+  prefab: {fileID: 5913891596470028878, guid: 8d403e59e0e84d54a92120d4db984c6a, type: 3}

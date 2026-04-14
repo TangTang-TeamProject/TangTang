@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbdf3439c2a6ac4cac0d40d8c226c40, type: 3}
-  m_Name: STG2_MidBoss2
+  m_Name: Projectile_AllDir
   m_EditorClassIdentifier: 
-  enemyID: ENM_009
-  nameKR: "\uC218\uD638\uBCD1"
-  nameEN: Guard
-  hp: 2000
-  moveSpeed: 1.5
-  contactDamage: 11
-  expDrop: 20
-  sizeScale: 3.5
-  atkCycle: 5
-  bulletSpeed: 0
-  enemytype: 2
-  prefab: {fileID: 134590060924655178, guid: 199469b566405ef4db40d66f6ed3d1f3, type: 3}
+  enemyID: 
+  nameKR: 
+  nameEN: 
+  hp: 0
+  moveSpeed: 4
+  contactDamage: 5
+  expDrop: 0
+  sizeScale: 2
+  atkCycle: 0
+  bulletSpeed: 4
+  enemytype: 0
+  prefab: {fileID: 0}

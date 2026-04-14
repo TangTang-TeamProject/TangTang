@@ -76,4 +76,9 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         _remainTime = _keepTime;
         _pool.ReturnPool(_id, this);
     }
+
+    public void GetDestroy()
+    {
+
+    }
 }

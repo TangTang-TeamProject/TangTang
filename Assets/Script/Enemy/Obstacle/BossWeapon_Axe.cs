@@ -128,4 +128,9 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
     {
         Destroy(gameObject);
     }
+
+    public void GetDestroy()
+    {
+
+    }
 }
