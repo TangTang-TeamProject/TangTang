@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: CHR_003
   nameKR: "\uBC29\uD328 \uC804\uC0AC \uB178\uC544"
   nameEN: 
+  weapon: Axe
   baseHP: 100
   baseATK: 1
   baseMoveSpeed: 4

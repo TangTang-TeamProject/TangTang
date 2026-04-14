@@ -27,7 +27,7 @@ public class Axe : SkillAttack
     private void OnEnable()
     {
         _isSpin = true;
-        _spinZ = 360f;
+        _spinZ = 480f;
         _timer = 0;
         _hitRadius = _collider.radius;
         _checkCo = StartCoroutine(Co_CheckTarget());

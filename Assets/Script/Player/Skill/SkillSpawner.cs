@@ -105,7 +105,7 @@ public class SkillSpawner : MonoBehaviour
 
             if (use.id == "DaggerEvo")
             {
-                dagger.transform.position += dagger.transform.right * 0.5f * x;
+                dagger.transform.position += dagger.transform.right * 0.1f * x;
                 x *= -1;
             }
             dagger.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
@@ -297,6 +297,7 @@ public class SkillSpawner : MonoBehaviour
         _paramDict[id].id = data.SkillID;
         _paramDict[id].damage = data.Damage;
         _paramDict[id].speed = data.Speed;
+        _paramDict[id].range = data.Range;
         _paramDict[id].count = data.Count;
         _paramDict[id].time = data.AppearTime;
         _paramDict[id].cool = data.DisAppearTime;
@@ -328,7 +329,7 @@ public class SkillSpawner : MonoBehaviour
             case "Wand":
                 _coDict[id] = StartCoroutine(Co_WandFire(id));
                 break;
-            case "ArrowEvo":
+            case "DaggerEvo":
                 _coDict[id] = StartCoroutine(Co_DaggerFire(id));
                 break;
             case "AxeEvo":

@@ -16,6 +16,7 @@ MonoBehaviour:
   level: 1
   damage: 200
   speed: 3.5
+  range: 1
   count: 8
   appearTime: 4
   disAppearTime: 0.2
