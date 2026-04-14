@@ -55,6 +55,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
 
     protected virtual void Move() { }
     protected virtual void Rotate() { }
+    public virtual void GetDestroy() { }
     public virtual void SetOrbit(float dist) { }
     public virtual void SetComponent(Transform center, Camera cam = null) { }
 
@@ -75,10 +76,5 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
         _player.OnRangeChange -= RangeChange;
         _remainTime = _keepTime;
         _pool.ReturnPool(_id, this);
-    }
-
-    public void GetDestroy()
-    {
-
     }
 }

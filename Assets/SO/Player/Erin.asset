@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: CHR_002
   nameKR: "\uACAC\uC2B5 \uB9C8\uBC95\uC0AC \uC5D0\uB9B0"
   nameEN: 
+  weapon: Wand
   baseHP: 100
   baseATK: 1
   baseMoveSpeed: 4

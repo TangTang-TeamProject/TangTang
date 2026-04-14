@@ -12,4 +12,9 @@ public class Dagger : SkillAttack
     {
         transform.position += transform.up * _speed * Time.deltaTime;
     }
+
+    public override void GetDestroy()
+    {
+        base.ReturnPool();
+    }
 }
