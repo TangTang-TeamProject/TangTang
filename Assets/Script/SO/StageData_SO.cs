@@ -5,13 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameData / StageData", fileName = "StageDataSO")]
 public class StageData_SO : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private string stageID;
+    [SerializeField]
+    private string stageName;
+    [SerializeField]
+    private string img;
 
-    void Update()
-    {
-        
-    }
+    public string StageID => stageID;
+    public string StageName => stageName;
+    public string IMG => img;
 }
