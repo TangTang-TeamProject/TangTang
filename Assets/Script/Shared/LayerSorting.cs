@@ -21,11 +21,11 @@ public class LayerSorting : MonoBehaviour
     void Awake()
     {        
         _sr = GetComponent<SpriteRenderer>();
-        if (TryGetComponent(out BossMob finalBoss))
+        if (_sr == null)
         {
-            _sg = finalBoss.GetComponent<SortingGroup>();
+            _sg = GetComponent<SortingGroup>();
             _isFinalBoss = true;
-        }
+        }        
     }
 
     private void Update()
