@@ -24,6 +24,8 @@ public class BootStraper : MonoBehaviour
     private SkillRegistry skill;
     [SerializeField]
     private SkillLevelRegistry level;
+    [SerializeField]
+    private StageRegistry stage;
 
 
 
@@ -72,5 +74,6 @@ public class BootStraper : MonoBehaviour
         evo.MakeDic();
         skill.MakeDic();
         level.MakeDic();
+        stage.MakeDic();
     }
 }

@@ -5281,6 +5281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755107892}
   - component: {fileID: 755107891}
+  - component: {fileID: 755107893}
   - component: {fileID: 755107890}
   - component: {fileID: 755107889}
   - component: {fileID: 755107888}
@@ -5374,6 +5375,7 @@ MonoBehaviour:
   pauseUI: {fileID: 2110581511}
   AlarmUI: {fileID: 2075438239}
   gameEndUI: {fileID: 1913877016}
+  goldDigger: {fileID: 755107893}
 --- !u!224 &755107892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5402,6 +5404,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &755107893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755107887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ccc2f3dcb369340ad6b22ed16cf141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageRegistry: {fileID: 11400000, guid: 7d788a2a6f2fce1438d3d6242ed46fa0, type: 2}
 --- !u!1 &768617995
 GameObject:
   m_ObjectHideFlags: 0
@@ -13918,6 +13933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a492cf451da4047b946d6e6baae7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageRegistry: {fileID: 0}
   endStatsText: {fileID: 1890999374}
   earnCoinText: {fileID: 1159343155}
   fullTimeText: {fileID: 1843265376}

@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldDigger
+public class GoldDigger : MonoBehaviour
 {
+    [SerializeField]
+    private StageRegistry stageRegistry;
+
     private int totalGold = 0;
     private int amount;
-    private int clearGold;
 
     //여기서 시작 골드 초기화
     public GoldDigger()
     {
-        clearGold = 100; // 맵마다 초기화
-        amount = 10; // 
+        string scenes = SceneChanger.instance.NowScene();
+
+        amount = stageRegistry.GetStageDataByID(scenes).Amount; 
     }
 
     public void AddGold()
@@ -32,7 +35,10 @@ public class GoldDigger
 
     public int CalcGoldClear()
     {
-        totalGold += clearGold;
+        string scenes = SceneChanger.instance.NowScene();
+
+        totalGold += stageRegistry.GetStageDataByID(scenes).ClearReward;
+
         return totalGold;
     }
 }
