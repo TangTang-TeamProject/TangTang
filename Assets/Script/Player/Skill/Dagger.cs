@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : SkillAttack
+public class Dagger : SkillAttack
 {
     private void Awake()
     {

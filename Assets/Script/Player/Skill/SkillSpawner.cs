@@ -19,6 +19,7 @@ public class SkillSpawner : MonoBehaviour
         public string id;
         public float damage;
         public float speed;
+        public float range = 1;
         public int count;
         public float time;
         public float cool;
@@ -56,27 +57,6 @@ public class SkillSpawner : MonoBehaviour
     }
 
     #region 스킬 코루틴
-    IEnumerator Co_ArrowFire(string id)
-    {
-        yield return null;
-        float time;
-        SkillParameter use;
-        while (_player.PlayerState != Player.EPlayerState.Dead)
-        {
-            use = _paramDict[id];
-            time = use.time * _player.Duration;
-            SkillAttack arrow = _pool.UseSkill(use.id);
-
-            arrow.transform.position = transform.position;
-            arrow.transform.up = _spawnDir.right;
-            arrow.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
-            arrow.gameObject.SetActive(true);
-
-            float rate = time + (use.cool * _player.Cool);
-            yield return new WaitForSeconds(rate);
-        }
-    }
-
     IEnumerator Co_AxeFire(string id)
     {
         yield return null;
@@ -91,9 +71,45 @@ public class SkillSpawner : MonoBehaviour
                 SkillAttack axe = _pool.UseSkill(use.id);
 
                 axe.SetOrbit((360.0f / use.count) * i);
-                axe.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+                axe.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
+                axe.SetComponent(transform);
                 axe.gameObject.SetActive(true);
             }
+            
+            if (use.id == "AxeEvo")
+            {
+                _coDict.Remove(id);
+                yield break;
+            }
+            
+            float rate = time + (use.cool * _player.Cool);
+            yield return new WaitForSeconds(rate);
+        }
+    }
+
+    IEnumerator Co_DaggerFire(string id)
+    {
+        yield return null;
+        float time;
+        int x = 1;
+        SkillParameter use;
+        while (_player.PlayerState != Player.EPlayerState.Dead)
+        {
+            use = _paramDict[id];
+            time = use.time * _player.Duration;
+
+            SkillAttack dagger = _pool.UseSkill(use.id);
+
+            dagger.transform.position = transform.position;
+            dagger.transform.up = _spawnDir.right;
+
+            if (use.id == "DaggerEvo")
+            {
+                dagger.transform.position += dagger.transform.right * 0.5f * x;
+                x *= -1;
+            }
+            dagger.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
+            dagger.gameObject.SetActive(true);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
@@ -111,7 +127,7 @@ public class SkillSpawner : MonoBehaviour
             time = use.time * _player.Duration;
             SkillAttack dBlade = _pool.UseSkill(use.id);
 
-            dBlade.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+            dBlade.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             dBlade.SetComponent(transform);
             dBlade.gameObject.SetActive(true);
 
@@ -133,7 +149,7 @@ public class SkillSpawner : MonoBehaviour
 
             mace.transform.position = transform.position;
             mace.Init(use.id, use.damage, _player.Attack, _spawnDir.localPosition.x < 0 ?
-                -use.speed : use.speed, _pool, time, _player.Range);
+                -use.speed : use.speed, use.range, _pool, _player, time, _player.Range);
             mace.gameObject.SetActive(true);
 
             float rate = time + (use.cool * _player.Cool);
@@ -157,7 +173,7 @@ public class SkillSpawner : MonoBehaviour
                 // 왼쪽을 바라보면 Z축이 90f에서 시작, 오른쪽으면 270 -> -90f에서 시작
                 spear.transform.rotation = _spawnDir.localPosition.x < 0 ?
                     Quaternion.Euler(0, 0, 90f + (360f / use.count) * i) : Quaternion.Euler(0, 0, 270f + (360f / use.count) * i);
-                spear.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+                spear.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
                 spear.gameObject.SetActive(true);
             }
 
@@ -180,7 +196,7 @@ public class SkillSpawner : MonoBehaviour
             trident.transform.position = transform.position;
             trident.transform.up = _spawnDir.right;
             trident.SetComponent(_player.transform, _cam);
-            trident.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+            trident.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             trident.gameObject.SetActive(true);
 
             float rate = time + (use.cool * _player.Cool);
@@ -206,7 +222,7 @@ public class SkillSpawner : MonoBehaviour
                 y = Random.Range(-3f, 3f);
 
                 wand.transform.position = transform.position + new Vector3(x, y, 0);
-                wand.Init(use.id, use.damage, _player.Attack, use.speed, _pool, time, _player.Range);
+                wand.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
                 wand.gameObject.SetActive(true);
             }
             float rate = time + (use.cool * _player.Cool);
@@ -291,11 +307,11 @@ public class SkillSpawner : MonoBehaviour
     {
         switch (id)
         {
-            case "Arrow":
-                _coDict[id] = StartCoroutine(Co_ArrowFire(id));
-                break;
             case "Axe":
                 _coDict[id] = StartCoroutine(Co_AxeFire(id));
+                break;
+            case "Dagger":
+                _coDict[id] = StartCoroutine(Co_DaggerFire(id));
                 break;
             case "DualBlade":
                 _coDict[id] = StartCoroutine(Co_DualBaldeFire(id));
@@ -310,6 +326,27 @@ public class SkillSpawner : MonoBehaviour
                 _coDict[id] = StartCoroutine(Co_TridentFire(id));
                 break;
             case "Wand":
+                _coDict[id] = StartCoroutine(Co_WandFire(id));
+                break;
+            case "ArrowEvo":
+                _coDict[id] = StartCoroutine(Co_DaggerFire(id));
+                break;
+            case "AxeEvo":
+                _coDict[id] = StartCoroutine(Co_AxeFire(id));
+                break;
+            case "DualBladeEvo":
+                _coDict[id] = StartCoroutine(Co_DualBaldeFire(id));
+                break;
+            case "MaceEvo":
+                _coDict[id] = StartCoroutine(Co_MaceFire(id));
+                break;
+            case "SpearEvo":
+                _coDict[id] = StartCoroutine(Co_SpearFire(id));
+                break;
+            case "TridentEvo":
+                _coDict[id] = StartCoroutine(Co_TridentFire(id));
+                break;
+            case "WandEvo":
                 _coDict[id] = StartCoroutine(Co_WandFire(id));
                 break;
         }
