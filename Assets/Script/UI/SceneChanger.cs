@@ -3,15 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
-
-public enum Scenes
-{ 
-    Lobby = 0,
-    STG_001,
-    STG_002,
-    SceneCount
-}
 
 public class SceneChanger : MonoBehaviour
 {
@@ -25,7 +16,7 @@ public class SceneChanger : MonoBehaviour
     }
 
     [SerializeField]
-    private List<SceneLib> sceneLib = new List<SceneLib>();
+    private StageRegistry stageRegistry;
     [SerializeField]
     private CanvasGroup faded;
     [SerializeField]
@@ -36,9 +27,6 @@ public class SceneChanger : MonoBehaviour
     private float fadeTime;
     [SerializeField]
     private GameObject fadeEndText;
-
-
-    private Dictionary<Scenes, string> sceneDic = new Dictionary<Scenes, string>();
 
     Coroutine coroutine = null;
 
@@ -54,16 +42,6 @@ public class SceneChanger : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        if (sceneLib.Count < (int)Scenes.SceneCount)
-        {
-            CPrint.Error("씬 설정 오류 - 인스펙터 확인");
-        }
-
-        for (int i = 0; i < sceneLib.Count; i++)
-        {
-            sceneDic.Add(sceneLib[i].scene, sceneLib[i].name);
-        }
     }
 
     public void MoveScene(Scenes target)
@@ -74,11 +52,15 @@ public class SceneChanger : MonoBehaviour
             return;
         }
 
-        if (sceneDic.TryGetValue(target, out string _name))
+        currentScene = target;
+        string _name = stageRegistry.GetStageDataByEnum(target);
+
+        if (_name == null)
         {
-            currentScene = target;
-            coroutine = StartCoroutine(LoadSceneCoroutine(_name));
+            CPrint.Error("정체불명의 씬");
+            return;
         }
+        coroutine = StartCoroutine(LoadSceneCoroutine(_name));
     }
 
     public void ReLoadScene()
@@ -152,13 +134,14 @@ public class SceneChanger : MonoBehaviour
 
     public string NowScene()
     {
-        if (sceneDic.TryGetValue(currentScene, out string _name))
+        string nowScene = stageRegistry.GetStageDataByEnum(currentScene);
+
+        if (nowScene == null)
         {
-            return _name;
+            CPrint.Error("정체불명의 씬");
+            return stageRegistry.GetStageDataByEnum(Scenes.Lobby);
         }
 
-        CPrint.Error("현재 씬 불명");
-
-        return null;
+        return nowScene;
     }
 }

@@ -8995,6 +8995,7 @@ MonoBehaviour:
   playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
   equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
   skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
+  stageRegistry: {fileID: 11400000, guid: 7d788a2a6f2fce1438d3d6242ed46fa0, type: 2}
   startBTN: {fileID: 839434007}
   leftBTN: {fileID: 615573592}
   rightBTN: {fileID: 1965896763}
@@ -9011,6 +9012,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a47740e119104095bf8d5c350f44ae0, type: 3}
   - {fileID: 21300000, guid: 8e9a5533b0a6344d4a267fdb742ef89c, type: 3}
   selectedStageIMG: {fileID: 2146447363}
+  selectedStageName: {fileID: 123854612}
 --- !u!1 &1659855861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10009,13 +10011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b601f17ee980054448ff955868f2ddba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLib:
-  - scene: 0
-    name: Lobby
-  - scene: 1
-    name: STG_001
-  - scene: 2
-    name: STG_002
+  stageRegistry: {fileID: 11400000, guid: 7d788a2a6f2fce1438d3d6242ed46fa0, type: 2}
   faded: {fileID: 1154244669}
   fadeText: {fileID: 1754840840}
   bigSize: {x: 20, y: 20, z: 1}
@@ -12455,7 +12451,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2146447363
 MonoBehaviour:
