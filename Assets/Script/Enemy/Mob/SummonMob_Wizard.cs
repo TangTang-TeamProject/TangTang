@@ -83,6 +83,7 @@ public class SummonMob_Wizard : BaseEnemy
                 _isAttacking = false;
                 _attackDuration = 0.8f;
                 _animator.SetBool(animParam, true);
+                _speed = _monsterData.MoveSpeed;
             }
 
             return;
@@ -92,6 +93,7 @@ public class SummonMob_Wizard : BaseEnemy
         {
             _nextShoot = Timer.Instance.RealTime + _atkCycle;
             Attack();
+            return;
         }
 
 
@@ -103,6 +105,7 @@ public class SummonMob_Wizard : BaseEnemy
     {
         _isAttacking = true;
         _animator.SetBool(animParam, false);
+        _speed = 0f;
         _isDelay = true;
     }
 

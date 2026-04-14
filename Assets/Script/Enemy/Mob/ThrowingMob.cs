@@ -75,6 +75,7 @@ public class ThrowingMob : BaseEnemy
                 _isAttacking = false;
                 _attackDuration = 1f;
                 _animator.SetBool(animParam, true);
+                _speed = _monsterData.MoveSpeed;
             }
 
             return;
@@ -83,7 +84,8 @@ public class ThrowingMob : BaseEnemy
         if (Timer.Instance.GameTime >= _nextShoot)
         {
             _nextShoot = Timer.Instance.GameTime + _atkCycle;
-            Attack();            
+            Attack();
+            return;
         }
     
                        
@@ -100,6 +102,7 @@ public class ThrowingMob : BaseEnemy
     {
         _isAttacking = true;
         _animator.SetBool(animParam, false);
+        _speed = 0f;
         _isDelay = true;        
     }
    
