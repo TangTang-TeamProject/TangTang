@@ -11,7 +11,7 @@ public class GoldDigger : MonoBehaviour
     private int amount;
 
     //여기서 시작 골드 초기화
-    public GoldDigger()
+    public void Setting()
     {
         string scenes = SceneChanger.instance.NowScene();
 

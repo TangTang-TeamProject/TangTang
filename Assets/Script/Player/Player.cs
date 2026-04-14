@@ -105,7 +105,7 @@ public class Player : MonoBehaviour, IDamagables
         _maxHp = _data.BaseHP;
         _speed = _data.BaseMoveSpeed;
         _baseAttack = _data.BaseATK;
-        //_firstWeapon = _data.Weapon;
+        _firstWeapon = _data.Weapon;
         SetEquipParam();
         _hp = _maxHp;
         _attack = _baseAttack;

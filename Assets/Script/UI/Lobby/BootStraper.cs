@@ -31,10 +31,8 @@ public class BootStraper : MonoBehaviour
 
     private void Awake()
     {
-
         //나중에 삭제
-        SaveManager.Refresh();
-
+        //SaveManager.Refresh();
 
         SaveManager.Load();
 

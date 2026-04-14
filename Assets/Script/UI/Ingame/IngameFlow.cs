@@ -31,7 +31,7 @@ public class IngameFlow : MonoBehaviour
     [SerializeField]
     private GameEnd gameEndUI;
     [SerializeField]
-    private GoldDigger goldDigger = new GoldDigger();
+    private GoldDigger goldDigger;
 
     private Player player;
 
@@ -45,6 +45,8 @@ public class IngameFlow : MonoBehaviour
         player = FindFirstObjectByType<Player>();
 
         skillPickUI.ManualAwake();
+
+        goldDigger.Setting();
     }
 
     private void Start()
