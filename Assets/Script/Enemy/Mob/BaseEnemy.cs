@@ -341,6 +341,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             if (_dmgCheckBuffer[i].TryGetComponent(out IAttackables attackables))
             {                
                 Hit(attackables);
+                attackables.GetDestroy();
             }
         }
     }
