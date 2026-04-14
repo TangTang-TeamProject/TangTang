@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
-public class STG2_MidBoss2 : BaseEnemy
+public class STG2_MidBoss1 : BaseEnemy
 {
+
+    [SerializeField] private float _dashPower = 3f;
+    [Header("해당 수치이하 만큼 접근하면 대시 발동")]
+    [SerializeField] private float _dashDist = 5f;
+    [SerializeField] private float _dashTime = 1f;
+
     [Header("HP Bar 연결")]
     [SerializeField] private GameObject _HPBar;
     [SerializeField] private Image _HPBarImage;
@@ -14,19 +21,18 @@ public class STG2_MidBoss2 : BaseEnemy
     [SerializeField] private GameObject _itemParent;
     [SerializeField] private GameObject _randomBox;
 
-    [Header("투사체 연결")]
-    [SerializeField] private GameObject _projectile;
+    private bool _isDashing = false;
+    private string animParam_Move = "1_Move";
+    private string animParam = "2_Attack";
 
-    private Vector2 _shootDir;
-    private Vector2 _shootOrigin;
-    private float _nextShoot;    
+    private Vector2 _dashDir;
+    private float _checkTime;
+
+    private float _corTimeCnt = 0f;
 
     private SpriteRenderer[] _spriteRenderers;
     private List<SpriteRenderer> _activeList = new List<SpriteRenderer>();
     private Dictionary<SpriteRenderer, Color> _colorMap = new Dictionary<SpriteRenderer, Color>();
-
-    private string _animString_Move = "1_Move";
-    private string _animString_Attack = "2_Attack";
 
     protected override void Awake()
     {
@@ -34,19 +40,17 @@ public class STG2_MidBoss2 : BaseEnemy
 
         _HPBar.SetActive(true);
         _HPBarImage.fillAmount = 1f;
-     
+
 
         _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
         for (int i = 0; i < _spriteRenderers.Length; i++)
-        {            
+        {
             _activeList.Add(_spriteRenderers[i]);
             _colorMap.Add(_spriteRenderers[i], _spriteRenderers[i].color);
         }
 
         _animator = GetComponentInChildren<Animator>();
-
-        _nextShoot = Timer.Instance.RealTime + _atkCycle;
     }
 
     public override void Init(EnemyPool pool, int idx)
@@ -64,18 +68,16 @@ public class STG2_MidBoss2 : BaseEnemy
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
-        _mobType = _monsterData.EnemyType;        
+        _mobType = _monsterData.EnemyType;
     }
 
-
     protected override void Update()
-    {
+    {       
         if (_target == null) // 타겟 없으면 return
         {
             return;
         }
-
-
+         
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
@@ -93,30 +95,81 @@ public class STG2_MidBoss2 : BaseEnemy
             }
         }
 
-        if (!CanUpdate())
+        if (Timer.Instance.RealTime >= _checkTime && !_isDashing)
+        {
+            Attack();
+            _checkTime = Timer.Instance.RealTime + _atkCycle;
+        }
+
+        CheckDamaged();
+
+        if (!CanUpdate() || _isDashing)
         {
             return;
         }
 
-        if (Timer.Instance.RealTime >= _nextShoot)
-        {
-            StartCoroutine(StopToShoot());
-            StartCoroutine(ShootCoroutine());
-            _nextShoot = Timer.Instance.RealTime + _atkCycle;
-        }
-
-
         Chase();
-        CheckDamaged();
+
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         MoveIntoBattlezone();
     }
 
+    public override void Attack()
+    {
+        _dashDir = (_target.transform.position - transform.position);
 
-    protected override void Hit(IAttackables attackables)
+        if (_dashDir.magnitude > _dashDist)
+        {
+            return;
+        }
+
+        _dashDir.Normalize();
+
+        StartCoroutine(Dash());
+    }
+
+    public override void Chase()
+    {
+        base.Chase();
+        _animator.SetBool(animParam_Move, true);
+    }
+
+    IEnumerator Dash()
+    {
+        _isDashing = true;
+        
+        _corTimeCnt = Timer.Instance.RealTime;
+        float endTime = _corTimeCnt + _dashTime;
+
+        float t = 0f;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            MoveIntoBattlezone();
+            yield return null;
+        }
+
+        while (_corTimeCnt < endTime)
+        {
+            _corTimeCnt += Time.deltaTime;
+
+            Vector2 newPos = transform.position;
+
+            newPos += _dashDir * _speed * _dashPower * Time.deltaTime;
+
+            transform.position = newPos;
+            MoveIntoBattlezone();
+            yield return null;
+        }
+
+        _animator.SetTrigger(animParam);
+        _isDashing = false;
+    }
+
+   protected override void Hit(IAttackables attackables)
     {
         _maxHp -= attackables.Damage;
         _isHit = true;
@@ -137,7 +190,6 @@ public class STG2_MidBoss2 : BaseEnemy
             Die();
         }
     }
-    
 
     public override void Die()
     {
@@ -149,46 +201,5 @@ public class STG2_MidBoss2 : BaseEnemy
         _HPBar.SetActive(false);
         Instantiate(_randomBox, transform.position, Quaternion.identity, _itemParent.transform);
         Destroy(gameObject);
-    }
-
-    private void ShootProjectile()
-    {
-        _shootOrigin = transform.position;
-        _shootOrigin.y += 0.5f;
-        
-        _shootDir = (Vector2)_target.transform.position - _shootOrigin;
-        _shootDir.Normalize();
-
-        _shootOrigin += _shootDir;
-
-        GameObject go = Instantiate(_projectile, _shootOrigin, Quaternion.identity);
-        Projectile_MidBoss2 projectile = go.GetComponent<Projectile_MidBoss2>();
-        projectile.Init(null, _target.transform);
-        projectile.SetShootDir(_shootDir);
-    }
-
-    IEnumerator ShootCoroutine()
-    {        
-        for (int i = 0; i < 3; i++)
-        {
-            ShootProjectile();
-            yield return new WaitForSeconds(0.2f);
-        }        
-    }
-
-    IEnumerator StopToShoot()
-    {
-        _speed = 0;
-        _animator.SetTrigger(_animString_Attack);
-
-        yield return new WaitForSeconds(1.2f);
-
-        _speed = _monsterData.MoveSpeed;        
-    }
-
-    public override void Chase()
-    {
-        base.Chase();
-        _animator.SetBool(_animString_Move, true);
     }
 }

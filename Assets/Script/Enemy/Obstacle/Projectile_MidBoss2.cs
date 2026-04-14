@@ -45,7 +45,10 @@ public class Projectile_MidBoss2 : BaseProjectile
             }
             ShootToTarget();
         }
-        Destroy();
+        if (Timer.Instance.RealTime >= _spawnedTime + _aliveTime)
+        {
+            Destroy();
+        }
     }
 
     protected override void ShootToTarget()
@@ -93,12 +96,9 @@ public class Projectile_MidBoss2 : BaseProjectile
     }
 
 
-    protected override void Destroy()
+    public override void Destroy()
     {
-        if (Timer.Instance.RealTime < _spawnedTime + _aliveTime)
-        {
-            return;
-        }
+        
 
         _targetPos = null;
         Destroy(gameObject);
@@ -106,7 +106,6 @@ public class Projectile_MidBoss2 : BaseProjectile
 
     public override void CutOff()
     {
-        _targetPos = null;
-        Destroy(gameObject);
+       
     }
 }

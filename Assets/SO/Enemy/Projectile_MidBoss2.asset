@@ -21,6 +21,6 @@ MonoBehaviour:
   expDrop: 0
   sizeScale: 0
   atkCycle: 0
-  bulletSpeed: 2
+  bulletSpeed: 3
   enemytype: 0
   prefab: {fileID: 0}
