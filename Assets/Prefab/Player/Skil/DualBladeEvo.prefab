@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4fe199d04c64d43930297c7abe1a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   _spawner: {fileID: 0}
   _collider: {fileID: 4028377928168309400}
   _hitLayer:
@@ -102,6 +103,46 @@ PrefabInstance:
     - target: {fileID: 4748681987041982144, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
       propertyPath: m_Name
       value: VFX_Sword_Slash_01_Mask_Static
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 45875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.15023327
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7795210345721637939, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
       propertyPath: m_LocalScale.x
@@ -177,6 +218,30 @@ PrefabInstance:
     - target: {fileID: 4748681987041982144, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
       propertyPath: m_Name
       value: VFX_Sword_Slash_01_Mask_Static_180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 45875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.09956598
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933481121959300758, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7795210345721637939, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
       propertyPath: m_LocalScale.x

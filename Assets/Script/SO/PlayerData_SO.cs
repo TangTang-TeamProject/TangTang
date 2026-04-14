@@ -12,6 +12,8 @@ public class PlayerData_SO : ScriptableObject
     [SerializeField]
     private string nameEN = "";
     [SerializeField]
+    private string weapon = "";
+    [SerializeField]
     private float baseHP = 0;
     [SerializeField]
     private float baseATK = 0f;
@@ -36,6 +38,7 @@ public class PlayerData_SO : ScriptableObject
     public string CharacterID => characterID;
     public string NameKR => nameKR;
     public string NameEN => nameEN;
+    public string Weapon => weapon;
     public float BaseHP => baseHP;
     public float BaseATK => baseATK;
     public float BaseMoveSpeed => baseMoveSpeed;

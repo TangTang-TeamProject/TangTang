@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a39f17e422283be438395d6bfdda53e0, type: 3}
-  m_Name: Trident3
+  m_Name: Dagger3
   m_EditorClassIdentifier: 
-  skillID: Trident
-  level: 3
-  damage: 80
-  speed: 7
-  count: 1
-  appearTime: 2
+  skillID: Dagger
+  level: 0
+  damage: 0
+  speed: 0
+  range: 0
+  count: 0
+  appearTime: 0
   disAppearTime: 0
