@@ -25,7 +25,7 @@ public class PlayerData_SO : ScriptableObject
     [SerializeField]
     private bool isClosed = true;
     [SerializeField]
-    private ClosedChar openRequire = ClosedChar.Erin;
+    private ClosedChar openRequire = ClosedChar.Noah;
     [SerializeField]
     private string desc;
     [SerializeField]

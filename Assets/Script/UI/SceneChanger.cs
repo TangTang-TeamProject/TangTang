@@ -11,7 +11,6 @@ public enum Scenes
     Stage_01,
     STG_001,
     STG_002,
-    STG_003,
     SceneCount
 }
 
