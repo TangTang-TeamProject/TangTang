@@ -26,6 +26,7 @@ public class StageRegistry : ScriptableObject
     public void MakeDic()
     {
         dataDic.Clear();
+        sceneDic.Clear();
 
         for (int i = 0; i < stages.Count; i++)
         {
