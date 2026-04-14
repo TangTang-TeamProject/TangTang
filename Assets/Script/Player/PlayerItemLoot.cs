@@ -90,6 +90,7 @@ public class PlayerItemLoot : MonoBehaviour
                 break;
             }
 
+            // 디스트로이거나 풀로 돌아가서 참조가 끊어졌을 경우 fake null 방지
             _hitRecord.RemoveWhere(target => target == null || (target as MonoBehaviour) == null);
 
             _center = _player.PlayerCol.bounds.center;
@@ -100,8 +101,10 @@ public class PlayerItemLoot : MonoBehaviour
                 // 마지막으로 널 체크 한번 더
                 if (_hits[i] != null && _hits[i].TryGetComponent(out Items target))
                 {
+                    // 이번 판정에서 들어온 객체들
                     _thisFrameRecord.Add(target);
 
+                    // 저번 판정에서 없던 객체면 작동
                     if (_hitRecord.Add(target))
                     {
                         CPrint.Log("대상 발견");
