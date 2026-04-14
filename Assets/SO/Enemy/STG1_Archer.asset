@@ -16,11 +16,11 @@ MonoBehaviour:
   nameKR: "\uACE0\uBE14\uB9B0 \uAD81\uC218"
   nameEN: Goblin_Archer
   hp: 50
-  moveSpeed: 0.95
+  moveSpeed: 1
   contactDamage: 7
   expDrop: 1
   sizeScale: 1
-  atkCycle: 3
+  atkCycle: 4.5
   bulletSpeed: 0
   enemytype: 0
   prefab: {fileID: 4459202857756033555, guid: de119d691bb001a4384a357b99f996a5, type: 3}
