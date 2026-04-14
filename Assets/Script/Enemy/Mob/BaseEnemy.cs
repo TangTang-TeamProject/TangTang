@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Security.Authentication.ExtendedProtection;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 생성 시 초기화 변수들
     protected Animator _animator;
-    protected SpriteRenderer _sr;    
-    
+    protected SpriteRenderer _sr;
+    protected CircleCollider2D _col;
 
     protected EnemyPool _pool;
     protected GameObject _target;
@@ -89,19 +90,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         
         if (TryGetComponent(out CircleCollider2D circleCollider2D))
         {
-            _offset = circleCollider2D.offset;
-            _radius = circleCollider2D.radius;
+            _col = GetComponent<CircleCollider2D>();
         }
         else
         {
-            _offset = transform.position;
-            _radius = 0f;
-        } 
-
-        if (_radius == 0f)
-        {
             CPrint.Log($"{this} -> CircleCollider2D 없음");
-        }
+        } 
+      
         
     }
 
@@ -331,8 +326,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.        
 
-        int count = Physics2D.OverlapCircleNonAlloc((Vector2)transform.position + _offset, 
-            _radius, 
+        Vector2 center = _col.transform.TransformPoint(_col.offset);
+        float radius = _col.radius * Mathf.Max(_col.transform.lossyScale.x, _col.transform.lossyScale.y);
+
+        int count = Physics2D.OverlapCircleNonAlloc(center, 
+            radius, 
             _dmgCheckBuffer, 
             _playerBulletLayer);
 

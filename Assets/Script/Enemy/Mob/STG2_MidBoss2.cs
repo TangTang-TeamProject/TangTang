@@ -47,6 +47,15 @@ public class STG2_MidBoss2 : BaseEnemy
         _animator = GetComponentInChildren<Animator>();
 
         _nextShoot = Timer.Instance.RealTime + _atkCycle;
+
+        if (TryGetComponent(out CircleCollider2D circleCollider2D))
+        {
+            _col = GetComponent<CircleCollider2D>();
+        }
+        else
+        {
+            CPrint.Log($"{this} -> CircleCollider2D 없음");
+        }
     }
 
     public override void Init(EnemyPool pool, int idx)

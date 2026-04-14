@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uC218\uD638\uBCD1"
   nameEN: Guard
   hp: 2000
-  moveSpeed: 1.5
+  moveSpeed: 2
   contactDamage: 11
   expDrop: 20
   sizeScale: 3.5
