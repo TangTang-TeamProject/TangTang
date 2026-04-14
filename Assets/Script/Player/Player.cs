@@ -26,8 +26,10 @@ public class Player : MonoBehaviour, IDamagables
     private EPlayerState _playerState;
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.2f);
     private WaitForSeconds _invincibleTime;
+    private WaitForSeconds _nextHeal = new WaitForSeconds(5.0f);
     private Coroutine _checkCo;
     private Coroutine _invincibleCo;
+    private Coroutine _autoHealCo;
     private float _speed;
     private float _baseAttack;
     private float _attack;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour, IDamagables
     private float _cool = 1;
     private float _duration = 1;
     private float _range = 1;
+    private float _autoHealAmount;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
@@ -269,6 +272,10 @@ public class Player : MonoBehaviour, IDamagables
                 _absorbePer += data.ValuePerLevel * 0.01f;
                 OnLootRangeChange?.Invoke(_absorbePer);
                 break;
+            case StatKey.AutoHeal:
+                _autoHealAmount += data.ValuePerLevel;
+                _autoHealCo = StartCoroutine(Co_AutoHeal());
+                break;
         }
     }
 
@@ -290,5 +297,12 @@ public class Player : MonoBehaviour, IDamagables
             _hp = _maxHp;
         }
         OnCurrentHPChange?.Invoke(_hp);
+    }
+
+    IEnumerator Co_AutoHeal()
+    {
+        _hp += _autoHealAmount;
+        OnCurrentHPChange?.Invoke(_hp);
+        yield return _nextHeal;
     }
 }
