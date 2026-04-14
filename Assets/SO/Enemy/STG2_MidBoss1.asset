@@ -16,11 +16,11 @@ MonoBehaviour:
   nameKR: "\uB2AA\uC9C0 \uC624\uC6B0\uAC70"
   nameEN: Swamp Orge
   hp: 520
-  moveSpeed: 1.2
+  moveSpeed: 2.5
   contactDamage: 22
   expDrop: 20
   sizeScale: 3.5
   atkCycle: 3
   bulletSpeed: 0
   enemytype: 2
-  prefab: {fileID: 0}
+  prefab: {fileID: 1765298197895902424, guid: ce0d12e2ac43eb94d83c93fbfa8c6ccb, type: 3}

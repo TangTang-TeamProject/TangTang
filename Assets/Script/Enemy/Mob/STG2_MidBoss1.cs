@@ -69,6 +69,8 @@ public class STG2_MidBoss1 : BaseEnemy
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
         _mobType = _monsterData.EnemyType;
+
+        _checkTime = Timer.Instance.RealTime + _atkCycle;
     }
 
     protected override void Update()
@@ -82,12 +84,14 @@ public class STG2_MidBoss1 : BaseEnemy
         {
             _hitTime -= Time.deltaTime;
             _speed = 0f; // 멈칫하는 모션
+            _animator.SetBool(animParam_Move, false);
 
             if (_hitTime <= 0f)
             {
                 _isHit = false;
                 _hitTime = _hitTimer;
                 _speed = _monsterData.MoveSpeed; // 스피드 복구
+                _animator.SetBool(animParam_Move, true);
                 for (int i = 0; i < _activeList.Count; i++)
                 {
                     _activeList[i].color = _colorMap[_activeList[i]];

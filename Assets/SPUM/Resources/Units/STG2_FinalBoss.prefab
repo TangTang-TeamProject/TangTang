@@ -2851,7 +2851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7181128898746692817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2884,17 +2884,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68109adb3cf5bab4ea99c12771532734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterData: {fileID: 0}
+  _monsterData: {fileID: 11400000, guid: 0ee2ad5fa0178c241877bed2a9998104, type: 2}
   _hitTimer: 0.1
   _HPBar: {fileID: 0}
   _HPBarImage: {fileID: 0}
   _itemParent: {fileID: 0}
   _randomBox: {fileID: 5771510562381001829, guid: 87961c646cd11254991f708d7a0a1e16, type: 3}
-  _guidedProjectile: {fileID: 0}
-  _allDirProjectile: {fileID: 0}
+  _guidedProjectile: {fileID: 5508571460199153579, guid: 24f6dce28c4d3a04fae683f8574171e3, type: 3}
+  _allDirProjectile: {fileID: 3453389317372799579, guid: 72e0d75c8f1c56943934a19a69e91b0d, type: 3}
   _shootCount: 8
-  _enemyType1: {fileID: 2081423702560558306, guid: 9dcbaaaace575c847b193fde4e528119, type: 3}
-  _enemyType2: {fileID: 8485259087724804320, guid: eba37594840302e4a93cb74e16a9ce3b, type: 3}
+  _enemyType1: {fileID: 6664132161818840512, guid: 9b64ae81334d75145b4d7bda612348c5, type: 3}
+  _enemyType2: {fileID: 8529490576638914460, guid: 6f327697aed4bf44e9698770c948c901, type: 3}
   _summonCount: 5
 --- !u!58 &1353480128594722592
 CircleCollider2D:
@@ -2928,9 +2928,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!1 &5961237692875518866
 GameObject:
   m_ObjectHideFlags: 0

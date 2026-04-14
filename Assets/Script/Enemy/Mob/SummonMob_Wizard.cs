@@ -13,40 +13,7 @@ public class SummonMob_Wizard : BaseEnemy
     private bool _isDelay = false;
 
     private string animParam = "IsMoving";
-
-    protected override void Awake()
-    {
-        if (TryGetComponent(out Animator animator))
-        {
-            _animator = animator;
-        }
-
-        _sr = GetComponent<SpriteRenderer>();
-
-        _hitTime = _hitTimer;
-
-        _playerLayer = LayerMask.GetMask(_playerString);
-        _enemyLayer = LayerMask.GetMask(_enemyString);
-        _playerBulletLayer = LayerMask.GetMask(_playerBulletString, _defenceBulletString);
-
-
-        if (TryGetComponent(out CircleCollider2D circleCollider2D))
-        {
-            _offset = circleCollider2D.offset;
-            _radius = circleCollider2D.radius;
-        }
-        else
-        {
-            _offset = transform.position;
-            _radius = 0f;
-        }
-
-        if (_radius == 0f)
-        {
-            CPrint.Log($"{this} -> CircleCollider2D 없음");
-        }
-
-    }
+   
 
     protected override void Start()
     {
@@ -68,7 +35,12 @@ public class SummonMob_Wizard : BaseEnemy
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
         _mobType = _monsterData.EnemyType;
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
 
+        if (_sr == null)
+        {
+            _sr = GetComponent<SpriteRenderer>();
+        }
         if (_animator == null)
         {
             _animator = GetComponent<Animator>();
