@@ -319,12 +319,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void CheckDamaged()
     {
-        if (Timer.Instance.TickTime == _nextDmg)
-        {
-            return;
-        }
+        //if (Timer.Instance.TickTime == _nextDmg)
+        //{
+        //    return;
+        //}
 
-        _nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.        
+        //_nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.        
 
         Vector2 center = _col.transform.TransformPoint(_col.offset);
         float radius = _col.radius * Mathf.Max(_col.transform.lossyScale.x, _col.transform.lossyScale.y);
