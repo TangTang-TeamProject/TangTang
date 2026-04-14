@@ -165,7 +165,7 @@ public class SkillPick : MonoBehaviour
 
             if (level < skill.MaxLevel)
             {
-                PreChoice pc = MakePreData(id, ChoiceType.Skill);
+                PreChoice pc = MakePreData(id, ChoiceType.Skill, level);
 
                 choiceList.Add(pc);
             }
@@ -176,7 +176,7 @@ public class SkillPick : MonoBehaviour
 
                 if (artiHistory.Contains(require))
                 {
-                    PreChoice pc = MakePreData(evo, ChoiceType.Evo, level);
+                    PreChoice pc = MakePreData(evo, ChoiceType.Evo);
 
                     choiceList.Add(pc);
                 }
