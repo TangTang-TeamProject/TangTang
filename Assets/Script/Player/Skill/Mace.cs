@@ -13,7 +13,7 @@ public class Mace : SkillAttack
     private void OnEnable()
     {
         _isSpin = true;
-        _spinZ = 120f;
+        _spinZ = 240f;
         _upSpeed = 8f;
     }
 

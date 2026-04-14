@@ -64,6 +64,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36a67f9be45780149aa1f5f3571e7c46, type: 2}
   - {fileID: 11400000, guid: a0839b0fa148193418a2214661d1f114, type: 2}
   - {fileID: 11400000, guid: 393614b77d63f55439e4100bab33c9a8, type: 2}
+  - {fileID: 11400000, guid: 9c2663ef483b94d45a6b74b02eefdb21, type: 2}
+  - {fileID: 11400000, guid: 5a888f8ade8818b4db84549c840858a9, type: 2}
   _levelRegistry: {fileID: 11400000, guid: 533befca93fd2a5409a4c846a60f40dc, type: 2}
   _debugList: []
 --- !u!114 &1182895449671291532

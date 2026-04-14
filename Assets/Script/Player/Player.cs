@@ -105,6 +105,7 @@ public class Player : MonoBehaviour, IDamagables
         _maxHp = _data.BaseHP;
         _speed = _data.BaseMoveSpeed;
         _baseAttack = _data.BaseATK;
+        //_firstWeapon = _data.Weapon;
         SetEquipParam();
         _hp = _maxHp;
         _attack = _baseAttack;
@@ -163,6 +164,7 @@ public class Player : MonoBehaviour, IDamagables
             if (hit != null && hit.TryGetComponent(out IAttackables enemy))
             {
                 Hit(enemy.Damage);
+                enemy.GetDestroy();
             }
 
             yield return _nextCheck;

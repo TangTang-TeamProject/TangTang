@@ -16,7 +16,8 @@ public enum StatKey
     CoolDown,
     Duration,
     Range,
-    AbsorbeRange
+    AbsorbeRange,
+    AutoHeal
 }
 
 public enum Waves

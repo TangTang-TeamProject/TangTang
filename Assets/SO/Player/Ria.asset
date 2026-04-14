@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: CHR_004
   nameKR: "\uC232\uC758 \uAD81\uC218 \uB9AC\uC544"
   nameEN: 
+  weapon: Dagger
   baseHP: 100
   baseATK: 1
   baseMoveSpeed: 4
