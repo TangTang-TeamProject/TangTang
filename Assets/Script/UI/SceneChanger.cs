@@ -8,7 +8,6 @@ using static UnityEngine.GraphicsBuffer;
 public enum Scenes
 { 
     Lobby = 0,
-    Stage_01,
     STG_001,
     STG_002,
     SceneCount
