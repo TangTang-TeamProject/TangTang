@@ -9812,6 +9812,7 @@ MonoBehaviour:
   player: {fileID: 1672686405}
   equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
   playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
+  skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
   equips: []
   equipPrefab: {fileID: 1838993577909034653, guid: 13929ac9e129439418d0d966917b6dc2, type: 3}
   equipBox: {fileID: 791564606}
