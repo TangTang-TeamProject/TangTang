@@ -22,7 +22,7 @@ MonoBehaviour:
   critRate: 0
   pickUpRange: 1
   isClosed: 1
-  openRequire: 2
+  openRequire: 1
   desc: "\uD765."
   icon: {fileID: 21300000, guid: 3c75a14c8732644e38cba8578aa6ac74, type: 3}
   prefab: {fileID: 2988542607015746279, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}

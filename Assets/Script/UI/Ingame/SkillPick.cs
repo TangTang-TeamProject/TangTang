@@ -15,6 +15,7 @@ public class SkillPick : MonoBehaviour
         public Image choice_back;
         public Image choice_icon;
         public TextMeshProUGUI choice_desc;
+        public GameObject starPos;
         public string pickedID;
         public ChoiceType type;
     }
@@ -23,6 +24,7 @@ public class SkillPick : MonoBehaviour
     {
         public string pickedID;
         public ChoiceType type;
+        public int lev;
     }
 
     enum ChoiceType
@@ -60,6 +62,15 @@ public class SkillPick : MonoBehaviour
     private Sprite artiPlate;
     [SerializeField]
     private Sprite goldIcon;
+    [SerializeField]
+    private GameObject aliveStar;
+    [SerializeField]
+    private GameObject deadStar;
+
+
+    private List<GameObject> starList = new List<GameObject>();
+
+
 
     private List<PreChoice> choiceList = new List<PreChoice>();
 
@@ -101,6 +112,8 @@ public class SkillPick : MonoBehaviour
     {
         callback = _callback;
 
+        Refresh();
+
         HoldListUp();
 
         UnHoldListUp();
@@ -110,10 +123,20 @@ public class SkillPick : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    void HoldListUp()
+    void Refresh()
     {
         choiceList.Clear();
 
+        for (int i = 0; i < starList.Count; i++)
+        {
+            Destroy(starList[i]);
+        }
+
+        starList.Clear();
+    }
+
+    void HoldListUp()
+    {
         for(int i = 0; i < slot.ArtifactNum; i++)
         {
             slot.ArtifactLevel(i, out string id, out int level);
@@ -124,7 +147,7 @@ public class SkillPick : MonoBehaviour
 
             if (level < arti.MaxLevel)
             {
-                PreChoice pc = MakePreData(id, ChoiceType.Artifact);
+                PreChoice pc = MakePreData(id, ChoiceType.Artifact, level);
 
                 choiceList.Add(pc);
             }
@@ -153,7 +176,7 @@ public class SkillPick : MonoBehaviour
 
                 if (artiHistory.Contains(require))
                 {
-                    PreChoice pc = MakePreData(evo, ChoiceType.Evo);
+                    PreChoice pc = MakePreData(evo, ChoiceType.Evo, level);
 
                     choiceList.Add(pc);
                 }
@@ -273,6 +296,7 @@ public class SkillPick : MonoBehaviour
                     choices[i].choice_icon.sprite = a.IMG;
                     choices[i].choice_back.sprite = artiPlate;
                     choices[i].choice_desc.text = a.NameKR;
+                    MakeStar(i, choiceList[i].lev, a.MaxLevel);
                     break;
 
                 case ChoiceType.Skill:
@@ -280,6 +304,7 @@ public class SkillPick : MonoBehaviour
                     choices[i].choice_icon.sprite = s.IMG;
                     choices[i].choice_back.sprite = skillPlate;
                     choices[i].choice_desc.text = s.NameKR;
+                    MakeStar(i, choiceList[i].lev, s.MaxLevel);
                     break;
 
                 case ChoiceType.Evo:
@@ -295,6 +320,25 @@ public class SkillPick : MonoBehaviour
                     choices[i].choice_desc.text = "돈 돈 돈";
                     break;
             }
+        }
+    }
+
+    void MakeStar(int choiceAddr, int lev, int maxLev)
+    {
+        Transform t = choices[choiceAddr].starPos.transform;
+
+        for (int i = 0; i < lev; i++)
+        {
+            GameObject g = Instantiate(aliveStar, t);
+
+            starList.Add(g);
+        }
+
+        for (int i = 0; i < maxLev - lev; i++)
+        {
+            GameObject g = Instantiate(deadStar, t);
+
+            starList.Add(g);
         }
     }
 
@@ -314,11 +358,12 @@ public class SkillPick : MonoBehaviour
         }
     }
 
-    PreChoice MakePreData(string _id, ChoiceType _t)
+    PreChoice MakePreData(string _id, ChoiceType _t, int _lev = 0)
     {
         PreChoice pc = new PreChoice();
         pc.pickedID = _id;
         pc.type = _t;
+        pc.lev = _lev + 1;
 
         return pc;
     }
