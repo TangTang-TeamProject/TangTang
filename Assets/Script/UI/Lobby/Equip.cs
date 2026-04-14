@@ -104,7 +104,6 @@ public class Equip : MonoBehaviour
 
     void DataRefresh()
     {
-        ChangeImg(weapon, EquipType.Weapon);
         ChangeImg(head, EquipType.Head);
         ChangeImg(body, EquipType.Body);
         ChangeImg(legs, EquipType.Leg);
