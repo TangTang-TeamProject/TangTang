@@ -87,7 +87,7 @@ public class RealEnemySpawner : MonoBehaviour
             return;
         }
 
-        if (Time.frameCount % 2 != 0)
+        if (Time.frameCount % 3 != 0)
         {
             return;
         }
@@ -130,13 +130,8 @@ public class RealEnemySpawner : MonoBehaviour
     }
 
     private void CheckWaveTime()
-    {        
-        if (_thisStageWave.Count < 1)
-        {
-            CPrint.Log("웨이브 모두 완료");
-            _isWaveEnd = true;
-            return;
-        }
+    {                
+        _nowWave.Clear();
 
         for (int i = 0; i < _thisStageWave.Count; i++)
         {            
@@ -155,10 +150,8 @@ public class RealEnemySpawner : MonoBehaviour
                     _thisStageWave.RemoveAt(i);
                     return;
                 }
-                
-                _nowWave.Add(_thisStageWave[i]);
-                _thisStageWave.RemoveAt(i);
 
+                _nowWave.Add(_thisStageWave[i]);                
                 _nowSpawnInterval = _thisStageWave[i].SpawnIntervalSec;
                 //CPrint.Warn("웨이브 변경됨");
                 //CPrint.Log($"현재 시간: {Timer.Instance.GameTime}");
@@ -169,7 +162,7 @@ public class RealEnemySpawner : MonoBehaviour
 
     private void CheckInActiveWave()
     {       
-        for (int i = _nowWave.Count - 1; i > 0; i--)
+        for (int i = _nowWave.Count - 1; i >= 0; i--)
         {
             if (Timer.Instance.GameTime > _nowWave[i].EndSec)
             {
