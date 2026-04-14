@@ -37,6 +37,8 @@ public class Equip : MonoBehaviour
     private EquipRegistry equipRegistry;
     [SerializeField]
     private PlayerRegistry playerRegistry;
+    [SerializeField]
+    private SkillRegistry skillRegistry;
 
     [SerializeField]
     private List<GameObject> equips;
@@ -104,11 +106,11 @@ public class Equip : MonoBehaviour
 
     void DataRefresh()
     {
-        ChangeImg(weapon, EquipType.Weapon);
         ChangeImg(head, EquipType.Head);
         ChangeImg(body, EquipType.Body);
         ChangeImg(legs, EquipType.Leg);
         ChangeImg(cape, EquipType.Cape);
+        weapon.sprite = skillRegistry.GetSkillByID(playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Weapon).IMG;
     }
 
     void ButtonRefresh()

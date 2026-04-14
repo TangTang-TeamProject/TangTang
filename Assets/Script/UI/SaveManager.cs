@@ -10,7 +10,6 @@ public enum EquipType
     Body,
     Leg,
     Cape,
-    Weapon,
     TypeCount,
 }
 
@@ -109,7 +108,6 @@ public static class SaveManager
         newData.equipID[(int)EquipType.Head] = "HEAD1";
         newData.equipID[(int)EquipType.Body] = "BODY1";
         newData.equipID[(int)EquipType.Leg] = "LEG1";
-        newData.equipID[(int)EquipType.Weapon] = "WEAPON1";
 
         newData.masterVolume = 1f;
         newData.bgmVolume = 1f;

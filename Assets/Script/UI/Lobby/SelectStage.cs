@@ -10,6 +10,8 @@ public class SelectStage : MonoBehaviour
     private PlayerRegistry playerRegistry;
     [SerializeField]
     private EquipRegistry equipRegistry;
+    [SerializeField]
+    private SkillRegistry skillRegistry;
 
     [SerializeField]
     private Button startBTN;
@@ -24,6 +26,8 @@ public class SelectStage : MonoBehaviour
     private TextMeshProUGUI charName;
     [SerializeField]
     private List<Image> charEquip;
+    [SerializeField]
+    private Image charWeapon;
 
     [SerializeField]
     private List<Sprite> stageIMG;
@@ -31,7 +35,7 @@ public class SelectStage : MonoBehaviour
     private Image selectedStageIMG;
 
 
-    private Scenes selectedScene = Scenes.Stage_01;
+    private Scenes selectedScene = Scenes.STG_001;
 
 
     private void Awake()
@@ -44,7 +48,6 @@ public class SelectStage : MonoBehaviour
     private void OnEnable()
     {
         DataRefresh();
-        selectedStageIMG.sprite = stageIMG[(int)selectedScene];
     }
 
     void DataRefresh()
@@ -61,14 +64,18 @@ public class SelectStage : MonoBehaviour
         charEquip[1].sprite = equipRegistry.GetEquipByID(s[1]).IMG;
         charEquip[2].sprite = equipRegistry.GetEquipByID(s[2]).IMG;
         charEquip[3].sprite = equipRegistry.GetEquipByID(s[3]).IMG;
-        charEquip[4].sprite = equipRegistry.GetEquipByID(s[4]).IMG;
+
+
+        charWeapon.sprite = skillRegistry.GetSkillByID(playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Weapon).IMG;
+
+        selectedStageIMG.sprite = stageIMG[(int)selectedScene];
     }
 
     void MoveSelect(int a)
     {
         int nextScene = (int)selectedScene + a;
 
-        if (nextScene > (int)Scenes.SceneCount - 1)
+        if (nextScene >= (int)Scenes.SceneCount)
         {
             nextScene = (int)Scenes.STG_001;
         }
