@@ -16,8 +16,7 @@ public enum EquipType
 
 public enum ClosedChar
 { 
-    Erin = 0,
-    Noah,
+    Noah = 0,
     Ria,
     CharCount,
 }
@@ -98,7 +97,7 @@ public static class SaveManager
         }
     }
 
-    public static SaveData MakeNew()
+    static SaveData MakeNew()
     {
         SaveData newData = new SaveData();
 
@@ -134,6 +133,12 @@ public static class SaveManager
         return newData;
     }
 
+    public static void Refresh()
+    {
+        saveData = MakeNew();
+        Save();
+    }
+
     public static void SetDate()
     {
         saveData.dateTime = DateTime.UtcNow.Ticks;
@@ -152,6 +157,11 @@ public static class SaveManager
     public static string GetEquip(EquipType slot)
     {
         return saveData.equipID[(int)slot];
+    }
+
+    public static void SetChar(string ID)
+    {
+        saveData.selectedChar = ID;
     }
 
     public static void SetMasterVolume(float _master)

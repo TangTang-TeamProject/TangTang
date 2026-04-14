@@ -68,6 +68,7 @@ public class Character : MonoBehaviour
             charDesc.text = p.Desc;
             charDesc.color = Color.white;
             charIMG.sprite = p.Icon;
+            selectedChar = id;
             selectBTN.gameObject.SetActive(true);
         }
     }
@@ -75,7 +76,7 @@ public class Character : MonoBehaviour
 
     void SelectChar()
     {
-        SaveManager.data.selectedChar = selectedChar;
+        SaveManager.SetChar(selectedChar);
         SaveManager.Save();
     }
 }
