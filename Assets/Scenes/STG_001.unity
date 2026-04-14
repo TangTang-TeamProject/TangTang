@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MidBoss2
       objectReference: {fileID: 0}
+    - target: {fileID: 1130242760526685659, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7274080097361058139, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -160,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274080097361058139, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.04978848
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7274080097361058139, guid: 0b38de34ed9e4c641af2a4fdc53f8ebf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5676,11 +5680,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1891004986720682830, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1891004986720682830, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1891004986720682830, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5733,6 +5737,10 @@ PrefabInstance:
     - target: {fileID: 8458380459228892208, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
       propertyPath: m_Name
       value: MidBoss1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458380459228892208, guid: da25c96d691e8e54297c25b54a2aa6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16202,7 +16210,7 @@ PrefabInstance:
       objectReference: {fileID: 1531251640}
     - target: {fileID: 4714478628675730867, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714478628675730867, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16243,6 +16251,10 @@ PrefabInstance:
     - target: {fileID: 8015918045905641433, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
       propertyPath: m_Name
       value: FinalBoss_Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015918045905641433, guid: f41dff71b3be92f42a38dce47d2b41c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

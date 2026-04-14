@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7274080097361058139
 Transform:
   m_ObjectHideFlags: 0
@@ -172,3 +172,5 @@ MonoBehaviour:
   _hitTimer: 0.1
   _HPBar: {fileID: 0}
   _HPBarImage: {fileID: 0}
+  _itemParent: {fileID: 0}
+  _randomBox: {fileID: 0}
