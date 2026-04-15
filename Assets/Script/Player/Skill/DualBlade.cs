@@ -39,13 +39,14 @@ public class DualBlade : SkillAttack
 
     private void OnEnable()
     {
-        _hitRadius = _collider.radius;
+        _hitRadius = _collider.bounds.extents.x;
         _particle[0].Clear();
         _particle[1].Clear();
         _particle[0].Play();
         _particle[1].Play();
         _checkCo = StartCoroutine(Co_CheckTarget());
     }
+
     protected override void Move()
     {
         transform.position = _spawner.transform.position;

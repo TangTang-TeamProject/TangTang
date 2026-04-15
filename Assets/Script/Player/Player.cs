@@ -18,7 +18,12 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private PlayerRegistry _playerRegistry;
     [SerializeField] private EquipLevelRegistry _equipLevelRegistry;
     [SerializeField] private ArtifactRegistry _artifactRegistry;
+    [SerializeField] private Animator _animator;
     [SerializeField] private string _firstWeapon;
+    [SerializeField] private string _paramKnight = "tKnight";
+    [SerializeField] private string _paramMage = "tMage";
+    [SerializeField] private string _paramElf = "tElf";
+    [SerializeField] private string _paramShilder = "tShilder";
         
     private PlayerData_SO _data;
     private float _maxHp;
@@ -41,6 +46,10 @@ public class Player : MonoBehaviour, IDamagables
     private float _duration = 1;
     private float _range = 1;
     private float _autoHealAmount;
+    private int _hashKnight;
+    private int _hashMage;
+    private int _hashElf;
+    private int _hashShilder;
 
     public float MoveSpeed => _speed;
     public float MaxHp => _maxHp;
@@ -97,6 +106,14 @@ public class Player : MonoBehaviour, IDamagables
         }
     }
 
+    private void Awake()
+    {
+        _hashKnight = Animator.StringToHash(_paramKnight);
+        _hashMage = Animator.StringToHash(_paramMage);
+        _hashElf = Animator.StringToHash(_paramElf);
+        _hashShilder = Animator.StringToHash(_paramShilder);
+    }
+
     private void OnEnable()
     {
         _data = _playerRegistry.GetPlayerByID(SaveManager.data.selectedChar);
@@ -105,6 +122,7 @@ public class Player : MonoBehaviour, IDamagables
             CPrint.Error("플레이어 데이터 SO없음");
             return;
         }
+        SetCharacterAnim(_data.CharacterID);
         _maxHp = _data.BaseHP;
         _speed = _data.BaseMoveSpeed;
         _baseAttack = _data.BaseATK;
@@ -112,6 +130,25 @@ public class Player : MonoBehaviour, IDamagables
         SetEquipParam();
         _hp = _maxHp;
         _attack = _baseAttack;
+    }
+
+    void SetCharacterAnim(string id)
+    {
+        switch (id)
+        {
+            case "CHR_001":
+                _animator.SetTrigger(_hashKnight);
+                break;
+            case "CHR_002":
+                _animator.SetTrigger(_hashMage);
+                break;
+            case "CHR_003":
+                _animator.SetTrigger(_hashElf);
+                break;
+            case "CHR_004":
+                _animator.SetTrigger(_hashShilder);
+                break;
+        }
     }
 
     void SetEquipParam()
