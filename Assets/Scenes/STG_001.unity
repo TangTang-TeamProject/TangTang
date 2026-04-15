@@ -14122,7 +14122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 8.5
-  spawnCycle: 30
+  spawnCycle: 5
   item: {fileID: 11400000, guid: 28445a29721201c4390a2a200e0e0371, type: 2}
   spawnItemID: 0
 --- !u!1 &1855280327
