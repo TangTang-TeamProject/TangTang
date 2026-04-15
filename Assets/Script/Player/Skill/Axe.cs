@@ -44,6 +44,13 @@ public class Axe : SkillAttack
     public override void SetOrbit(float dist)
     {
         _offset = dist * Mathf.Deg2Rad;
+
+        float targetPos = 0 + _offset;
+
+        float x = Mathf.Cos(targetPos) * _radius;
+        float y = Mathf.Sin(targetPos) * _radius;
+
+        transform.position = _center.position + new Vector3(x, y, 0);
     }
 
     protected override void Move()
