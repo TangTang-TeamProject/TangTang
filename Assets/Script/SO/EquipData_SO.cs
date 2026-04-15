@@ -13,11 +13,9 @@ public class EquipData_SO : ScriptableObject
     [SerializeField]
     private EquipType type;
     [SerializeField]
-    private float atk = 0f;
+    private int maxLevel = 2;
     [SerializeField]
-    private float hpChange = 0f;
-    [SerializeField]
-    private float speedChange = 0f;
+    private string desc = "";
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
@@ -26,9 +24,8 @@ public class EquipData_SO : ScriptableObject
     public string EquipID => equipID;
     public string EquipName => equipName;
     public EquipType Type => type;
-    public float ATK => atk;
-    public float HPChange => hpChange;
-    public float SpeedChange => speedChange;
+    public int MaxLevel => maxLevel;
+    public string Desc => desc;
     public GameObject Prefab => prefab;
     public Sprite IMG => img;
 }

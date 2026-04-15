@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Cape1
   m_EditorClassIdentifier: 
   equipID: CAPE1
-  equipName: 
+  equipName: "\uB9DD\uD1A01"
   type: 3
-  atk: 1
-  hpChange: 10
-  speedChange: 1
+  desc: 
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: 28e59b8a1aa61e543bdb55515a957a9d, type: 3}
