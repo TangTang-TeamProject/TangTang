@@ -25,7 +25,8 @@ public class SaveData
 {
     public int gold;
 
-    public string[] equipID;
+    public string[] wearingEquip;
+    public Dictionary<string, int> equipLevel;
 
     public long dateTime;
 
@@ -102,12 +103,14 @@ public static class SaveManager
 
         newData.gold = 0;
         
-        newData.equipID = new string[(int)EquipType.TypeCount];
+        newData.wearingEquip = new string[(int)EquipType.TypeCount];
 
-        newData.equipID[(int)EquipType.Cape] = "CAPE1";
-        newData.equipID[(int)EquipType.Head] = "HEAD1";
-        newData.equipID[(int)EquipType.Body] = "BODY1";
-        newData.equipID[(int)EquipType.Leg] = "LEG1";
+        newData.wearingEquip[(int)EquipType.Cape] = "NoCape";
+        newData.wearingEquip[(int)EquipType.Head] = "NoHead";
+        newData.wearingEquip[(int)EquipType.Body] = "NoBody";
+        newData.wearingEquip[(int)EquipType.Leg] = "NoLegs";
+
+        newData.equipLevel = new Dictionary<string, int>();
 
         newData.masterVolume = 1f;
         newData.bgmVolume = 1f;
@@ -149,12 +152,38 @@ public static class SaveManager
 
     public static void SetEquip(EquipType slot, string ID)
     {
-        saveData.equipID[(int)slot] = ID;
+        saveData.wearingEquip[(int)slot] = ID;
     }
 
     public static string GetEquip(EquipType slot)
     {
-        return saveData.equipID[(int)slot];
+        return saveData.wearingEquip[(int)slot];
+    }
+
+    public static void SetEquipLevel(string id, int level)
+    {
+        if (saveData.equipLevel.ContainsKey(id))
+        {
+            saveData.equipLevel[id] = level;
+        }
+        else
+        {
+            saveData.equipLevel.Add(id, level);
+        }
+    }
+
+    public static int GetEquipLevel(string id)
+    {
+        if (saveData.equipLevel.ContainsKey(id))
+        {
+            return saveData.equipLevel[id];
+        }
+        else
+        {
+            saveData.equipLevel.Add(id, 0);
+
+            return 0;
+        }
     }
 
     public static void SetChar(string ID)
