@@ -191,7 +191,12 @@ MonoBehaviour:
   _playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
   _equipLevelRegistry: {fileID: 11400000, guid: 9f11a4f009311314d90be698429fce45, type: 2}
   _artifactRegistry: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
+  _animator: {fileID: 2923262381950182893}
   _firstWeapon: 
+  _paramKnight: tKnight
+  _paramMage: tMage
+  _paramElf: tElf
+  _paramShilder: tShilder
 --- !u!114 &4898886142843283832
 MonoBehaviour:
   m_ObjectHideFlags: 0
