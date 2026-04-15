@@ -6,7 +6,8 @@ using UnityEngine;
 
 public enum EquipType
 { 
-    Head = 0,
+    None = 0,
+    Head,
     Body,
     Leg,
     Cape,
@@ -168,7 +169,7 @@ public static class SaveManager
         }
         else
         {
-            saveData.equipLevel.Add(id, level);
+            saveData.equipLevel.Add(id, 0);
         }
     }
 
