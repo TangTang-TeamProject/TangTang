@@ -76,9 +76,9 @@ public class SkillSpawner : MonoBehaviour
             {
                 SkillAttack axe = _pool.UseSkill(use.id);
 
+                axe.SetComponent(transform);
                 axe.SetOrbit((360.0f / use.count) * i);
                 axe.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
-                axe.SetComponent(transform);
                 axe.gameObject.SetActive(true);
             }
             
