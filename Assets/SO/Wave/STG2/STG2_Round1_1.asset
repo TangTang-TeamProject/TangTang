@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageID: STG_002
   startSec: 0
-  endSec: 60
+  endSec: 180
   spawnEnemy: ENM_006
   enemyCount: 8
   spawnIntervalSec: 5

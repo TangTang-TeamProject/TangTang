@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: STG2_Boss_1
   m_EditorClassIdentifier: 
   stageID: STG_002
-  startSec: 5
-  endSec: 6
+  startSec: 240
+  endSec: 241
   spawnEnemy: ENM_008
   enemyCount: 1
   spawnIntervalSec: 100000

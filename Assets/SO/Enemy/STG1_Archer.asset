@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyID: ENM_002
   nameKR: "\uACE0\uBE14\uB9B0 \uAD81\uC218"
   nameEN: Goblin_Archer
-  hp: 50
+  hp: 80
   moveSpeed: 1
   contactDamage: 7
   expDrop: 1

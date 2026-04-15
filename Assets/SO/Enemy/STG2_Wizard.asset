@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyID: ENM_007
   nameKR: 
   nameEN: 
-  hp: 50
+  hp: 80
   moveSpeed: 1
   contactDamage: 6
   expDrop: 1

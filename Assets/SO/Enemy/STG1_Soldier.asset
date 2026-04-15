@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyID: ENM_001
   nameKR: "\uACE0\uBE14\uB9B0 \uBCD1\uC0AC"
   nameEN: Goblin_Soldier
-  hp: 50
+  hp: 80
   moveSpeed: 1.1
   contactDamage: 6
   expDrop: 1
