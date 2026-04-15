@@ -62,7 +62,7 @@ public class SelectStage : MonoBehaviour
         charName.text = p.NameKR;
 
 
-        string[] s = SaveManager.data.wearingEquip;
+        string[] s = SaveManager.data.equipID;
 
         charEquip[0].sprite = equipRegistry.GetEquipByID(s[0]).IMG;
         charEquip[1].sprite = equipRegistry.GetEquipByID(s[1]).IMG;

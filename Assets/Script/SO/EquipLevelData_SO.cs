@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipLevelRegistry : MonoBehaviour
+public class EquipLevelData_SO : MonoBehaviour
 {
     void Start()
     {

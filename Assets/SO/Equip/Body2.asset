@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Body2
   m_EditorClassIdentifier: 
   equipID: BODY2
-  equipName: "\uAC00\uC8FD \uAC11\uC637"
+  equipName: 
   type: 1
-  desc: 
+  atk: 5
+  hpChange: 20
+  speedChange: 1
   prefab: {fileID: 0}
   img: {fileID: 21300000, guid: 4d8e1b675292f433492d6bd54a1779ee, type: 3}

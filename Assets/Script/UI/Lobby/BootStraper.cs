@@ -23,18 +23,16 @@ public class BootStraper : MonoBehaviour
     [SerializeField]
     private SkillRegistry skill;
     [SerializeField]
-    private SkillLevelRegistry skillLevel;
+    private SkillLevelRegistry level;
     [SerializeField]
     private StageRegistry stage;
-    [SerializeField]
-    private EquipLevelRegistry equipLevel;
 
 
 
     private void Awake()
     {
         //나중에 삭제
-        SaveManager.Refresh();
+        //SaveManager.Refresh();
 
         SaveManager.Load();
 
@@ -73,8 +71,7 @@ public class BootStraper : MonoBehaviour
         wave.MakeDic();
         evo.MakeDic();
         skill.MakeDic();
-        skillLevel.MakeDic();
+        level.MakeDic();
         stage.MakeDic();
-        equipLevel.MakeDic();
     }
 }

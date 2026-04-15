@@ -117,7 +117,6 @@ public class Player : MonoBehaviour, IDamagables
     void SetEquipParam()
     {
         float atk = 0, hp = 0, speed = 0;
-        /*
         string[] ids = SaveManager.data.equipID;
         for (int i = 0; i < ids.Length; i++)
         {
@@ -126,7 +125,6 @@ public class Player : MonoBehaviour, IDamagables
             hp += _equipData.HPChange;
             speed += _equipData.SpeedChange;
         }
-        */
         _maxHp *= 1 + (hp * 0.01f);
         _baseAttack *= 1 + (atk * 0.01f);
         _speed *= 1 + (speed * 0.01f);
