@@ -33,7 +33,6 @@ public class EquipDataSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
 
         drag = Instantiate(dragPrefab, transform);
-        drag.transform.SetAsLastSibling();
         drag.SetDrag(ID);
         grab?.Invoke(ID);
     }
@@ -55,8 +54,7 @@ public class EquipDataSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             return;
         }
 
-        info = Instantiate(infoPrefab, transform);
-        info.transform.SetAsLastSibling();
+        info = Instantiate(infoPrefab, transform);;
         info.SetInfo(ID);
     }
 
