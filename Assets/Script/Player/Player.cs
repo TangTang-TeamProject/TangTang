@@ -226,6 +226,12 @@ public class Player : MonoBehaviour, IDamagables
             StopCoroutine(_invincibleCo);
             _invincibleCo = null;
         }
+
+        if (_autoHealCo != null)
+        {
+            StopCoroutine(_autoHealCo);
+            _autoHealCo = null;
+        }
     }
 
     void LevelUp()
@@ -251,8 +257,9 @@ public class Player : MonoBehaviour, IDamagables
             // 체력 증가
             case StatKey.HP:
                 _maxHp += data.ValuePerLevel;
-                _hp += data.ValuePerLevel;
                 OnMaxHPChange?.Invoke(_maxHp);
+                _hp += data.ValuePerLevel;
+                OnCurrentHPChange?.Invoke(_hp);
                 break;
             // 발사 쿨
             case StatKey.CoolDown:
@@ -272,9 +279,13 @@ public class Player : MonoBehaviour, IDamagables
                 _absorbePer += data.ValuePerLevel * 0.01f;
                 OnLootRangeChange?.Invoke(_absorbePer);
                 break;
+            // 자동회복
             case StatKey.AutoHeal:
                 _autoHealAmount += data.ValuePerLevel;
-                _autoHealCo = StartCoroutine(Co_AutoHeal());
+                if(_autoHealCo == null)
+                {
+                    _autoHealCo = StartCoroutine(Co_AutoHeal());
+                }                
                 break;
         }
     }
@@ -301,8 +312,11 @@ public class Player : MonoBehaviour, IDamagables
 
     IEnumerator Co_AutoHeal()
     {
-        _hp += _autoHealAmount;
-        OnCurrentHPChange?.Invoke(_hp);
-        yield return _nextHeal;
+        while (true)
+        {
+            _hp += _autoHealAmount;
+            OnCurrentHPChange?.Invoke(_hp);
+            yield return _nextHeal;
+        }
     }
 }

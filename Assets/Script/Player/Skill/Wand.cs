@@ -5,17 +5,25 @@ public class Wand : SkillAttack
     [SerializeField] private GameObject _fire;
     [SerializeField] private GameObject _explosion;
     [SerializeField] private Collider2D _target;
+    [SerializeField] private InfiniteMap _map;
     [SerializeField] private Vector3 _targetPos;
     [SerializeField] private Vector3 _startPos;
     [SerializeField] private Vector3 _offset = new Vector3(-2f, 6f, 0);
     private bool _isExplode;
     private float _elapsed;
-    private float _duration = 1;
+    private float _duration = 0.5f;
 
     private void Awake()
     {
         _baseScale = transform.localScale;
     }
+
+    public override void SetMap(InfiniteMap map)
+    {
+        _map = map;
+        _map.OnTeleport += Teleport;
+    }
+
     private void OnEnable()
     {
         _targetPos = transform.position;
@@ -55,5 +63,19 @@ public class Wand : SkillAttack
         _fire.SetActive(false);
         _explosion.SetActive(true);
         _target.enabled = true;
+    }
+
+    void Teleport(Vector3 pos)
+    {
+        _startPos += pos;
+        _targetPos += pos;
+    }
+
+    private void OnDisable()
+    {
+        if (_map != null)
+        {
+            _map.OnTeleport -= Teleport;
+        }
     }
 }

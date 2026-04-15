@@ -57,6 +57,7 @@ public abstract class SkillAttack : MonoBehaviour, IAttackables
     protected virtual void Rotate() { }
     public virtual void GetDestroy() { }
     public virtual void SetOrbit(float dist) { }
+    public virtual void SetMap(InfiniteMap map) { }
     public virtual void SetComponent(Transform center, Camera cam = null) { }
 
     // 아티팩트에 의해 이미 발사된 객체의 파라미터값 변경시
