@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b584aea8bff3cf249b065bbf78848eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileSO: {fileID: 11400000, guid: a49bc7482bfcd5749ad2c16464d1d342, type: 2}
+  _projectileSO: {fileID: 11400000, guid: 04de38f5a324e1049800b1aebdcef167, type: 2}
   _aliveTime: 3
 --- !u!1001 &4447824722059850730
 PrefabInstance:

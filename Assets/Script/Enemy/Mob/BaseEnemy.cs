@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Authentication.ExtendedProtection;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,6 +39,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected Vector2 _offset;
     protected Collider2D[] _boundaryBuffer = new Collider2D[30];
     protected Collider2D[] _dmgCheckBuffer = new Collider2D[30];
+    protected HashSet<IAttackables> _thisFrameRecord = new HashSet<IAttackables>(30);
+    protected HashSet<IAttackables> _hitRecords = new HashSet<IAttackables>(30);
 
     protected LayerMask _playerLayer;
     protected LayerMask _enemyLayer;
@@ -274,8 +277,20 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         {
             return;
         }
+        StartCoroutine(DieRoutine());
+        //gameObject.SetActive(false); // 몬스터 사망        
+        //_pool.Return(this);                   
+    }
+
+    IEnumerator DieRoutine()
+    {
+        _sr.color = Color.red;
+
+        yield return new WaitForSeconds(0.2f);
+
+        _sr.color = Color.white;
         gameObject.SetActive(false); // 몬스터 사망        
-        _pool.Return(this);                   
+        _pool.Return(this);
     }
 
     // 보스전 시작시 몬스터 정리
@@ -337,11 +352,19 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         for (int i = 0; i < count; i++)
         {
             if (_dmgCheckBuffer[i].TryGetComponent(out IAttackables attackables))
-            {                
-                Hit(attackables);
-                attackables.GetDestroy();
+            {    
+                _thisFrameRecord.Add(attackables);
+
+                if (_hitRecords.Add(attackables))
+                {
+                    Hit(attackables);
+                    attackables.GetDestroy();
+                }                
             }
         }
+
+        _hitRecords.IntersectWith(_thisFrameRecord);
+        _thisFrameRecord.Clear();
     }
 
     // 배틀존 안으로 제한.

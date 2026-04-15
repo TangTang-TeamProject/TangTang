@@ -18,12 +18,12 @@ public class STG2_FinalBoss : BaseEnemy
     [Header("투사체 연결")]
     [SerializeField] private GameObject _guidedProjectile;
     [SerializeField] private GameObject _allDirProjectile;
-    [SerializeField] private float _shootCount = 8;
+    [SerializeField] private float _shootCount = 12;
 
     [Header("소환할 몬스터")]
     [SerializeField] private GameObject _enemyType1;
     [SerializeField] private GameObject _enemyType2;
-    [SerializeField] private int _summonCount = 5;
+    [SerializeField] private int _summonCount = 8;
 
     private Vector2 _shootDir;
     private Vector2 _shootOrigin;
@@ -37,7 +37,7 @@ public class STG2_FinalBoss : BaseEnemy
     private string _animString_Atk = "2_Attack";
 
     private Vector2[] _allDirList = {Vector2.up, Vector2.down, Vector2.right, Vector2.left};
-
+    private int _dirIdx = 0;
 
     protected override void Awake()
     {
@@ -177,7 +177,7 @@ public class STG2_FinalBoss : BaseEnemy
 
         // 보스 전리품 생성 호출
 
-        Timer.Instance.IsBossDie(false);
+        Timer.Instance.IsBossDie(true);
         _HPBar.SetActive(false);
         Instantiate(_randomBox, transform.position, Quaternion.identity, _itemParent.transform);        
         Destroy(gameObject);
@@ -224,16 +224,21 @@ public class STG2_FinalBoss : BaseEnemy
 
     private void ShootAllDir()
     {
-        int randDir = UnityEngine.Random.Range(0, 4);
+        if (_dirIdx > 3)
+        {
+            _dirIdx = 0;
+        }
 
         _shootOrigin = transform.position;
         _shootOrigin.y += 0.5f;
 
-        _shootOrigin += _allDirList[randDir];
+        _shootOrigin += _allDirList[_dirIdx];
 
         Projectile_AllDir projectile = Instantiate(_allDirProjectile, _shootOrigin, Quaternion.identity).GetComponent<Projectile_AllDir>();
         projectile.Init(null, _target.transform);
-        projectile.SetShootDir(_allDirList[randDir]);
+        projectile.SetShootDir(_allDirList[_dirIdx]);
+
+        _dirIdx++;
     }
 
     private Vector2 RandSpawnPoint()
