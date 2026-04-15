@@ -6,8 +6,7 @@ using UnityEngine;
 
 public enum EquipType
 { 
-    None = 0,
-    Head,
+    Head = 0,
     Body,
     Leg,
     Cape,
