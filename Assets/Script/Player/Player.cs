@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDamagables
     [SerializeField] private string _targetLayerMask2 = "EnemyBullet";
     [SerializeField] private float _invincibleDuration = 0.5f;
     [SerializeField] private PlayerRegistry _playerRegistry;
-    [SerializeField] private EquipRegistry _equipRegistry;
+    [SerializeField] private EquipLevelRegistry _equipLevelRegistry;
     [SerializeField] private ArtifactRegistry _artifactRegistry;
     [SerializeField] private string _firstWeapon;
         
@@ -117,16 +117,16 @@ public class Player : MonoBehaviour, IDamagables
     void SetEquipParam()
     {
         float atk = 0, hp = 0, speed = 0;
-        /*
-        string[] ids = SaveManager.data.equipID;
+        
+        string[] ids = SaveManager.data.wearingEquip;
         for (int i = 0; i < ids.Length; i++)
         {
-            EquipData_SO _equipData = _equipRegistry.GetEquipByID(ids[i]);
-            atk += _equipData.ATK;
-            hp += _equipData.HPChange;
-            speed += _equipData.SpeedChange;
+            EquipLevel_SO equipData = _equipLevelRegistry.GetEquipsDataByIDLevel(ids[i], SaveManager.GetEquipLevel(ids[i]));
+            atk += equipData.ATK;
+            hp += equipData.HPChange;
+            speed += equipData.SpeedChange;
         }
-        */
+        
         _maxHp *= 1 + (hp * 0.01f);
         _baseAttack *= 1 + (atk * 0.01f);
         _speed *= 1 + (speed * 0.01f);
