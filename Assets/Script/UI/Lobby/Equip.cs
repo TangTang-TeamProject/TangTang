@@ -229,7 +229,7 @@ public class Equip : MonoBehaviour
             string _id = e[i].EquipID;
             EquipType _t = e[i].Type;
 
-            if (e[i].Type == EquipType.None)
+            if (e[i].Type == EquipType.TypeCount)
             {
                 continue;
             }

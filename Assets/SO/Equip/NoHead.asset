@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipID: NoHead
   equipName: 
-  type: 0
+  type: 4
   maxLevel: 0
   desc: 
   prefab: {fileID: 0}
