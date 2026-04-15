@@ -9,6 +9,7 @@ public class SkillSpawner : MonoBehaviour
     [SerializeField] private SkillPool _pool;
     [SerializeField] private Player _player;
     [SerializeField] private Transform _spawnDir;
+    [SerializeField] private InfiniteMap _map;
     [SerializeField] private Camera _cam;
     [SerializeField] private SkillData_SO[] _skillData;
     [SerializeField] private SkillLevelRegistry _levelRegistry;
@@ -47,6 +48,11 @@ public class SkillSpawner : MonoBehaviour
         {
             CPrint.Log("스킬스포너에 공격방향 참조 안됐음");
             return;
+        }
+
+        if (_map == null)
+        {
+            _map = FindAnyObjectByType<InfiniteMap>();
         }
 
         if (_cam == null)
@@ -215,13 +221,15 @@ public class SkillSpawner : MonoBehaviour
         {
             use = _paramDict[id];
             time = use.time * _player.Duration;
+            GetWall(out float top, out float bottom, out float right, out float left);
             for (int i = 0; i < use.count; i++)
             {
                 SkillAttack wand = _pool.UseSkill(use.id);
-                x = Random.Range(-5f, 5f);
-                y = Random.Range(-3f, 3f);
+                x = Random.Range(left, right);
+                y = Random.Range(bottom, top);
 
                 wand.transform.position = transform.position + new Vector3(x, y, 0);
+                wand.SetMap(_map);
                 wand.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
                 wand.gameObject.SetActive(true);
             }
@@ -351,5 +359,16 @@ public class SkillSpawner : MonoBehaviour
                 _coDict[id] = StartCoroutine(Co_WandFire(id));
                 break;
         }
+    }
+
+    void GetWall(out float top, out float bottom, out float right, out float left)
+    {
+        float camHeight = _cam.orthographicSize;
+        float camWidth = camHeight * _cam.aspect;
+
+        top = camHeight-1;
+        bottom = -camHeight+1f;
+        right = camWidth-1;
+        left = -camWidth+1;
     }
 }

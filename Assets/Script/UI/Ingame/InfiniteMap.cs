@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class InfiniteMap : MonoBehaviour
 
     private float xDist;
     private float yDist;
+
+    public event Action<Vector3> OnTeleport;
 
     private void Awake()
     {
@@ -63,6 +66,7 @@ public class InfiniteMap : MonoBehaviour
         }
 
         godObject.position += calcPos;
+        OnTeleport?.Invoke(calcPos);
     }
 
     void MakeBattleZone()
