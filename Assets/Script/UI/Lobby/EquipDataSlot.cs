@@ -54,7 +54,7 @@ public class EquipDataSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             return;
         }
 
-        info = Instantiate(infoPrefab, transform);
+        info = Instantiate(infoPrefab, transform);;
         info.SetInfo(ID);
     }
 
@@ -67,7 +67,7 @@ public class EquipDataSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (drag != null)
         {
-            Destroy(drag);
+            Destroy(drag.gameObject);
         }
 
         drag = null;
@@ -76,7 +76,7 @@ public class EquipDataSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (info != null)
         {
-            Destroy(info);
+            Destroy(info.gameObject);
         }
 
         info = null;

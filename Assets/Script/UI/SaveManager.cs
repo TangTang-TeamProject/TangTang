@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Timers;
 using UnityEngine;
 
 public enum EquipType
@@ -20,13 +21,19 @@ public enum ClosedChar
     CharCount,
 }
 
+public class EquipLevel
+{
+    public string id;
+    public int level;
+}
+
 [System.Serializable]
 public class SaveData
 {
     public int gold;
 
     public string[] wearingEquip;
-    public Dictionary<string, int> equipLevel;
+    public List<EquipLevel> equipLevel;
 
     public long dateTime;
 
@@ -110,7 +117,7 @@ public static class SaveManager
         newData.wearingEquip[(int)EquipType.Body] = "NoBody";
         newData.wearingEquip[(int)EquipType.Leg] = "NoLegs";
 
-        newData.equipLevel = new Dictionary<string, int>();
+        newData.equipLevel = new List<EquipLevel>();
 
         newData.masterVolume = 1f;
         newData.bgmVolume = 1f;
@@ -162,27 +169,45 @@ public static class SaveManager
 
     public static void SetEquipLevel(string id, int level)
     {
-        if (saveData.equipLevel.ContainsKey(id))
-        {
-            saveData.equipLevel[id] = level;
-        }
-        else
-        {
-            saveData.equipLevel.Add(id, 0);
-        }
+        EquipLevel el = Find(id);
+
+        el.level = level;
+
+        Save();
+
+        return;
     }
 
     public static int GetEquipLevel(string id)
     {
-        if (saveData.equipLevel.ContainsKey(id))
+        EquipLevel el = Find(id);
+
+        return el.level;
+    }
+
+    static EquipLevel Find(string id)
+    {
+        if (saveData.equipLevel == null)
         {
-            return saveData.equipLevel[id];
+            saveData.equipLevel = new List<EquipLevel>();
+        }
+
+        EquipLevel a = saveData.equipLevel.Find(x => x.id == id);
+
+        if (a == null)
+        {
+            a = new EquipLevel();
+
+            a.id = id;
+            a.level = 0;
+
+            saveData.equipLevel.Add(a);
+
+            return a;
         }
         else
         {
-            saveData.equipLevel.Add(id, 0);
-
-            return 0;
+            return a;
         }
     }
 
