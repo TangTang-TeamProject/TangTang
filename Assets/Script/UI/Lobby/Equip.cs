@@ -20,9 +20,6 @@ public class Equip : MonoBehaviour
         Down,
     }
 
-
-    [SerializeField]
-    private Image weapon;
     [SerializeField]
     private Image head;
     [SerializeField]
@@ -110,7 +107,6 @@ public class Equip : MonoBehaviour
         ChangeImg(body, EquipType.Body);
         ChangeImg(legs, EquipType.Leg);
         ChangeImg(cape, EquipType.Cape);
-        weapon.sprite = skillRegistry.GetSkillByID(playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Weapon).IMG;
     }
 
     void ButtonRefresh()
