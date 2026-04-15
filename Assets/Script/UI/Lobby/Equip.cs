@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,9 +79,23 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private Sprite downSprite;
 
+    [SerializeField]
+    private Button upGradeBTN;
+    [SerializeField]
+    private TextMeshProUGUI descText;
+    [SerializeField]
+    private int requireGold = 50;
+    [SerializeField]
+    private TextMeshProUGUI goldText;
+
 
     private SortType sortType = SortType.ALL;
     private SortWay sortWay = SortWay.Down;
+
+    private string selectedEquip;
+    private string grabbedEquip;
+
+    private Coroutine coroutine;
     
     private void Awake()
     {
@@ -90,6 +105,8 @@ public class Equip : MonoBehaviour
         legsSort.onClick.AddListener(() => DecideType(legsSortimg, SortType.Legs));
         capeSort.onClick.AddListener(() => DecideType(capeSortimg, SortType.Cape));
         updownSort.onClick.AddListener(() => DecideWay(updownSortimg));
+
+        upGradeBTN.onClick.AddListener(UpGrade);
     }
 
     private void OnEnable()
@@ -101,12 +118,24 @@ public class Equip : MonoBehaviour
         DecideWay(updownSortimg);
     }
 
+    private void OnDisable()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+    }
+
     void DataRefresh()
     {
         ChangeImg(head, EquipType.Head);
         ChangeImg(body, EquipType.Body);
         ChangeImg(legs, EquipType.Leg);
         ChangeImg(cape, EquipType.Cape);
+
+        goldText.text = (SaveManager.data.gold).ToString();
+
+        descText.text = $"강화 한번에 {requireGold}골드!";
     }
 
     void ButtonRefresh()
@@ -197,13 +226,21 @@ public class Equip : MonoBehaviour
 
         for (int i = 0; i < e.Count; i++)
         {
-            GameObject g = Instantiate(equipPrefab);
-            Button btn = g.GetComponentInChildren<Button>();
-
-            btn.image.sprite = e[i].IMG;
-
             string _id = e[i].EquipID;
             EquipType _t = e[i].Type;
+
+            if (e[i].Type == EquipType.None)
+            {
+                continue;
+            }
+
+            GameObject g = Instantiate(equipPrefab);
+            Button btn = g.GetComponentInChildren<Button>();
+            IEquipSlot _slot = g.GetComponent<IEquipSlot>();
+
+            _slot.SetID(_id, GrabEquip);
+
+            btn.image.sprite = e[i].IMG;
 
             btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
 
@@ -254,5 +291,57 @@ public class Equip : MonoBehaviour
         string id = SaveManager.GetEquip(type);
 
         img.sprite = equipRegistry.GetEquipByID(id).IMG;
+    }
+
+    void GrabEquip(string id)
+    {
+        grabbedEquip = id;
+    }
+
+    void UpGrade()
+    {
+        if (string.IsNullOrEmpty(selectedEquip))
+        {
+            descText.text = "장비를 선택해주세요!";
+        }
+        else
+        {
+            int g = SaveManager.data.gold;
+            int lev = SaveManager.GetEquipLevel(selectedEquip);
+            int maxLev = equipRegistry.GetEquipByID(selectedEquip).MaxLevel;
+
+            if (g > 50)
+            {
+                descText.text = "잔액 부족!";
+            }
+            else if (lev >= maxLev)
+            {
+                descText.text = "최고 레벨!";
+            }
+            else
+            {
+                descText.text = "강화 성공!";
+                SaveManager.CalcGold(-requireGold);
+                lev++;
+                SaveManager.SetEquipLevel(selectedEquip, lev);
+                SaveManager.Save();
+            }
+        }
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        coroutine = StartCoroutine(TextChangeCoroutine());
+    }
+
+    IEnumerator TextChangeCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+
+        descText.text = $"강화 한번에 {requireGold}골드!";
+
+        yield break;
     }
 }
