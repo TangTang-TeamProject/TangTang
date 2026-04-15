@@ -5419,29 +5419,29 @@ MonoBehaviour:
   bossText: "!\uBCF4\uC2A4 \uB4F1\uC7A5!"
   timeText: {fileID: 408166444}
   alarms:
-  - time: 47
-    type: 1
-  - time: 60
-    type: 4
-  - time: 107
-    type: 2
-  - time: 120
-    type: 5
-  - time: 167
+  - time: 170
     type: 1
   - time: 180
     type: 4
-  - time: 227
+  - time: 230
     type: 2
   - time: 240
     type: 5
-  - time: 287
+  - time: 410
     type: 1
-  - time: 300
+  - time: 420
     type: 4
-  - time: 347
+  - time: 470
+    type: 2
+  - time: 480
+    type: 5
+  - time: 650
+    type: 1
+  - time: 660
+    type: 4
+  - time: 710
     type: 3
-  - time: 360
+  - time: 720
     type: 6
 --- !u!224 &635489975
 RectTransform:

@@ -179,7 +179,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             transform.localScale = new Vector3(2.5f, 2.5f, 0); // 엘리트몹 크기 변경
             int randExp = UnityEngine.Random.Range(10, 30);
             _expDrop = randExp;
-            _maxHp = _monsterData.HP * 2;
+            _maxHp = _monsterData.HP * 6;
         }
         else
         {
@@ -334,12 +334,13 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void CheckDamaged()
     {
-        //if (Timer.Instance.TickTime == _nextDmg)
-        //{
-        //    return;
-        //}
+        if (Timer.Instance.RealTime >= _nextDmg)
+        {
+            _hitRecords.Clear();
+            _nextDmg = Timer.Instance.RealTime + 0.5f; // 데미지 판정 검사 _checkTime 주기마다 진입.        
+            return;
+        }
 
-        //_nextDmg = Timer.Instance.TickTime; // 데미지 판정 검사 _checkTime 주기마다 진입.        
 
         Vector2 center = _col.transform.TransformPoint(_col.offset);
         float radius = _col.radius * Mathf.Max(_col.transform.lossyScale.x, _col.transform.lossyScale.y);

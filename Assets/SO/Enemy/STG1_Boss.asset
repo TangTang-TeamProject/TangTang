@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyID: ENM_005
   nameKR: "\uBD80\uC871\uC7A5 \uACE0\uB974\uB9C9"
   nameEN: Chieftain Gormak
-  hp: 2000
+  hp: 20000
   moveSpeed: 3
   contactDamage: 26
   expDrop: 0
