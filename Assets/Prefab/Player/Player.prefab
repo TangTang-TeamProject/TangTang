@@ -189,7 +189,7 @@ MonoBehaviour:
   _targetLayerMask2: EnemyBullet
   _invincibleDuration: 0.5
   _playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
-  _equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
+  _equipLevelRegistry: {fileID: 11400000, guid: 9f11a4f009311314d90be698429fce45, type: 2}
   _artifactRegistry: {fileID: 11400000, guid: 7c7ddd075b9a1ec4b98b379fff5dc2cf, type: 2}
   _firstWeapon: 
 --- !u!114 &4898886142843283832
