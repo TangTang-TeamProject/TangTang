@@ -22,13 +22,13 @@ public class Equip : MonoBehaviour
     }
 
     [SerializeField]
-    private Image head;
+    private EquipDropSlot head;
     [SerializeField]
-    private Image body;
+    private EquipDropSlot body;
     [SerializeField]
-    private Image legs;
+    private EquipDropSlot legs;
     [SerializeField]
-    private Image cape;
+    private EquipDropSlot cape;
     [SerializeField]
     private Image player;
     [SerializeField]
@@ -79,6 +79,15 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private Sprite downSprite;
 
+    private SortType sortType = SortType.ALL;
+    private SortWay sortWay = SortWay.Down;
+
+
+
+    [SerializeField]
+    private EquipUpGradeDropSlot upGradeEquip;
+    [SerializeField]
+    private Sprite noUpGradeEquip;
     [SerializeField]
     private Button upGradeBTN;
     [SerializeField]
@@ -89,11 +98,8 @@ public class Equip : MonoBehaviour
     private TextMeshProUGUI goldText;
 
 
-    private SortType sortType = SortType.ALL;
-    private SortWay sortWay = SortWay.Down;
-
-    private string selectedEquip;
-    private string grabbedEquip;
+    private string upgradeID;
+    private string grabbedID;
 
     private Coroutine coroutine;
     
@@ -106,6 +112,13 @@ public class Equip : MonoBehaviour
         capeSort.onClick.AddListener(() => DecideType(capeSortimg, SortType.Cape));
         updownSort.onClick.AddListener(() => DecideWay(updownSortimg));
 
+        head.SetDropWear(ChangeWearEquip);
+        body.SetDropWear(ChangeWearEquip);
+        legs.SetDropWear(ChangeWearEquip);
+        cape.SetDropWear(ChangeWearEquip);
+
+        upGradeEquip.SetDropUpGrade(DropUpgrade);
+
         upGradeBTN.onClick.AddListener(UpGrade);
     }
 
@@ -113,7 +126,8 @@ public class Equip : MonoBehaviour
     {
         player.sprite = playerRegistry.GetPlayerByID(SaveManager.data.selectedChar).Icon;
 
-        DataRefresh();
+        WearingRefresh();
+        UpGradeRefresh();
         DecideType(allSortimg, SortType.ALL);
         DecideWay(updownSortimg);
     }
@@ -126,16 +140,30 @@ public class Equip : MonoBehaviour
         }
     }
 
-    void DataRefresh()
+    void WearingRefresh()
     {
-        ChangeImg(head, EquipType.Head);
-        ChangeImg(body, EquipType.Body);
-        ChangeImg(legs, EquipType.Leg);
-        ChangeImg(cape, EquipType.Cape);
+        head.ChangeIMG(ReturnImg(EquipType.Head));
+        body.ChangeIMG(ReturnImg(EquipType.Body));
+        legs.ChangeIMG(ReturnImg(EquipType.Leg));
+        cape.ChangeIMG(ReturnImg(EquipType.Cape));
+    }
 
+    Sprite ReturnImg(EquipType type)
+    {
+        string id = SaveManager.GetEquip(type);
+
+        return equipRegistry.GetEquipByID(id).IMG;
+    }
+
+    void UpGradeRefresh()
+    {
         goldText.text = (SaveManager.data.gold).ToString();
 
         descText.text = $"강화 한번에 {requireGold}골드!";
+
+        upGradeEquip.ChangeIMG(noUpGradeEquip);
+
+        upgradeID = null;
     }
 
     void ButtonRefresh()
@@ -214,8 +242,6 @@ public class Equip : MonoBehaviour
 
             string _id = e[i].EquipID;
 
-            btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
-
             equips.Add(g);
         }
     }
@@ -241,8 +267,6 @@ public class Equip : MonoBehaviour
             _slot.SetID(_id, GrabEquip);
 
             btn.image.sprite = e[i].IMG;
-
-            btn.onClick.AddListener(() => ChangeWearEquip(_t, _id));
 
             equips.Add(g);
         }
@@ -277,40 +301,46 @@ public class Equip : MonoBehaviour
         equips.Clear();
     }
 
-    void ChangeWearEquip(EquipType _t, string _id)
+    void ChangeWearEquip(EquipType _type)
     {
-        SaveManager.SetEquip(_t, _id);
+        EquipType grabType = equipRegistry.GetEquipByID(grabbedID).Type;
+
+        if(_type != grabType)
+        {
+            return;
+        }
+
+        SaveManager.SetEquip(grabType, grabbedID);
         SaveManager.Save();
 
-        DataRefresh();
-    }
-
-
-    void ChangeImg(Image img, EquipType type)
-    {
-        string id = SaveManager.GetEquip(type);
-
-        img.sprite = equipRegistry.GetEquipByID(id).IMG;
+        WearingRefresh();
     }
 
     void GrabEquip(string id)
     {
-        grabbedEquip = id;
+        grabbedID = id;
+    }
+
+    void DropUpgrade()
+    {
+        upgradeID = grabbedID;
+
+        upGradeEquip.ChangeIMG(equipRegistry.GetEquipByID(upgradeID).IMG);
     }
 
     void UpGrade()
     {
-        if (string.IsNullOrEmpty(selectedEquip))
+        if (string.IsNullOrEmpty(upgradeID))
         {
             descText.text = "장비를 선택해주세요!";
         }
         else
         {
             int g = SaveManager.data.gold;
-            int lev = SaveManager.GetEquipLevel(selectedEquip);
-            int maxLev = equipRegistry.GetEquipByID(selectedEquip).MaxLevel;
+            int lev = SaveManager.GetEquipLevel(upgradeID);
+            int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
 
-            if (g > 50)
+            if (g < 50)
             {
                 descText.text = "잔액 부족!";
             }
@@ -323,7 +353,7 @@ public class Equip : MonoBehaviour
                 descText.text = "강화 성공!";
                 SaveManager.CalcGold(-requireGold);
                 lev++;
-                SaveManager.SetEquipLevel(selectedEquip, lev);
+                SaveManager.SetEquipLevel(upgradeID, lev);
                 SaveManager.Save();
             }
         }

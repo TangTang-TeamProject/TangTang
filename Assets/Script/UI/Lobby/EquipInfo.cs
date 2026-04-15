@@ -15,7 +15,7 @@ public class EquipInfo : MonoBehaviour
 
     public void SetInfo(string _id)
     {
-        itemName.text = equipRegistry.GetEquipByID(_id).EquipName;
+        itemName.text = equipRegistry.GetEquipByID(_id).EquipName + "( +" + SaveManager.GetEquipLevel(_id) + " )";
         desc.text = equipRegistry.GetEquipByID(_id).Desc;
     }
 }
