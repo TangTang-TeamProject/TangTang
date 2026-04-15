@@ -121,7 +121,7 @@ public class Player : MonoBehaviour, IDamagables
         string[] ids = SaveManager.data.wearingEquip;
         for (int i = 0; i < ids.Length; i++)
         {
-            EquipLevel_SO equipData = _equipLevelRegistry.GetEquipsDataByIDLevel(ids[i], SaveManager.data.equipLevel[ids[i]]);
+            EquipLevel_SO equipData = _equipLevelRegistry.GetEquipsDataByIDLevel(ids[i], SaveManager.GetEquipLevel(ids[i]));
             atk += equipData.ATK;
             hp += equipData.HPChange;
             speed += equipData.SpeedChange;
