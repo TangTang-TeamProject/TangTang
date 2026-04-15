@@ -38,6 +38,11 @@ public class IngameFlow : MonoBehaviour
     private PlayStats situation = PlayStats.Playing;
     private int beforeTime = 0;
 
+
+
+    [SerializeField]
+    private GameObject whiteOut;
+
     private void Awake()
     {
         pauseBTN.onClick.AddListener(PauseButtonClick);
@@ -57,6 +62,7 @@ public class IngameFlow : MonoBehaviour
         ItemManager.instance.SkillPick += SkillPickEvent;
         ItemManager.instance.LuckyBox += LotteryEvent;
         ItemManager.instance.Money += goldDigger.AddGold;
+        ItemManager.instance.Bomb += BoomEvent;
         AlarmUI.BigWaveMode += ZoomOutCam;
         AlarmUI.BasicMode += ZoomInCam;
     }
@@ -138,6 +144,21 @@ public class IngameFlow : MonoBehaviour
         }
     }
 
+    void BoomEvent()
+    {
+        whiteOut.SetActive(true);
+
+        StartCoroutine(WhiteOutCoroutine());
+    }
+
+    IEnumerator WhiteOutCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        whiteOut.SetActive(false);
+
+        yield break;
+    }
     void SkillPickEvent()
     {
         ChangeStats(PlayStats.Directing);
