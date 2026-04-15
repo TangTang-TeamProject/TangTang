@@ -115,7 +115,11 @@ public class BossWeapon_Axe : MonoBehaviour, IAttackables
             reflectVec = new Vector2(Mathf.Cos(reflectRadian), Mathf.Sin(reflectRadian));
             reflectVec.Normalize();
 
-            _dirAimed = reflectVec;
+            // 플레이어로의 벡터 (시험용)
+            Vector2 toPlayer = _target.transform.position - transform.position;
+            toPlayer.Normalize();
+
+            _dirAimed = toPlayer;
         }
         else if (contactedToVertex)
         {

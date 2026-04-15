@@ -30,7 +30,14 @@ public class Projectile_MidBoss2 : BaseProjectile
 
         _splitObjectA.gameObject.SetActive(false);
         _splitObjectB.gameObject.SetActive(false);
-    } 
+    }
+
+    public override void Init(ProjectilePool pool, Transform targetPos)
+    {
+        base.Init(pool, targetPos);
+        
+        transform.localScale = new Vector3(_projectileSO.SizeScale, _projectileSO.SizeScale, 1);
+    }
     void Update()
     {
         if (Timer.Instance.RealTime < _splitAt)
