@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f348c8260cdb04b9774161cd213058, type: 3}
   m_Name: Body2
   m_EditorClassIdentifier: 
-  equipID: BODY2
+  equipID: Body2
   equipName: "\uAC00\uC8FD \uAC11\uC637"
   type: 1
   maxLevel: 2
