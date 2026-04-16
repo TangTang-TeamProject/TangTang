@@ -21,6 +21,7 @@ public enum ClosedChar
     CharCount,
 }
 
+[System.Serializable]
 public class EquipLevel
 {
     public string id;
@@ -53,7 +54,7 @@ public static class SaveManager
 {
     private static string dataPath = Application.persistentDataPath + "/save.json";
 
-    static SaveData saveData;
+    private static SaveData saveData;
 
     public static SaveData data
     {
@@ -189,6 +190,7 @@ public static class SaveManager
     {
         if (saveData.equipLevel == null)
         {
+            CPrint.Error("저장이 안되고있나?");
             saveData.equipLevel = new List<EquipLevel>();
         }
 
@@ -202,6 +204,8 @@ public static class SaveManager
             a.level = 0;
 
             saveData.equipLevel.Add(a);
+
+            Save();
 
             return a;
         }

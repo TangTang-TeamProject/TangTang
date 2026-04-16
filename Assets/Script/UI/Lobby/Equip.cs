@@ -34,6 +34,8 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private EquipRegistry equipRegistry;
     [SerializeField]
+    private EquipLevelRegistry equipLevelRegistry;    
+    [SerializeField]
     private PlayerRegistry playerRegistry;
     [SerializeField]
     private SkillRegistry skillRegistry;
@@ -92,8 +94,6 @@ public class Equip : MonoBehaviour
     private Button upGradeBTN;
     [SerializeField]
     private TextMeshProUGUI descText;
-    [SerializeField]
-    private int requireGold = 50;
     [SerializeField]
     private TextMeshProUGUI goldText;
 
@@ -159,7 +159,7 @@ public class Equip : MonoBehaviour
     {
         goldText.text = (SaveManager.data.gold).ToString();
 
-        descText.text = $"강화 한번에 {requireGold}골드!";
+        descText.text = $"아이템을 강화하세요!";
 
         upGradeEquip.ChangeIMG(noUpGradeEquip);
 
@@ -326,6 +326,12 @@ public class Equip : MonoBehaviour
         upgradeID = grabbedID;
 
         upGradeEquip.ChangeIMG(equipRegistry.GetEquipByID(upgradeID).IMG);
+
+        int lev = SaveManager.GetEquipLevel(upgradeID);
+        int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
+        int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
+
+        TextChange(reqGold, lev >= maxLev);
     }
 
     void UpGrade()
@@ -339,6 +345,7 @@ public class Equip : MonoBehaviour
             int g = SaveManager.data.gold;
             int lev = SaveManager.GetEquipLevel(upgradeID);
             int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
+            int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
 
             if (g < 50)
             {
@@ -346,32 +353,45 @@ public class Equip : MonoBehaviour
             }
             else if (lev >= maxLev)
             {
-                descText.text = "최고 레벨!";
+                descText.text = $"해당 장비는 최고레벨 입니다!";
+                return;
             }
             else
             {
                 descText.text = "강화 성공!";
-                SaveManager.CalcGold(-requireGold);
+                SaveManager.CalcGold(-reqGold);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);
-                SaveManager.Save();
+                goldText.text = (SaveManager.data.gold).ToString();
             }
-        }
 
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
 
-        coroutine = StartCoroutine(TextChangeCoroutine());
+            coroutine = StartCoroutine(TextChangeCoroutine(reqGold, false));
+        }
     }
 
-    IEnumerator TextChangeCoroutine()
+    IEnumerator TextChangeCoroutine(int _reqGold, bool _isMax)
     {
         yield return new WaitForSeconds(2f);
 
-        descText.text = $"강화 한번에 {requireGold}골드!";
+        TextChange(_reqGold, _isMax);
 
         yield break;
+    }
+
+    void TextChange(int _reqGold, bool _isMax)
+    {
+        if (_isMax)
+        {
+            descText.text = $"해당 장비는 최고레벨 입니다!";
+        }
+        else
+        {
+            descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+        }
     }
 }

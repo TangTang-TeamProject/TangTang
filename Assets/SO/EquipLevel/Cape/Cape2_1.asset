@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cape2_1
   m_EditorClassIdentifier: 
   equipID: Cape2
+  upGradeRequire: 100
   level: 1
   atk: 0
   hpChange: 0

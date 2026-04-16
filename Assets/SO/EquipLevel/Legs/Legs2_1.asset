@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Legs2_1
   m_EditorClassIdentifier: 
   equipID: Legs2
+  upGradeRequire: 100
   level: 1
-  atk: 20
+  atk: 0
   hpChange: 0
   speedChange: 10

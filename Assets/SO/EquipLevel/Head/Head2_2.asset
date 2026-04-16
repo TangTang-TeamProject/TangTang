@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Head2_2
   m_EditorClassIdentifier: 
   equipID: Head2
+  upGradeRequire: 150
   level: 2
   atk: 15
   hpChange: 0
