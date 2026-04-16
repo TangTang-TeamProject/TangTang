@@ -24,5 +24,5 @@ MonoBehaviour:
   isClosed: 0
   openRequire: 0
   desc: "\uC704\uB300\uD55C \uD3EC\uC2A4\uC758 \uD798\uC73C\uB85C"
-  icon: {fileID: 21300000, guid: 678a0ad4be47340d49403da6b930716c, type: 3}
+  icon: {fileID: 21300000, guid: ee2dee941d8cb6740b2717aa37ca8060, type: 3}
   prefab: {fileID: 2988542607015746279, guid: 4473868a4d5f3fa47a1f41e2f36b92b7, type: 3}

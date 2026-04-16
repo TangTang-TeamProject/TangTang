@@ -21,6 +21,16 @@ public class Equip : MonoBehaviour
         Down,
     }
 
+    enum TextType
+    {
+        Normal,
+        NoMoney,
+        MaxLevel,
+        Success,
+        Require,
+        SelectPLZ
+    }
+
     [SerializeField]
     private EquipDropSlot head;
     [SerializeField]
@@ -159,7 +169,7 @@ public class Equip : MonoBehaviour
     {
         goldText.text = (SaveManager.data.gold).ToString();
 
-        descText.text = $"아이템을 강화하세요!";
+        TextChange(0, TextType.Normal);
 
         upGradeEquip.ChangeIMG(noUpGradeEquip);
 
@@ -331,14 +341,22 @@ public class Equip : MonoBehaviour
         int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
         int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
 
-        TextChange(reqGold, lev >= maxLev);
+        if (lev >= maxLev)
+        {
+            TextChange(reqGold, TextType.MaxLevel);
+        }
+        else
+        {
+            TextChange(reqGold, TextType.Require);
+        }
+
     }
 
     void UpGrade()
     {
         if (string.IsNullOrEmpty(upgradeID))
         {
-            descText.text = "장비를 선택해주세요!";
+            TextChange(0, TextType.SelectPLZ);
         }
         else
         {
@@ -347,18 +365,20 @@ public class Equip : MonoBehaviour
             int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
             int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
 
-            if (g < 50)
+
+            if (lev >= maxLev)
             {
-                descText.text = "잔액 부족!";
-            }
-            else if (lev >= maxLev)
-            {
-                descText.text = $"해당 장비는 최고레벨 입니다!";
+                TextChange(reqGold, TextType.MaxLevel);
                 return;
+            }
+            else if (g < reqGold)
+            {
+                TextChange(reqGold, TextType.NoMoney);
             }
             else
             {
-                descText.text = "강화 성공!";
+                TextChange(reqGold, TextType.Success);
+
                 SaveManager.CalcGold(-reqGold);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);
@@ -370,28 +390,41 @@ public class Equip : MonoBehaviour
                 StopCoroutine(coroutine);
             }
 
-            coroutine = StartCoroutine(TextChangeCoroutine(reqGold, false));
+            coroutine = StartCoroutine(TextChangeCoroutine(reqGold));
         }
     }
 
-    IEnumerator TextChangeCoroutine(int _reqGold, bool _isMax)
+    IEnumerator TextChangeCoroutine(int _reqGold)
     {
         yield return new WaitForSeconds(2f);
 
-        TextChange(_reqGold, _isMax);
+        TextChange(_reqGold, TextType.Require);
 
         yield break;
     }
 
-    void TextChange(int _reqGold, bool _isMax)
+    void TextChange(int _reqGold, TextType tt)
     {
-        if (_isMax)
+        switch(tt)
         {
-            descText.text = $"해당 장비는 최고레벨 입니다!";
-        }
-        else
-        {
-            descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+            case TextType.Normal:
+                descText.text = $"장비를 강화하세요!";
+                break;
+            case TextType.NoMoney:
+                descText.text = "잔액 부족!";
+                break;
+            case TextType.Require:
+                descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+                break;
+            case TextType.MaxLevel:
+                descText.text = $"해당 장비는 최고레벨입니다!";
+                break;
+            case TextType.Success:
+                descText.text = "강화 성공!";
+                break;
+            case TextType.SelectPLZ:
+                descText.text = "장비를 올려주세요!";
+                break;
         }
     }
 }
