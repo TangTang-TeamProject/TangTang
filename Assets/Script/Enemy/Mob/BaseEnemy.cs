@@ -262,7 +262,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         }        
         _isHit = true;        
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
-        _sr.color = Color.red;                      
+        _sr.color = new Color(1f, 0.5f, 0.5f);
 
         if (_maxHp <= 0)
         {
