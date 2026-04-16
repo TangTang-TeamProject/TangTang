@@ -34,6 +34,8 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private EquipRegistry equipRegistry;
     [SerializeField]
+    private EquipLevelRegistry equipLevelRegistry;    
+    [SerializeField]
     private PlayerRegistry playerRegistry;
     [SerializeField]
     private SkillRegistry skillRegistry;
@@ -324,6 +326,11 @@ public class Equip : MonoBehaviour
         upgradeID = grabbedID;
 
         upGradeEquip.ChangeIMG(equipRegistry.GetEquipByID(upgradeID).IMG);
+
+        int lev = SaveManager.GetEquipLevel(upgradeID);
+        int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
+
+        descText.text = $"강화에 {reqGold}골드가 필요합니다.";
     }
 
     void UpGrade()
@@ -337,6 +344,7 @@ public class Equip : MonoBehaviour
             int g = SaveManager.data.gold;
             int lev = SaveManager.GetEquipLevel(upgradeID);
             int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
+            int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
 
             if (g < 50)
             {
@@ -349,26 +357,29 @@ public class Equip : MonoBehaviour
             else
             {
                 descText.text = "강화 성공!";
-                SaveManager.CalcGold(-50);
+                SaveManager.CalcGold(-reqGold);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);
                 SaveManager.Save();
+                goldText.text = (SaveManager.data.gold).ToString();
             }
-        }
 
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
 
-        coroutine = StartCoroutine(TextChangeCoroutine());
+            coroutine = StartCoroutine(TextChangeCoroutine(reqGold));
+        }
     }
 
-    IEnumerator TextChangeCoroutine()
+    IEnumerator TextChangeCoroutine(int _reqGold)
     {
         yield return new WaitForSeconds(2f);
 
-        descText.text = $"";
+
+
+        descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
 
         yield break;
     }
