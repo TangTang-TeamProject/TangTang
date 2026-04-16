@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamagables
         Invincible,
         Dead,
     }
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private CircleCollider2D _playerCol;
     [SerializeField] private LayerMask _targetLayer;
     [SerializeField] private string _targetLayerMask1 = "Enemy";
@@ -91,6 +92,10 @@ public class Player : MonoBehaviour, IDamagables
 
     private void OnValidate()
     {
+        if (Application.isPlaying)
+        {
+            return;
+        }
         // 레이어 강제지정
         int mask1 = 1 << LayerMask.NameToLayer(_targetLayerMask1);
         int mask2 = 1 << LayerMask.NameToLayer(_targetLayerMask2);
@@ -103,6 +108,11 @@ public class Player : MonoBehaviour, IDamagables
         if (_playerCol == null)
         {
             _playerCol = GetComponent<CircleCollider2D>();
+        }
+
+        if (_spriteRenderer == null)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
     }
 
@@ -143,10 +153,10 @@ public class Player : MonoBehaviour, IDamagables
                 _animator.SetTrigger(_hashMage);
                 break;
             case "CHR_003":
-                _animator.SetTrigger(_hashElf);
+                _animator.SetTrigger(_hashShilder);
                 break;
             case "CHR_004":
-                _animator.SetTrigger(_hashShilder);
+                _animator.SetTrigger(_hashElf);
                 break;
         }
     }
@@ -217,6 +227,7 @@ public class Player : MonoBehaviour, IDamagables
     {
         yield return _invincibleTime;
         _playerState = EPlayerState.Normal;
+        _spriteRenderer.color = Color.white;
         _invincibleCo = null;
         CPrint.Log("무적 해제");
     }
@@ -238,7 +249,7 @@ public class Player : MonoBehaviour, IDamagables
             Die();
             return;
         }
-
+        _spriteRenderer.color = Color.red;
         _playerState = EPlayerState.Invincible;
         _invincibleCo = StartCoroutine(Co_Invincible());
     }

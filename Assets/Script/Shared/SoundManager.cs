@@ -95,7 +95,6 @@ public class SoundManager : MonoBehaviour
         }
         value = Mathf.Clamp(value, 0.001f, 1f);
         _mixer.SetFloat("Master", Mathf.Log10(value) * 20);
-        CPrint.Log($"{value}");
     }
 
     public void BGMVolumeChange(float value)
@@ -106,7 +105,6 @@ public class SoundManager : MonoBehaviour
         }
         value = Mathf.Clamp(value, 0.001f, 1f);
         _mixer.SetFloat("BGM", Mathf.Log10(value) * 20);
-        CPrint.Log($"{value}");
     }
 
     public void SfxVolumeChange(float value)
@@ -117,7 +115,6 @@ public class SoundManager : MonoBehaviour
         }
         value = Mathf.Clamp(value, 0.001f, 1f);
         _mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
-        CPrint.Log($"{value}");
     }
 
     private void BuildMaps()
