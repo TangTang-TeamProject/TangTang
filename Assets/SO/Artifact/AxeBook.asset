@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AxeBook
   m_EditorClassIdentifier: 
   artifactID: AxeBook
-  nameKR: "\uB3C4\uB07C \uAC15\uD654\uC11C"
+  nameKR: "\uB3C4\uB07C \uAC15\uD654\uC11C\n\n\uB370\uBBF8\uC9C0 \uC99D\uAC00"
   nameEN: 
   statKey: 0
   valuePerLevel: 10

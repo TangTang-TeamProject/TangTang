@@ -6,6 +6,7 @@ public class ArtifactData_SO : ScriptableObject
 {
     [SerializeField]
     private string artifactID = "";
+    [TextArea(3, 10)]
     [SerializeField]
     private string nameKR = "";
     [SerializeField]

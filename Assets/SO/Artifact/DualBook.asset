@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DualBook
   m_EditorClassIdentifier: 
   artifactID: DualBook
-  nameKR: "\uC30D\uAC80 \uAC15\uD654\uC11C"
+  nameKR: "\uC30D\uAC80 \uAC15\uD654\uC11C\n\n\uD761\uC218 \uBC94\uC704 \uC99D\uAC00"
   nameEN: 
   statKey: 5
   valuePerLevel: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WandBook
   m_EditorClassIdentifier: 
   artifactID: WandBook
-  nameKR: "\uC644\uB4DC\uAC15\uD654\uC11C"
+  nameKR: "\uC644\uB4DC\uAC15\uD654\uC11C\n\n\uBC94\uC704 \uC99D\uAC00"
   nameEN: 
   statKey: 4
   valuePerLevel: 10
