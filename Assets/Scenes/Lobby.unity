@@ -10697,6 +10697,7 @@ MonoBehaviour:
   cape: {fileID: 1989921749}
   player: {fileID: 1672686405}
   equipRegistry: {fileID: 11400000, guid: 1b91425b985cdb946b1bd3ff2d94b70c, type: 2}
+  equipLevelRegistry: {fileID: 11400000, guid: 9f11a4f009311314d90be698429fce45, type: 2}
   playerRegistry: {fileID: 11400000, guid: 5aad1a3590d3c1347ad5875d4eb47939, type: 2}
   skillRegistry: {fileID: 11400000, guid: 27bbc099a5de225458bc54c3212e1cb9, type: 2}
   equips: []
@@ -10722,7 +10723,6 @@ MonoBehaviour:
   noUpGradeEquip: {fileID: 21300000, guid: bff776d1498334ea8985a997924e528d, type: 3}
   upGradeBTN: {fileID: 942934568}
   descText: {fileID: 1518668662}
-  requireGold: 50
   goldText: {fileID: 1352751640}
 --- !u!1 &1754166811
 GameObject:

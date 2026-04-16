@@ -328,9 +328,10 @@ public class Equip : MonoBehaviour
         upGradeEquip.ChangeIMG(equipRegistry.GetEquipByID(upgradeID).IMG);
 
         int lev = SaveManager.GetEquipLevel(upgradeID);
+        int maxLev = equipRegistry.GetEquipByID(upgradeID).MaxLevel;
         int reqGold = equipLevelRegistry.GetEquipsDataByIDLevel(upgradeID, lev).UpGradeRequire;
 
-        descText.text = $"강화에 {reqGold}골드가 필요합니다.";
+        TextChange(reqGold, lev >= maxLev);
     }
 
     void UpGrade()
@@ -352,7 +353,8 @@ public class Equip : MonoBehaviour
             }
             else if (lev >= maxLev)
             {
-                descText.text = "최고 레벨!";
+                descText.text = $"해당 장비는 최고레벨 입니다!";
+                return;
             }
             else
             {
@@ -360,7 +362,6 @@ public class Equip : MonoBehaviour
                 SaveManager.CalcGold(-reqGold);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);
-                SaveManager.Save();
                 goldText.text = (SaveManager.data.gold).ToString();
             }
 
@@ -369,18 +370,28 @@ public class Equip : MonoBehaviour
                 StopCoroutine(coroutine);
             }
 
-            coroutine = StartCoroutine(TextChangeCoroutine(reqGold));
+            coroutine = StartCoroutine(TextChangeCoroutine(reqGold, false));
         }
     }
 
-    IEnumerator TextChangeCoroutine(int _reqGold)
+    IEnumerator TextChangeCoroutine(int _reqGold, bool _isMax)
     {
         yield return new WaitForSeconds(2f);
 
-
-
-        descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+        TextChange(_reqGold, _isMax);
 
         yield break;
+    }
+
+    void TextChange(int _reqGold, bool _isMax)
+    {
+        if (_isMax)
+        {
+            descText.text = $"해당 장비는 최고레벨 입니다!";
+        }
+        else
+        {
+            descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+        }
     }
 }
