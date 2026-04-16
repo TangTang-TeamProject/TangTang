@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DaggerBook
   m_EditorClassIdentifier: 
   artifactID: DaggerBook
-  nameKR: "\uB2E8\uAC80 \uAC15\uD654\uC11C"
+  nameKR: "\uB2E8\uAC80 \uAC15\uD654\uC11C\n\n\uCCB4\uB825 \uC7AC\uC0DD"
   nameEN: 
   statKey: 6
   valuePerLevel: 0.5

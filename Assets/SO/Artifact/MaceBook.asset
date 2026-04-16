@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaceBook
   m_EditorClassIdentifier: 
   artifactID: MaceBook
-  nameKR: "\uB9DD\uCE58 \uAC15\uD654\uC11C"
+  nameKR: "\uB9DD\uCE58 \uAC15\uD654\uC11C\n\n\uC9C0\uC18D \uC2DC\uAC04 \uC99D\uAC00"
   nameEN: 
   statKey: 3
   valuePerLevel: 10

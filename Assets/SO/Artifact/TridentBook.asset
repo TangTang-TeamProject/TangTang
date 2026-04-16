@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TridentBook
   m_EditorClassIdentifier: 
   artifactID: TridentBook
-  nameKR: "\uC0BC\uC9C0\uCC3D \uAC15\uD654\uC11C"
+  nameKR: "\uC0BC\uC9C0\uCC3D \uAC15\uD654\uC11C\n\n\uCFE8\uD0C0\uC784 \uAC10\uC18C"
   nameEN: 
   statKey: 2
   valuePerLevel: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpearBook
   m_EditorClassIdentifier: 
   artifactID: SpearBook
-  nameKR: "\uCC3D \uAC15\uD654\uC11C"
+  nameKR: "\uCC3D \uAC15\uD654\uC11C\n\n\uCCB4\uB825 \uC99D\uAC00"
   nameEN: 
   statKey: 1
   valuePerLevel: 10
