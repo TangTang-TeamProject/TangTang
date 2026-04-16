@@ -21,6 +21,8 @@ public class IngameFlow : MonoBehaviour
     [SerializeField]
     private Button pauseBTN;
     [SerializeField]
+    private Button resumeBTN;
+    [SerializeField]
     private Lottery lotteryUI;
     [SerializeField]
     private SkillPick skillPickUI;
@@ -46,6 +48,7 @@ public class IngameFlow : MonoBehaviour
     private void Awake()
     {
         pauseBTN.onClick.AddListener(PauseButtonClick);
+        resumeBTN.onClick.AddListener(PauseButtonClick);
 
         player = FindFirstObjectByType<Player>();
 
@@ -88,6 +91,17 @@ public class IngameFlow : MonoBehaviour
     }
 
     private void Update()
+    {
+        ShowCurrentTime();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            PauseButtonClick();
+        }
+    }
+
+    void ShowCurrentTime()
     {
         int currentTime = (int)Timer.Instance.GameTime;
 
