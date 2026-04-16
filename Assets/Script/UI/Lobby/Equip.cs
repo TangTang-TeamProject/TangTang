@@ -93,8 +93,6 @@ public class Equip : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI descText;
     [SerializeField]
-    private int requireGold = 50;
-    [SerializeField]
     private TextMeshProUGUI goldText;
 
 
@@ -159,7 +157,7 @@ public class Equip : MonoBehaviour
     {
         goldText.text = (SaveManager.data.gold).ToString();
 
-        descText.text = $"강화 한번에 {requireGold}골드!";
+        descText.text = $"아이템을 강화하세요!";
 
         upGradeEquip.ChangeIMG(noUpGradeEquip);
 
@@ -351,7 +349,7 @@ public class Equip : MonoBehaviour
             else
             {
                 descText.text = "강화 성공!";
-                SaveManager.CalcGold(-requireGold);
+                SaveManager.CalcGold(-50);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);
                 SaveManager.Save();
@@ -370,7 +368,7 @@ public class Equip : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        descText.text = $"강화 한번에 {requireGold}골드!";
+        descText.text = $"";
 
         yield break;
     }

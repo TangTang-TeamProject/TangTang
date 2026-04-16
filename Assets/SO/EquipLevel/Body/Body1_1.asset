@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Body1_1
   m_EditorClassIdentifier: 
   equipID: Body1
+  upGradeRequire: 100
   level: 1
   atk: 0
   hpChange: 20
