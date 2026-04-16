@@ -289,6 +289,7 @@ public class Player : MonoBehaviour, IDamagables
         _currentExp = 0;
         _requireExp = _requireExp + 10;
         _level++;
+        SoundManager.Instance.PlaySfx(ESfxType.LevelUp);
         ItemManager.instance.PickMeUp();
         OnCurrentEXPChange?.Invoke(_currentExp);
         OnRequireEXPChange?.Invoke(_requireExp);
