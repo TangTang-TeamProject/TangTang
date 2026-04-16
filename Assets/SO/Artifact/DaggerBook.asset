@@ -19,4 +19,4 @@ MonoBehaviour:
   valuePerLevel: 0.5
   maxLevel: 5
   prefab: {fileID: 0}
-  img: {fileID: 21300000, guid: 80b92c3296a7743538b7eb844b078aac, type: 3}
+  img: {fileID: 21300000, guid: 2b7807c1af9eb64408d5cd3b12dfd928, type: 3}
