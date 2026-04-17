@@ -105,12 +105,18 @@ public class STG2_MidBoss1 : BaseEnemy
 
         
 
-        if (!CanUpdate() || _isDashing)
+        if (!CanUpdate())
         {
             return;
         }
 
         CheckDamaged();
+
+        if (_isDashing)
+        {
+            return;
+        }
+
         Chase();
 
     }

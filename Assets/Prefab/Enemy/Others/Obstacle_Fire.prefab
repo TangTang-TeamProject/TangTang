@@ -9843,7 +9843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc86cb292e289b43b5eceb16abf2fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monsterData: {fileID: 11400000, guid: e01aab6c6edb86449a31bc0f7947d548, type: 2}
+  _hitTimer: 0.1
   _fireData: {fileID: 11400000, guid: e01aab6c6edb86449a31bc0f7947d548, type: 2}
+  _itemData: {fileID: 0}
 --- !u!210 &5717797286311464387
 SortingGroup:
   m_ObjectHideFlags: 0

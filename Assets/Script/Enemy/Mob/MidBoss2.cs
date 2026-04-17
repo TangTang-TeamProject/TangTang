@@ -30,8 +30,7 @@ public class MidBoss2 : BaseEnemy
             {
                 _isHit = false;
                 _isStun = false;
-                _hitTime = _hitTimer;
-                _speed = _monsterData.MoveSpeed; // 스피드 복구
+                _hitTime = _hitTimer;                
                 _sr.color = Color.white;
             }
         }
