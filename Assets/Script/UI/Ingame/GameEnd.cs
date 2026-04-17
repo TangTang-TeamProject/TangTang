@@ -57,13 +57,11 @@ public class GameEnd : MonoBehaviour
 
     void BackToMenu()
     {
-        Timer.Instance.IsTimeStop(false);
         SceneChanger.instance.MoveScene(Scenes.Lobby);
     }
 
     void ReGame()
     {
-        Timer.Instance.IsTimeStop(false);
         SceneChanger.instance.ReLoadScene();
     }
 
