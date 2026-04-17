@@ -37,17 +37,6 @@ public class SoundManager : MonoBehaviour
     private int _sfxIndex;
     private float _sfxCoolTime = 0.05f;
 
-    // 실행안하고 제대로 사운드가 들어갔는지 체크하는 코드(체크할때만 주석을 해제할것)
-    /*
-    private void OnValidate()
-    {
-        if (Application.isPlaying)
-        {
-            return;
-        }
-        BuildMaps();
-    }*/
-
     private void Awake()
     {
         if (_mixer == null)

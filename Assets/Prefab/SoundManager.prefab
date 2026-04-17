@@ -54,8 +54,6 @@ MonoBehaviour:
   - type: 2
     clip: {fileID: 8300000, guid: b88f4dbee0ece3143af06a422581a150, type: 3}
   - type: 3
-    clip: {fileID: 0}
-  - type: 4
     clip: {fileID: 8300000, guid: 09a31a188efaef244a063098b3cbe45c, type: 3}
   _sfxList:
   - type: 0
@@ -93,20 +91,18 @@ MonoBehaviour:
   - type: 16
     clip: {fileID: 8300000, guid: 729d9633d39edef49a0ef0bc06c09c79, type: 3}
   - type: 17
-    clip: {fileID: 0}
-  - type: 18
     clip: {fileID: 8300000, guid: 4af43d77d7c2dfd4abf5c77d2a1ea567, type: 3}
-  - type: 19
+  - type: 18
     clip: {fileID: 8300000, guid: 8646be7e4ee9ac04092903cac08acdf1, type: 3}
-  - type: 20
+  - type: 19
     clip: {fileID: 8300000, guid: 5cb2714e46f2393498cae4feeb7e712e, type: 3}
-  - type: 21
+  - type: 20
     clip: {fileID: 8300000, guid: ba31432f7b4c2744c9cc67cb66180f82, type: 3}
-  - type: 22
+  - type: 21
     clip: {fileID: 8300000, guid: bcad7fa5224315d4ebb691bc8a051e37, type: 3}
-  - type: 23
+  - type: 22
     clip: {fileID: 8300000, guid: 35c032855d75fab47a5bca239e68e0e4, type: 3}
-  - type: 24
+  - type: 23
     clip: {fileID: 8300000, guid: d7914d7ad736eec439a2485aa8fc34ab, type: 3}
   _mixer: {fileID: 24100000, guid: b1a46f348faf75447b90007848a080de, type: 2}
   _bgmSource: {fileID: 2984923077163106667}
