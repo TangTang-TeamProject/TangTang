@@ -15,6 +15,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected bool _isHit = false;
     protected float _hitTime;
     protected bool _isStun = false;
+    protected bool _isDead = false;
     protected float _stunValue = -0.5f; // 스턴 강도 <-------------------- 수치 조정
 
     // 생성 시 초기화 변수들
@@ -98,9 +99,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         else
         {
             CPrint.Log($"{this} -> CircleCollider2D 없음");
-        } 
-      
-        
+        }
+
+        _isHit = false;
+        _isStun = false;
+        _isDead = false;
     }
 
     protected virtual void Start()
@@ -118,7 +121,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     }
 
     protected virtual void Update()
-    {        
+    {                
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
@@ -126,7 +129,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             {
                 if (_mobType == EnemyType.Boss)
                 {
-                    _speed = 0f;
+                    _speed = 1.0f;
                 }
                 else
                 {
@@ -135,7 +138,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             }
             else
             {
-                _speed = 0f; // 경직
+                _speed = 1.0f; // 경직
             }
                
             if (_hitTime <= 0f)
@@ -173,23 +176,24 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
+        _mobType = _monsterData.EnemyType;
 
         if (_mobType != EnemyType.Boss)
         {
             if (Timer.Instance.GameTime <= 240f)
             {
                 _maxHp = _monsterData.HP;
-                _expDrop = _monsterData.ExpDrop;
             }
             else if (Timer.Instance.GameTime <= 480f)
             {
-                _maxHp = _monsterData.HP * 2f;                
+                _maxHp *= 1.5f;
             }
             else
             {
-                _maxHp = _monsterData.HP * 4f;                
+                _maxHp *= 4f;
             }
-        }        
+        }
+
 
         if (_isElite)
         {
@@ -200,12 +204,10 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             _maxHp *= 10;
         }
         else
-        {
-            _mobType = _monsterData.EnemyType;
-            transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);
-                   
-        }
-            
+        {            
+            transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);                   
+        }     
+
         _isHit = false;
         _isStun = false;
         _sr.color = Color.white; 
@@ -303,10 +305,12 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     IEnumerator DieRoutine()
     {
         _sr.color = Color.red;
+        _isDead = true;
 
         yield return new WaitForSeconds(0.2f);
 
         _sr.color = Color.white;
+        _isDead = false;
         gameObject.SetActive(false); // 몬스터 사망        
         _pool.Return(this);
     }

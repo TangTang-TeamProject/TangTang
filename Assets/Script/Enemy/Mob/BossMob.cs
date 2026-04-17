@@ -113,11 +113,10 @@ public class BossMob : BaseEnemy
         {
             return;
         }
-
-        Chase();
-        CheckDamaged();
-
         
+        CheckDamaged();
+        Chase();
+
         if (Timer.Instance.RealTime >= _nextPatternTime)
         {            
             if (!_leftHand && !_rightHand)
@@ -139,7 +138,7 @@ public class BossMob : BaseEnemy
                 Pattern_ThrowWeapon(false);
             }
         }
-       
+
         
     }
 

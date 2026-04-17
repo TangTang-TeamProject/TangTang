@@ -44,6 +44,10 @@ public class ThrowingMob : BaseEnemy
     protected override void Update()
     {
         base.Update();
+        if (_isDead)
+        {
+            return;
+        }
 
         if (_target == null) // 타겟 없으면 return
         {

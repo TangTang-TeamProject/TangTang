@@ -17,10 +17,10 @@ MonoBehaviour:
   nameEN: 
   hp: 0
   moveSpeed: 4
-  contactDamage: 5
+  contactDamage: 15
   expDrop: 0
   sizeScale: 2
   atkCycle: 0
-  bulletSpeed: 4
+  bulletSpeed: 6
   enemytype: 0
   prefab: {fileID: 0}

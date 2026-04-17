@@ -119,6 +119,8 @@ public class STG2_FinalBoss : BaseEnemy
             return;
         }
 
+        CheckDamaged();
+
         if (Timer.Instance.RealTime >= _nextShoot)
         {
             int rand = UnityEngine.Random.Range(0, 3);
@@ -140,7 +142,7 @@ public class STG2_FinalBoss : BaseEnemy
         }
 
         Chase();
-        CheckDamaged();
+        
     }
 
     void LateUpdate()
