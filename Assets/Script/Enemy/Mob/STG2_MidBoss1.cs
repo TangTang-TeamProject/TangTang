@@ -103,13 +103,14 @@ public class STG2_MidBoss1 : BaseEnemy
             _checkTime = Timer.Instance.RealTime + _atkCycle;
         }
 
-        CheckDamaged();
+        
 
         if (!CanUpdate() || _isDashing)
         {
             return;
         }
 
+        CheckDamaged();
         Chase();
 
     }

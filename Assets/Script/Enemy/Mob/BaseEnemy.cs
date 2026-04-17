@@ -174,19 +174,22 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
 
-        if (Timer.Instance.GameTime <= 240f)
+        if (_mobType != EnemyType.Boss)
         {
-            _maxHp = _monsterData.HP;
-            _expDrop = _monsterData.ExpDrop;
-        }
-        else if (Timer.Instance.GameTime <= 480f)
-        {
-            _maxHp = _monsterData.HP * 2f;            
-        }
-        else
-        {
-            _maxHp = _monsterData.HP * 4f;
-        }
+            if (Timer.Instance.GameTime <= 240f)
+            {
+                _maxHp = _monsterData.HP;
+                _expDrop = _monsterData.ExpDrop;
+            }
+            else if (Timer.Instance.GameTime <= 480f)
+            {
+                _maxHp = _monsterData.HP * 2f;                
+            }
+            else
+            {
+                _maxHp = _monsterData.HP * 4f;                
+            }
+        }        
 
         if (_isElite)
         {
