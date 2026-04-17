@@ -117,6 +117,7 @@ public class SceneChanger : MonoBehaviour
 
         fadeEndText.SetActive(true);
 
+        SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).BgmType);
         yield return new WaitForSecondsRealtime(0.5f);
 
         faded.alpha = 0;

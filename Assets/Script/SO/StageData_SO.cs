@@ -21,6 +21,8 @@ public class StageData_SO : ScriptableObject
     private int clearReward;
     [SerializeField]
     private int amount;
+    [SerializeField]
+    private EBgmType bgmType;
 
     public string StageID => stageID;
     public Scenes SceneEnum => sceneEnum;
@@ -30,4 +32,5 @@ public class StageData_SO : ScriptableObject
     public ClosedChar UnLockChar => unLockChar;
     public int ClearReward => clearReward;
     public int Amount => amount;
+    public EBgmType BgmType => bgmType;
 }

@@ -46,6 +46,7 @@ public class BootStraper : MonoBehaviour
     private void Start()
     {
         SetSound();
+        SoundManager.Instance.PlayBgm(EBgmType.Lobby);
     }
 
     void SetScreen()

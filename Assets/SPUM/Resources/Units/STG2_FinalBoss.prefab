@@ -2845,6 +2845,7 @@ GameObject:
   - component: {fileID: 7181128898746692817}
   - component: {fileID: 8271586855740289847}
   - component: {fileID: 1353480128594722592}
+  - component: {fileID: 3399644901311182917}
   m_Layer: 9
   m_Name: STG2_FinalBoss
   m_TagString: Untagged
@@ -2892,10 +2893,10 @@ MonoBehaviour:
   _randomBox: {fileID: 5771510562381001829, guid: 87961c646cd11254991f708d7a0a1e16, type: 3}
   _guidedProjectile: {fileID: 5508571460199153579, guid: 24f6dce28c4d3a04fae683f8574171e3, type: 3}
   _allDirProjectile: {fileID: 3453389317372799579, guid: 72e0d75c8f1c56943934a19a69e91b0d, type: 3}
-  _shootCount: 8
+  _shootCount: 20
   _enemyType1: {fileID: 6664132161818840512, guid: 9b64ae81334d75145b4d7bda612348c5, type: 3}
   _enemyType2: {fileID: 8529490576638914460, guid: 6f327697aed4bf44e9698770c948c901, type: 3}
-  _summonCount: 5
+  _summonCount: 8
 --- !u!58 &1353480128594722592
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2931,6 +2932,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 1}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &3399644901311182917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913891596470028878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b45c5d76697e04386314d4223130bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5961237692875518866
 GameObject:
   m_ObjectHideFlags: 0

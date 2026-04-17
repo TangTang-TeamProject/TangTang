@@ -173,20 +173,34 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _atkCycle = _monsterData.ATKCycle;
         _bulletSpeed = _monsterData.BulletSpeed;
         _expDrop = _monsterData.ExpDrop;
+
+        if (Timer.Instance.GameTime <= 240f)
+        {
+            _maxHp = _monsterData.HP;
+            _expDrop = _monsterData.ExpDrop;
+        }
+        else if (Timer.Instance.GameTime <= 480f)
+        {
+            _maxHp = _monsterData.HP * 2f;            
+        }
+        else
+        {
+            _maxHp = _monsterData.HP * 4f;
+        }
+
         if (_isElite)
         {
             _mobType = EnemyType.Elite;
             transform.localScale = new Vector3(2.5f, 2.5f, 0); // 엘리트몹 크기 변경
             int randExp = UnityEngine.Random.Range(10, 30);
             _expDrop = randExp;
-            _maxHp = _monsterData.HP * 10;
+            _maxHp *= 10;
         }
         else
         {
             _mobType = _monsterData.EnemyType;
             transform.localScale = new Vector3(_monsterData.SizeScale, _monsterData.SizeScale, 0);
-            _expDrop = _monsterData.ExpDrop;
-            _maxHp = _monsterData.HP;
+                   
         }
             
         _isHit = false;
