@@ -1919,6 +1919,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1816422744403632466, guid: 212ca9ef37b1df340b38c89e657d698a, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 64994443}
+    - target: {fileID: 1816422744403632466, guid: 212ca9ef37b1df340b38c89e657d698a, type: 3}
+      propertyPath: pCam
+      value: 
+      objectReference: {fileID: 96003196}
     - target: {fileID: 1918781374643971576, guid: 212ca9ef37b1df340b38c89e657d698a, type: 3}
       propertyPath: _player
       value: 
