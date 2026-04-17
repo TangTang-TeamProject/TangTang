@@ -36,7 +36,19 @@ public class MidBoss1 : BaseEnemy
 
     protected override void Update()
     {
-        base.Update();
+        if (_isHit)
+        {
+            _hitTime -= Time.deltaTime;           
+
+            if (_hitTime <= 0f)
+            {
+                _isHit = false;
+                _isStun = false;
+                _hitTime = _hitTimer;
+                _speed = _monsterData.MoveSpeed; // 스피드 복구
+                _sr.color = Color.white;
+            }
+        }
 
         if (_target == null) // 타겟 없으면 return
         {

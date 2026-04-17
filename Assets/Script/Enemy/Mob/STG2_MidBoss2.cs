@@ -88,13 +88,12 @@ public class STG2_MidBoss2 : BaseEnemy
         if (_isHit)
         {
             _hitTime -= Time.deltaTime;
-            _speed = 0f; // 멈칫하는 모션
+
 
             if (_hitTime <= 0f)
             {
                 _isHit = false;
-                _hitTime = _hitTimer;
-                _speed = _monsterData.MoveSpeed; // 스피드 복구
+                _hitTime = _hitTimer;                
                 for (int i = 0; i < _activeList.Count; i++)
                 {
                     _activeList[i].color = _colorMap[_activeList[i]];

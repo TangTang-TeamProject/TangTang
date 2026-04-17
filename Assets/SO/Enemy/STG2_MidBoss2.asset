@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyID: ENM_009
   nameKR: "\uC218\uD638\uBCD1"
   nameEN: Guard
-  hp: 5000
-  moveSpeed: 2
+  hp: 20000
+  moveSpeed: 4
   contactDamage: 11
   expDrop: 20
   sizeScale: 3.5

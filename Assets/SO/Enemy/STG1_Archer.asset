@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uACE0\uBE14\uB9B0 \uAD81\uC218"
   nameEN: Goblin_Archer
   hp: 80
-  moveSpeed: 1
+  moveSpeed: 2.2
   contactDamage: 7
   expDrop: 1
   sizeScale: 1.1
