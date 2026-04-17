@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyID: ENM_010
   nameKR: "\uD30C\uC774\uB110 \uBCF4\uC2A4"
   nameEN: 
-  hp: 20000
-  moveSpeed: 2.5
+  hp: 35000
+  moveSpeed: 4.2
   contactDamage: 25
   expDrop: 100
   sizeScale: 3.5

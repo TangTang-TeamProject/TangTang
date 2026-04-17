@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterData: {fileID: 11400000, guid: 597cd552b75ef4d4f9305b837213bf4d, type: 2}
   _hitTimer: 0.1
-  _dashPower: 4
-  _dashDist: 13
-  _dashTime: 1.3
+  _dashPower: 3.5
+  _dashDist: 11
+  _dashTime: 1
   _HPBar: {fileID: 0}
   _HPBarImage: {fileID: 0}
   _itemParent: {fileID: 0}

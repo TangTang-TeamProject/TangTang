@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyID: ENM_008
   nameKR: "\uB2AA\uC9C0 \uC624\uC6B0\uAC70"
   nameEN: Swamp Orge
-  hp: 4000
-  moveSpeed: 2.5
+  hp: 10000
+  moveSpeed: 4
   contactDamage: 22
   expDrop: 20
   sizeScale: 3.5

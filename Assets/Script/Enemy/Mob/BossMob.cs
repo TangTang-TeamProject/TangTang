@@ -95,8 +95,7 @@ public class BossMob : BaseEnemy
 
         if (_isHit)
         {
-            _hitTime -= Time.deltaTime;
-            _speed = 0f; // 멈칫하는 모션
+            _hitTime -= Time.deltaTime;            
 
             if (_hitTime <= 0f)
             {

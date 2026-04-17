@@ -18,7 +18,7 @@ public class STG2_FinalBoss : BaseEnemy
     [Header("투사체 연결")]
     [SerializeField] private GameObject _guidedProjectile;
     [SerializeField] private GameObject _allDirProjectile;
-    [SerializeField] private float _shootCount = 12;
+    [SerializeField] private float _shootCount = 20;
 
     [Header("소환할 몬스터")]
     [SerializeField] private GameObject _enemyType1;
@@ -100,14 +100,13 @@ public class STG2_FinalBoss : BaseEnemy
 
         if (_isHit)
         {
-            _hitTime -= Time.deltaTime;
-            _speed = 0f; // 멈칫하는 모션
+            _hitTime -= Time.deltaTime;           
 
             if (_hitTime <= 0f)
             {
                 _isHit = false;
                 _hitTime = _hitTimer;
-                _speed = _monsterData.MoveSpeed; // 스피드 복구
+                
                 for (int i = 0; i < _activeList.Count; i++)
                 {
                     _activeList[i].color = _colorMap[_activeList[i]];

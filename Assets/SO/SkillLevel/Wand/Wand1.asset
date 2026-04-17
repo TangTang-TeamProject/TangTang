@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: Wand
   level: 1
-  damage: 60
+  damage: 40
   speed: 1
   range: 1
   count: 1
