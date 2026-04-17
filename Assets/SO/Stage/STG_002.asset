@@ -20,3 +20,4 @@ MonoBehaviour:
   unLockChar: 1
   clearReward: 200
   amount: 20
+  bgmType: 2

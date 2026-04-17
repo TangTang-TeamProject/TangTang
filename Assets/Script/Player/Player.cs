@@ -259,7 +259,6 @@ public class Player : MonoBehaviour, IDamagables
     {
         // 예외 처리안함 어차피 Hit하지 않는이상 호출될 일이 없음
         CPrint.Warn("플레이어 죽었음");
-        SoundManager.Instance.PlaySfx(ESfxType.GameOver);
         _playerState = EPlayerState.Dead;
         OnDead?.Invoke();
         StopAllPlayerCoroutine();

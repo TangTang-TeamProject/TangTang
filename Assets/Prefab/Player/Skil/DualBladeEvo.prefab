@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4fe199d04c64d43930297c7abe1a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
   _spawner: {fileID: 0}
   _collider: {fileID: 4028377928168309400}
   _hitLayer:
@@ -192,7 +191,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8759425826186554283, guid: 7530876265345f648b0f116adfb59ef2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -291,7 +291,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8759425826186554283, guid: bc643e1271b2b1e448117fb9a13adcd8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
