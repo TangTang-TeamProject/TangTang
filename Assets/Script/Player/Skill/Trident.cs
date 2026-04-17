@@ -59,7 +59,7 @@ public class Trident : SkillAttack
         if (reflected)
         {
             transform.up = currentDir;
-
+            SoundManager.Instance.PlaySfx(ESfxType.Trident);
             Vector3 pos = transform.position;
         }
     }

@@ -34,6 +34,7 @@ public class Wand : SkillAttack
         _isExplode = false;
         _target.enabled = false;
         _elapsed = 0;
+        SoundManager.Instance.PlaySfx(ESfxType.Wand);
     }
 
     protected override void Move()
@@ -61,6 +62,7 @@ public class Wand : SkillAttack
     {
         _isExplode = true;
         _fire.SetActive(false);
+        SoundManager.Instance.PlaySfx(ESfxType.Explosion);
         _explosion.SetActive(true);
         _target.enabled = true;
     }

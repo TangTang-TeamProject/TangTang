@@ -116,6 +116,7 @@ public class SkillSpawner : MonoBehaviour
             }
             dagger.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             dagger.gameObject.SetActive(true);
+            SoundManager.Instance.PlaySfx(ESfxType.Dagger);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
@@ -136,6 +137,7 @@ public class SkillSpawner : MonoBehaviour
             dBlade.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             dBlade.SetComponent(transform);
             dBlade.gameObject.SetActive(true);
+            SoundManager.Instance.PlaySfx(ESfxType.DualBlade);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
@@ -157,6 +159,7 @@ public class SkillSpawner : MonoBehaviour
             mace.Init(use.id, use.damage, _player.Attack, _spawnDir.localPosition.x < 0 ?
                 -use.speed : use.speed, use.range, _pool, _player, time, _player.Range);
             mace.gameObject.SetActive(true);
+            SoundManager.Instance.PlaySfx(ESfxType.Mace);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
@@ -182,6 +185,7 @@ public class SkillSpawner : MonoBehaviour
                 spear.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
                 spear.gameObject.SetActive(true);
             }
+            SoundManager.Instance.PlaySfx(ESfxType.Spear);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
@@ -204,6 +208,7 @@ public class SkillSpawner : MonoBehaviour
             trident.SetComponent(_player.transform, _cam);
             trident.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             trident.gameObject.SetActive(true);
+            SoundManager.Instance.PlaySfx(ESfxType.Trident);
 
             float rate = time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);

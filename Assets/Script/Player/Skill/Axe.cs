@@ -67,6 +67,7 @@ public class Axe : SkillAttack
         {
             _remainTime = _keepTime;
         }
+        SoundManager.Instance.PlaySfx(ESfxType.Axe);
     }
 
     protected override void Rotate()
