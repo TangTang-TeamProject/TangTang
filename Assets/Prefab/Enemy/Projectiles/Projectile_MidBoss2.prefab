@@ -82,9 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSO: {fileID: 11400000, guid: 57004dc2f9d9de24d811f4ecec16afa9, type: 2}
-  _aliveTime: 3
+  _aliveTime: 4
   _splitObject: {fileID: 6557763653324395337, guid: 705d5a818349203498875060037f59ee, type: 3}
-  _splitTime: 1
+  _splitTime: 0.5
 --- !u!1001 &4343514230886695360
 PrefabInstance:
   m_ObjectHideFlags: 0

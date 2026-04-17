@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: WandEvo
   level: 1
-  damage: 200
+  damage: 120
   speed: 1
   range: 2
-  count: 5
-  appearTime: 6
+  count: 4
+  appearTime: 5
   coolTime: 2.5

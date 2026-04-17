@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: DaggerEvo
   level: 1
-  damage: 320
+  damage: 60
   speed: 12
   range: 1
   count: 1

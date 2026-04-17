@@ -17,7 +17,7 @@ MonoBehaviour:
   nameEN: 
   hp: 0
   moveSpeed: 0
-  contactDamage: 5
+  contactDamage: 15
   expDrop: 0
   sizeScale: 1.5
   atkCycle: 0
