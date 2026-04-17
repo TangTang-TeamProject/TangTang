@@ -12,7 +12,6 @@ public class Timer : MonoBehaviour
     private float _realTime;
     private float _keepTime;
     private float _tickTime;
-    private int _bossCount = 0;
 
     public float GameTime => _timer;
     public float RealTime => _realTime;
@@ -72,6 +71,5 @@ public class Timer : MonoBehaviour
         // 보스 출현시 시간 고정
         _keepTime = time;
         _timer = _keepTime;
-        _bossCount++;
     }
 }

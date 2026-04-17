@@ -20,7 +20,7 @@ public class SkillLevel_SO : ScriptableObject
     [SerializeField]
     private float appearTime = 0f;
     [SerializeField]
-    private float disAppearTime = 0f;
+    private float coolTime = 0f;
 
 
 
@@ -31,5 +31,5 @@ public class SkillLevel_SO : ScriptableObject
     public float Range => range;
     public int Count => count;
     public float AppearTime => appearTime;
-    public float DisAppearTime => disAppearTime;
+    public float CoolTime => coolTime;
 }
