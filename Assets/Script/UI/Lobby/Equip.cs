@@ -390,15 +390,22 @@ public class Equip : MonoBehaviour
                 StopCoroutine(coroutine);
             }
 
-            coroutine = StartCoroutine(TextChangeCoroutine(reqGold));
+            coroutine = StartCoroutine(TextChangeCoroutine(reqGold, lev >= maxLev));
         }
     }
 
-    IEnumerator TextChangeCoroutine(int _reqGold)
+    IEnumerator TextChangeCoroutine(int _reqGold, bool _isMax)
     {
         yield return new WaitForSeconds(2f);
 
-        TextChange(_reqGold, TextType.Require);
+        if (_isMax)
+        {
+
+        }
+        else
+        {
+            TextChange(_reqGold, TextType.Require);
+        }
 
         yield break;
     }
