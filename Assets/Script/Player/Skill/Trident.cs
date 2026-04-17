@@ -4,7 +4,8 @@ public class Trident : SkillAttack
 {
     [SerializeField] private Camera _cam;
     [SerializeField] private Transform _spawner;
-    [SerializeField] float _top, _bottom, _right, _left;
+    [SerializeField] private float _pushDistance = 0.5f;
+    float _top, _bottom, _right, _left;
 
     private void Awake()
     {
@@ -44,15 +45,25 @@ public class Trident : SkillAttack
         Vector3 currentDir = transform.up;
         bool reflected = false;
 
-        if (nextPos.x < _left || nextPos.x > _right)
+        if (nextPos.x < _left)
         {
             currentDir = Vector2.Reflect(currentDir, Vector2.right);
             reflected = true;
         }
+        else if (nextPos.x > _right)
+        {
+            currentDir = Vector2.Reflect(currentDir, Vector2.left);
+            reflected = true;
+        }
 
-        if (nextPos.y < _bottom || nextPos.y > _top)
+        if (nextPos.y < _bottom)
         {
             currentDir = Vector2.Reflect(currentDir, Vector2.up);
+            reflected = true;
+        }
+        else if (nextPos.y > _top)
+        {
+            currentDir = Vector2.Reflect(currentDir, Vector2.down);
             reflected = true;
         }
 
@@ -61,6 +72,13 @@ public class Trident : SkillAttack
             transform.up = currentDir;
             SoundManager.Instance.PlaySfx(ESfxType.Trident);
             Vector3 pos = transform.position;
+
+            pos.x = Mathf.Clamp(pos.x, _left, _right);
+            pos.y = Mathf.Clamp(pos.y, _bottom, _top);
+
+            pos += currentDir * _pushDistance;
+
+            transform.position = pos;
         }
     }
 

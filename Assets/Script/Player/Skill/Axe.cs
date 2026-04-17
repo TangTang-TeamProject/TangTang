@@ -17,6 +17,8 @@ public class Axe : SkillAttack
     private HashSet<BaseProjectile> _hitRecord = new HashSet<BaseProjectile>(20);
     private WaitForSeconds _nextCheck = new WaitForSeconds(0.1f);
     private Coroutine _checkCo;
+    private WaitForSeconds _nextSfx = new WaitForSeconds(0.5f);
+    private Coroutine _sfxCo;
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class Axe : SkillAttack
         _timer = 0;
         _hitRadius = _collider.radius;
         _checkCo = StartCoroutine(Co_CheckTarget());
+        _sfxCo = StartCoroutine(Co_AxeSfx());
     }
     public override void SetComponent(Transform center, Camera cam = null)
     {
@@ -67,7 +70,6 @@ public class Axe : SkillAttack
         {
             _remainTime = _keepTime;
         }
-        SoundManager.Instance.PlaySfx(ESfxType.Axe);
     }
 
     protected override void Rotate()
@@ -98,12 +100,26 @@ public class Axe : SkillAttack
         }
     }
 
+    IEnumerator Co_AxeSfx()
+    {
+        while (true)
+        {
+            SoundManager.Instance.PlaySfx(ESfxType.Axe);
+            yield return _nextSfx;
+        }
+    }
+
     private void OnDisable()
     {
         if (_checkCo != null)
         {
             StopCoroutine(_checkCo);
             _checkCo = null;
+        }
+        if (_sfxCo != null)
+        {
+            StopCoroutine(_sfxCo);
+            _sfxCo = null;
         }
         _hitRecord.Clear();
     }
