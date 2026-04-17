@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: Trident
   level: 2
   damage: 60
-  speed: 7
+  speed: 9
   range: 1
   count: 1
   appearTime: 2
