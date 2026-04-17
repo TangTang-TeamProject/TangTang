@@ -91,11 +91,11 @@ MonoBehaviour:
   - type: 15
     clip: {fileID: 8300000, guid: 9b54fca599b151c47b7d30968c38cfb2, type: 3}
   - type: 16
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 729d9633d39edef49a0ef0bc06c09c79, type: 3}
   - type: 17
     clip: {fileID: 0}
   - type: 18
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4af43d77d7c2dfd4abf5c77d2a1ea567, type: 3}
   - type: 19
     clip: {fileID: 8300000, guid: 8646be7e4ee9ac04092903cac08acdf1, type: 3}
   - type: 20
