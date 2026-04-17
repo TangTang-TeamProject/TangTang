@@ -3,7 +3,6 @@
     Lobby,
     Stage1,
     Stage2,
-    MidBoss,
     FinalBoss,
 }
 
@@ -26,7 +25,6 @@ public enum ESfxType
     Magnet,
     Coin,
     ReinforceSuccess,
-    ReinforecFail,
     Loading,
     Gacha,
     GachaComplete,
