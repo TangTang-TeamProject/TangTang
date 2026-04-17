@@ -236,6 +236,7 @@ public class Lottery : MonoBehaviour
 
     IEnumerator ShowResultCoroutine()
     {
+        SoundManager.Instance.PlaySfx(ESfxType.GachaComplete);
         resultIMG.sprite = choices[selectedChoice].choice_Icon.sprite;
 
         switch (choices[selectedChoice].type)

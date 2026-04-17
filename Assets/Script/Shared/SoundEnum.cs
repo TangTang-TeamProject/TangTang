@@ -29,6 +29,8 @@ public enum ESfxType
     ReinforecFail,
     Loading,
     Gacha,
+    GachaComplete,
+    Warning,
     GameOver1,
     GameOver2,
     LevelUp,

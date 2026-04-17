@@ -175,6 +175,8 @@ public class Alarm : MonoBehaviour
 
     IEnumerator AlarmCoroutine(string _text, Sprite _img)
     {
+        SoundManager.Instance.PlaySfx(ESfxType.Warning);
+
         alarmText.text = _text;
         mark.sprite = _img;
 
