@@ -118,7 +118,7 @@ public class SkillSpawner : MonoBehaviour
             dagger.gameObject.SetActive(true);
             SoundManager.Instance.PlaySfx(ESfxType.Dagger);
 
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
         }
     }
@@ -126,20 +126,18 @@ public class SkillSpawner : MonoBehaviour
     IEnumerator Co_DualBaldeFire(string id)
     {
         yield return null;
-        float time;
         SkillParameter use;
         while (_player.PlayerState != Player.EPlayerState.Dead)
         {
             use = _paramDict[id];
-            time = use.time * _player.Duration;
             SkillAttack dBlade = _pool.UseSkill(use.id);
 
-            dBlade.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
+            dBlade.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, use.time, _player.Range);
             dBlade.SetComponent(transform);
             dBlade.gameObject.SetActive(true);
             SoundManager.Instance.PlaySfx(ESfxType.DualBlade);
 
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.time + (use.cool * _player.Cool);
             yield return new WaitForSeconds(rate);
         }
     }
@@ -161,7 +159,7 @@ public class SkillSpawner : MonoBehaviour
             mace.gameObject.SetActive(true);
             SoundManager.Instance.PlaySfx(ESfxType.Mace);
 
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
         }
     }
@@ -187,7 +185,7 @@ public class SkillSpawner : MonoBehaviour
             }
             SoundManager.Instance.PlaySfx(ESfxType.Spear);
 
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
         }
     }
@@ -210,7 +208,7 @@ public class SkillSpawner : MonoBehaviour
             trident.gameObject.SetActive(true);
             SoundManager.Instance.PlaySfx(ESfxType.Trident);
 
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
         }
     }
@@ -238,7 +236,7 @@ public class SkillSpawner : MonoBehaviour
                 wand.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
                 wand.gameObject.SetActive(true);
             }
-            float rate = time + (use.cool * _player.Cool);
+            float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
         }
     }
@@ -313,7 +311,7 @@ public class SkillSpawner : MonoBehaviour
         _paramDict[id].range = data.Range;
         _paramDict[id].count = data.Count;
         _paramDict[id].time = data.AppearTime;
-        _paramDict[id].cool = data.DisAppearTime;
+        _paramDict[id].cool = data.CoolTime;
         _debugList = _paramDict.Values.ToList();
     }
 

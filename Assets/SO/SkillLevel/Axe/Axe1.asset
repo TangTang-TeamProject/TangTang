@@ -19,4 +19,4 @@ MonoBehaviour:
   range: 1
   count: 3
   appearTime: 1.5
-  disAppearTime: 2
+  coolTime: 2

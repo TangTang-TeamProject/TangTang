@@ -45,6 +45,7 @@ public class ExpGem : Items
     {        
         GetExp?.Invoke(Exp);
         GetExp = null;
+        SoundManager.Instance.PlaySfx(ESfxType.Gem);
         base.SetActiveFalse();
         _pool.Return(this);
     }
