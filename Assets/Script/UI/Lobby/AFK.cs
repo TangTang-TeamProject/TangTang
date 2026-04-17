@@ -21,13 +21,17 @@ public class AFK : MonoBehaviour
     private TextMeshProUGUI gaugeText;
     [SerializeField]
     private TextMeshProUGUI goldText;
+    [SerializeField]
+    private float rewardAmount = 100f;
+    [SerializeField]
+    private float rewardCycleMin = 10f;
 
 
     private DateTime dateTime;
     private DateTime endTime;
     TimeSpan total;
 
-    private float updateCycle = 1;
+    private float updateCycle = 0.5f;
     private float currentCycle = 0;
 
     private void Awake()
@@ -70,14 +74,23 @@ public class AFK : MonoBehaviour
 
         gauge.fillAmount = percent;
 
-        gaugeTextPos.anchoredPosition = Vector3.Lerp(gaugeTextStart.anchoredPosition, gaugeTextEnd.anchoredPosition, percent);
+        gaugeTextPos.anchoredPosition = Vector2.Lerp(gaugeTextStart.anchoredPosition, gaugeTextEnd.anchoredPosition, percent);
     }
 
     void GetReward()
     {
-        // 보상 누적 코드
+        if (!rewardBTN.interactable)
+        {
+            return;
+        }
+        rewardBTN.interactable = false;
 
-        CPrint.Log("보상 수령");
+        TimeSpan current = DateTime.UtcNow - dateTime;
+
+        float percent = Mathf.Clamp01((float)(current.TotalSeconds / total.TotalSeconds));
+
+        SaveManager.CalcGold(
+        (int)(rewardAmount * percent));
 
         SaveManager.SetDate();
         SaveManager.Save();
@@ -85,13 +98,14 @@ public class AFK : MonoBehaviour
         CalcTimes();
         AFKUIUpdate();
         UpdateGold();
+
+        rewardBTN.interactable = true;
     }
 
     void CalcTimes()
     {
         dateTime = new DateTime(SaveManager.data.dateTime);
-        // 수령 주기 이후에 추가 필요
-        endTime = dateTime.AddMinutes(10);
+        endTime = dateTime.AddMinutes(rewardCycleMin);
         total = endTime - dateTime;
     }
 

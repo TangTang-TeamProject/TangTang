@@ -408,22 +408,22 @@ public class Equip : MonoBehaviour
         switch(tt)
         {
             case TextType.Normal:
-                descText.text = $"장비를 강화하세요!";
+                descText.text = $"장비를\n강화하세요!";
                 break;
             case TextType.NoMoney:
                 descText.text = "잔액 부족!";
                 break;
             case TextType.Require:
-                descText.text = $"강화에 {_reqGold}골드가 필요합니다.";
+                descText.text = $"강화에 {_reqGold}골드가\n필요합니다.";
                 break;
             case TextType.MaxLevel:
-                descText.text = $"해당 장비는 최고레벨입니다!";
+                descText.text = $"해당 장비는\n최고레벨입니다!";
                 break;
             case TextType.Success:
                 descText.text = "강화 성공!";
                 break;
             case TextType.SelectPLZ:
-                descText.text = "장비를 올려주세요!";
+                descText.text = "장비를\n올려주세요!";
                 break;
         }
     }
