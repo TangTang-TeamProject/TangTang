@@ -105,7 +105,7 @@ MonoBehaviour:
   - type: 22
     clip: {fileID: 8300000, guid: bcad7fa5224315d4ebb691bc8a051e37, type: 3}
   - type: 23
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9b54fca599b151c47b7d30968c38cfb2, type: 3}
   - type: 24
     clip: {fileID: 8300000, guid: d7914d7ad736eec439a2485aa8fc34ab, type: 3}
   _mixer: {fileID: 24100000, guid: b1a46f348faf75447b90007848a080de, type: 2}

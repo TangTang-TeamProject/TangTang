@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6732517497030047969}
   - component: {fileID: 5691105694700258794}
   - component: {fileID: 6282054915583633757}
-  - component: {fileID: 7236855946692610610}
   m_Layer: 0
   m_Name: STG2_MidBoss2
   m_TagString: Untagged
@@ -105,15 +104,3 @@ MonoBehaviour:
   _itemParent: {fileID: 0}
   _randomBox: {fileID: 5771510562381001829, guid: 87961c646cd11254991f708d7a0a1e16, type: 3}
   _projectile: {fileID: 6680242328445465290, guid: ea7d519cc96313f449b7ffe7876a03cb, type: 3}
---- !u!114 &7236855946692610610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134590060924655178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b45c5d76697e04386314d4223130bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
