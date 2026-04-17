@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 7
   itemName: ExpGem_L
-  exp: 20
+  exp: 30
   gold: 0
   dmg: 0
   prefab: {fileID: 1772454461204316306, guid: 9bf861be9be71334b87cbc0b6a2a8811, type: 3}

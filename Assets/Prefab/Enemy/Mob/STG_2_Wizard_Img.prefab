@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7262818154466362724}
   - component: {fileID: 6367648387556358537}
   - component: {fileID: 5381628450035552812}
-  m_Layer: 0
+  - component: {fileID: 7910547526651630557}
+  m_Layer: 9
   m_Name: STG_2_Wizard_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,3 +159,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.3}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &7910547526651630557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485259087724804320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b45c5d76697e04386314d4223130bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
