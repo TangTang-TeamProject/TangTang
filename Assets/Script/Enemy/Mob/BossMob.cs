@@ -211,6 +211,7 @@ public class BossMob : BaseEnemy
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.        
         //_animator.SetBool(_animString_Move, false);
         //_animator.SetTrigger(_animString_Damaged);
+        SoundManager.Instance.PlaySfx(ESfxType.EnemyHit);
 
         float ratio = _maxHp / _monsterData.HP;
         _HPBarImage.fillAmount = ratio;

@@ -179,7 +179,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
             transform.localScale = new Vector3(2.5f, 2.5f, 0); // 엘리트몹 크기 변경
             int randExp = UnityEngine.Random.Range(10, 30);
             _expDrop = randExp;
-            _maxHp = _monsterData.HP * 6;
+            _maxHp = _monsterData.HP * 10;
         }
         else
         {
@@ -249,6 +249,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     protected virtual void Hit(IAttackables attackables)
     {        
         _maxHp -= attackables.Damage;
+        SoundManager.Instance.PlaySfx(ESfxType.EnemyHit);
         if (!_isStun) // _isStun 이 false 일때만 진입
         {
             if (attackables.Stun > 0)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: Axe
   level: 1
-  damage: 40
+  damage: 20
   speed: 2
   range: 1
   count: 3

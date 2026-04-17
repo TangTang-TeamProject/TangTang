@@ -31,7 +31,7 @@ public enum ESfxType
     Gacha,
     GachaComplete,
     Warning,
-    GameOver1,
-    GameOver2,
+    GameOver,
+    GameClear,
     LevelUp,
 }
