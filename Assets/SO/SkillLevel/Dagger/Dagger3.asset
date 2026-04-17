@@ -15,8 +15,8 @@ MonoBehaviour:
   skillID: Dagger
   level: 3
   damage: 30
-  speed: 5
+  speed: 7
   range: 1
   count: 1
   appearTime: 3
-  disAppearTime: -1.5
+  disAppearTime: -2.5

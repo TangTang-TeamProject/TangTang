@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: Dagger
   level: 5
-  damage: 60
-  speed: 5
+  damage: 50
+  speed: 7
   range: 1
   count: 1
   appearTime: 3
-  disAppearTime: -2
+  disAppearTime: -2.5
