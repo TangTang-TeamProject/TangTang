@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: DaggerEvo
   level: 1
-  damage: 80
-  speed: 7
+  damage: 60
+  speed: 8
   range: 1
   count: 1
   appearTime: 3
-  disAppearTime: -2.9
+  disAppearTime: -2.95
