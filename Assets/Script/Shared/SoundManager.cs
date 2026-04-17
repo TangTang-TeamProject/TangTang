@@ -5,7 +5,6 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-    [SerializeField] private int _sfxPoolSize = 8;
     [System.Serializable]
     public struct BgmData
     {
@@ -32,7 +31,11 @@ public class SoundManager : MonoBehaviour
 
     private Dictionary<EBgmType, AudioClip> _bgmDict;
     private Dictionary<ESfxType, AudioClip> _sfxDict;
+    private Dictionary<ESfxType, float> _sfxLastPlayTime = new Dictionary<ESfxType, float>();
+    private int _sfxPoolSize = 15;
     private List<AudioSource> _sfxPool;
+    private int _sfxIndex;
+    private float _sfxCoolTime = 0.05f;
 
     // 실행안하고 제대로 사운드가 들어갔는지 체크하는 코드(체크할때만 주석을 해제할것)
     /*
@@ -202,6 +205,17 @@ public class SoundManager : MonoBehaviour
             CPrint.Warn($"Sfx 없음 : {type}");
             return;
         }
+        float now = Time.time;
+
+        if (_sfxLastPlayTime.TryGetValue(type, out float lastTime))
+        {
+            if (now - lastTime < _sfxCoolTime)
+            {
+                return;
+            }
+        }
+
+        _sfxLastPlayTime[type] = now;
 
         AudioSource source = GetSfxSource();
         ApplyPitch(source);
@@ -228,6 +242,9 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        return _sfxPool[0];
+        AudioSource sourceUse = _sfxPool[_sfxIndex];
+        _sfxIndex = (_sfxIndex + 1) % _sfxPool.Count;
+
+        return sourceUse;
     }
 }
