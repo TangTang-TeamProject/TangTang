@@ -175,7 +175,8 @@ public class STG2_MidBoss1 : BaseEnemy
     {
         _maxHp -= attackables.Damage;
         _isHit = true;
-        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.        
+        _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
+        SoundManager.Instance.PlaySfx(ESfxType.EnemyHit);                              
         //_animator.SetBool(_animString_Move, false);
         //_animator.SetTrigger(_animString_Damaged);
 

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: Wand
   level: 5
-  damage: 200
+  damage: 120
   speed: 1
   range: 1
-  count: 2
+  count: 3
   appearTime: 2.5
   disAppearTime: 1
