@@ -8846,10 +8846,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: STG2_MidBoss1
       objectReference: {fileID: 0}
-    - target: {fileID: 1765298197895902424, guid: ce0d12e2ac43eb94d83c93fbfa8c6ccb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5711404074368481651, guid: ce0d12e2ac43eb94d83c93fbfa8c6ccb, type: 3}
       propertyPath: _HPBar
       value: 
