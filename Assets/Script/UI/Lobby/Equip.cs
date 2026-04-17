@@ -378,7 +378,7 @@ public class Equip : MonoBehaviour
             else
             {
                 TextChange(reqGold, TextType.Success);
-
+                SoundManager.Instance.PlaySfx(ESfxType.ReinforceSuccess);
                 SaveManager.CalcGold(-reqGold);
                 lev++;
                 SaveManager.SetEquipLevel(upgradeID, lev);

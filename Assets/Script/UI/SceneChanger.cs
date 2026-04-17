@@ -94,6 +94,8 @@ public class SceneChanger : MonoBehaviour
         float currentTime = 0;
         float t;
 
+        SoundManager.Instance.PlaySfx(ESfxType.Loading);
+
         while (currentTime < fadeTime)
         {
             currentTime += Time.unscaledDeltaTime;
