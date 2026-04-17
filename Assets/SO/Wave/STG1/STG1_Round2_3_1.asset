@@ -16,6 +16,6 @@ MonoBehaviour:
   startSec: 421
   endSec: 480
   spawnEnemy: ENM_001
-  enemyCount: 22
+  enemyCount: 35
   spawnIntervalSec: 4
   waveType: 1

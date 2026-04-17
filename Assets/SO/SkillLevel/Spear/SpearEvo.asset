@@ -15,8 +15,8 @@ MonoBehaviour:
   skillID: SpearEvo
   level: 1
   damage: 200
-  speed: 6
-  range: 1
+  speed: 9
+  range: 2
   count: 8
   appearTime: 3
   coolTime: 1
