@@ -55,6 +55,8 @@ public class IngameFlow : MonoBehaviour
         skillPickUI.ManualAwake();
 
         goldDigger.Setting();
+
+        Timer.Instance.IsTimeStop(false);
     }
 
     private void Start()
