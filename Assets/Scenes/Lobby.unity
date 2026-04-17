@@ -14039,9 +14039,45 @@ PrefabInstance:
       value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[13].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8251d30f9e1d54e4f9ddd061d8f9f17a, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[15].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b54fca599b151c47b7d30968c38cfb2, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
       propertyPath: _sfxList.Array.data[19].clip
       value: 
       objectReference: {fileID: 8300000, guid: 8646be7e4ee9ac04092903cac08acdf1, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[20].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5cb2714e46f2393498cae4feeb7e712e, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[21].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ba31432f7b4c2744c9cc67cb66180f82, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[23].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d7914d7ad736eec439a2485aa8fc34ab, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[23].type
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[24].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d7914d7ad736eec439a2485aa8fc34ab, type: 3}
+    - target: {fileID: 2469431758582138286, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
+      propertyPath: _sfxList.Array.data[24].type
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 2514845939800581222, guid: d199ba0db36c1324b9b253b177080ae2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960
