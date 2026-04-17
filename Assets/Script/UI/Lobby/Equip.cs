@@ -400,7 +400,7 @@ public class Equip : MonoBehaviour
 
         if (_isMax)
         {
-
+            TextChange(_reqGold, TextType.MaxLevel);
         }
         else
         {
