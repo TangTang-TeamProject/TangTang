@@ -30,6 +30,7 @@ public class GameEnd : MonoBehaviour
 
     public void GameOver(int endgold)
     {
+        SoundManager.Instance.PlaySfx(ESfxType.GameOver);
         endStatsText.text = "GameOver!";
         MakeTimeText((int)Timer.Instance.RealTime);
         GoldCalc(endgold);
@@ -38,6 +39,7 @@ public class GameEnd : MonoBehaviour
 
     public void GameClear(int endgold)
     {
+        SoundManager.Instance.PlaySfx(ESfxType.GameClear);
         endStatsText.text = "GameClear!";
         MakeTimeText((int)Timer.Instance.RealTime);
         GoldCalc(endgold);
