@@ -49,10 +49,10 @@ public class RealEnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        //if (SceneChanger.instance != null)
-        //{
-        //    _stageId = SceneChanger.instance.NowScene();
-        //}
+        if (SceneChanger.instance != null)
+        {
+            _stageId = SceneChanger.instance.NowScene();
+        }
 
         _eliteSpawnInterval = _time;
 
@@ -261,6 +261,7 @@ public class RealEnemySpawner : MonoBehaviour
         _isBossRound = true;    
 
         _bossCircle.SetActive(true);
+        SoundManager.Instance.PlayBgm(EBgmType.FinalBoss);
         StartCoroutine(BossSpawnAfterSeconds());
     }
 
