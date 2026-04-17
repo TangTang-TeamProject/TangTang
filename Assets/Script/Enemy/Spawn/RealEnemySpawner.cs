@@ -32,6 +32,9 @@ public class RealEnemySpawner : MonoBehaviour
     [Header("Elite 몬스터 설정")]
     [SerializeField] private float _time = 240f;
 
+    [Header("스테이지 정보")]
+    [SerializeField] private StageRegistry _stageRegistry;
+
     private List<WaveData_SO> _thisStageWave = new List<WaveData_SO>();
     
     private List<WaveData_SO> _nowWave = new List<WaveData_SO>();
@@ -46,6 +49,7 @@ public class RealEnemySpawner : MonoBehaviour
 
     private bool _isWaveEnd = false;
     private int _bossIdx = 0;    
+    
 
     private void Awake()
     {
@@ -290,6 +294,11 @@ public class RealEnemySpawner : MonoBehaviour
         {
             return;
         }
+
+        string nowScene = SceneChanger.instance.NowScene();
+
+        SoundManager.Instance.PlayBgm(_stageRegistry.GetStageDataByID(nowScene).BgmType);
+
         _isBossRound = false;        
     }
 }

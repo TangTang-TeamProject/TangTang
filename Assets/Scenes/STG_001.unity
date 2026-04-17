@@ -1600,6 +1600,7 @@ MonoBehaviour:
   _circleErase: 3
   _target: {fileID: 1871429745}
   _time: 60
+  _stageRegistry: {fileID: 11400000, guid: 7d788a2a6f2fce1438d3d6242ed46fa0, type: 2}
 --- !u!1 &697147026
 GameObject:
   m_ObjectHideFlags: 0
