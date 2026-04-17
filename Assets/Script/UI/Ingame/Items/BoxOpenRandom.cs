@@ -17,6 +17,8 @@ public class BoxOpenRandom : MonoBehaviour
     float _radius = 1;
     Vector2 _offset;
 
+    bool dieOnce = true;
+
     private void FixedUpdate()
     {
         CheckDamaged();
@@ -31,6 +33,11 @@ public class BoxOpenRandom : MonoBehaviour
     void CheckDamaged()
     {
         if (Timer.Instance.TickTime == _nextDmg)
+        {
+            return;
+        }
+
+        if (!dieOnce)
         {
             return;
         }
@@ -54,6 +61,8 @@ public class BoxOpenRandom : MonoBehaviour
 
     void Die()
     {
+        dieOnce = false;
+
         RandomDrop();
 
         Destroy(this.gameObject);
@@ -65,8 +74,6 @@ public class BoxOpenRandom : MonoBehaviour
 
         GameObject obj = Instantiate(item.GetItemByID(gotcha).Prefab, mother.transform);
         
-
-
         obj.transform.position = transform.position;
     }
 }
