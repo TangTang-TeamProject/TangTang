@@ -59,23 +59,23 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 09a31a188efaef244a063098b3cbe45c, type: 3}
   _sfxList:
   - type: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: ee8fdf6df0b237c4f9a1016200771392, type: 3}
   - type: 1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: bbf87cf3ae9d2344e8a0979c48676424, type: 3}
   - type: 2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 902e2656865686d4f8f8fb0903adc94c, type: 3}
   - type: 3
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 157ff8e0e13ed18458ded61b11586a22, type: 3}
   - type: 4
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3df414d77ad6a9142a5e72fbd6f544fe, type: 3}
   - type: 5
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e2d2ad6220234d14bbd1a0b9a24802c3, type: 3}
   - type: 6
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 8128e2ee266d24e44a191ae9c3c17422, type: 3}
   - type: 7
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: d4a80567d24bd084dbefa9c3ccfa9f4e, type: 3}
   - type: 8
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: cd675134a07e66849b6f86906a004a5b, type: 3}
   - type: 9
     clip: {fileID: 8300000, guid: f400c84ad2aeb7a4bbd8b9eac826cd1c, type: 3}
   - type: 10

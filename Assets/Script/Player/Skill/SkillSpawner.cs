@@ -206,7 +206,6 @@ public class SkillSpawner : MonoBehaviour
             trident.SetComponent(_player.transform, _cam);
             trident.Init(use.id, use.damage, _player.Attack, use.speed, use.range, _pool, _player, time, _player.Range);
             trident.gameObject.SetActive(true);
-            SoundManager.Instance.PlaySfx(ESfxType.Trident);
 
             float rate = use.cool * _player.Cool;
             yield return new WaitForSeconds(rate);
