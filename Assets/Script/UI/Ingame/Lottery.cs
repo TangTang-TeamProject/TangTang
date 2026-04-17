@@ -202,6 +202,7 @@ public class Lottery : MonoBehaviour
         for (int i = 0; i < choices.Count; i++)
         {
             selected.position = choices[i].choice_Icon.transform.position;
+            SoundManager.Instance.PlaySfx(ESfxType.Gacha);
 
             if (i == selectedChoice)
             {
@@ -225,6 +226,8 @@ public class Lottery : MonoBehaviour
         for (int i = 0; i < choices.Count; i++)
         {
             selected.position = choices[i].choice_Icon.transform.position;
+            SoundManager.Instance.PlaySfx(ESfxType.Gacha);
+
             yield return waitTime;
         }
 

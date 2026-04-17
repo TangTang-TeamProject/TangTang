@@ -205,7 +205,7 @@ public class SoundManager : MonoBehaviour
             CPrint.Warn($"Sfx 없음 : {type}");
             return;
         }
-        float now = Time.time;
+        float now = Time.unscaledTime;
 
         if (_sfxLastPlayTime.TryGetValue(type, out float lastTime))
         {

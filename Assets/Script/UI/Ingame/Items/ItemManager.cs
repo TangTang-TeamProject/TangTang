@@ -33,21 +33,25 @@ public class ItemManager : MonoBehaviour
 
     public void BoomBoomPow()
     {
+        SoundManager.Instance.PlaySfx(ESfxType.Bomb);
         Bomb?.Invoke();
     }
 
     public void HealTheWorld()
     {
+        SoundManager.Instance.PlaySfx(ESfxType.Meat);
         Heal?.Invoke();
     }
 
     public void ShowMeTheMoney()
     {
+        SoundManager.Instance.PlaySfx(ESfxType.Coin);
         Money?.Invoke();
     }
 
     public void LikeItsMagnetic(GameObject target)
     {
+        SoundManager.Instance.PlaySfx(ESfxType.Magnet);
         Magnetic?.Invoke(target);
     }
 
