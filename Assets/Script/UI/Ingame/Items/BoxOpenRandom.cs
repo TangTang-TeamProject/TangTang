@@ -61,6 +61,11 @@ public class BoxOpenRandom : MonoBehaviour
 
     void Die()
     {
+        if (!dieOnce)
+        {
+            return;
+        }
+
         dieOnce = false;
 
         RandomDrop();
