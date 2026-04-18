@@ -328,7 +328,7 @@ public class Player : MonoBehaviour, IDamagables
                 break;
             // 흡수 범위
             case StatKey.AbsorbeRange:
-                _absorbePer += data.ValuePerLevel * 0.01f;
+                _absorbePer += data.ValuePerLevel;
                 OnLootRangeChange?.Invoke(_absorbePer);
                 break;
             // 자동회복
