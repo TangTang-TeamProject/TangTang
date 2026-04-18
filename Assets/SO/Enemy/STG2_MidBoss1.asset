@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uB2AA\uC9C0 \uC624\uC6B0\uAC70"
   nameEN: Swamp Orge
   hp: 10000
-  moveSpeed: 3.5
+  moveSpeed: 2.5
   contactDamage: 22
   expDrop: 20
   sizeScale: 3.5
