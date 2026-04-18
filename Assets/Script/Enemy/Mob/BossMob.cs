@@ -109,11 +109,6 @@ public class BossMob : BaseEnemy
             }
         }
 
-        if (!CanUpdate())
-        {
-            return;
-        }
-        
         CheckDamaged();
         Chase();
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uC624\uD06C \uC804\uC0AC"
   nameEN: Orc_Warrior
   hp: 7000
-  moveSpeed: 8
+  moveSpeed: 3.5
   contactDamage: 14
   expDrop: 10
   sizeScale: 3.5

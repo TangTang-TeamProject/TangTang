@@ -10,6 +10,7 @@ public class ExpGem : Items
     [SerializeField] private GemType _type;
 
     private float _exp;
+    private float _speed;
     private int _id;
 
     private float _delayCheckTime = 0f;
@@ -34,6 +35,7 @@ public class ExpGem : Items
 
         _exp = _itemData.EXP;
         _id = _itemData.ItemID;
+        _speed = _itemMoveSpeed;
         _target = null;
         _isAbsorbed = false;
         ItemManager.instance.Magnetic += MagneticAbsorbed;    
@@ -52,7 +54,8 @@ public class ExpGem : Items
 
     private void MagneticAbsorbed(GameObject target)
     {
-        base.GetItem(target);       
+        base.GetItem(target);
+        _speed = 10f;
     }
 
     public override void MoveToTarget()
@@ -77,11 +80,11 @@ public class ExpGem : Items
 
         if (Timer.Instance.RealTime < _delayCheckTime)
         {
-            pos += -dir * _itemMoveSpeed * Time.deltaTime;
+            pos += -dir * _speed * Time.deltaTime;
         }
         else
         {
-            pos += dir * _itemMoveSpeed * Time.deltaTime;
+            pos += dir * _speed * Time.deltaTime;
         }
      
         transform.position = pos;
