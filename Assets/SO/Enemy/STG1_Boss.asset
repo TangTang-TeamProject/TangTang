@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uBD80\uC871\uC7A5 \uACE0\uB974\uB9C9"
   nameEN: Chieftain Gormak
   hp: 32000
-  moveSpeed: 3.5
+  moveSpeed: 3
   contactDamage: 26
   expDrop: 0
   sizeScale: 3.5
