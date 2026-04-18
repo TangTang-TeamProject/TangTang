@@ -52,7 +52,7 @@ public class AFK : MonoBehaviour
 
     void UpdateCycle()
     {
-        currentCycle += Time.deltaTime;
+        currentCycle += Time.unscaledTime;
 
         if (currentCycle < updateCycle)
         {
