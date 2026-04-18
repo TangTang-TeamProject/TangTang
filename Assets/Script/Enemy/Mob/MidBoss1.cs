@@ -60,13 +60,7 @@ public class MidBoss1 : BaseEnemy
             Attack();
             _checkTime = Timer.Instance.RealTime + _atkCycle;
         }
-       
         
-        if (!CanUpdate())
-        {            
-            return;
-        }
-
         CheckDamaged();
 
         if (_isDashing)

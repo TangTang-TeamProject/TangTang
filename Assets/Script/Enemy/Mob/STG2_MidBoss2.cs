@@ -101,10 +101,6 @@ public class STG2_MidBoss2 : BaseEnemy
             }
         }
 
-        if (!CanUpdate())
-        {
-            return;
-        }
 
         if (Timer.Instance.RealTime >= _nextShoot)
         {

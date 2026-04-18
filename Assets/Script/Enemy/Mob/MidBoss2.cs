@@ -35,10 +35,6 @@ public class MidBoss2 : BaseEnemy
             }
         }
 
-        if (!CanUpdate())
-        {
-            return;
-        }
 
         Chase();
         CheckDamaged();        

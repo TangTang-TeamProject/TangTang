@@ -211,6 +211,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
         _isHit = false;
         _isStun = false;
         _isDead = false;
+        
         _sr.color = Color.white; 
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
                                  
@@ -332,6 +333,21 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
     public virtual void SetTarget(GameObject target)
     {
         _target = target;
+
+        _dir = _target.transform.position - transform.position;
+        float buffer = 0.1f;
+        Quaternion rot = transform.rotation;
+
+        if (_dir.x < 0 - buffer)
+        {
+            rot.y = 0f;
+        }
+        else if (_dir.x > 0 + buffer)
+        {
+            rot.y = 180f;
+        }
+
+        transform.rotation = rot; // 추적 방향에 따른 방향 전환 적용
     }
    
     protected virtual Vector2 CheckBoundary()

@@ -114,10 +114,6 @@ public class STG2_FinalBoss : BaseEnemy
             }
         }
 
-        if (!CanUpdate())
-        {
-            return;
-        }
 
         CheckDamaged();
 

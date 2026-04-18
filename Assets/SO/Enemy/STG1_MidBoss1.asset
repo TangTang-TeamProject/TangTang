@@ -16,7 +16,7 @@ MonoBehaviour:
   nameKR: "\uC624\uD06C \uC804\uC0AC"
   nameEN: Orc_Berserker
   hp: 20000
-  moveSpeed: 4
+  moveSpeed: 3.5
   contactDamage: 16
   expDrop: 10
   sizeScale: 3.5
