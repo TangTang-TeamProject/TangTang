@@ -245,12 +245,15 @@ public class Equip : MonoBehaviour
 
         for (int i = 0; i < e.Count; i++)
         {
+            string _id = e[i].EquipID;
+
             GameObject g = Instantiate(equipPrefab);
             Button btn = g.GetComponentInChildren<Button>();
+            IEquipSlot _slot = g.GetComponent<IEquipSlot>();
+
+            _slot.SetID(_id, GrabEquip);
 
             btn.image.sprite = e[i].IMG;
-
-            string _id = e[i].EquipID;
 
             equips.Add(g);
         }
@@ -265,7 +268,7 @@ public class Equip : MonoBehaviour
             string _id = e[i].EquipID;
             EquipType _t = e[i].Type;
 
-            if (e[i].Type == EquipType.TypeCount)
+            if (_t == EquipType.TypeCount)
             {
                 continue;
             }
