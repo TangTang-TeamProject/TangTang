@@ -5,11 +5,7 @@ public class FireObstacles : BaseEnemy
 {
     [SerializeField] private EnemyData_SO _fireData;
     [SerializeField] private ItemData_SO _itemData;
-   
-
-    private float _atk;  
-
-    public float Atk => _atk;
+      
 
     protected override void Awake()
     {
@@ -18,8 +14,8 @@ public class FireObstacles : BaseEnemy
             CPrint.Log("_fireData SO 연결 안됨");
             enabled = false;
             return;
-        }
-        _atk = _fireData.ContactDamage;
+        }       
+        _contactDamage = _fireData.ContactDamage;
     }
 
     protected override void Start()

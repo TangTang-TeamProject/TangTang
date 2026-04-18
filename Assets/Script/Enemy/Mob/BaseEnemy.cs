@@ -210,6 +210,7 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
         _isHit = false;
         _isStun = false;
+        _isDead = false;
         _sr.color = Color.white; 
         _hitTime = _hitTimer; // 계속 최신 기준 hit 로 변경.
                                  
@@ -266,7 +267,8 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     // 데미지 받는 함수
     protected virtual void Hit(IAttackables attackables)
-    {        
+    {                
+
         _maxHp -= attackables.Damage;
         SoundManager.Instance.PlaySfx(ESfxType.EnemyHit);
         if (!_isStun) // _isStun 이 false 일때만 진입
@@ -356,6 +358,11 @@ public abstract class BaseEnemy : MonoBehaviour, IAttackables
 
     protected virtual void CheckDamaged()
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         if (Timer.Instance.RealTime >= _nextDmg)
         {
             _hitRecords.Clear();
