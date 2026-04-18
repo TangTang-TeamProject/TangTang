@@ -32,11 +32,7 @@ public class Zombie : BaseEnemy
 
     protected override void Update()
     {
-        base.Update();
-        if (_isDead)
-        {
-            return;
-        }
+        base.Update();        
 
         if (!CanUpdate())
         {
