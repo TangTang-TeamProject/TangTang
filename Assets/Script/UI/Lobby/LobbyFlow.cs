@@ -61,18 +61,23 @@ public class LobbyFlow : MonoBehaviour
         {
             case LobbyState.Main:
                 Show(MainPanel);
+                backBTN.gameObject.SetActive(false);
                 break;
             case LobbyState.Character:
                 Show(charPanel);
+                backBTN.gameObject.SetActive(true);
                 break;
             case LobbyState.Equip:
                 Show(equipPanel);
+                backBTN.gameObject.SetActive(true);
                 break;
             case LobbyState.Setting:
                 Show(settingPanel);
+                backBTN.gameObject.SetActive(true);
                 break;
             case LobbyState.Stage:
                 Show(stagePanel);
+                backBTN.gameObject.SetActive(true);
                 break;
             case LobbyState.Quit:
                 GameEnd();
