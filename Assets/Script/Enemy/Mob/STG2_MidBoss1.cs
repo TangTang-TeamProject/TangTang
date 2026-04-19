@@ -103,12 +103,6 @@ public class STG2_MidBoss1 : BaseEnemy
             _checkTime = Timer.Instance.RealTime + _atkCycle;
         }
 
-        
-
-        if (!CanUpdate())
-        {
-            return;
-        }
 
         CheckDamaged();
 
